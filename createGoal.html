@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Goal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row valign-wrapper createTitle">
+            <div class="col s6 title">
+                <p>CREATE GOAL</p>
+            </div>
+            <div class="col s2 cancelGoal">
+                <button class="btn btn-large waves-effect waves-light cancel">Cancel</button>
+            </div>
+            <div class="col s3 saveGoal">
+                <button class="btn btn-large waves-effect waves-light">Save
+                    <i class="material-icons right">check</i>
+                </button>
+            </div>
+        </div>
+
+        <div class="row valign-wrapper input">
+            <div class="col s8">
+
+                <input type="text" class="newGoal">
+            </div>
+            <div class="col s3">
+                <button class="btn btn-large waves-effect waves-light goalIdeas">ideas</button>
+            </div>
+        </div>
+
+        <div class="goalIdeas" display="hide">
+
+        </div>
+
+        <div class="goalPeriod">
+            <span>Choose a goal period:</span>
+            <div class="row">
+                <button class="btn btn-large waves-effect waves-light period">Daily</button>
+                <button class="btn btn-large waves-effect waves-light period">Weekly</button>
+                <button class="btn btn-large waves-effect waves-light period">Monthly</button>
+                <button class="btn btn-large waves-effect waves-light period">Yearly</button>
+            </div>
+        </div>
+
+        <div class="days">
+            <span>Track goals on which days?</span>
+            <div class="row">
+                <button class="btn-floating btn-large waves-effect waves-light red">Sun</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Mon</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Tue</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Wed</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Thu</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Fri</button>
+                <button class="btn-floating btn-large waves-effect waves-light red">Sat</button>
+            </div>
+        </div>
+
+        <div class="reminder">
+            <div>Reminders: </div>
+            <button class="btn btn-large waves-effect waves-light">Email
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+
+    </div>
+
+</body>
+</html>
