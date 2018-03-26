@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Main server for Reliable App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "test": "\u001b[A\u001b[B"
+  },
+  "keywords": [
+    "Express",
+    "Mysql"
+  ],
+  "author": "Keaton, Harisson\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dr\u001b[C\u001b[\u001b[C\u001b[Con, Duy",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.2"
+  }
+}
