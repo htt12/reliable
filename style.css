@@ -63,7 +63,7 @@ body{
 .task-description{
     width: 60%;
     height: 100%;
-    display: -ms-inline-grid
+    display: -ms-inline-grid;
     background-color: #ffab91;
 }
 
