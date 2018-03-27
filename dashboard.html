@@ -8,40 +8,67 @@
     <link rel="stylesheet" type"css/text" href="style.css">
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
     
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <body>
         <div class="container">
-            <div class="title-bar">
-                DASHBOARD
-            </div>
+            <div class="title-bar">Dashboard</div>
             
             <div class="task-list ">
                 <div class='task-container'>
-                    <div class='task-description'>
-                        Task 1
-                        <button class="task-button">Done</button>
+                    <div class='task-description z-depth-3'>Go to bed by 11PM</div>
+                    <div class='button-container z-depth-3'>
+                        <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
+                        <ul id = "dropdown" class = "dropdown-content">
+                            <li><a href = "#">Complete</a></li>
+                            <li><a href = "#!">Edit</a></li>
+                            <li><a href = "#">Incomplete</a></li>
+                        </ul>           
                     </div>
-                    
                 </div>
                 
+                <div class='task-container'>
+                    <div class='task-description z-depth-3'>Run 2 miles</div>
+                    <div class='button-container z-depth-3'>
+                        <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
+                        <ul id = "dropdown" class = "dropdown-content">
+                            <li><a href = "#">Complete</a></li>
+                            <li><a href = "#!">Edit</a></li>
+                            <li><a href = "#">Incomplete</a></li>
+                        </ul>           
+                    </div>
+                </div>
+
+                <div class='task-container'>
+                    <div class='task-description z-depth-3'>Eat 5 servings of veggies</div>
+                    <div class='button-container z-depth-3'>
+                        <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
+                        <ul id = "dropdown" class = "dropdown-content">
+                            <li><a href = "#">Complete</a></li>
+                            <li><a href = "#!">Edit</a></li>
+                            <li><a href = "#">Incomplete</a></li>
+                        </ul>           
+                    </div>
+                </div>    
+            </div>   
+
+            <div class='footer'>
+                <div class="fixed-action-btn">
+                    <a class="btn-floating btn-large yellow waves-effect waves-light"><i class='material-icons'>add</i>
+                        <!-- <i class="material-icons">menu</i> -->
+                    </a>
+                    <ul>
+                        <!-- <li><a class="btn-floating yellow"><i class="material-icons">add</i></a></li>                    </ul> -->
+                </div>
             </div>
-            <div class="week-view">Week Forecast</div>
         </div>
 
-        <div class="fixed-action-btn">
-            <a class="btn-floating btn-large red">
-                <i class="material-icons">menu</i>
-            </a>
-            <ul>
-                <li><a class="btn-floating red"><i class="material-icons">add</i></a></li>
-                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li>
-            </ul>
-        </div>
+        
                     
     </body>
+    <script src='dashBoard.js'></script>
+
 </html>
 
 
