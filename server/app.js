@@ -6,15 +6,16 @@ const PORT = 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Route allows you go to index
-//first thing '/' is always what 
+//first thing '/' is always what
 app.get('/',(req, res) => {
    res.sendFile(path.join(__dirname,'public','index.html'));
 });
 
-app.get('/peach',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','peach.html'));
+app.get('/login',(req, res) => {
+    res.sendFile(path.join(__dirname,'public','login.html'));
 });
 
 app.get('/mario',(req, res) => {
