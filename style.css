@@ -1,185 +1,94 @@
-html{
-    margin: 0;
-    padding: 0;
-}
-
 body{
     width: 100vw;
     height: 100vh;
+    display: grid;
+    align-items: center;
 }
 
 .container{
-    width:90%;
-    margin: auto;
-    font-family: 'Lato', sans-serif;
-    #background-color: lightblue;
+    width: 90%;
+    height: 95%;
+    display: grid;
+    align-content: center;
+    grid-gap: 1%;
+    grid-template-rows: 7% 65% 20% auto;
+    grid-template-columns: 5% 5% 5% 64% 5% 5% 5%;
+    background-color: rgb(163, 161, 161);
 }
 
-.title{
-    margin: 5% 0;
-}
-
-.title span{
-    font-size: 5em;
-}
-
-.title button{
-    float: right;
-    font-size: 3em;
-}
-
-.title > .add{
-    background-color: lightblue;
-    margin-left: 2%;
-}
-
-.title > .cancel{
-    background-color: lightgreen;
-}
-
-.creatingGoal{
-    margin: 10% 0;
-}
-
-.creatingGoal p{
+.title-bar{
+    grid-column: 1/8;
+    display: inline-flex;
     font-size: 2em;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    letter-spacing: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff8f00;
+    border: 3px solid white;
+    
 }
 
-.creatingGoal button{
-    margin-right: 5%;
-    background-color: lightcoral;
+.task-list{
+    grid-column: 2/7;
+    grid-template-columns: 10% 20% 20% 20% 20% 10%;
+    display: inline-flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    
 }
 
-.creatingGoal input::-webkit-input-placeholder{
-    font-size: 1em;
-    color: grey;
+.footer{
+ 
 }
 
-::-moz-placeholder{
-    font-size: 1em;
+.task-container{
+    grid-column: 2/6;
+    width: 100%;
+    height: 15%;
+    
+    
+    
 }
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    font-size: 1em;
-}
-
-::placeholder{ /* Firefox */
-    font-size: 1em;
-}
-
-.creatingGoal input{
+.task-description{
+    display: inline-flex;
+    background-color: #ffa000;
     width: 70%;
-    font-size: 3em;
-    background-color: lightgrey;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px 4px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    border: 3px solid white;
+    color: white;
 }
 
-.creatingGoal button{
-    font-size: 3em;
+.button-container{
+    display: inline-flex;
     float: right;
+    width: 25%;
+    height: 100%;
+    border-radius: 4px 25px;
+
+    
 }
 
-.error{
-    color: lightcoral;
+.task-button{
+    width: 100%;
+    height: 100%;
+    background-color: #ffb300;
+    border-radius: 4px 25px;
+    border: 3px solid white;
 }
 
-.goalIdeas{
-    background-color: #1b6d85;
+.dropdown-content{
+    background-color: #f4511e; 
 }
 
-.days{
-    margin: 8% 0;
+.dropdown-content li>a{
+    color: white;
 }
-
-.days p{
-    font-size: 2em;
-}
-
-.days input{
-    font-size: 3em;
-}
-
-.days > .daysForm{
-    font-size: 2em;
-}
-
-input[type=checkbox]{
-    -webkit-transform: scale(1.8);
-    -ms-transform: scale(2);
-}
-
-.reminder{
-    margin: 8% 0;
-}
-
-.reminder p{
-    font-size: 2em;
-}
-
-.reminder select{
-    padding-left: 5%;
-    border: 1px solid black;
-    /*font-size: 1em;*/
-}
-
-/*.createTitle{*/
-    /*height: 13vh;*/
-    /*#background-color: #1b6d85;*/
-/*}*/
-
-/*.createTitle p{*/
-    /*font-size: 4em;*/
-/*}*/
-
-/*.cancelGoal button {*/
-    /*background-color: #9e9e9e;*/
-    /*font-size: 1.5em;*/
-/*}*/
-
-/*.saveGoal button{*/
-    /*background-color: #00838f;*/
-    /*font-size: 1.5em;*/
-
-/*}*/
-
-/*.input{*/
-    /*height: 7vh;*/
-/*}*/
-
-/*.input button{*/
-    /*font-size: 1.5em;*/
-    /*background-color: #00838f;*/
-/*}*/
-
-/*.goalPeriod{*/
-    /*height: 10vh;*/
-    /*padding: 2%;*/
-/*}*/
-
-/*.goalPeriod span,*/
-/*.days span,*/
-/*.reminder div{*/
-    /*font-size: 3em;*/
-/*}*/
-
-/*.goalPeriod button,*/
-/*.days button{*/
-    /*background-color: #9e9e9e;*/
-    /*font-size: 1.5em;*/
-    /*margin: 5% 1%;*/
-/*}*/
-
-/*.days{*/
-    /*margin-top: 2%;*/
-    /*height: 15vh;*/
-    /*padding: 5% 2%;*/
-/*}*/
-/*.reminder{*/
-    /*height: 10vh;*/
-    /*padding: 2%;*/
-/*}*/
-
-/*.reminder button{*/
-    /*background-color: #00838f;*/
-    /*font-size: 1.5em;*/
-    /*margin: 5% 1%;*/
-/*}*/
