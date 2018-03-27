@@ -17,11 +17,11 @@
             
             <div class="task-list ">
                 <div class='task-container'>
-                    <div class='task-description z-depth-3'>Go to bed by 11PM</div>
+                    <div id="test-remove" class='task-description z-depth-3'>Go to bed by 11PM</div>
                     <div class='button-container z-depth-3'>
                         <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
                         <ul id = "dropdown" class = "dropdown-content">
-                            <li><a href = "#">Complete</a></li>
+                            <li><a id='complete'>Complete</a></li>
                             <li><a href = "#!">Edit</a></li>
                             <li><a href = "#">Incomplete</a></li>
                         </ul>           
@@ -33,7 +33,7 @@
                     <div class='button-container z-depth-3'>
                         <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
                         <ul id = "dropdown" class = "dropdown-content">
-                            <li><a href = "#">Complete</a></li>
+                            <li><a id='complete' href = "#">Complete</a></li>
                             <li><a href = "#!">Edit</a></li>
                             <li><a href = "#">Incomplete</a></li>
                         </ul>           
@@ -55,7 +55,7 @@
 
             <div class='footer'>
                 <div class="fixed-action-btn">
-                    <a href='createGoal.html' class="btn-floating btn-large yellow waves-effect waves-light"><i class='material-icons'>add</i>
+                    <a href='createGoal.html' class="btn-floating btn-large deep-orange waves-effect waves-light"><i class='material-icons'>add</i>
                         <!-- <i class="material-icons">menu</i> -->
                     </a>
                     <ul>
