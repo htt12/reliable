@@ -15,7 +15,8 @@
   "author": "Keaton, Harisson\u001b[D\u001b[D\u001b[D\u001b[D\u001b[Dr\u001b[C\u001b[\u001b[C\u001b[Con, Duy",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "mysql": "^2.15.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.2"
