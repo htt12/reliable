@@ -107,18 +107,26 @@ input[type=checkbox]{
     -ms-transform: scale(2);
 }
 
-.reminder{
+.timeOfDay{
     margin: 8% 0;
 }
 
-.reminder p{
+.timeOfDay p{
     font-size: 2em;
 }
 
-.reminder select{
-    padding-left: 5%;
+.timeOfDay select{
     border: 1px solid black;
-    /*font-size: 1em;*/
+    font-size: 1.5em;
+}
+
+.endDate{
+    font-size: 2em;
+}
+
+.endDate input{
+    font-size: 1.5em;
+    background-color: grey;
 }
 
 /*.createTitle{*/

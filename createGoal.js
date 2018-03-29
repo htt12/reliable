@@ -22,14 +22,15 @@ function handleAddButtonClicked() {
     var goal = $('.goalInput').val();
     console.log('new goal: ', goal);
 
-
     const values = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map ((checkbox) => checkbox.value);
     console.log('values: ', values);
     for(var i = 0; i<values.length; i++){
         var newObject = createObject(values[i], goal);
         goalAndDateArray.push(newObject);
     }
-    console.log("goalAndDateArray: ", goalAndDateArray);
+    console.log("goalAndDateArray: ", goalAndDateArray)
+
+    var timeOfDate =
     clearUserInput();
 }
 
