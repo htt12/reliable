@@ -16,14 +16,14 @@
             <div class="title-bar">Dashboard</div>
             
             <div class="task-list ">
-                <div class='task-container'>
+                <div class='task-container task1'>
                     <div id="test-remove" class='task-description z-depth-3'>Go to bed by 11PM</div>
                     <div class='button-container z-depth-3'>
                         <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
                         <ul id = "dropdown" class = "dropdown-content">
-                            <li id='complete'><a >Complete</a></li>
-                            <li><a href = "#!">Edit</a></li>
-                            <li><a href = "#">Incomplete</a></li>
+                            <li class='complete' onclick='completeGoal()'><a >Complete</a></li>
+                            <li class=><a href = "#!">Edit</a></li>
+                            <li class='incomplete'><a href = "#">Incomplete</a></li>
                         </ul>           
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class='button-container z-depth-3'>
                         <button class = "dropdown-button dropdown-trigger task-button material-icons"  data-activates="dropdown">menu</button>
                         <ul id = "dropdown" class = "dropdown-content">
-                            <li><a href = "#">Complete</a></li>
+                            <li id="complete" ><a href = "#">Complete</a></li>
                             <li><a href = "#!">Edit</a></li>
                             <li><a href = "#">Incomplete</a></li>
                         </ul>           

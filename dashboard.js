@@ -1,15 +1,8 @@
-$(document).ready(initializeApp);
+$(document).ready();
 
-function initializeApp(){
-    applyClickHandlers;
-};
 
-function applyClickHandlers(){
-    $('.dropdown-trigger').dropdown();
-    $('.fixed-action-btn').floatingActionButton('direction', 'left');
-    $('.dropdown-button').click(completeGoal);
-}
 
 function completeGoal(){
-    $('.task-container').remove();
+    console.log('click')
+    $('.task1').remove();
 }
