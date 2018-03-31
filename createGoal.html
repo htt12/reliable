@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Goal</title>
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">-->
+    <link rel="stylesheet" href="style.css">
+    <!--<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">-->
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="createGoal.js"></script>
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="title">
+            <span>Create Goal</span>
+            <button class="add">Add</button>
+            <button class="cancel">Cancel</button>
+        </div>
+
+        <div class="creatingGoal">
+            <p class="message">Name your new goal:</p>
+            <input class="goalInput" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
+            <button class="ideas">ideas</button>
+        </div>
+
+        <div class="goalIdeas">
+            <ul>
+                <li class="li_title">Health
+                    <ul id="idea_list">
+                        <li>Exercise 20 Minutes For 30 Days</li>
+                        <li>60 Minutes Of Yoga For 30 Days</li>
+                        <li>Run a 5K</li>
+                        <li>10 Pull-Ups</li>
+                        <li>50 Push-Ups</li>
+                        <li>One Arm Push-Up</li>
+                        <li>60-Second Double Arm Hang</li>
+                        <li>15-Second Single Arm Hang</li>
+                        <li>1.5x Bodyweight Barbell Bench Press</li>
+                        <li>2x Bodyweight Deadlift</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="days">
+            <p>Days to track your goal:</p>
+            <div class="daysForm">
+                <label for="sun">Sun</label>
+                <input class="days" type="checkbox" id="sun" value="sunday">
+                <label for="mon">Mon</label>
+                <input class="days" type="checkbox" id="mon" value="monday">
+                <label for="tue">Tue</label>
+                <input class="days" type="checkbox" id="tue" value="tuesday">
+                <label for="wed">Wed</label>
+                <input class="days" type="checkbox" id="wed" value="wednesday">
+                <label for="thu">Thu</label>
+                <input class="days" type="checkbox" id="thu" value="thursday">
+                <label for="fri">Fri</label>
+                <input class="days" type="checkbox" id="fri" value="friday">
+                <label for="sat">Sat</label>
+                <input class="days" type="checkbox" id="sat" value="saturday">
+            </div>
+        </div>
+
+        <div class="timeOfDay">
+            <p>I want to do it</p>
+            <select name="timeOfDay" id="timeframe">
+                <option selected disabled="disabled">at any time of day</option>
+                <option value="morning">morning</option>
+                <option value="afternoon">afternoon</option>
+                <option value="evening">evening</option>
+            </select>
+        </div>
+
+        <div class="endDate">
+            <p>Select end date</p>
+            <input id="end_date" type="date" name="endDate" min="">
+        </div>
+
+        <!--<div class="reminder">-->
+            <!--<p>Reminders:</p>-->
+            <!--<select name="reminderList" id="">-->
+                <!--<option value="none">None</option>-->
+                <!--<option value="email">Email</option>-->
+                <!--<option value="notification">Notification</option>-->
+                <!--<option value="text">Text</option>-->
+            <!--</select>-->
+        <!--</div>-->
+
+    </div>
+
+    <!--<div class="container">-->
+        <!--<div class="row valign-wrapper createTitle">-->
+            <!--<div class="col s6 title">-->
+                <!--<p>CREATE GOAL</p>-->
+            <!--</div>-->
+            <!--<div class="col s2 cancelGoal">-->
+                <!--<button class="btn btn-large waves-effect waves-light cancel">Cancel</button>-->
+            <!--</div>-->
+            <!--<div class="col s3 saveGoal">-->
+                <!--<button class="btn btn-large waves-effect waves-light">Save-->
+                    <!--<i class="material-icons right">check</i>-->
+                <!--</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="row valign-wrapper input">-->
+            <!--<div class="col s8">-->
+
+                <!--<input type="text" class="newGoal">-->
+            <!--</div>-->
+            <!--<div class="col s3">-->
+                <!--<button class="btn btn-l  arge waves-effect waves-light goalIdeas">ideas</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="goalIdeas" display="hide">-->
+
+        <!--</div>-->
+
+        <!--<div class="goalPeriod">-->
+            <!--<span>Choose a goal period:</span>-->
+            <!--<div class="row">-->
+                <!--<button class="btn btn-large waves-effect waves-light period">Daily</button>-->
+                <!--<button class="btn btn-large waves-effect waves-light period">Weekly</button>-->
+                <!--<button class="btn btn-large waves-effect waves-light period">Monthly</button>-->
+                <!--<button class="btn btn-large waves-effect waves-light period">Yearly</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="days">-->
+            <!--<span>Track goals on which days?</span>-->
+            <!--<div class="row">-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Sun</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Mon</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Tue</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Wed</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Thu</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Fri</button>-->
+                <!--<button class="btn-floating btn-large waves-effect waves-light red">Sat</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="reminder">-->
+            <!--<div>Reminders: </div>-->
+            <!--<button class="btn btn-large waves-effect waves-light">Email-->
+                <!--<i class="material-icons right">send</i>-->
+            <!--</button>-->
+        <!--</div>-->
+
+    <!--</div>-->
+
+</body>
+</html>
