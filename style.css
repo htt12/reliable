@@ -83,7 +83,10 @@ body{
 }
 
 .goalIdeas{
+    display: none;
     background-color: #1b6d85;
+    font-size: 0.9em;
+    line-height: 200%;
 }
 
 .days{
