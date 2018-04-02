@@ -4,6 +4,7 @@ const mysql = require('mysql');
 const credentials  = require('./config/mysqlCredentials');
 const path = require('path');
 
+
 // Instantiate Express application and MySQL database connection
 const app = express();
 const PORT = 8000;
@@ -11,9 +12,9 @@ const connection = mysql.createConnection(credentials);
 
 // Verify if connection is successful
 connection.connect((err)  => {
-   if (err) throw err;
+    if (err) throw err;
 
-   console.log('Connected to database yo')
+    console.log('Connected to database yo')
 });
 
 // === Consumption of middleware === //
@@ -224,19 +225,20 @@ app.listen(PORT, () => {
 //     });
 //     console.log("Connected!")
 // });
-function getGoalsFromServer() {
-    $.ajax({
-            type: "GET",
-            url: "http://localhost:8000/dummyGoals",
-            dataType: "json",
-            data: {
-                ajaxid: 4,
-                UserID: UserID,
-                EmailAddress: EmailAdress
-            },
-            success: function (json_data) {
-                var data = JSON.parse(json_data);
-            }
-        })
-    }
+//------------------Adjax Call ----------------------------------------------------------------//
+// function getGoalsFromServer() {
+//     $.ajax({
+//             type: "GET",
+//             url: "http://localhost:8000/dummyGoals",
+//             dataType: "json",
+//             data: {
+//                 ajaxid: 4,
+//                 UserID: UserID,
+//                 EmailAddress: EmailAdress
+//             },
+//             success: function (json_data) {
+//                 var data = JSON.parse(json_data);
+//             }
+//         })
+//     }
 
