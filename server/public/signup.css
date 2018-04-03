@@ -34,9 +34,45 @@ body {
     padding: 32px 48px 0px 48px;
     border: 1px solid #EEE;
 }
+@media only screen and (max-width: 980px){
+    html {
+        font-size: 30px;
+    }
+    .row .col {
+        float: none;
+        box-sizing: border-box;
+        padding: 0 0.75rem;
+    }
+}
 
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+/*----------------------------------------------------------*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
 
+main {
+    flex: 1 0 auto;
+}
 
+.input-field input[type=date]:focus + label,
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label {
+    color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
 /*body {*/
     /*background-image: url("images/Wide-Marble-Wallpaper-wpc20018182-1024x647.jpg");*/
 /*}*/
