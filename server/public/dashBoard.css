@@ -1,19 +1,25 @@
+
 .dashboard-body{
     width: 100vw;
     height: 100vh;
     display: grid;
     align-items: center;
     justify-items: center;
+    background-color: #3b7d87;
 }
 
 .dashboard-container{
+    
+    border-radius: 25px;
     width: 90%;
     height: 95%;
     display: grid;
+    background-color: white;
     align-content: center;
     grid-gap: 1%;
     grid-template-rows: 7% 65% 20% auto;
     grid-template-columns: 5% 5% 5% 64% 5% 5% 5%;
+    
     
 }
 
@@ -27,7 +33,7 @@
     justify-content: center;
     align-items: center;
     background-color: #3b7d87;
-    border: 3px solid white;
+  
     
 }
 
