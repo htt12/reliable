@@ -47,7 +47,7 @@ function handleAddButtonClicked() {
     }
     console.log("goalAndDateArray: ", goalAndDateArray)
 
-    // clearUserInput();
+    clearUserInput();
 }
 
 function validateInputField() {
