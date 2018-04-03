@@ -42,13 +42,13 @@ app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
 
-app.get('/mario',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','mario.html'));
-});
+// app.get('/mario',(req, res) => {
+//     res.sendFile(path.join(__dirname,'public','mario.html'));
+// });
 
-app.get('/toad',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','toad.html'));
-});
+// app.get('/toad',(req, res) => {
+//     res.sendFile(path.join(__dirname,'public','toad.html'));
+// });
 //---Route allows you go to index //
 //---first thing '/' is always what //
 

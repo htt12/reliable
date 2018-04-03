@@ -1,11 +1,136 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
 body{
+    width: 100vw;
+    height: 100vh;
+}
+
+.container{
+    width:90%;
+    height: 95%;
+    margin: auto;
+    font-family: 'Lato', sans-serif;
+    background-color: lightblue;
+}
+
+.title{
+    margin: 5% 0;
+}
+
+.title span{
+    font-size: 5em;
+}
+
+.title .button{
+    float: right;
+    font-size: 3em;
+}
+
+.title > .add{
+    background-color: lightblue;
+    margin-left: 2%;
+}
+
+.title > .cancel{
+    background-color: lightgreen;
+}
+
+.creatingGoal{
+    margin: 10% 0;
+}
+
+.creatingGoal p{
+    font-size: 2em;
+}
+
+.creatingGoal button{
+    margin-right: 5%;
+    background-color: lightcoral;
+}
+
+.creatingGoal input::-webkit-input-placeholder{
+    font-size: 1em;
+    color: grey;
+}
+
+::-moz-placeholder{
+    font-size: 1em;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 1em;
+}
+
+::placeholder{ /* Firefox */
+    font-size: 1em;
+}
+
+.creatingGoal input{
+    width: 70%;
+    font-size: 3em;
+    background-color: lightgrey;
+}
+
+.creatingGoal button{
+    font-size: 3em;
+    float: right;
+}
+
+.error{
+    color: lightcoral;
+}
+
+.goalIdeas{
+    background-color: #1b6d85;
+}
+
+.days{
+    margin: 8% 0;
+}
+
+.days p{
+    font-size: 2em;
+}
+
+.days input{
+    font-size: 3em;
+}
+
+.days > .daysForm{
+    font-size: 2em;
+}
+
+input[type=checkbox]{
+    -webkit-transform: scale(1.8);
+    -ms-transform: scale(2);
+}
+
+.reminder{
+    margin: 8% 0;
+}
+
+.reminder p{
+    font-size: 2em;
+}
+
+.reminder select{
+    padding-left: 5%;
+    border: 1px solid black;
+    /*font-size: 1em;*/
+}
+
+.dashboard-body{
     width: 100vw;
     height: 100vh;
     display: grid;
     align-items: center;
+    justify-items: center;
 }
 
-.container{
+.dashboard-container{
     width: 90%;
     height: 95%;
     display: grid;
