@@ -1,7 +1,7 @@
 // Require needed modules / dependencies
 const express = require('express');
 const mysql = require('mysql');
-const credentials  = require('./config/mysqlCredentials');
+const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
 
 
@@ -31,14 +31,8 @@ app.get('/dummyGoals',(req, res) => {
 app.get('/dummyUsers',(req, res) => {
     res.sendFile(path.join(__dirname,'public/DummyJSON','dummyUsers.json'));
 });
-app.get('/', (req, res) => {
-    res.send('whats up');
-});
-app.get('/',(req, res) => {
-   res.sendFile(path.join(__dirname,'public','index.html'));
-});
 
-app.get('/login',(req, res) => {
+app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname,'public','login.html'));
 });
 app.get('/goals',(req, res) => {
@@ -144,6 +138,12 @@ app.listen(PORT, () => {
 
 // ========================= END OF Listening on PORT ======================================== //
 
+// app.get('/',(req, res) => {
+//    res.sendFile(path.join(__dirname,'public','index.html'));
+// });
+// app.get('/', (req, res) => {
+//     res.send('whats up');
+// });
 // app.get('/',(req, res) => {
 //    res.sendFile(path.join(__dirname,'public','index.html'));
 // });

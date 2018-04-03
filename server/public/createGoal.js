@@ -1,4 +1,5 @@
 var goalAndDateArray = [];
+var canBeClicked = true;
 
 $(document).ready(initializeApp);
 
@@ -107,6 +108,18 @@ function groupGoalByDate() {
 
 function handleIdeaBtnClick() {
     console.log('idea btn clicked');
+
+    if(canBeClicked){
+        canBeClicked = false;
+        getIdeaValue();
+    }
+    else {
+        canBeClicked = true;
+        $('.goalIdeas').css('display', 'none');
+    }
+}
+
+function getIdeaValue() {
     var goal = '';
 
     $('.goalIdeas').css('display', 'block');
