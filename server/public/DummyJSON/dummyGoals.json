@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "goal": "Wordhard",
+      "day": "wensday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 2,
+      "goal": "Finish full emersion program",
+      "goal": "Get final project finished on time",
+      "day": "Wensday, 3/28/1",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 4,
+      "goal": "Get to school on time",
+      "day": "Friday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 3,
+      "day": "wensday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 5,
+      "goal": "Work on music production 2days a week",
+      "day": "Friday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 6,
+      "goal": "do a practice problem once a day",
+      "day": "Wensday, 3/28/1",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 7,
+      "goal": "Try to get a raise",
+      "day": "wensday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 8,
+      "goal": "Get a job one month after finishing",
+      "day": "Friday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 9,
+      "goal": "Make my truck faster",
+      "day": "Wensday, 3/28/1",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 10,
+      "goal": "Get better at react",
+      "day": "wensday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 11,
+      "goal": "Make a song",
+      "day": "Friday",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    },
+    {
+      "id": 12,
+      "goal": "Learn how to dj",
+      "day": "Wensday, 3/28/1",
+      "startdate": "0000-00-00 00:00:00",
+      "finishdate": "0000-00-00 00:00:00",
+      "timeframe": "wensday"
+    }
+  ]
+}

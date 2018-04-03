@@ -202,12 +202,20 @@ input[type=checkbox]{
     
 }
 
+.goalIdeas {
+    display: none;
+    background-color: #1b6d85;
+    font-size: 0.9em;
+    line-height: 200%;
+}
+
 .task-button{
     width: 100%;
     height: 100%;
     background-color: #ffb300;
     border-radius: 4px 25px;
     border: 3px solid white;
+
 }
 
 .dropdown-content{
@@ -216,6 +224,41 @@ input[type=checkbox]{
 
 .dropdown-content li>a{
     color: white;
+}
+
+.days input{
+    font-size: 3em;
+}
+
+.days > .daysForm{
+    font-size: 2em;
+}
+
+input[type=checkbox]{
+    -webkit-transform: scale(1.8);
+    -ms-transform: scale(2);
+}
+
+.timeOfDay{
+    margin: 8% 0;
+}
+
+.timeOfDay p{
+    font-size: 2em;
+}
+
+.timeOfDay select{
+    border: 1px solid black;
+    font-size: 1.5em;
+}
+
+.endDate{
+    font-size: 2em;
+}
+
+.endDate input{
+    font-size: 1.5em;
+    background-color: grey;
 }
 
 /*.createTitle{*/
