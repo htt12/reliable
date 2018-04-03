@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": 1,
+      "email": "yoyoyoyo@gmail.com",
+      "password": "thisisapassword",
+      "status": ""
+    },
+    {
+      "id": 2,
+      "email": "Harison@gmail.com",
+      "password": "FullStack123",
+      "status": ""
+    },
+    {
+      "id": 3,
+      "email": "andy.ong@learninfuze.com",
+      "password": "racecar",
+      "status": null
+    },
+    {
+      "id": 4,
+      "email": "keaton@gmail.com",
+      "password": "whatisapassword?",
+      "status": ""
+    },
+    {
+      "id": 5,
+      "email": "scott@gmail.com",
+      "password": "FullStack123",
+      "status": ""
+    },
+    {
+      "id": 6,
+      "email": "dan@learninfuze.com",
+      "password": "practiceproblems",
+      "status": null
+    },
+    {
+      "id": 7,
+      "email": "bill@gmail.com",
+      "password": "bussinessowner",
+      "status": ""
+    },
+    {
+      "id": 8,
+      "email": "duy@gmail.com",
+      "password": "Reactmaster123",
+      "status": ""
+    },
+    {
+      "id": 9,
+      "email": "christian@learninfuze.com",
+      "password": "whatiscode",
+      "status": null
+    },
+    {
+      "id": 10,
+      "email": "yo1yo2yo3yo4@gmail.com",
+      "password": "yoyoyoyoyo",
+      "status": ""
+    },
+    {
+      "id": 11,
+      "email": "Nolan@gmail.com",
+      "password": "koalassuck",
+      "status": ""
+    },
+    {
+      "id": 12,
+      "email": "sarah@yahoo.com",
+      "password": "coachella",
+      "status": null
+    }
+  ]
+}

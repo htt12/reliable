@@ -1,0 +1,158 @@
+main {
+    flex: 1 0 auto;
+}
+
+body {
+    background: #fff;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-image: url("images/Running-Grand-Bara-Desert-Djibouti-1220x763.jpg");
+    background-size: cover;
+}
+
+.input-field input[type=date]:focus + label,
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label {
+    color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
+
+.responsive-img{
+    width: 250px;
+}
+#loginContainer{
+    display: inline-block;
+    padding: 32px 48px 0px 48px;
+    border: 1px solid #EEE;
+}
+@media only screen and (max-width: 980px){
+    html {
+        font-size: 30px;
+    }
+    .row .col {
+        float: none;
+        box-sizing: border-box;
+        padding: 0 0.75rem;
+    }
+}
+
+input:focus::-webkit-input-placeholder {
+    color: transparent;
+}
+/*----------------------------------------------------------*/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.input-field input[type=date]:focus + label,
+.input-field input[type=text]:focus + label,
+.input-field input[type=email]:focus + label,
+.input-field input[type=password]:focus + label {
+    color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
+/*body {*/
+    /*background-image: url("images/Wide-Marble-Wallpaper-wpc20018182-1024x647.jpg");*/
+/*}*/
+/*.mainContainer{*/
+    /*height: 100vh;*/
+    /*width: 100vw;*/
+/*}*/
+/*@media only screen and (max-width: 600px) {*/
+    /*.icon {*/
+        /*background-image: url(images/Shaking_Hands_logo.png);*/
+        /*width: 40%;*/
+        /*height: 18%;*/
+        /*background-size: cover;*/
+        /*position: relative;*/
+        /*border: 2px solid black;*/
+        /*margin: 25% 30% 84% 30%;;*/
+    /*}*/
+/*}*/
+    /*.icon {*/
+        /*background-image: url(images/Shaking_Hands_logo.png);*/
+        /*width: 50%;*/
+        /*height: 30%;*/
+        /*background-size: cover;*/
+        /*position: relative;*/
+        /*border: 2px solid black;*/
+        /*margin: 5% 25% 40% 25%;*/
+    /*}*/
+
+/*@media only screen and (max-width: 600px) {*/
+    /*.login {*/
+        /*justify-content: center;*/
+        /*border: 2px solid black;*/
+        /*height: 25%;*/
+        /*width: 60%;*/
+        /*margin-left: 20%;*/
+        /*margin-right: 20%;*/
+        /*position: relative;*/
+
+    /*}*/
+/*}*/
+
+    /*.login {*/
+        /*justify-content: center;*/
+        /*border: 2px solid black;*/
+        /*height: 25%;*/
+        /*width: 60%;*/
+        /*margin-left: 20%;*/
+        /*margin-right: 20%;*/
+        /*position: relative;*/
+
+    /*}*/
+
+/*@media only screen and (max-width: 600px){*/
+    /*.loginButton {*/
+        /*height: 10%;*/
+        /*width: 25%;*/
+        /*margin-left: 35%;*/
+        /*margin-right: 35%;*/
+    /*}*/
+/*}*/
+
+    /*.loginButton {*/
+        /*height: 25%;*/
+        /*width: 30%;*/
+        /*margin-left: 35%;*/
+        /*margin-right: 35%;*/
+    /*}*/
+
+/*@media only screen and (max-width: 600px){*/
+    /*.signininput {*/
+        /*width: 95%;*/
+        /*height: 10%;*/
+        /*margin: 0% 0% 5% 0%;*/
+        /*position: relative;*/
+    /*}*/
+/*}*/
+
+    /*.signininput {*/
+        /*width: 95%;*/
+        /*height: 10%;*/
+        /*margin: 0% 0% 5% 0%;*/
+        /*position: relative;*/
+    /*}*/
