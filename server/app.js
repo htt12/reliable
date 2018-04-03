@@ -1,7 +1,7 @@
 // Require needed modules / dependencies
 const express = require('express');
 const mysql = require('mysql');
-const credentials  = require('./config/mysqlCredentials');
+const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
 
 
