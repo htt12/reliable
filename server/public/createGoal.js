@@ -40,7 +40,7 @@ function handleAddButtonClicked() {
 
     //get the end date
     var finishDate = getFinishDate();
-    console.log('endDate:', endDate);
+    console.log('endDate:', finishDate);
 
     //loop thru the selectedDate array and create object for each day
     for(var i = 0; i<selectedDate.length; i++){
