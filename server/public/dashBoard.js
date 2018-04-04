@@ -2,31 +2,30 @@
 $(document).ready(initializeApp);
 
 
-var goals = [
-    {
-        goal_id: '1',
-        goalName:'Sleep eary', 
-        freq:'3', 
-        endDate:'04/03/18'
-    },
-    {
-        goal_id: '2',
-        goalName:'Sleep late', 
-        freq:'5', 
-        endDate:'04/12/18'
-    },
-    {
-        goal_id: '3',
-        goalName:'Do not sleep', 
-        freq:'7', 
-        endDate:'04/11/18'
-    },
-]
+var goals = []
 
 function initializeApp(){
-    rendergoalOnDashboard(goals);
+    getData();
     applyClickHandlers;
 
+}
+
+function getData(){
+    $.ajax({
+        type: 'GET',
+        url: 'http://jsonplaceholder.typicode.com/todos',
+        dataType: 'jsonp',
+        crossDomain: true,
+        cache: false,
+        success: function(data){
+            console.log(data);
+            
+            rendergoalOnDashboard(data)
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
 }
 
 function applyClickHandlers(){
@@ -35,10 +34,10 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
-    for(var i=0; i<goals.length;i++){
+    for(var i=0; i<6;i++){
         //Gets goal description
-        var goalDescription = goals[i].goalName;
-        var goalId = goals[i].goal_id
+        var goalDescription = goals[i].title;
+        var goalId = goals[i].id
         
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
