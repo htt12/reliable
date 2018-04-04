@@ -13,8 +13,9 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://jsonplaceholder.typicode.com/todos',
+        url: 'https://jsonplaceholder.typicode.com/todos',
         dataType: 'jsonp',
+        jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
         success: function(data){
@@ -34,7 +35,7 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
-    for(var i=0; i<6;i++){
+    for(var i=0; i<15;i++){
         //Gets goal description
         var goalDescription = goals[i].title;
         var goalId = goals[i].id
@@ -56,7 +57,7 @@ function rendergoalOnDashboard(goals){
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
             $(goalSelector).remove();
-        }).wrapInner('<a href="#">Complete</a>')
+        }).wrapInner('<a href="#">:)</a>')
         
         var inCompleteItem = $('<li>').addClass('incomplete center').on('click', ()=>{
             $(goalSelector).remove();
