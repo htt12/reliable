@@ -115,6 +115,28 @@ app.post('/users', (req,res,next) => {
 
 //==========END OF POST USERS===========//
 
+//==========POST USERS===========//
+app.post('/goals', (req,res,next) => {
+    const { goal, day, startdate, finishdate, timeframe  } = req.body;
+
+    let query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';
+    let inserts = ['goals', 'goal', 'day', 'startdate', 'finishdate', 'timeframe', goal, day, startdate, finishdate, timeframe];
+
+    let sql = mysql.format(query, inserts);
+
+    connection.query(sql, (err, results, fields) => {
+        if (err) return next (err);
+
+        const output = {
+            success: true,
+            data: results
+        };
+        res.json(output);
+    });
+});
+
+//==========END OF POST USERS===========//
+
 //----------------------------END OF POST AND GET REQUESTS--------------------------------------//
 
 
@@ -232,19 +254,21 @@ app.listen(PORT, () => {
 //     console.log("Connected!")
 // });
 //------------------Adjax Call ----------------------------------------------------------------//
-// function getGoalsFromServer() {
-//     $.ajax({
-//             type: "GET",
-//             url: "http://localhost:8000/dummyGoals",
-//             dataType: "json",
-//             data: {
-//                 ajaxid: 4,
-//                 UserID: UserID,
-//                 EmailAddress: EmailAdress
-//             },
-//             success: function (json_data) {
-//                 var data = JSON.parse(json_data);
-//             }
-//         })
-//     }
+function getGoalsFromServer() {
+    $.ajax({
+            type: "POST",
+            url: "http://reliable.keatonkrieger.com/goals",
+            dataType: "json",
+            data: {
+                goal: "working on posting to actual aws server",
+                day: 2,
+                startdate: "2018-04-3",
+                finishdate: "2018-04-4",
+                timeframe: "morrning"
+            },
+            success: function (json_data) {
+                var data = JSON.parse(json_data);
+            }
+        })
+    }
 
