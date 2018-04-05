@@ -1,20 +1,5 @@
-$(document).ready(()=> {
-    setTimeout(transitionScreen, 1000);
-    initializeApp();
-});
-
-function transitionScreen(){
-    $('.loading').fadeOut(3000);
-
-}
+$(document).ready(initializeApp);
 
 function initializeApp() {
-    getEmailInput();
-    getUsernameInput();
-    getPasswordInput();
-}
-
-function getEmailInput() {
     
 }
-
