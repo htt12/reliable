@@ -31,7 +31,9 @@ function handleAddButtonClicked() {
     console.log('new goal: ', goal);
 
     //get the values of the selected dates and store in an array
-    const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map ((checkbox) => checkbox.value);
+    const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map((checkbox) =>{
+        return convertDayIntoNumberFormat(checkbox.value)
+    });
     console.log('selectedDate: ', selectedDate);
 
     //get the value of user selected time frame (morning/afternoon/evening)
@@ -40,12 +42,13 @@ function handleAddButtonClicked() {
 
     //get the end date
     var finishDate = getFinishDate();
-    console.log('endDate:', endDate);
+    console.log('endDate:', finishDate);
 
     //loop thru the selectedDate array and create object for each day
     for(var i = 0; i<selectedDate.length; i++){
         var newObject = createObject(selectedDate[i], goal, timeOfDay, finishDate);
-        goalAndDateArray.push(newObject);
+        postGoalToServer(newObject);
+        // goalAndDateArray.push(newObject);
     }
     console.log("goalAndDateArray: ", goalAndDateArray)
 
@@ -107,16 +110,33 @@ function handleCancelButtonClicked() {
     console.log("cancel btn clicked");
 }
 
-function groupGoalByDate() {
-    var date = new Date();
-    var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-    var today = days[date.getDay()];
-    return today;
+function convertDayIntoNumberFormat( day ) {
+
+    if( day === "sunday"){
+        return 0;
+    }
+    else if( day === "monday"){
+        return 1;
+    }
+    else if( day === "tuesday") {
+        return 2;
+    }
+    else if( day === "wednesday") {
+        return 3;
+    }
+    else if( day === "thursday") {
+        return 4;
+    }
+    else if( day === "friday") {
+        return 5;
+    }
+    else if( day === "saturday") {
+        return 6;
+    }
 }
 
 function handleIdeaBtnClick() {
     console.log('idea btn clicked');
-
     if(canBeClicked){
         canBeClicked = false;
         getIdeaValue();
@@ -138,7 +158,14 @@ function getIdeaValue() {
 
         //update input goal field with the selected idea
         $('.goalInput').val(goal);
+        updateCanBeClicked( goal )
     });
+}
+
+function updateCanBeClicked( goal ) {
+    if( goal !== ''){
+        canBeClicked = true;
+    }
 }
 
 //get today's date for the calendar
@@ -184,3 +211,20 @@ function clearUserInput() {
     $('#end_date').val('');
 }
 
+function postGoalToServer( object ){
+    $.ajax({
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/goals",
+        data: {
+            goal: object.goal,
+            day: object.day,
+            startdate: object.startDate,
+            finishdate: object.finishDate,
+            timeframe: object.timeFrame
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log('sucsessed sending data:', data);
+        }
+    })
+}
