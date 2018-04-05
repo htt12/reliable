@@ -7,7 +7,7 @@
       "day": "wensday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "day": "Wensday, 3/28/1",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "morrning"
     },
     {
       "id": 4,
@@ -24,14 +24,14 @@
       "day": "Friday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "evening"
     },
     {
       "id": 3,
       "day": "wensday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     },
     {
       "id": 5,
@@ -39,7 +39,7 @@
       "day": "Friday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "morrning"
     },
     {
       "id": 6,
@@ -47,7 +47,7 @@
       "day": "Wensday, 3/28/1",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "evening"
     },
     {
       "id": 7,
@@ -55,7 +55,7 @@
       "day": "wensday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     },
     {
       "id": 8,
@@ -63,7 +63,7 @@
       "day": "Friday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     },
     {
       "id": 9,
@@ -71,7 +71,7 @@
       "day": "Wensday, 3/28/1",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "morrning"
     },
     {
       "id": 10,
@@ -79,7 +79,7 @@
       "day": "wensday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     },
     {
       "id": 11,
@@ -87,7 +87,7 @@
       "day": "Friday",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "morrning"
     },
     {
       "id": 12,
@@ -95,7 +95,7 @@
       "day": "Wensday, 3/28/1",
       "startdate": "0000-00-00 00:00:00",
       "finishdate": "0000-00-00 00:00:00",
-      "timeframe": "wensday"
+      "timeframe": "afternoon"
     }
   ]
 }

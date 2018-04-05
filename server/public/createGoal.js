@@ -5,7 +5,7 @@ $(document).ready(initializeApp);
 
 function initializeApp() {
 
-    $("#end_date").attr('min', date);
+    $("#end_date").attr('min', getTodayDate);
     $(".add").on('click', handleAddButtonClicked);
     $(".cancel").on('click', handleCancelButtonClicked);
     $(".ideas").on('click', handleIdeaBtnClick);
@@ -16,11 +16,13 @@ function handleAddButtonClicked() {
     console.log('add btn clicked');
 
     // debugger;
-    var inputField = validateInputField();
-    var checkBox = validateCheckBox();
+    var inputGoalField = validateGoalInputField();
+    var dateCheckBox = validateDateCheckBox();
+    var timeFrame = validateTimeFrameSelection();
+    var finishOn = validateFinishDateSelection();
 
     //validate user input
-    if( inputField === false || checkBox === false ){
+    if( inputGoalField === false || dateCheckBox === false || timeFrame === false || finishOn === false){
         return;
     }
 
@@ -29,7 +31,9 @@ function handleAddButtonClicked() {
     console.log('new goal: ', goal);
 
     //get the values of the selected dates and store in an array
-    const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map ((checkbox) => checkbox.value);
+    const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map((checkbox) =>{
+        return convertDayIntoNumberFormat(checkbox.value)
+    });
     console.log('selectedDate: ', selectedDate);
 
     //get the value of user selected time frame (morning/afternoon/evening)
@@ -37,20 +41,21 @@ function handleAddButtonClicked() {
     console.log('timeOfDay:', timeOfDay);
 
     //get the end date
-    var endDate = getEndDate();
-    console.log('endDate:', endDate);
+    var finishDate = getFinishDate();
+    console.log('endDate:', finishDate);
 
     //loop thru the selectedDate array and create object for each day
     for(var i = 0; i<selectedDate.length; i++){
-        var newObject = createObject(selectedDate[i], goal, timeOfDay, endDate);
-        goalAndDateArray.push(newObject);
+        var newObject = createObject(selectedDate[i], goal, timeOfDay, finishDate);
+        postGoalToServer(newObject);
+        // goalAndDateArray.push(newObject);
     }
     console.log("goalAndDateArray: ", goalAndDateArray)
 
     clearUserInput();
 }
 
-function validateInputField() {
+function validateGoalInputField() {
     //if user didn't input their goal then display error message
     if($(".goalInput").val() === ""){
         $(".message").addClass("error").text("Please enter your goal or select one from ideas");
@@ -58,12 +63,12 @@ function validateInputField() {
     }
     //remove the error message if there was an error before
     else{
-        $(".creatingGoal > .message").removeClass('error').text("Name your new goal:");
+        $(".creatingGoal > .message").removeClass('error').text("Name New Goal");
         return true;
     }
 }
 
-function validateCheckBox() {
+function validateDateCheckBox() {
     var checkedArray = $("input:checkbox").filter(":checked");
     //if user didn't select any date then display error message
     if(checkedArray.length === 0){
@@ -72,7 +77,31 @@ function validateCheckBox() {
     }
     //remove the error message if there was an error before
     else{
-        $(".days > p").removeClass('error').text("Days to track your goal:");
+        $(".days > p").removeClass('error').text("Days to Track Your Goal");
+        return true;
+    }
+}
+
+function validateTimeFrameSelection() {
+    //if user didnt select a value then display error message
+    if( $('#timeframe').val() === null ){
+        $(".timeOfDay > p").addClass("error").text("You must select a time frame");
+        return false;
+    }
+    else{
+        $(".timeOfDay > p").removeClass("error").text("I want to do it");
+        return true;
+    }
+}
+
+function validateFinishDateSelection() {
+    //if user didnt select a value then display error message
+    if( $('#end_date').val() === "" ){
+        $(".endDate > p").addClass("error").text("Please select a finish date");
+        return false;
+    }
+    else{
+        $(".endDate > p").removeClass("error").text("Select End Date");
         return true;
     }
 }
@@ -81,34 +110,33 @@ function handleCancelButtonClicked() {
     console.log("cancel btn clicked");
 }
 
-function clearUserInput() {
-    $('.goalInput').val('');
-    // $(".creatingGoal > .message").text("Name your new goal:");
-    // $(".days > p").text("Days to track your goal:").removeClass('error');
-    $('input[type=checkbox]').prop('checked', false);
-}
+function convertDayIntoNumberFormat( day ) {
 
-function createObject(day, goal, timeOfDay, endDate) {
-    var object = {};
-    object.day = day;
-    object.goal = goal;
-    object.startDate = new Date();
-    object.timeOfDay = timeOfDay || '';
-    object.endDate = endDate || '';
-    return object;
-}
-
-function groupGoalByDate() {
-    var date = new Date();
-    var days = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-    var today = days[date.getDay()];
-    // console.log('today: ', today);
-    return today;
+    if( day === "sunday"){
+        return 0;
+    }
+    else if( day === "monday"){
+        return 1;
+    }
+    else if( day === "tuesday") {
+        return 2;
+    }
+    else if( day === "wednesday") {
+        return 3;
+    }
+    else if( day === "thursday") {
+        return 4;
+    }
+    else if( day === "friday") {
+        return 5;
+    }
+    else if( day === "saturday") {
+        return 6;
+    }
 }
 
 function handleIdeaBtnClick() {
     console.log('idea btn clicked');
-
     if(canBeClicked){
         canBeClicked = false;
         getIdeaValue();
@@ -124,18 +152,24 @@ function getIdeaValue() {
 
     $('.goalIdeas').css('display', 'block');
     $("#idea_list").on('click', 'li', function () {
-        // console.log('li text: ', $(this).text());
         goal = $(this).text();
         $('.goalIdeas').css('display', 'none');
         console.log('goal:', goal);
 
         //update input goal field with the selected idea
         $('.goalInput').val(goal);
-
+        updateCanBeClicked( goal )
     });
 }
 
-function date(){
+function updateCanBeClicked( goal ) {
+    if( goal !== ''){
+        canBeClicked = true;
+    }
+}
+
+//get today's date for the calendar
+function getTodayDate(){
     var date = new Date();
     var dd = leadingZero(date.getDate());
     var mm = leadingZero(date.getMonth()+1);
@@ -152,11 +186,45 @@ function leadingZero( num ) {
     }
 }
 
-function getEndDate() {
-    var date = new Date($('#end_date').val() );
+function getFinishDate() {
+    var date = new Date($('#end_date').val());
     var day = leadingZero(date.getDate());
     var month = leadingZero(date.getMonth()+1);
     var year = date.getFullYear();
-    return (month+'-'+day+'-'+year);
+    return (year+'-'+month+'-'+day);
 }
 
+function createObject(day, goal, timeOfDay, endDate) {
+    var object = {};
+    object.goal = goal;
+    object.day = day;
+    object.startDate = getTodayDate();
+    object.finishDate = endDate;
+    object.timeFrame = timeOfDay;
+    return object;
+}
+
+function clearUserInput() {
+    $('.goalInput').val('');
+    $('input[type=checkbox]').prop('checked', false);
+    $('#timeframe').prop('selectedIndex', 0);
+    $('#end_date').val('');
+}
+
+function postGoalToServer( object ){
+    $.ajax({
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/goals",
+        data: {
+            goal: object.goal,
+            day: object.day,
+            startdate: object.startDate,
+            finishdate: object.finishDate,
+            timeframe: object.timeFrame
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log('sucsessed sending data:', data);
+        }
+    })
+}

@@ -24,7 +24,7 @@ body{
     font-size: 5em;
 }
 
-.title .button{
+.title button{
     float: right;
     font-size: 3em;
 }
@@ -138,7 +138,7 @@ input[type=checkbox]{
     grid-gap: 1%;
     grid-template-rows: 7% 65% 20% auto;
     grid-template-columns: 5% 5% 5% 64% 5% 5% 5%;
-    background-color: rgb(163, 161, 161);
+    background-color: rgb(241, 232, 100);
 }
 
 .title-bar{
