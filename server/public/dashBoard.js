@@ -13,15 +13,15 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'https://jsonplaceholder.typicode.com/todos',
-        dataType: 'jsonp',
+        url: 'http://reliable.keatonkrieger.com/userssql',
+        dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
-        success: function(data){
-            console.log(data);
+        success: function(resp){
+            console.log(resp);
             
-            rendergoalOnDashboard(data)
+            rendergoalOnDashboard(resp.data)
         },
         error: function(xhr, status, err){
             console.log(err)
@@ -35,10 +35,10 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
-    for(var i=0; i<15;i++){
+    for(var i=0; i<3;i++){
         //Gets goal description
-        var goalDescription = goals[i].title;
-        var goalId = goals[i].id
+        var goalDescription = goals[i].email;
+        var goalId = goals[i].user_id
         
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
