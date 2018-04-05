@@ -1,5 +1,5 @@
 $(document).ready(()=> {
-    setTimeout(transitionScreen, 2000);
+    setTimeout(transitionScreen, 1000);
 });
 
 function transitionScreen(){

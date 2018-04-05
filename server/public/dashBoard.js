@@ -13,7 +13,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://reliable.keatonkrieger.com/userssql',
+        url: 'http://reliable.keatonkrieger.com/goalssql',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
@@ -35,10 +35,11 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
-    for(var i=0; i<3;i++){
+    for(var i=0; i<5;i++){
+        console.log(goals)
         //Gets goal description
-        var goalDescription = goals[i].email;
-        var goalId = goals[i].user_id
+        var goalDescription = goals[i].goal;
+        var goalId = goals[i].goal_id;
         
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
