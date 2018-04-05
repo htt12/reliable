@@ -2,7 +2,7 @@
 $(document).ready(initializeApp);
 
 
-var goals = []
+
 
 function initializeApp(){
     getData();
@@ -35,8 +35,11 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
+    console.log('goals',goals)
+    var users = []
+
     for(var i=0; i<5;i++){
-        console.log(goals)
+        users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
         var goalId = goals[i].goal_id;
@@ -77,9 +80,28 @@ function rendergoalOnDashboard(goals){
         $('.dropdown-trigger').dropdown();
              
     }
+    
+
+    reminders(users);
 }
 
 
+function reminders(users){
+    let startDate = users[0].startdate;
+    let endDate = users[0].finishdate;
+
+    let duration = 4;;
+    console.log('startDate', startDate, endDate);
+
+    if(duration < 7){
+        displayReminder(users[0].goal);
+    }
+}
+
+function displayReminder(goal){
+    let reminder = $('<div>').addClass('reminder').text(goal);
+    $('.dashboard-container').append(reminder);
+}
 
 // function retrieveServerData(){
 //     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'

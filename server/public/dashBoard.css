@@ -94,6 +94,22 @@
     
 }
 
+.reminder{
+    grid-column: 3/5;
+    grid-row: 3/4;
+    display: inline-flex;
+    justify-content: space-evenly;
+    padding: 0% 3%;
+    background-color: #3b7d87a8;
+    border-radius: 25px;
+    font-size: 0.75em;
+    hyphens: auto;
+    border: 3px solid #f5bd5a;
+    color: white;
+    
+}
+
+
 .footer{
     grid-column:1/8;
     display: inline-flex;
