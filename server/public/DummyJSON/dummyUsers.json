@@ -17,7 +17,7 @@
       "id": 3,
       "email": "andy.ong@learninfuze.com",
       "password": "racecar",
-      "status": null
+      "status": ""
     },
     {
       "id": 4,
@@ -35,7 +35,7 @@
       "id": 6,
       "email": "dan@learninfuze.com",
       "password": "practiceproblems",
-      "status": null
+      "status": ""
     },
     {
       "id": 7,
@@ -53,7 +53,7 @@
       "id": 9,
       "email": "christian@learninfuze.com",
       "password": "whatiscode",
-      "status": null
+      "status": ""
     },
     {
       "id": 10,
@@ -71,7 +71,7 @@
       "id": 12,
       "email": "sarah@yahoo.com",
       "password": "coachella",
-      "status": null
+      "status": ""
     }
   ]
 }
