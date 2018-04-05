@@ -1,5 +1,6 @@
 // Require needed modules / dependencies
 const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
 const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
@@ -10,6 +11,8 @@ const app = express();
 const PORT = 8000;
 const connection = mysql.createConnection(credentials);
 
+app.use(cors());
+
 // Verify if connection is successful
 connection.connect((err)  => {
     if (err) throw err;
@@ -19,6 +22,7 @@ connection.connect((err)  => {
 
 // === Consumption of middleware === //
 // Used to parse data out of the request body
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
