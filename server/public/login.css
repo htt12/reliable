@@ -29,6 +29,9 @@ img{
     display: flex;
 
 }
+.login-wrapper{
+    margin: auto;
+}
 
 .input-field input[type=date]:focus + label,
 .input-field input[type=text]:focus + label,
@@ -69,14 +72,16 @@ input:focus::-webkit-input-placeholder {
 }
 /*----------------------------------------------------------*/
 body {
-    display: flex;
+    display: grid;
     min-height: 100vh;
     flex-direction: column;
+    grid-template-rows: 8fr 1fr  ;
 }
 
 main {
     flex: 1 0 auto;
 }
+
 
 .input-field input[type=date]:focus + label,
 .input-field input[type=text]:focus + label,
