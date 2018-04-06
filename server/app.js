@@ -150,13 +150,13 @@ app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname,'public','login.html'));
 });
 app.get('/signUp',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','signUp.html'));
+    res.sendFile(path.join(__dirname,'public','sign_Up.html'));
 });
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
 app.get('/goals',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','createGoal.html'));
+    res.sendFile(path.join(__dirname,'public','create_Goal.html'));
 });
 
 
