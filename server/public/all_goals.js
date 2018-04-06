@@ -6,7 +6,7 @@ $(document).ready(initializeApp);
 
 function initializeApp(){
     getData();
-    applyClickHandlers;
+    
 
 }
 
@@ -29,8 +29,31 @@ function getData(){
     })
 }
 
-function applyClickHandlers(){
-    ('.complete').on('click', completeGoal)
+
+
+function editGoal(goalSelected){
+
+    let textToEdit = $(goalSelected).find('.goal-description');
+
+    $(goalSelected +'> .goal-description').text('');
+
+    $("<input class='center' type='text'>").css({
+        'margin': 0,
+        'border-radius': '25px',
+        'height': '100%',
+        'width': '100%',
+        
+    }).appendTo(textToEdit).focus();
+    
+    $('input').on('focusout', ()=>{
+        
+        let edit = $('input').val();
+
+        $(goalSelected+'> .goal-description').text(edit);
+
+        console.log(edit)
+        $('input').remove();
+    })
 }
 
 
@@ -38,7 +61,7 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
-    for(var i=0; i<5;i++){
+    for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
@@ -50,33 +73,36 @@ function rendergoalOnDashboard(goals){
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription)
         
-        //Creates drop down menu to mark goal as complete or incomplete
+        //Creates drop down menu to mark goal as edit or delete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3')
         
-        var completeButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu')
+        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu')
         
         var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId)
         
         let goalSelector = '#goalId'+goalId;
 
-        var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
-            $(goalSelector).remove();
-        }).wrapInner('<a href="#">:)</a>')
         
-        var inCompleteItem = $('<li>').addClass('incomplete center').on('click', ()=>{
+        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
+            
+            editGoal(goalSelector)
+            }
+        ).wrapInner('<a href="#">Edit</a>')
+        
+        var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             $(goalSelector).remove();
-        }).wrapInner('<a> :(</a>')
+        }).wrapInner('<a>Delete</a>')
 
         
-        dropDownList.append(completeItem, inCompleteItem)
+        dropDownList.append(editItem, deleteItem)
 
 
-        dropDownMenuButtonContainer.append(completeButton,dropDownList)
+        dropDownMenuButtonContainer.append(editButton,dropDownList)
         
         goalContainer.append(goalBar, dropDownMenuButtonContainer)
 
-        $('.goal-list').append(goalContainer)
-        // $('.complete').wrapInner('<a href="#">Complete</a>')
+        $('.all-goals-list').append(goalContainer)
+        // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
              
     }

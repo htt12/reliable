@@ -1,5 +1,6 @@
 // Require needed modules / dependencies
 const express = require('express');
+const cors = require('cors');
 const mysql = require('mysql');
 const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
@@ -10,6 +11,8 @@ const app = express();
 const PORT = 8000;
 const connection = mysql.createConnection(credentials);
 
+app.use(cors());
+
 // Verify if connection is successful
 connection.connect((err)  => {
     if (err) throw err;
@@ -19,6 +22,7 @@ connection.connect((err)  => {
 
 // === Consumption of middleware === //
 // Used to parse data out of the request body
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -35,20 +39,14 @@ app.get('/dummyUsers',(req, res) => {
 app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname,'public','login.html'));
 });
-app.get('/goals',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','createGoal.html'));
-});
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
+app.get('/goals',(req, res) => {
+    res.sendFile(path.join(__dirname,'public','createGoal.html'));
+});
 
-// app.get('/mario',(req, res) => {
-//     res.sendFile(path.join(__dirname,'public','mario.html'));
-// });
 
-// app.get('/toad',(req, res) => {
-//     res.sendFile(path.join(__dirname,'public','toad.html'));
-// });
 //---Route allows you go to index //
 //---first thing '/' is always what //
 
@@ -92,6 +90,30 @@ app.get('/goalssql', (req,res,next) => {
 });
 
 //==========END OF GET ALL GOALS===========//
+
+//==========GET ALL GOALS BY GOAL ID===========//
+app.get('/goalssql/:userID', (req,res,next) => {
+    const { userID } = req.params;
+    console.log("These are the params", req.params.userID);
+
+    let query = 'SELECT * FROM ?? WHERE ?? = ?';
+    let inserts = ['goals', 'userID', userID];
+    console.log("inserts are: ", inserts);
+    let sql = mysql.format(query, inserts);
+
+    connection.query(sql, (err, results, fields) => {
+        if (err) return next (err);
+
+        const output = {
+            success: true,
+            data: results
+        };
+        res.json(output);
+    });
+});
+
+//==========END OF GET ALL GOALS===========//
+
 
 //==========POST USERS===========//
 app.post('/users', (req,res,next) => {
@@ -160,121 +182,10 @@ app.listen(PORT, () => {
 
 // ========================= END OF Listening on PORT ======================================== //
 
-// app.get('/',(req, res) => {
-//    res.sendFile(path.join(__dirname,'public','index.html'));
-// });
-// app.get('/', (req, res) => {
-//     res.send('whats up');
-// });
-// app.get('/',(req, res) => {
-//    res.sendFile(path.join(__dirname,'public','index.html'));
-// });
-//
-// app.get('/login',(req, res) => {
-//     res.sendFile(path.join(__dirname,'public','login.html'));
-// });
-//
-// app.get('/mario',(req, res) => {
-//     res.sendFile(path.join(__dirname,'public','mario.html'));
-// });
-//
-// app.get('/toad',(req, res) => {
-//     res.sendFile(path.join(__dirname,'public','toad.html'));
-// });
-//
-// app.post('/sendMario', (req, res) => {
-//     const { playerOne, playerTwo } = req.body;
-//
-//     var player = {
-//         characters: [playerOne, playerTwo]
-//     };
-//     res.json(player);
-// });
-//
-// app.listen(PORT, () => {
-//    console.log('This shits workin on port', PORT);
-// });
-// //-----------------------MySQL----------------------------//
-// var mysql = require('mysql');
-//
-// var con = mysql.createConnection({
-//     host:"localhost",
-//     user:"root",
-//     password:"root",
-//     port: 8889,
-//     database: 'reliable'
-//
-// });
-//
-//
-// app.use(express.json());
-// app.use(express.urlencoded({extended: false}));
-// app.use(express.static(path.join(__dirname, 'public')));
-//-------------------------END OF SELECT STUDENTS--------------------------------------//
-// var connectionObject = {
-//     Insertgoal:
-// };
-//------------------------------Getting Error in SQL syntax -------------------//
-//     con.connect(function (err) {
-//         if (err) throw err;
-//         var sql = "INSERT INTO users (email,password) VALUES ('Harison@gmail.com', 'FullStack123')";
-//         con.query(sql, function (err, result) {
-//             if (err) throw err;
-//             console.log("WE SENT THIS SHIT")
-//         })
-//     });
-
-//----------------------------INSERT GOAL TO PHPMYADMIN----------------------------------------------------------
-//     con.connect(function (err) {
-//         if (err) throw err;
-//         var sql = "INSERT INTO goals (goal,day,startdate,finishdate) VALUES ('Get final project finished on time', 'Wensday, 3/28/18', '313', '997')";
-//         con.query(sql, function (err, result) {
-//             if (err) throw err;
-//             console.log("WE SENT THIS SHIT")
-//         })
-//     });
-// //
-
-//---------------------------SETTING USER DATABASE INFO ---------------------------------------------
-//     con.connect(function (err) {
-//         if (err) throw err;
-//         con.query("SELECT * FROM users", function (err, result, fields) {
-//             if (err) throw err;
-//             console.log(result)
-//         });
-//         console.log("Connected!")
-//     });
-//---------------------------GETTING GOAL DATABASE INFO ---------------------------------------------
-// con.connect(function (err) {
-//     if (err) throw err;
-//     con.query("SELECT * FROM goals", function (err, result, fields) {
-//         if (err) throw err;
-//         console.log(result)
-//     });
-//     console.log("Connected!")
-// });
-//------------------Adjax Call ----------------------------------------------------------------//
+//---------------------------AJAX CALL EXAMPLES ----------------------------------------------------------------//
 function postGoalToServer(goal, day, start, finish, timeframe) {
     $.ajax({
-            type: "POST",
-            url: "http://reliable.keatonkrieger.com/goals",
-            dataType: "json",
-            data: {
-                goal: goal,
-                day: day,
-                startdate: start,
-                finishdate: finish,
-                timeframe: timeframe
-            },
-            success: function (json_data) {
-                var data = JSON.parse(json_data);
-            }
-        })
-    }
-
-function getGoalsFromServer() {
-    $.ajax({
-        type: "Get",
+        type: "POST",
         url: "http://reliable.keatonkrieger.com/goals",
         dataType: "json",
         data: {
@@ -285,8 +196,38 @@ function getGoalsFromServer() {
             timeframe: timeframe
         },
         success: function (json_data) {
-            var data = JSON.parse(json_data);
+            var data = json_data;
+            console.log(data)
         }
     })
 }
 
+
+function postUserToServer(email, password, status) {
+    $.ajax({
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/users",
+        dataType: "json",
+        data: {
+            email: email,
+            password: password,
+            status: status,
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+    })
+}
+
+function getGoalsFromServer() {
+    $.ajax({
+        type: "Get",
+        url: "http://reliable.keatonkrieger.com/goals",
+        success: function (json_data) {
+            var data = JSON.parse(json_data);
+            console.log(data)
+        }
+    })
+}
+//---------------------------END OF AJAX CALL EXAMPLES ----------------------------------------------------------------//
