@@ -9,8 +9,8 @@ const app = express();
 const PORT = 8000;
 const connection = mysql.createConnection(credentials);
 //------------LOGIN--------------------------------//
-const sha1 = require('sha1');
-const bodyParser = require('body-parser');
+// const sha1 = require('sha1');
+// const bodyParser = require('body-parser');
 //------------LOGIN--------------------------------//
 app.use(cors());
 
@@ -28,113 +28,113 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 //------------LOGIN--------------------------------//
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 //------------LOGIN--------------------------------//
-app.get('/students', function(req, res){
-    var output = {
-        success: false,
-        errors: [],
-        data: []
-    };
-    connection.connect(function(err){
-        connection.query("SELECT first_name, first_name as doodah FROM users", function(err, results, fields){
-            if(!err){
-                output.success = true;
-                output.data = results;
-                output.fields = fields;
-
-            } else {
-                output.errors = err;
-            }
-            res.send(JSON.stringify(output));
-        })
-    })
-});
-
-function generateRandomString(length){
-    var possibles = 'abcdefghijklmnopqrstuvwxyz1234567890';
-    var output = '';
-    while(output.length!==length){
-        output += possibles[ (possibles.length * Math.random())>>0 ];
-    }
-    return output;
-}
-//==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
-function didItAllForTheCookies(text){
-    const cookies = text.split(';');
-    const output = {};
-    cookies.forEach( string => {
-        const pieces = string.split('=');
-        output[pieces[0].trim()] = pieces[1];
-    });
-    console.log('so you can take that wookie', output);
-    return output;
-}
-//==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
+// app.get('/students', function(req, res){
+//     var output = {
+//         success: false,
+//         errors: [],
+//         data: []
+//     };
+//     connection.connect(function(err){
+//         connection.query("SELECT first_name, first_name as doodah FROM users", function(err, results, fields){
+//             if(!err){
+//                 output.success = true;
+//                 output.data = results;
+//                 output.fields = fields;
 //
-app.get('/userCheck',function(req, res){
-    const auth = didItAllForTheCookies(req.headers.cookie).userauth;
-    console.log("check"+auth);
-    if(auth){
-        connection.connect(function(){
-            var query = `SELECT * FROM loggedInUsers WHERE token='${auth}'`;
-            console.log(query);
-            connection.query(query, function(err, data){
-                console.log(err, data);
-                if(!err){
-                    if(data.length){
-                        res.send('the user is logged in');
-                    } else {
-                        res.send('the user is not logged in');
-                    }
-                } else {
-                    res.send('error while checking user status');
-                }
-            });
-        })
-    } else {
-        res.send('no token available, user is not logged in')
-    }
-});
-
-app.post('/login', function(req, res){
-    console.log(req.body);
-    req.body.password = sha1(req.body.password);
-    connection.connect(function(err){
-        console.log('db connected');
-        connection.query(`SELECT ID, password FROM loginData WHERE username = '${req.body.username}'`, function(err, data, fields){
-            if(data.length){
-                if(data[0].password === req.body.password){
-                    var user = data[0];
-                    //user is valid
-                    var userToken = generateRandomString(20) + Date.now();
-
-                    var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
-                    console.log("query is "+query);
-                    connection.query(query, function(err){
-                        if(!err){
-                            res.set('Set-Cookie','userauth='+userToken);
-                            res.send('valid!')
-                        }
-                    });
-
-
-
-                } else {
-                    //right user, wrong pass
-                    console.log('user is invalid');
-                    res.send('invalid!')
-                }
-            } else {
-                //wrong user
-                console.log('no such user');
-                res.send('who are you?')
-            }
-        });
-    })
-
-});
+//             } else {
+//                 output.errors = err;
+//             }
+//             res.send(JSON.stringify(output));
+//         })
+//     })
+// });
+//
+// function generateRandomString(length){
+//     var possibles = 'abcdefghijklmnopqrstuvwxyz1234567890';
+//     var output = '';
+//     while(output.length!==length){
+//         output += possibles[ (possibles.length * Math.random())>>0 ];
+//     }
+//     return output;
+// }
+// //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
+// function didItAllForTheCookies(text){
+//     const cookies = text.split(';');
+//     const output = {};
+//     cookies.forEach( string => {
+//         const pieces = string.split('=');
+//         output[pieces[0].trim()] = pieces[1];
+//     });
+//     console.log('so you can take that wookie', output);
+//     return output;
+// }
+// //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
+// //
+// app.get('/userCheck',function(req, res){
+//     const auth = didItAllForTheCookies(req.headers.cookie).userauth;
+//     console.log("check"+auth);
+//     if(auth){
+//         connection.connect(function(){
+//             var query = `SELECT * FROM loggedInUsers WHERE token='${auth}'`;
+//             console.log(query);
+//             connection.query(query, function(err, data){
+//                 console.log(err, data);
+//                 if(!err){
+//                     if(data.length){
+//                         res.send('the user is logged in');
+//                     } else {
+//                         res.send('the user is not logged in');
+//                     }
+//                 } else {
+//                     res.send('error while checking user status');
+//                 }
+//             });
+//         })
+//     } else {
+//         res.send('no token available, user is not logged in')
+//     }
+// });
+//
+// app.post('/login', function(req, res){
+//     console.log(req.body);
+//     req.body.password = sha1(req.body.password);
+//     connection.connect(function(err){
+//         console.log('db connected');
+//         connection.query(`SELECT ID, password FROM loginData WHERE username = '${req.body.username}'`, function(err, data, fields){
+//             if(data.length){
+//                 if(data[0].password === req.body.password){
+//                     var user = data[0];
+//                     //user is valid
+//                     var userToken = generateRandomString(20) + Date.now();
+//
+//                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
+//                     console.log("query is "+query);
+//                     connection.query(query, function(err){
+//                         if(!err){
+//                             res.set('Set-Cookie','userauth='+userToken);
+//                             res.send('valid!')
+//                         }
+//                     });
+//
+//
+//
+//                 } else {
+//                     //right user, wrong pass
+//                     console.log('user is invalid');
+//                     res.send('invalid!')
+//                 }
+//             } else {
+//                 //wrong user
+//                 console.log('no such user');
+//                 res.send('who are you?')
+//             }
+//         });
+//     })
+//
+// });
 //---------------------------------------END OF LOGIN CODE--------------------------------//
 
 
