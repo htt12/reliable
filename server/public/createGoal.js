@@ -11,6 +11,25 @@ function initializeApp() {
     $(".ideas").on('click', handleIdeaBtnClick);
 }
 
+function postGoalToServer(goal, day, start, finish, timeframe) {
+    $.ajax({
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/goals",
+        data: {
+            goal: goal,
+            day: day,
+            startdate: start,
+            finishdate: finish,
+            timeframe: timeframe
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+    })
+}
+
+
 function handleAddButtonClicked() {
     console.log('add btn clicked');
 
