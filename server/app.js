@@ -116,13 +116,13 @@ app.get('/goalssql/:userID', (req,res,next) => {
 
 
 //==========POST USERS===========//
-    app.post('/users', (req,res,next) => {
-        const { email, password } = req.body;
+app.post('/users', (req,res,next) => {
+    const { email, password } = req.body;
 
-        let query = 'INSERT INTO ?? (??, ??) VALUES (?, ?)';
-        let inserts = ['users', 'email', 'password', email, password];
+    let query = 'INSERT INTO ?? (??, ??) VALUES (?, ?)';
+    let inserts = ['users', 'email', 'password', email, password];
 
-        let sql = mysql.format(query, inserts);
+    let sql = mysql.format(query, inserts);
 
     connection.query(sql, (err, results, fields) => {
         if (err) return next (err);
@@ -185,22 +185,22 @@ app.listen(PORT, () => {
 //---------------------------AJAX CALL EXAMPLES ----------------------------------------------------------------//
 function postGoalToServer(goal, day, start, finish, timeframe) {
     $.ajax({
-            type: "POST",
-            url: "http://reliable.keatonkrieger.com/goals",
-            dataType: "json",
-            data: {
-                goal: goal,
-                day: day,
-                startdate: start,
-                finishdate: finish,
-                timeframe: timeframe
-            },
-            success: function (json_data) {
-                var data = json_data;
-                console.log(data)
-            }
-        })
-    }
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/goals",
+        dataType: "json",
+        data: {
+            goal: goal,
+            day: day,
+            startdate: start,
+            finishdate: finish,
+            timeframe: timeframe
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data)
+        }
+    })
+}
 
 
 function postUserToServer(email, password, status) {
@@ -231,4 +231,3 @@ function getGoalsFromServer() {
     })
 }
 //---------------------------END OF AJAX CALL EXAMPLES ----------------------------------------------------------------//
-
