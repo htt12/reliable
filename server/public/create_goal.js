@@ -4,12 +4,11 @@ var canBeClicked = true;
 $(document).ready(initializeApp);
 
 function initializeApp() {
-
+    debugger;
     $("#end_date").attr('min', getTodayDate);
     $(".add").on('click', handleAddButtonClicked);
     $(".cancel").on('click', handleCancelButtonClicked);
     $(".ideas").on('click', handleIdeaBtnClick);
-    
 }
 
 function handleAddButtonClicked() {
