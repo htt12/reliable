@@ -45,8 +45,41 @@ body{
     transform: translate(-50%, 0);
 }
 
-.row{
-    margin-bottom: 0;
+/*.signUpForm div.row{*/
+    /*!*margin-bottom: 2%;*!*/
+/*}*/
+
+.row input[type=email],
+.row input[type=text],
+.row input[type=password]{
+    margin-bottom: 2%;
+}
+
+.emailMsg,
+.usernameMsg,
+.pwdMsg{
+    font-size: 0.8rem;
+    color: darkgray;
+}
+
+.defaultColor{
+    color: darkgray;
+}
+
+.validInput{
+    color: green;
+}
+
+.invalidInput{
+    color: red;
+}
+
+.emailMsg i,
+.usernameMsg i,
+.pwdMsg i{
+    font-weight: bold;
+    vertical-align: middle;
+    padding-left: 3%;
 }
 
 .signUpForm button{
@@ -54,5 +87,6 @@ body{
     left: 50%;
     transform: translate(-50%, 0);
     background-color: rgb(41, 135, 153);
-
+    margin-bottom: 5%;
+    /*pointer-events: none;*/
 }
