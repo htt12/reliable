@@ -72,7 +72,7 @@ function didItAllForTheCookies(text){
     return output;
 }
 //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
-//
+
 app.get('/userCheck',function(req, res){
     const auth = didItAllForTheCookies(req.headers.cookie).userauth;
     console.log("check"+auth);
@@ -100,10 +100,10 @@ app.get('/userCheck',function(req, res){
 
 app.post('/login', function(req, res){
     console.log(req.body);
-    req.body.password = sha1(req.body.password);
+    // req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
-        connection.query(`SELECT ID, password FROM loginData WHERE username = '${req.body.username}'`, function(err, data, fields){
+        connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
             if(data.length){
                 if(data[0].password === req.body.password){
                     var user = data[0];
@@ -115,7 +115,8 @@ app.post('/login', function(req, res){
                     connection.query(query, function(err){
                         if(!err){
                             res.set('Set-Cookie','userauth='+userToken);
-                            res.send('valid!')
+                            // res.send('http://localhost:8000/dashboard');
+                            res.redirect("/dashboard");
                         }
                     });
 
@@ -124,7 +125,10 @@ app.post('/login', function(req, res){
                 } else {
                     //right user, wrong pass
                     console.log('user is invalid');
-                    res.send('invalid!')
+                    res.redirect("/")
+
+
+
                 }
             } else {
                 //wrong user
@@ -136,7 +140,6 @@ app.post('/login', function(req, res){
 
 });
 //---------------------------------------END OF LOGIN CODE--------------------------------//
-
 
 // === Routes === //
 app.get('/dummyGoals',(req, res) => {
@@ -150,7 +153,7 @@ app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname,'public','login.html'));
 });
 app.get('/signUp',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','sign_Up.html'));
+    res.sendFile(path.join(__dirname,'public','sign_up.html'));
 });
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
@@ -159,10 +162,8 @@ app.get('/goals',(req, res) => {
     res.sendFile(path.join(__dirname,'public','create_Goal.html'));
 });
 
-
 //---Route allows you go to index //
 //---first thing '/' is always what //
-
 
 //------------------------ALL GET AND POST REQUESTTS--------------------------------------//
 // ==========GET ALL USERS===========//
@@ -251,11 +252,10 @@ app.post('/goals', (req,res,next) => {
 
 //==========POST USERS===========//
 app.post('/users', (req,res,next) => {
-    const { email, password } = req.body;
+    const { email, username, password } = req.body;
 
-    let query = 'INSERT INTO ?? (??, ??) VALUES (?, ?)';
-    let inserts = ['users', 'email', 'password', email, password];
-
+    let query = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)';
+    let inserts = ['users', 'email', 'username', 'password', email, username, password];
     let sql = mysql.format(query, inserts);
 
     connection.query(sql, (err, results, fields) => {
@@ -332,13 +332,14 @@ function postGoalToServer(goal, day, start, finish, timeframe) {
 }
 
 
-function postUserToServer(email, password, status) {
+function postUserToServer(email, username, password, status) {
     $.ajax({
         type: "POST",
         url: "http://reliable.keatonkrieger.com/users",
         dataType: "json",
         data: {
             email: email,
+            username: username,
             password: password,
             status: status,
         },

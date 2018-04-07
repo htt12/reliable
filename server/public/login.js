@@ -3,4 +3,4 @@ $(document).ready(()=>{
         $('.loading').fadeOut(3000);
     }, 1000)
     }
-)
+);

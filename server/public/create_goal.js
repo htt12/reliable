@@ -4,7 +4,6 @@ var canBeClicked = true;
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    debugger;
     $("#end_date").attr('min', getTodayDate);
     $(".add").on('click', handleAddButtonClicked);
     $(".cancel").on('click', handleCancelButtonClicked);
@@ -126,6 +125,7 @@ function validateFinishDateSelection() {
 
 function handleCancelButtonClicked() {
     console.log("cancel btn clicked");
+    res.redirect("/dashboard")
 }
 
 function convertDayIntoNumberFormat( day ) {

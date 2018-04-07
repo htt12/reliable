@@ -135,8 +135,28 @@ function createObject( email, username, password ) {
     object.email = email;
     object.username = username;
     object.password = password;
+    sendData(email, username, password);
     return object;
 }
+
+function sendData(email, username, password) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/users",
+        // dataType: "json",
+        data: {
+            email: email,
+            username: username,
+            password: password
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+
+    })
+}
+
 
 function handleSignUpBtnClick() {
 
@@ -145,7 +165,7 @@ function handleSignUpBtnClick() {
         return;
     }
     else {
-        var newObject = createObject( userEmail, userName, userPwd);
+        var newObject = createObject( userEmail , userName, userPwd);
         console.log('new object:', newObject);
         $('.message span').text('');
         clearUserInput();
