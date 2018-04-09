@@ -84,6 +84,7 @@ function getPasswordInput() {
 
     $('.pwdInput').on('keyup', function (event) {
         pwd = event.target.value;
+        pwd
         console.log('pwd.length:', pwd.length);
 
         if( pwd.length < 8 ){

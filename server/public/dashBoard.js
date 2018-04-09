@@ -5,7 +5,7 @@ $(document).ready(initializeApp);
 
 
 function initializeApp(){
-    getData();
+    getData(1);
     applyClickHandlers;
 
 }
@@ -13,8 +13,8 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://reliable.keatonkrieger.com/goalssql',
-        dataType: 'json',
+        url: 'http://localhost:8000/goalssql',
+        // dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
@@ -35,50 +35,50 @@ function applyClickHandlers(){
 
 
 function rendergoalOnDashboard(goals){
-    console.log('goals',goals)
-    var users = []
+    console.log('goals',goals);
+    var users = [];
 
     for(var i=0; i<5;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
         var goalId = goals[i].goal_id;
-        
+
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
-        
+
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription)
-        
+
         //Creates drop down menu to mark goal as complete or incomplete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3')
-        
+
         var completeButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu')
-        
+
         var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId)
-        
+
         let goalSelector = '#goalId'+goalId;
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
             $(goalSelector).remove();
         }).wrapInner('<a href="#">:)</a>')
-        
+
         var inCompleteItem = $('<li>').addClass('incomplete center').on('click', ()=>{
             $(goalSelector).remove();
         }).wrapInner('<a> :(</a>')
 
-        
+
         dropDownList.append(completeItem, inCompleteItem)
 
 
         dropDownMenuButtonContainer.append(completeButton,dropDownList)
-        
+
         goalContainer.append(goalBar, dropDownMenuButtonContainer)
 
         $('.goal-list').append(goalContainer)
         // $('.complete').wrapInner('<a href="#">Complete</a>')
         $('.dropdown-trigger').dropdown();
-             
+
     }
     
 
