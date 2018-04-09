@@ -78,7 +78,7 @@ app.get('/userCheck',function(req, res){
     console.log("check"+auth);
     if(auth){
         connection.connect(function(){
-            var query = `SELECT * FROM loggedinusers WHERE token='${auth}'`;
+            var query = `SELECT * FROM loggedInUsers WHERE token='${auth}'`;
             console.log(query);
             connection.query(query, function(err, data){
                 console.log(err, data);
@@ -109,6 +109,7 @@ app.post('/login', function(req, res){
                     var user = data[0];
                     //user is valid
                     var userToken = generateRandomString(20) + Date.now();
+
                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                     connection.query(query, function(err){
@@ -116,7 +117,6 @@ app.post('/login', function(req, res){
                             res.set('Set-Cookie','userauth='+userToken);
                             // res.send('http://localhost:8000/dashboard');
                             res.redirect("/dashboard");
-                            res.send(req)
                         }
                     });
 
