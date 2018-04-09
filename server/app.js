@@ -78,7 +78,7 @@ app.get('/userCheck',function(req, res){
     console.log("check"+auth);
     if(auth){
         connection.connect(function(){
-            var query = `SELECT * FROM loggedInUsers WHERE token='${auth}'`;
+            var query = `SELECT * FROM loggedinusers WHERE token='${auth}'`;
             console.log(query);
             connection.query(query, function(err, data){
                 console.log(err, data);
@@ -100,22 +100,23 @@ app.get('/userCheck',function(req, res){
 
 app.post('/login', function(req, res){
     console.log(req.body);
-    req.body.password = sha1(req.body.password);
+    // req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
-        connection.query(`SELECT ID, password FROM loginData WHERE username = '${req.body.username}'`, function(err, data, fields){
+        connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
             if(data.length){
                 if(data[0].password === req.body.password){
                     var user = data[0];
                     //user is valid
                     var userToken = generateRandomString(20) + Date.now();
-
                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                     connection.query(query, function(err){
                         if(!err){
                             res.set('Set-Cookie','userauth='+userToken);
-                            res.send('valid!')
+                            // res.send('http://localhost:8000/dashboard');
+                            res.redirect("/dashboard");
+                            res.send(req)
                         }
                     });
 
@@ -124,7 +125,10 @@ app.post('/login', function(req, res){
                 } else {
                     //right user, wrong pass
                     console.log('user is invalid');
-                    res.send('invalid!')
+                    res.redirect("/")
+
+
+
                 }
             } else {
                 //wrong user
