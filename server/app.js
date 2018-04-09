@@ -176,7 +176,7 @@ app.get('/',(req, res) => {
 app.get('/signUp',(req, res) => {
     res.sendFile(path.join(__dirname,'public','sign_Up.html'));
 });
-app.get('/dashboard',(req, res) => {
+app.get('/dashboard/goalssql/:userID',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
 
@@ -248,7 +248,7 @@ app.get('/dashboard/goalssql/:userID', (req,res,next) => {
         };
         res.json(output);
 
-        res.redirect('/dashboard');
+        // res.redirect('/dashboard');
     });
 });
 
