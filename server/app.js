@@ -40,9 +40,11 @@ app.get('/students', function(req, res){
     connection.connect(function(err){
         connection.query("SELECT first_name, first_name as doodah FROM users", function(err, results, fields){
             if(!err){
+                
                 output.success = true;
                 output.data = results;
                 output.fields = fields;
+                console.log(output.success);
 
             } else {
                 output.errors = err;
@@ -98,26 +100,48 @@ app.get('/userCheck',function(req, res){
     }
 });
 
-app.post('/login', function(req, res){
-    console.log(req.body);
-    req.body.password = sha1(req.body.password);
+app.post('/', function(req, res){
+    console.log('reqbody',req.body);
+    //req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
-        connection.query(`SELECT ID, password FROM loginData WHERE username = '${req.body.username}'`, function(err, data, fields){
+        console.log('req.body.email', req.body.email)
+        connection.query(`SELECT password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
+            console.log('err', err); 
+            console.log('data', data);
+            console.log('data[0]', data[0].password);
+            console.log('reqbodypassword', req.body.password)
+            console.log('fields', fields);
             if(data.length){
                 if(data[0].password === req.body.password){
-                    var user = data[0];
+                    var user = req.body.email;
+                    
+                    connection.query(`SELECT user_id FROM users WHERE email = '${user}'`, function(err, data, fields){
+                        console.log('userIDdata', data);
+                    
+                    var userID = data[0].user_id; 
+                    
+                    console.log(userID);
+                    
                     //user is valid
                     var userToken = generateRandomString(20) + Date.now();
-
-                    var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
+                    
+                    var query = `INSERT INTO loggedinUsers (userID, email, token) VALUES ('${userID}', '${user}', '${userToken}')`;
+                    
                     console.log("query is "+query);
-                    connection.query(query, function(err){
+                  
+                    
+                    connection.query(query, function(err, result){
+                        console.log('err',err);
+                        console.log('result', result);
                         if(!err){
+                            console.log("1 record inserted")
                             res.set('Set-Cookie','userauth='+userToken);
-                            res.send('valid!')
+                            
+                            res.redirect(`/dashboard/goalssql/${userID}`);
                         }
-                    });
+                    })
+                });
 
 
 
@@ -155,6 +179,7 @@ app.get('/signUp',(req, res) => {
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
+
 app.get('/goals',(req, res) => {
     res.sendFile(path.join(__dirname,'public','create_Goal.html'));
 });
@@ -205,7 +230,7 @@ app.get('/goalssql', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========GET ALL GOALS BY GOAL ID===========//
-app.get('/goalssql/:userID', (req,res,next) => {
+app.get('/dashboard/goalssql/:userID', (req,res,next) => {
     const { userID } = req.params;
     console.log("These are the params", req.params.userID);
 
@@ -222,6 +247,8 @@ app.get('/goalssql/:userID', (req,res,next) => {
             data: results
         };
         res.json(output);
+
+        res.redirect('/dashboard');
     });
 });
 

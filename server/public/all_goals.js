@@ -38,8 +38,8 @@ function editGoal(goalSelected){
     $(goalSelected +'> .goal-description').text('');
 
     $("<input class='center' type='text'>").css({
-        'margin': 0,
-        'border-radius': '25px',
+        'margin': '3px',
+        'border-bottom': '3px yellow solid',
         'height': '100%',
         'width': '100%',
         
@@ -53,7 +53,9 @@ function editGoal(goalSelected){
 
         console.log(edit)
         $('input').remove();
-    })
+    });
+
+    aj
 }
 
 
@@ -113,9 +115,12 @@ function rendergoalOnDashboard(goals){
 
 
 function reminders(users){
-    let startDate = users[0].startdate;
-    let endDate = users[0].finishdate;
-
+    let startDate = new Date(users[0].startdate);
+    let endDate = new Date(users[0].finishdate);
+    
+    console.log(startDate.getUTCDate()); // Hours
+    console.log(endDate.getUTCDate());
+    
     let duration = 4;;
     console.log('startDate', startDate, endDate);
 

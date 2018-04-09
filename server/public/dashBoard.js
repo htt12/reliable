@@ -13,7 +13,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://reliable.keatonkrieger.com/goalssql',
+        url: 'http://localhost:8000/goalssql/:userID',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
