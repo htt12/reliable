@@ -13,8 +13,8 @@
     background-color: white;
     display: grid;
     grid-gap: 1%;
-    grid-template-rows: 10% 75% 3% 3% 3% 3%;
-    grid-template-columns: 5% 5% 5% 64% 5% 5% 5%;
+    grid-template-rows: 10% 63% 15% 3% 3% 3% 3%;
+    grid-template-columns: 3% 3% 3% 76% 3% 3% 3%;
     
     
 }
@@ -52,7 +52,7 @@
 
 .goal-description{
     display: inherit;
-    padding: 0% 3%;
+    padding: 5% 3%;
     background-color: #3b7d87a8;
     width: 70%;
     height: 100%;

@@ -4,6 +4,7 @@ const cors = require('cors');
 const mysql = require('mysql');
 const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
+const session = require('express-session');
 // Instantiate Express application and MySQL database connection
 const app = express();
 const PORT = 8000;
@@ -26,6 +27,7 @@ connection.connect((err)  => {
 
 // Used to parse data out of the request body
 app.use(cors());
+app.use(session({ secret: 'racecar', cookie: { maxAge: 120000 }}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -56,6 +58,7 @@ function didItAllForTheCookies(text){
 //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
 
 
+
 // === Routes === //
 app.get('/dummyGoals',(req, res) => {
     res.sendFile(path.join(__dirname,'public/DummyJSON','dummyGoals.json'));
@@ -73,9 +76,12 @@ app.get('/signUp',(req, res) => {
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
+
 app.get('/goals',(req, res) => {
     res.sendFile(path.join(__dirname,'public','create_Goal.html'));
 });
+
+
 
 //---Route allows you go to index //
 //---first thing '/' is always what //
@@ -121,11 +127,23 @@ app.get('/goalssql', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========GET ALL GOALS BY GOAL ID===========//
+// app.get('/goalssql/user', (req,res,next) => {
+
+
+//     connection.query(query, function(err, result){
+//         console.log('err', err);
+//         console.log('result', result);
+
+
+
 app.get('/goalssql/:${userID}', (req,res,next) => {
     let { userID } = id;
+
+    let query = 'SELECT * FROM goals WHERE EXISTS (SELECT 1 FROM loggedinUsers WHERE loggedinUsers.userID = goals.userID)';
+    
     console.log("These are the params", id);
 
-    let query = 'SELECT * FROM ?? WHERE ?? = ?';
+    // let query = 'SELECT * FROM ?? WHERE ?? = ?';
     let inserts = ['goals', 'userID', userID];
     console.log("inserts are: ", inserts);
     let sql = mysql.format(query, inserts);
@@ -135,16 +153,18 @@ app.get('/goalssql/:${userID}', (req,res,next) => {
 
         const output = {
             success: true,
-            data: results
+            data: result
         };
         res.json(output);
+
+        
     });
 });
 
 //==========END OF GET ALL GOALS===========//
 
 //==========POST GOALS===========//
-app.post('/goals', (req,res,next) => {
+app.post('/goalsPost', (req,res,next) => {
     const { goal, day, startdate, finishdate, timeframe  } = req.body;
 
     let query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';
@@ -207,10 +227,11 @@ app.post('/goals/update', (req, res, next) => {
 
 //==========DELETE GOALS===========//
 app.post('/goals/delete', (req, res, next) => {
+    console.log('req', req.body);
     const { goal_id } = req.body;
 
-    let query = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
-    let inserts = ['goals', 'goal_id', 50, 'goal_id', goal_id];
+    let query = 'DELETE FROM ?? WHERE ?? = ?'
+    let inserts = ['goals', 'goal_id', goal_id];
     console.log(query, inserts);
     let sql = mysql.format(query, inserts);
     connection.query(sql, (err, results, fields) => {

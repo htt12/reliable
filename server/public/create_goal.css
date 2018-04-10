@@ -10,6 +10,7 @@ body{
 }
 
 .background{
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     border: 3px solid rgb(224, 185, 69);
@@ -27,13 +28,16 @@ body{
 .title{
     margin: 8% 0;
     color: rgb(33, 115, 130);
-}
-
-.title span{
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-shadow: 5px 4px 5px rgba(33, 115, 130, 0.8);
     font-size: 5em;
+
 }
 
-.title button{
+/* .title button{
     float: right;
     width: 15%;
 }
@@ -52,13 +56,13 @@ body{
 .title > .cancel{
     background-color: rgb(61, 145, 170);
     color: rgb(224, 185, 69);
-}
+} */
 
-.creatingGoal{
+/* .creatingGoal{
     margin: 7% 0;
-}
+} */
 
-.creatingGoal p{
+/* .creatingGoal p{
     font-size: 2em;
     font-weight: bold;
 }
@@ -75,7 +79,7 @@ body{
     width: 15%;
     margin-right: 5%;
     background-color: rgb(239, 206, 107);
-}
+} */
 
 .error{
     color: lightcoral;
@@ -96,6 +100,65 @@ body{
 .goalIdeas .ideasList li{
     margin-left: 7%;
     list-style-type: circle;
+}
+
+.predefined-goals p{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+/* .fitness,
+.diet,
+.habit, */
+.categoryContainer{
+    margin: 0 0 3% 0;
+    width: 100%;
+    height: 16vh;
+}
+
+/* .fitness img,
+.diet img,
+.habit img, */
+.categoryImg{
+    width: 100%;
+    height: 100%;
+}
+
+.predefined-goals input.goalInput{
+    font-size: 2.5em;
+    border-bottom: 4px solid rgb(224, 185, 69);
+}
+
+.fitness-goals,
+.diet-goals,
+.habit-goals{
+    font-size: 2em;
+}
+
+.fitness-goals ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fitnessList lh,
+.dietList lh,
+.habitList lh{
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.fitness-goals .fitnessList li,
+.diet-goals .dietList li,
+.habit-goals .habitList li{
+    list-style-type: none;
+    font-size: 1.2em;
+    line-height: 160%;
+    font-weight: bold;
+    margin-bottom: 61px;
+    border: 1px solid black;
+
 }
 
 .days p{
@@ -161,4 +224,47 @@ body{
     font-size: 0.8em;
     width: 35%;
     border-bottom: 3px solid rgb(224, 185, 69);
+}
+
+footer.page-footer{
+    height: 9vh;
+    width: 100vw;
+    background-color: #ffc24e;
+    padding-top: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.page-footer nav{
+    width: 100%;
+    height: 100%;
+    background-color: #ffc24e;
+
+}
+
+.page-footer .footer-items{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.page-footer nav ul a i{
+    font-size: 6rem;
+    vertical-align: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.inactiveLink{
+    pointer-events: none;
+    opacity: 0.5;
 }
