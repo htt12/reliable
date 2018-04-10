@@ -4,12 +4,30 @@ var canBeClicked = true;
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    debugger;
     $("#end_date").attr('min', getTodayDate);
     $(".add").on('click', handleAddButtonClicked);
     $(".cancel").on('click', handleCancelButtonClicked);
     $(".ideas").on('click', handleIdeaBtnClick);
 }
+
+function postGoalToServer(goal, day, start, finish, timeframe) {
+    $.ajax({
+        type: "POST",
+        url: "http://reliable.keatonkrieger.com/goals",
+        data: {
+            goal: goal,
+            day: day,
+            startdate: start,
+            finishdate: finish,
+            timeframe: timeframe
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+    })
+}
+
 
 function handleAddButtonClicked() {
     console.log('add btn clicked');
@@ -107,6 +125,7 @@ function validateFinishDateSelection() {
 
 function handleCancelButtonClicked() {
     console.log("cancel btn clicked");
+    res.redirect("/dashboard")
 }
 
 function convertDayIntoNumberFormat( day ) {

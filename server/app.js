@@ -14,13 +14,15 @@ const sha1 = require('sha1');
 const bodyParser = require('body-parser');
 //------------LOGIN--------------------------------//
 app.use(cors());
-
+//===================GLOBAL VARS=====================//
+var id;
 // Verify if connection is successful
 connection.connect((err)  => {
     if (err) throw err;
 
     console.log('Connected to database yo')
 });
+
 // === Consumption of middleware === //
 
 // Used to parse data out of the request body
@@ -29,6 +31,7 @@ app.use(session({ secret: 'racecar', cookie: { maxAge: 120000 }}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'server')));
 //------------LOGIN--------------------------------//
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -76,7 +79,7 @@ function didItAllForTheCookies(text){
     return output;
 }
 //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
-//
+
 app.get('/userCheck',function(req, res){
     const auth = didItAllForTheCookies(req.headers.cookie).userauth;
     console.log("check"+auth);
@@ -88,9 +91,11 @@ app.get('/userCheck',function(req, res){
                 console.log(err, data);
                 if(!err){
                     if(data.length){
-                        res.send('the user is logged in');
+                        res.redirect("/dashboard")
+                        // res.send('the user is logged in');
                     } else {
-                        res.send('the user is not logged in');
+                        res.redirect("/");
+                        // res.send('the user is not logged in');
                     }
                 } else {
                     res.send('error while checking user status');
@@ -98,7 +103,8 @@ app.get('/userCheck',function(req, res){
             });
         })
     } else {
-        res.send('no token available, user is not logged in')
+        // res.send('no token available, user is not logged in')
+        res.redirect("/");
     }
 });
 
@@ -107,13 +113,7 @@ app.post('/', function(req, res){
     //req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
-        console.log('req.body.email', req.body.email)
-        connection.query(`SELECT password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
-            // console.log('err', err); 
-            // console.log('data', data);
-            // console.log('data[0]', data[0].password);
-            // console.log('reqbodypassword', req.body.password)
-            // console.log('fields', fields);
+        connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
             if(data.length){
                 if(data[0].password === req.body.password){
                     var user = req.body.email;
@@ -130,6 +130,9 @@ app.post('/', function(req, res){
                     
                     var query = `INSERT INTO loggedinUsers (userID, email, token) VALUES ('${userID}', '${user}', '${userToken}')`;
                     
+                    id = `${user.ID}`;
+                    console.log('This is the ID ' + id);
+                   // var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                   
                     
@@ -139,8 +142,8 @@ app.post('/', function(req, res){
                         if(!err){
                             console.log("1 record inserted")
                             res.set('Set-Cookie','userauth='+userToken);
-                            
-                            res.redirect(`/dashboard`);
+                            // res.send('http://localhost:8000/dashboard');
+                            res.redirect("/dashboard");
                         }
                     })
                 });
@@ -150,7 +153,10 @@ app.post('/', function(req, res){
                 } else {
                     //right user, wrong pass
                     console.log('user is invalid');
-                    res.send('invalid!')
+                    res.redirect("/")
+
+
+
                 }
             } else {
                 //wrong user
@@ -162,7 +168,6 @@ app.post('/', function(req, res){
 
 });
 //---------------------------------------END OF LOGIN CODE--------------------------------//
-
 
 // === Routes === //
 app.get('/dummyGoals',(req, res) => {
@@ -176,7 +181,7 @@ app.get('/',(req, res) => {
     res.sendFile(path.join(__dirname,'public','login.html'));
 });
 app.get('/signUp',(req, res) => {
-    res.sendFile(path.join(__dirname,'public','sign_Up.html'));
+    res.sendFile(path.join(__dirname,'public','sign_up.html'));
 });
 app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
@@ -190,7 +195,6 @@ app.get('/goals',(req, res) => {
 
 //---Route allows you go to index //
 //---first thing '/' is always what //
-
 
 //------------------------ALL GET AND POST REQUESTTS--------------------------------------//
 // ==========GET ALL USERS===========//
@@ -233,14 +237,28 @@ app.get('/goalssql', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========GET ALL GOALS BY GOAL ID===========//
-app.get('/goalssql/user', (req,res,next) => {
+// app.get('/goalssql/user', (req,res,next) => {
     
+    
+//     connection.query(query, function(err, result){
+//         console.log('err', err);
+//         console.log('result', result);
+
+
+        
+app.get('/goalssql/:${userID}', (req,res,next) => {
+    let { userID } = id;
+
     let query = 'SELECT * FROM goals WHERE EXISTS (SELECT 1 FROM loggedinUsers WHERE loggedinUsers.userID = goals.userID)';
     
-    connection.query(query, function(err, result){
-        console.log('err', err);
-        console.log('result', result);
-        
+    console.log("These are the params", id);
+
+    let query = 'SELECT * FROM ?? WHERE ?? = ?';
+    let inserts = ['goals', 'userID', userID];
+    console.log("inserts are: ", inserts);
+    let sql = mysql.format(query, inserts);
+
+    connection.query(sql, (err, results, fields) => {
         if (err) return next (err);
 
         const output = {
@@ -279,11 +297,10 @@ app.post('/goals', (req,res,next) => {
 
 //==========POST USERS===========//
 app.post('/users', (req,res,next) => {
-    const { email, password } = req.body;
-
-    let query = 'INSERT INTO ?? (??, ??) VALUES (?, ?)';
-    let inserts = ['users', 'email', 'password', email, password];
-
+    let { email, username, password } = req.body;
+    password = sha1(password);
+    let query = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)';
+    let inserts = ['users', 'email', 'username', 'password', email, username, password];
     let sql = mysql.format(query, inserts);
 
     connection.query(sql, (err, results, fields) => {
@@ -318,6 +335,24 @@ app.post('/goals/update', (req, res, next) => {
 });
 //==========END OF EDIT GOALS===========//
 
+//==========DELETE GOALS===========//
+app.post('/goals/delete', (req, res, next) => {
+    const { goal_id } = req.body;
+
+    let query = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
+    let inserts = ['goals', 'goal_id', 50, 'goal_id', goal_id];
+    console.log(query, inserts);
+    let sql = mysql.format(query, inserts);
+    connection.query(sql, (err, results, fields) => {
+        if (err) return next(err);
+        const output = {
+            success : true,
+            data: results
+        };
+        res.json(output);
+    })
+});
+//==========END OF EDIT GOALS===========//
 
 //----------------------------END OF POST AND GET REQUESTS--------------------------------------//
 
@@ -360,13 +395,14 @@ function postGoalToServer(goal, day, start, finish, timeframe) {
 }
 
 
-function postUserToServer(email, password, status) {
+function postUserToServer(email, username, password, status) {
     $.ajax({
         type: "POST",
         url: "http://reliable.keatonkrieger.com/users",
         dataType: "json",
         data: {
             email: email,
+            username: username,
             password: password,
             status: status,
         },

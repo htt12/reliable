@@ -1,9 +1,13 @@
+$(document).ready(initializeApp);
+
+var userID = require('../app');
+
 var userEmail = null;
 var userName = null;
 var userPwd = null;
 var invalidEmail = true;
 
-$(document).ready(initializeApp);
+
 
 function initializeApp() {
     userEmail = getEmailInput();
@@ -84,6 +88,9 @@ function getPasswordInput() {
 
     $('.pwdInput').on('keyup', function (event) {
         pwd = event.target.value;
+        console.log(pwd);
+        var sha  = sha1(pwd);
+        console.log(sha);
         console.log('pwd.length:', pwd.length);
 
         if( pwd.length < 8 ){
@@ -135,8 +142,28 @@ function createObject( email, username, password ) {
     object.email = email;
     object.username = username;
     object.password = password;
+    sendData(email, username, password);
     return object;
 }
+
+function sendData(email, username, password) {
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8000/users",
+        // dataType: "json",
+        data: {
+            email: email,
+            username: username,
+            password: password
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+
+    })
+}
+
 
 function handleSignUpBtnClick() {
 
@@ -145,7 +172,7 @@ function handleSignUpBtnClick() {
         return;
     }
     else {
-        var newObject = createObject( userEmail, userName, userPwd);
+        var newObject = createObject( userEmail , userName, userPwd);
         console.log('new object:', newObject);
         $('.message span').text('');
         clearUserInput();
