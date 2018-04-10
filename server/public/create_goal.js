@@ -311,6 +311,7 @@ function clearUserInput() {
     category = '';
 }
 
+
 function postGoalToServer( object ){
 // function postGoalToServer( goal, day, startdate, finishdate, timeframe ){
     
@@ -329,7 +330,9 @@ function postGoalToServer( object ){
             // startdate: startdate,
             // finishdate: finishdate,
             // timeframe: timeframe
+
         },
+        console.log
         success: function (json_data) {
             var data = json_data;
             console.log('sucsessed sending data:', data);

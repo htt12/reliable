@@ -58,6 +58,7 @@ function didItAllForTheCookies(text){
 //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
 
 
+
 // === Routes === //
 app.get('/dummyGoals',(req, res) => {
     res.sendFile(path.join(__dirname,'public/DummyJSON','dummyGoals.json'));
@@ -163,7 +164,7 @@ app.get('/goalssql/:${userID}', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========POST GOALS===========//
-app.post('/goals', (req,res,next) => {
+app.post('/goalsPost', (req,res,next) => {
     const { goal, day, startdate, finishdate, timeframe  } = req.body;
 
     let query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';
