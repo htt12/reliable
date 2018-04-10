@@ -14,7 +14,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql/user',
+        url: 'http://localhost:8000/goalssql',
         success: function(resp){
             console.log(resp);
             
@@ -26,24 +26,7 @@ function getData(){
     })
 }
 
-function deleteGoal(){
-    $.ajax({
-        type: 'POST',
-        url: 'http://localhost:8000/goals/delete',
-        // dataType: 'json',
-        jsonpCallback: 'callback',
-        crossDomain: true,
-        cache: false,
-        success: function(resp){
-            console.log(resp);
 
-            rendergoalOnDashboard(resp.data)
-        },
-        error: function(xhr, status, err){
-            console.log(err)
-        }
-    })
-}
 
 function applyClickHandlers(){
     ('.complete').on('click', completeGoal)
@@ -54,11 +37,11 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
 
-    for(var i=0; i<goals.length;i++){
+    for(var i=0; i<5;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
-        var goalId = goals[i].goal_id;
+        let goalId = goals[i].goal_id;
 
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);

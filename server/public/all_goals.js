@@ -13,14 +13,14 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://reliable.keatonkrieger.com/goalssql',
+        url: 'http://localhost:8000/goalssql',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
         success: function(resp){
             console.log(resp);
-            
+            $('.all-goals-list').empty();
             rendergoalOnDashboard(resp.data)
         },
         error: function(xhr, status, err){
@@ -55,8 +55,30 @@ function editGoal(goalSelected){
         $('input').remove();
     });
 
-    aj
+    
 }
+
+function deleteGoal(goalId){
+    console.log('goalID', goalId)
+    $.ajax({
+        type: 'POST',
+        data: {
+            goal_id: goalId,
+        },
+        url: 'http://localhost:8000/goals/delete',
+        // dataType: 'json',
+        
+        success: function(resp){
+            console.log('delete',resp);
+            $('.goal-list').empty();
+            getData();
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
 
 
 function rendergoalOnDashboard(goals){
@@ -67,7 +89,7 @@ function rendergoalOnDashboard(goals){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
-        var goalId = goals[i].goal_id;
+        let goalId = goals[i].goal_id;
         
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
@@ -92,6 +114,7 @@ function rendergoalOnDashboard(goals){
         ).wrapInner('<a href="#">Edit</a>')
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
+            deleteGoal(goalId);
             $(goalSelector).remove();
         }).wrapInner('<a>Delete</a>')
 
