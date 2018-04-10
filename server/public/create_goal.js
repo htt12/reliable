@@ -219,6 +219,7 @@ function createObject(day, goal, timeOfDay, endDate) {
     object.startDate = getTodayDate();
     object.finishDate = endDate;
     object.timeFrame = timeOfDay;
+    console.log(object);
     return object;
 }
 
@@ -230,6 +231,7 @@ function clearUserInput() {
 }
 
 function postGoalToServer( object ){
+    console.log(object);
     $.ajax({
         type: "POST",
         url: "http://reliable.keatonkrieger.com/goals",
