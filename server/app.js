@@ -27,9 +27,10 @@ connection.connect((err)  => {
 
 // Used to parse data out of the request body
 app.use(cors());
-app.use(session({ secret: 'racecar', cookie: { maxAge: 120000 }}))
+app.use(session({ secret: 'racecar', cookie: { maxAge: 120000 }}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(session({secret: 'password'}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'server')));
 //------------LOGIN--------------------------------//
@@ -230,7 +231,7 @@ app.post('/goals/delete', (req, res, next) => {
     console.log('req', req.body);
     const { goal_id } = req.body;
 
-    let query = 'DELETE FROM ?? WHERE ?? = ?'
+    let query = 'DELETE FROM ?? WHERE ?? = ?';
     let inserts = ['goals', 'goal_id', goal_id];
     console.log(query, inserts);
     let sql = mysql.format(query, inserts);
