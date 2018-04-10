@@ -1,11 +1,12 @@
 
 $(document).ready(initializeApp);
-
+var userID = require('../app');
+console.log(userID);
 
 
 
 function initializeApp(){
-    getData(1);
+    getData(userID);
     applyClickHandlers;
 
 }
@@ -14,10 +15,6 @@ function getData(){
     $.ajax({
         type: 'GET',
         url: 'http://localhost:8000/goalssql',
-        // dataType: 'json',
-        jsonpCallback: 'callback',
-        crossDomain: true,
-        cache: false,
         success: function(resp){
             console.log(resp);
             
@@ -28,6 +25,8 @@ function getData(){
         }
     })
 }
+
+
 
 function applyClickHandlers(){
     ('.complete').on('click', completeGoal)
@@ -42,7 +41,7 @@ function rendergoalOnDashboard(goals){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
-        var goalId = goals[i].goal_id;
+        let goalId = goals[i].goal_id;
 
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);

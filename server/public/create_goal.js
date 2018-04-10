@@ -153,8 +153,8 @@ function handleAddButtonClicked( goal ) {
     for(var i = 0; i<selectedDate.length; i++){
         var newObject = createObject(goal, selectedDate[i], timeOfDay, finishDate);
         console.log('newObject:', newObject);
-        // postGoalToServer(newObject);
-        postGoalToServer('this is the new goal', 1, "2018-04-10", "2018-04-12", "morning");
+        postGoalToServer(newObject);
+   //     postGoalToServer('this is the new goal', 1, "2018-04-10", "2018-04-12", "morning");
         // postGoalToServer(selectedDate[i], goal, timeOfDay, finishDate);
         goalAndDateArray.push(newObject);
     }
@@ -311,17 +311,26 @@ function clearUserInput() {
     category = '';
 }
 
-// function postGoalToServer( object ){
-function postGoalToServer( goal, day, startdate, endDate, timeOfDay ){
+
+function postGoalToServer( object ){
+// function postGoalToServer( goal, day, startdate, finishdate, timeframe ){
+    
+    console.log('created Object', object)
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000//goalsPost",
+        url: "http://localhost:8000/goals",
         data: {
-            goal: goal,
-            day: day,
-            startdate: "2018-04-12",
-            finishdate: endDate,
-            timeframe: timeOfDay
+            goal: object.goal,
+            day: object.day,
+            startdate: object.startdate,
+            finishdate: object.finishdate,
+            timeframe: object.timeframe
+            // goal: goal,
+            // day: day,
+            // startdate: startdate,
+            // finishdate: finishdate,
+            // timeframe: timeframe
+
         },
         console.log
         success: function (json_data) {

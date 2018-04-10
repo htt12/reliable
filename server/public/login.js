@@ -21,3 +21,4 @@ function postUserToServer(email, password, status) {
         }
     })
 }
+
