@@ -13,13 +13,15 @@ const sha1 = require('sha1');
 const bodyParser = require('body-parser');
 //------------LOGIN--------------------------------//
 app.use(cors());
-
+//===================GLOBAL VARS=====================//
+var id;
 // Verify if connection is successful
 connection.connect((err)  => {
     if (err) throw err;
 
     console.log('Connected to database yo')
 });
+
 // === Consumption of middleware === //
 
 // Used to parse data out of the request body
@@ -27,6 +29,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'server')));
 //------------LOGIN--------------------------------//
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -84,9 +87,11 @@ app.get('/userCheck',function(req, res){
                 console.log(err, data);
                 if(!err){
                     if(data.length){
-                        res.send('the user is logged in');
+                        res.redirect("/dashboard")
+                        // res.send('the user is logged in');
                     } else {
-                        res.send('the user is not logged in');
+                        res.redirect("/");
+                        // res.send('the user is not logged in');
                     }
                 } else {
                     res.send('error while checking user status');
@@ -94,13 +99,14 @@ app.get('/userCheck',function(req, res){
             });
         })
     } else {
-        res.send('no token available, user is not logged in')
+        // res.send('no token available, user is not logged in')
+        res.redirect("/");
     }
 });
 
 app.post('/login', function(req, res){
     console.log(req.body);
-    // req.body.password = sha1(req.body.password);
+    req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
         connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
@@ -109,7 +115,8 @@ app.post('/login', function(req, res){
                     var user = data[0];
                     //user is valid
                     var userToken = generateRandomString(20) + Date.now();
-
+                    id = `${user.ID}`;
+                    console.log('This is the ID ' + id);
                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                     connection.query(query, function(err){
@@ -206,9 +213,9 @@ app.get('/goalssql', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========GET ALL GOALS BY GOAL ID===========//
-app.get('/goalssql/:userID', (req,res,next) => {
-    const { userID } = req.params;
-    console.log("These are the params", req.params.userID);
+app.get('/goalssql/:${userID}', (req,res,next) => {
+    let { userID } = id;
+    console.log("These are the params", id);
 
     let query = 'SELECT * FROM ?? WHERE ?? = ?';
     let inserts = ['goals', 'userID', userID];
@@ -252,8 +259,8 @@ app.post('/goals', (req,res,next) => {
 
 //==========POST USERS===========//
 app.post('/users', (req,res,next) => {
-    const { email, username, password } = req.body;
-
+    let { email, username, password } = req.body;
+    password = sha1(password);
     let query = 'INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)';
     let inserts = ['users', 'email', 'username', 'password', email, username, password];
     let sql = mysql.format(query, inserts);
@@ -290,6 +297,24 @@ app.post('/goals/update', (req, res, next) => {
 });
 //==========END OF EDIT GOALS===========//
 
+//==========DELETE GOALS===========//
+app.post('/goals/delete', (req, res, next) => {
+    const { goal_id } = req.body;
+
+    let query = 'UPDATE ?? SET ?? = ? WHERE ?? = ?';
+    let inserts = ['goals', 'goal_id', 50, 'goal_id', goal_id];
+    console.log(query, inserts);
+    let sql = mysql.format(query, inserts);
+    connection.query(sql, (err, results, fields) => {
+        if (err) return next(err);
+        const output = {
+            success : true,
+            data: results
+        };
+        res.json(output);
+    })
+});
+//==========END OF EDIT GOALS===========//
 
 //----------------------------END OF POST AND GET REQUESTS--------------------------------------//
 

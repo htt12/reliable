@@ -1,9 +1,13 @@
+$(document).ready(initializeApp);
+
+var userID = require('../app');
+
 var userEmail = null;
 var userName = null;
 var userPwd = null;
 var invalidEmail = true;
 
-$(document).ready(initializeApp);
+
 
 function initializeApp() {
     userEmail = getEmailInput();
@@ -84,7 +88,9 @@ function getPasswordInput() {
 
     $('.pwdInput').on('keyup', function (event) {
         pwd = event.target.value;
-        pwd
+        console.log(pwd);
+        var sha  = sha1(pwd);
+        console.log(sha);
         console.log('pwd.length:', pwd.length);
 
         if( pwd.length < 8 ){

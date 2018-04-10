@@ -1,11 +1,12 @@
 
 $(document).ready(initializeApp);
-
+var userID = require('../app');
+console.log(userID);
 
 
 
 function initializeApp(){
-    getData(1);
+    getData(userID);
     applyClickHandlers;
 
 }
@@ -13,7 +14,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql',
+        url: 'http://localhost:8000/goalssql/id',
         // dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
@@ -21,6 +22,25 @@ function getData(){
         success: function(resp){
             console.log(resp);
             
+            rendergoalOnDashboard(resp.data)
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
+function deleteGoal(){
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8000/goals/delete',
+        // dataType: 'json',
+        jsonpCallback: 'callback',
+        crossDomain: true,
+        cache: false,
+        success: function(resp){
+            console.log(resp);
+
             rendergoalOnDashboard(resp.data)
         },
         error: function(xhr, status, err){
