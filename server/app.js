@@ -136,10 +136,10 @@ app.get('/goalssql', (req,res,next) => {
 
 
 
-app.get('/goalssql/:${userID}', (req,res,next) => {
+app.get('/goalssql/:userID', (req,res,next) => {
     let { userID } = id;
 
-    let query = 'SELECT * FROM goals WHERE EXISTS (SELECT 1 FROM loggedinUsers WHERE loggedinUsers.userID = goals.userID)';
+    let query = `SELECT * FROM goals WHERE userID = ${userID}`;
     
     console.log("These are the params", id);
 
@@ -309,6 +309,7 @@ app.post('/login', function(req, res){
                     var userToken = generateRandomString(20) + Date.now();
                     id = `${user.ID}`;
                     console.log('This is the ID ' + id);
+                    req.session.id = id;
                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                     connection.query(query, function(err){

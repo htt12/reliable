@@ -332,7 +332,6 @@ function postGoalToServer( object ){
             // timeframe: timeframe
 
         },
-        console.log
         success: function (json_data) {
             var data = json_data;
             console.log('sucsessed sending data:', data);

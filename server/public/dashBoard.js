@@ -3,18 +3,17 @@ $(document).ready(initializeApp);
 var userID = require('../app');
 console.log(userID);
 
-
+console.log(req.session.id);
 
 function initializeApp(){
     getData();
     applyClickHandlers;
-git
 }
 
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql',
+        url: `http://localhost:8000/goalssql/:${userID}`,
         success: function(resp){
             console.log(resp);
 
