@@ -6,7 +6,7 @@ console.log(userID);
 
 
 function initializeApp(){
-    getData(userID);
+    getData();
     applyClickHandlers;
 
 }
@@ -14,7 +14,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql/id',
+        url: 'http://localhost:8000/goalssql/',
         // dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,

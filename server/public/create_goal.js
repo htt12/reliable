@@ -54,7 +54,7 @@ function handleAddButtonClicked() {
     console.log('selectedDate: ', selectedDate);
 
     //get the value of user selected time frame (morning/afternoon/evening)
-    var timeOfDay = $('#timeframe').val()
+    var timeOfDay = $('#timeframe').val();
     console.log('timeOfDay:', timeOfDay);
 
     //get the end date
