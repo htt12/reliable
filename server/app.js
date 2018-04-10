@@ -110,7 +110,7 @@ app.get('/userCheck',function(req, res){
 
 app.post('/', function(req, res){
     console.log('reqbody',req.body);
-    //req.body.password = sha1(req.body.password);
+    req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
         connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
@@ -253,7 +253,7 @@ app.get('/goalssql/:${userID}', (req,res,next) => {
     
     console.log("These are the params", id);
 
-    let query = 'SELECT * FROM ?? WHERE ?? = ?';
+    // let query = 'SELECT * FROM ?? WHERE ?? = ?';
     let inserts = ['goals', 'userID', userID];
     console.log("inserts are: ", inserts);
     let sql = mysql.format(query, inserts);

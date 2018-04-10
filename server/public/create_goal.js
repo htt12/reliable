@@ -64,6 +64,7 @@ function handleAddButtonClicked() {
     //loop thru the selectedDate array and create object for each day
     for(var i = 0; i<selectedDate.length; i++){
         var newObject = createObject(selectedDate[i], goal, timeOfDay, finishDate);
+        console.log('newobject',newObject)
         postGoalToServer(newObject);
         // goalAndDateArray.push(newObject);
     }
@@ -230,6 +231,9 @@ function clearUserInput() {
 }
 
 function postGoalToServer( object ){
+    console.log('objectSent',object)
+    console.log('data', object.goal, object.day, object.startDate,object.finishDate, object.timeFrame)
+   
     $.ajax({
         type: "POST",
         url: "http://reliable.keatonkrieger.com/goals",
