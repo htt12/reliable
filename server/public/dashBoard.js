@@ -13,11 +13,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql/:userID',
-        dataType: 'json',
-        jsonpCallback: 'callback',
-        crossDomain: true,
-        cache: false,
+        url: 'http://localhost:8000/goalssql/user',
         success: function(resp){
             console.log(resp);
             
@@ -38,7 +34,7 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
-    for(var i=0; i<5;i++){
+    for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;

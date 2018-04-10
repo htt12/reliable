@@ -4,6 +4,7 @@ const cors = require('cors');
 const mysql = require('mysql');
 const credentials  = require('./config/mysqlCredentials.js');
 const path = require('path');
+const session = require('express-session');
 // Instantiate Express application and MySQL database connection
 const app = express();
 const PORT = 8000;
@@ -24,6 +25,7 @@ connection.connect((err)  => {
 
 // Used to parse data out of the request body
 app.use(cors());
+app.use(session({ secret: 'racecar', cookie: { maxAge: 120000 }}))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -107,11 +109,11 @@ app.post('/', function(req, res){
         console.log('db connected');
         console.log('req.body.email', req.body.email)
         connection.query(`SELECT password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
-            console.log('err', err); 
-            console.log('data', data);
-            console.log('data[0]', data[0].password);
-            console.log('reqbodypassword', req.body.password)
-            console.log('fields', fields);
+            // console.log('err', err); 
+            // console.log('data', data);
+            // console.log('data[0]', data[0].password);
+            // console.log('reqbodypassword', req.body.password)
+            // console.log('fields', fields);
             if(data.length){
                 if(data[0].password === req.body.password){
                     var user = req.body.email;
@@ -138,7 +140,7 @@ app.post('/', function(req, res){
                             console.log("1 record inserted")
                             res.set('Set-Cookie','userauth='+userToken);
                             
-                            res.redirect(`/dashboard/goalssql/${userID}`);
+                            res.redirect(`/dashboard`);
                         }
                     })
                 });
@@ -176,13 +178,14 @@ app.get('/',(req, res) => {
 app.get('/signUp',(req, res) => {
     res.sendFile(path.join(__dirname,'public','sign_Up.html'));
 });
-app.get('/dashboard/goalssql/:userID',(req, res) => {
+app.get('/dashboard',(req, res) => {
     res.sendFile(path.join(__dirname,'public','dashboard.html'));
 });
 
 app.get('/goals',(req, res) => {
     res.sendFile(path.join(__dirname,'public','create_Goal.html'));
 });
+
 
 
 //---Route allows you go to index //
@@ -230,25 +233,23 @@ app.get('/goalssql', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========GET ALL GOALS BY GOAL ID===========//
-app.get('/dashboard/goalssql/:userID', (req,res,next) => {
-    const { userID } = req.params;
-    console.log("These are the params", req.params.userID);
-
-    let query = 'SELECT * FROM ?? WHERE ?? = ?';
-    let inserts = ['goals', 'userID', userID];
-    console.log("inserts are: ", inserts);
-    let sql = mysql.format(query, inserts);
-
-    connection.query(sql, (err, results, fields) => {
+app.get('/goalssql/user', (req,res,next) => {
+    
+    let query = 'SELECT * FROM goals WHERE EXISTS (SELECT 1 FROM loggedinUsers WHERE loggedinUsers.userID = goals.userID)';
+    
+    connection.query(query, function(err, result){
+        console.log('err', err);
+        console.log('result', result);
+        
         if (err) return next (err);
 
         const output = {
             success: true,
-            data: results
+            data: result
         };
         res.json(output);
 
-        // res.redirect('/dashboard');
+        
     });
 });
 
