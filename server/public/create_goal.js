@@ -311,23 +311,19 @@ function clearUserInput() {
     category = '';
 }
 
-function postGoalToServer( object ){
-// function postGoalToServer( goal, day, startdate, finishdate, timeframe ){
+// function postGoalToServer( object ){
+function postGoalToServer( goal, day, startdate, endDate, timeOfDay ){
     $.ajax({
         type: "POST",
-        url: "http://reliable.keatonkrieger.com/goals",
+        url: "http://localhost:8000//goalsPost",
         data: {
-            goal: object.goal,
-            day: object.day,
-            startDate: object.startDate,
-            finishDate: object.finishDate,
-            timeFrame: object.timeFrame
-            // goal: goal,
-            // day: day,
-            // startdate: startdate,
-            // finishdate: finishdate,
-            // timeframe: timeframe
+            goal: goal,
+            day: day,
+            startdate: "2018-04-12",
+            finishdate: endDate,
+            timeframe: timeOfDay
         },
+        console.log
         success: function (json_data) {
             var data = json_data;
             console.log('sucsessed sending data:', data);

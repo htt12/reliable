@@ -84,9 +84,11 @@ app.get('/userCheck',function(req, res){
                 console.log(err, data);
                 if(!err){
                     if(data.length){
-                        res.send('the user is logged in');
+                        res.redirect("/dashboard")
+                        // res.send('the user is logged in');
                     } else {
-                        res.send('the user is not logged in');
+                        res.redirect("/");
+                        // res.send('the user is not logged in');
                     }
                 } else {
                     res.send('error while checking user status');
@@ -94,13 +96,14 @@ app.get('/userCheck',function(req, res){
             });
         })
     } else {
-        res.send('no token available, user is not logged in')
+        // res.send('no token available, user is not logged in')
+        res.redirect("/");
     }
 });
 
 app.post('/login', function(req, res){
     console.log(req.body);
-    // req.body.password = sha1(req.body.password);
+    req.body.password = sha1(req.body.password);
     connection.connect(function(err){
         console.log('db connected');
         connection.query(`SELECT ID, password FROM users WHERE email = '${req.body.email}'`, function(err, data, fields){
@@ -109,7 +112,8 @@ app.post('/login', function(req, res){
                     var user = data[0];
                     //user is valid
                     var userToken = generateRandomString(20) + Date.now();
-
+                    id = `${user.ID}`;
+                    console.log('This is the ID ' + id);
                     var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                     console.log("query is "+query);
                     connection.query(query, function(err){
@@ -232,7 +236,7 @@ app.get('/goalssql/:userID', (req,res,next) => {
 //==========END OF GET ALL GOALS===========//
 
 //==========POST GOALS===========//
-app.post('/goals', (req,res,next) => {
+app.post('/goalsPost', (req,res,next) => {
     const { goal, day, startdate, finishdate, timeframe  } = req.body;
 
     let query = 'INSERT INTO ?? (??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?)';
