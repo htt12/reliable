@@ -53,7 +53,7 @@ module.exports = function (app) {
   app.get("/goalssql", (req, res, next) => {
     console.log("req: ", req.session.userId);
       if(req.session.userId){
-      console.log('tried to enter query\);
+      console.log('tried to enter query');
       let userID = req.session.userId;
           let query = "SELECT * FROM ?? WHERE userID = ?";
           let inserts = ["goals", userID];

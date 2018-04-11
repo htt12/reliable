@@ -11,7 +11,8 @@ const PORT = 8000;
 // === Consumption of middleware === //
 app.use(session({
     secret: 'racecar',
-    resave: true
+    resave: false,
+    saveUninitialized: false
     // cookie: { secure: true }
 }));
 app.use(cors()); // Allows Cross Origin Requests to be made to server -- Used in development
