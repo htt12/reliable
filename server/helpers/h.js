@@ -1,6 +1,6 @@
 exports.generateRandomString = function (length) {
     const possibles = 'abcdefghijklmnopqrstuvwxyz1234567890';
-    const output = '';
+    let output = '';
     while (output.length !== length) {
         output += possibles[(possibles.length * Math.random()) >> 0];
     }

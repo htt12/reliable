@@ -5,15 +5,16 @@ $(document).ready(initializeApp);
 
 
 function initializeApp(){
-    getData();
+    let userId = req.session.userId;
+    console.log(userId);
+    getData(userId);
     
 
 }
-
-function getData(){
+function getData(userId){
     $.ajax({
         type: 'GET',
-        url: 'http://reliable.keatonkrieger.com/goalssql',
+        url: 'http://reliable.keatonkrieger.com/goalssql/'+userId,
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,

@@ -1,5 +1,6 @@
 // Require needed modules / dependencies
 const express = require('express');
+const session = require('express-session');
 const cors = require('cors');
 const path = require('path');
 
@@ -8,6 +9,11 @@ const app = express();
 const PORT = 8000;
 
 // === Consumption of middleware === //
+app.use(session({
+    secret: 'racecar',
+    resave: true
+    // cookie: { secure: true }
+}));
 app.use(cors()); // Allows Cross Origin Requests to be made to server -- Used in development
 app.use(express.json()); // Used to parse data out of the request body
 app.use(express.urlencoded({ extended: true }));
@@ -20,6 +26,19 @@ app.use(express.static(path.join(__dirname, 'public', 'js')));
 require('./routes/api')(app);
 require('./routes/auth')(app);
 require('./routes/pageroutes')(app);
+
+app.get("/sessiontest", (req, res) => {
+    console.log("This is the req.session", req.session.userId);
+    res.end();
+});
+
+app.get("/sessionupdate", (req, res) => {
+    console.log("This is the req.session", req.session.userId);
+    req.session.userId = 'keatonkrieger';
+    res.end();
+});
+
+
 
 // ========================== Error Handling  Middleware ========================================= //
 app.use(function (err, req, res, next) {

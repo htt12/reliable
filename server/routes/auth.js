@@ -53,7 +53,9 @@ module.exports = function (app) {
                         var user = data[0];
                         //user is valid
                         var userToken = generateRandomString(20) + Date.now();
-                        id = `${user.ID}`;
+                        var id = user.ID;
+                        console.log('==========ID=======:', id);
+                        req.session.userId = id;
                         console.log('This is the ID ' + id);
                         var query = `INSERT INTO loggedInUsers SET userID=${user.ID}, token='${userToken}', created=NOW()`;
                         console.log("query is " + query);
@@ -85,4 +87,4 @@ module.exports = function (app) {
 
     });
     //---------------------------------------END OF LOGIN CODE--------------------------------//
-}
+};

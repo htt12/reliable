@@ -51,44 +51,59 @@ module.exports = function (app) {
 
   //==========GET ALL GOALS===========//
   app.get("/goalssql", (req, res, next) => {
-    let query = "SELECT * FROM ??";
-    let inserts = ["goals"];
+    console.log("req: ", req.session.userId);
+      if(req.session.userId){
+      console.log('tried to enter query\);
+      let userID = req.session.userId;
+          let query = "SELECT * FROM ?? WHERE userID = ?";
+          let inserts = ["goals", userID];
 
-    let sql = mysql.format(query, inserts);
+          let sql = mysql.format(query, inserts);
 
-    connection.query(sql, (err, results, fields) => {
-      if (err) return next(err);
+          connection.query(sql, (err, results, fields) => {
+              if (err) return next(err);
 
-      const output = {
-        success: true,
-        data: results
-      };
-      res.json(output);
-    });
+              const output = {
+                  success: true,
+                  data: results
+              };
+              res.json(output);
+          });
+      }
+      else{
+          res.json("no users logged in")
+      }
+
+
   });
 
   //==========END OF GET ALL GOALS===========//
 
   //==========GET ALL GOALS BY GOAL ID===========//
-  app.get("/goalssql/:${userID}", (req, res, next) => {
-    let { userID } = id;
-    console.log("These are the params", id);
 
-    let query = "SELECT * FROM ?? WHERE ?? = ?";
-    let inserts = ["goals", "userID", userID];
-    console.log("inserts are: ", inserts);
-    let sql = mysql.format(query, inserts);
+  // app.get('/goalssql', (req, res, next) => {
+  //   console.log("req: ", req.session)
+  //     return;
 
-    connection.query(sql, (err, results, fields) => {
-      if (err) return next(err);
 
-      const output = {
-        success: true,
-        data: results
-      };
-      res.json(output);
-    });
-  });
+    // let { userID } = id;
+    // console.log("These are the params", id);
+    //
+    // let query = "SELECT * FROM ?? WHERE ?? = ?";
+    // let inserts = ["goals", "userID", userID];
+    // console.log("inserts are: ", inserts);
+    // let sql = mysql.format(query, inserts);
+
+    // connection.query(sql, (err, results, fields) => {
+    //   if (err) return next(err);
+    //
+    //   const output = {
+    //     success: true,
+    //     data: results
+    //   };
+    //   res.json(output);
+    // });
+  // });
 
   //==========END OF GET ALL GOALS===========//
 
