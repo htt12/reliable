@@ -1,4 +1,3 @@
-
 $(document).ready(initializeApp);
 
 
@@ -31,8 +30,9 @@ function getData(){
 
 
 
-function editGoal(goalSelected){
 
+function editGoal(goalSelected, goalId){
+    
     let textToEdit = $(goalSelected).find('.goal-description');
 
     $(goalSelected +'> .goal-description').text('');
@@ -79,6 +79,28 @@ function deleteGoal(goalId){
     })
 }
 
+function deleteGoal(goalId){
+
+    $.ajax({
+        type: 'POST',
+        data: {
+            goal_id: goalId,
+        },
+        url: 'http://localhost:8000/goals/delete',
+        // dataType: 'json',
+        
+        success: function(resp){
+            console.log('delete',resp);
+            $('.goal-list').empty();
+            getData();
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
+
 
 
 function rendergoalOnDashboard(goals){
@@ -109,7 +131,7 @@ function rendergoalOnDashboard(goals){
         
         var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
             
-            editGoal(goalSelector)
+            editGoal(goalSelector, goalId)
             }
         ).wrapInner('<a href="#">Edit</a>')
         
