@@ -339,6 +339,6 @@ function postGoalToServer( object ){
     })
 }
 
-function goBackToDashboard(){
-    history.go(-1);
-}
+// function goBackToDashboard(){
+//     history.go(-1);
+// }

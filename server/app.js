@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const path = require('path');
-
 // Instantiate Express application and MySQL database connection
 const app = express();
 const PORT = 8000;

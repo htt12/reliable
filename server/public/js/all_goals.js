@@ -53,26 +53,29 @@ function editGoal(goalSelected, goalId){
 
         console.log(edit)
         $('input').remove();
+    });
+
     
-    
-        console.log('goalID', goalId)
-        $.ajax({
-            type: 'POST',
-            data: {
-                goal: edit,
-                goal_id: goalId,
-            },
-            url: 'http://localhost:8000/goals/update',
-            // dataType: 'json',
-            
-            success: function(resp){
-                console.log('edit',resp);            
-                getData();
-            },
-            error: function(xhr, status, err){
-                console.log(err)
-            }
-        })   
+}
+
+function deleteGoal(goalId){
+    console.log('goalID', goalId)
+    $.ajax({
+        type: 'POST',
+        data: {
+            goal_id: goalId,
+        },
+        url: 'http://localhost:8000/goals/delete',
+        // dataType: 'json',
+        
+        success: function(resp){
+            console.log('delete',resp);
+            $('.goal-list').empty();
+            getData();
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
     })
 }
 
@@ -96,6 +99,7 @@ function deleteGoal(goalId){
         }
     })
 }
+
 
 
 
