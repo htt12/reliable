@@ -7,7 +7,7 @@ console.log(req.session.id);
 
 function initializeApp(){
     getData();
-    applyClickHandlers;
+    applyClickHandlers();
 }
 
 function getData(){

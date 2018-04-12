@@ -8,7 +8,7 @@ $(document).ready(()=>{
 function postUserToServer(email, password, status) {
     $.ajax({
         type: "POST",
-        url: "http://reliable.keatonkrieger.com/login",
+        url: "/login",
         dataType: "json",
         data: {
             email: email,
