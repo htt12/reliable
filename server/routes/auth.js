@@ -28,10 +28,10 @@ module.exports = function (app) {
                             var id = data[0].userID;
                             var userID = id;
                             req.session.userId = userID;
-                            res.redirect("/dashboard")
+                            res.redirect("reliable.keatonkrieger.com/dashboard")
                             // res.send('the user is logged in');
                         } else {
-                            res.redirect("/");
+                            res.redirect("reliable.keatonkrieger.com/");
                             // res.send('the user is not logged in');
                         }
                     } else {
@@ -45,7 +45,7 @@ module.exports = function (app) {
         }
     });
 
-    app.post('/login', function (req, res) {
+    app.post('reliable.keatonkrieger.com/login', function (req, res) {
         console.log(req.body);
         req.body.password = sha1(req.body.password);
         connection.connect(function (err) {
