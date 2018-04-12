@@ -31,7 +31,7 @@ function initializeApp() {
 
 function renderPredefinedCategories(){
     var containerDiv = $('.predefined-goals-container');
-    var location = "./images/goals/";
+    var location = "./images/";
 
     for (var i = 0; i < predefinedCategories.length; i++){
         var div = $('<div>', {
@@ -142,7 +142,7 @@ function handleAddButtonClicked( goal ) {
     console.log('selectedDate: ', selectedDate);
 
     //get the value of user selected time frame (morning/afternoon/evening)
-    var timeOfDay = $('#timeframe').val();
+    var timeOfDay = $('#timeframe').val()
     console.log('timeOfDay:', timeOfDay);
 
     //get the end date
@@ -161,7 +161,7 @@ function handleAddButtonClicked( goal ) {
     // console.log("goalAndDateArray: ", goalAndDateArray)
 
     clearUserInput();
-    goBackToDashboard();
+    // goBackToDashboard();
 }
 
 function validateGoalInputField() {
@@ -311,14 +311,13 @@ function clearUserInput() {
     category = '';
 }
 
-
 function postGoalToServer( object ){
 // function postGoalToServer( goal, day, startdate, finishdate, timeframe ){
-    
-    console.log('created Object', object)
+
+    console.log('created Object', object);
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000/goals",
+        url: "/goals",
         data: {
             goal: object.goal,
             day: object.day,
@@ -330,7 +329,6 @@ function postGoalToServer( object ){
             // startdate: startdate,
             // finishdate: finishdate,
             // timeframe: timeframe
-
         },
         success: function (json_data) {
             var data = json_data;
@@ -341,6 +339,6 @@ function postGoalToServer( object ){
     })
 }
 
-function goBackToDashboard(){
-    history.go(-1);
-}
+// function goBackToDashboard(){
+//     history.go(-1);
+// }

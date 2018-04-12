@@ -149,7 +149,7 @@ function createObject( email, username, password ) {
 function sendData(email, username, password) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000/users",
+        url: "/users",
         // dataType: "json",
         data: {
             email: email,

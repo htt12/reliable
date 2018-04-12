@@ -1,4 +1,3 @@
-
 $(document).ready(initializeApp);
 
 
@@ -13,7 +12,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql',
+        url: '/goalssql',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
@@ -31,7 +30,8 @@ function getData(){
 
 
 
-function editGoal(goalSelected){
+
+function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
 
@@ -42,30 +42,48 @@ function editGoal(goalSelected){
         'border-bottom': '3px yellow solid',
         'height': '100%',
         'width': '100%',
-        
+
     }).appendTo(textToEdit).focus();
-    
+
     $('input').on('focusout', ()=>{
-        
+
         let edit = $('input').val();
 
         $(goalSelected+'> .goal-description').text(edit);
 
-        console.log(edit)
+        console.log(edit);
         $('input').remove();
-    });
 
-    
+
+        console.log('goalID', goalId);
+        $.ajax({
+            type: 'POST',
+            data: {
+                goal: edit,
+                goal_id: goalId,
+            },
+            url: '/goals/update',
+            // dataType: 'json',
+
+            success: function(resp){
+                console.log('edit',resp);
+                getData();
+            },
+            error: function(xhr, status, err){
+                console.log(err)
+            }
+        })
+    })
 }
 
 function deleteGoal(goalId){
-    console.log('goalID', goalId)
+    console.log('goalID', goalId);
     $.ajax({
         type: 'POST',
         data: {
             goal_id: goalId,
         },
-        url: 'http://localhost:8000/goals/delete',
+        url: '/goals/delete',
         // dataType: 'json',
         
         success: function(resp){
@@ -78,6 +96,28 @@ function deleteGoal(goalId){
         }
     })
 }
+
+// function deleteGoal(goalId){
+//
+//     $.ajax({
+//         type: 'POST',
+//         data: {
+//             goal_id: goalId,
+//         },
+//         url: 'http://localhost:8000/goals/delete',
+//         // dataType: 'json',
+//
+//         success: function(resp){
+//             console.log('delete',resp);
+//             $('.goal-list').empty();
+//             getData();
+//         },
+//         error: function(xhr, status, err){
+//             console.log(err)
+//         }
+//     })
+// }
+
 
 
 
@@ -109,7 +149,7 @@ function rendergoalOnDashboard(goals){
         
         var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
             
-            editGoal(goalSelector)
+            editGoal(goalSelector, goalId)
             }
         ).wrapInner('<a href="#">Edit</a>')
         

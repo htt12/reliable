@@ -13,7 +13,7 @@ function initializeApp(){
 function getData(){
     $.ajax({
         type: 'GET',
-        url: `http://localhost:8000/goalssql/:${userID}`,
+        url: '/goalssql',
         success: function(resp){
             console.log(resp);
 
