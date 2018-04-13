@@ -3,14 +3,14 @@ var goalAndDateArray = [];
 var category = '';
 var predefinedCategories = [
     {
-        class: "fitness",
-        src: "fitness-banner2.jpg",
-        alt: "fitness"
-    },
-    {
         class: "diet",
         src: "diet-banner2.jpg",
         alt: "diet"
+    },
+    {
+        class: "fitness",
+        src: "banner-fitness2.png",
+        alt: "fitness"
     },
     {
         class: "habit",
@@ -20,18 +20,21 @@ var predefinedCategories = [
 ];
 
 
+
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    renderPredefinedCategories();
+    $('select.categorySelect').formSelect();
+    // renderPredefinedCategories();
     $("#end_date").attr('min', getTodayDate);
-    // $(".ideas").on('click', handleIdeaBtnClick);
+    $(".ideas").on('click', renderPredefinedCategories);
     $('.predefined-goals').on('click', handlePredefinedGoal);
 }
 
 function renderPredefinedCategories(){
     var containerDiv = $('.predefined-goals-container');
     var location = "./images/";
+    $('.predefined-goals p.hidden').removeClass('hidden').addClass('show');
 
     for (var i = 0; i < predefinedCategories.length; i++){
         var div = $('<div>', {
@@ -48,7 +51,7 @@ function renderPredefinedCategories(){
 
 function handlePredefinedGoal(){
     category = event.target.alt;
-
+    
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.fitness-goals');

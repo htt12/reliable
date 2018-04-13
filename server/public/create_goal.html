@@ -1,31 +1,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create New Goal</title>
+    <title>New Goal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="./css/create_goal.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="./js/create_goal.js"></script>
 
 </head>
 <body>
-<div class="background">
+    <div class="title center">
+        <span>Create Goal</span>
+    </div>
     <div class="container">
-
-        <div class="title center">
-            <span>Create Goal</span>
-        </div>
-
         <div class="creatingGoal">
-            <p class="message">Name Your Goal</p>
-            <input class="goalInput" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
-            <!-- <button class="ideas z-depth-2">Ideas</button> -->
+            <p class="message">Name Your Goal & Category</p>
+            <input class="goalInput z-depth-3 truncate" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
+        </div>
+        <div class="goalCategory input-field">
+            <select class="categorySelect">
+                <option class="categoryTextColor" value="" disabled selected>Choose your category</option>
+                <option value="diet">Diet</option>
+                <option value="fitness">Fitness</option>
+                <option value="habit">Habit</option>
+                <option value="investment">Investment</option>
+                <option value="personal">Personal</option>
+                <option value="education">Educational</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="horizontalLine">
+            <h3><span>OR</span></h3>
+            <p>Click this button for more goal ideas</p>
+            <h1 class=""><i class="material-icons large">expand_more</i></h1>
+            <button class="ideas btn z-depth-3">Ideas</button>      
+
         </div>
 
         <div class="predefined-goals">
-            <p>Select Your Goal Category</p>
+            <p class="hidden">Select Your Goal from the Categories Below</p>
             <div class="predefined-goals-container"></div>
 
             <p class="goals_message hidden">Your New Goal:</p>
@@ -66,25 +83,26 @@
                 <li>Eat Breakfast Every Day</li>
                 <li>Make one new healthy recipe for dinner this week</li>
                 <li>Eat plenty of vegetables and fruits</li>
-                <li>Portion control, while reducing sugar/sodium/saturated fat intake</li>
+                <!-- <li>Portion control, while reducing sugar/sodium/saturated fat intake</li> -->
                 <li>Cook food with limited amounts of spices: salt/pepper</li>
                 <li>No processed food 5 days a week for 2 weeks</li>
                 <li>No processed sugar for 3 weeks</li>
                 <li>No alcohol for 30 days</li>
+                <li>Drink a gallon of water a day</li>
+
             </ul>
         </div>
 
         <div class="habit-goals hidden">
                 <ul id="habit_idea_list" class="habitList">
                     <lh>Daily Habits</lh>
-                    <li>Wake up early and exercise</li>
+                    <li>Wake up early</li>
                     <li>Make your to-do list the night before</li>
                     <li>Read and/ or Listen to Motivational Material</li>
-                    <li>Wake up without hitting the snooze button</li>
-                    <li>Drink a gallon of water a day</li>
+                    <!-- <li>Wake up without hitting the snooze button</li> -->
                     <li>Ideal sleep schedule: 10pm-5am</li>
                     <li>Meditate for at least 10-20 mins everyday to clear the mind</li>
-                    <li>Stretch every morning to increase flexibility</li>
+                    <!-- <li>Stretch every morning to increase flexibility</li> -->
                     <li>Eat breakfast 7 days a week for 3 weeks</li>
                     <li>Take 5 min break every 90 mins of work at a desk for 1 month</li>
                     <li>Take the stairs instead of elevator everyday for 2 weeks</li>
@@ -147,6 +165,5 @@
             </ul>
         </nav>
     </footer>
-</div>
 </body>
 </html>
