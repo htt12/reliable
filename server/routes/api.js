@@ -143,7 +143,7 @@ module.exports = function (app) {
 
   //==========END OF POST GOALS===========//
 
-  //==========POST USERS===========//
+  //==========POST  NEW USERS===========//
   app.post("/users", (req, res, next) => {
     let { email, username, password } = req.body;
     password = sha1(password);
@@ -166,8 +166,13 @@ module.exports = function (app) {
         success: true,
         data: results
       };
+      
+      
       res.json(output);
+
     });
+
+    
   });
 
   //==========END OF POST USERS===========//
