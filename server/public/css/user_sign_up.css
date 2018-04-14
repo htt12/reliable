@@ -17,8 +17,8 @@ body{
 
 .container{
     position: relative;
-    width: 90%;
-    height: 100%;
+    width: 100%;
+    height: 85%;
     background-color: #F2F2F2;
 }
 
@@ -26,7 +26,7 @@ body{
     width: 100%;
     height: 12%;
     position: relative;
-    background-color: #F2F2F2;
+    background-color: #A2D3DA;
 }
 
 .profilePicture{
@@ -42,7 +42,7 @@ body{
 
 .signUpForm{
     width: 70%;
-    height: 50%;
+    height: 65%;
     position: relative;
     top: 5%;
     background-color: white;
@@ -95,9 +95,17 @@ body{
     padding-left: 3%;
 }
 
-.signUpForm button{
-    margin-top: 10%;
+.signUpBtn{
+    margin-top: 5%;
     background-color: rgb(41, 135, 153);
     margin-bottom: 5%;
     /*pointer-events: none;*/
+}
+
+.footer-container{
+    height: 15%;
+    border-top: 1px rgb(87, 87, 87) solid;
+    position: relative;
+    width: 100%;
+    background-color: #A2D3DA
 }

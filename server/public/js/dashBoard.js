@@ -7,7 +7,58 @@ $(document).ready(initializeApp);
 
 function initializeApp(){
     getData();
-    
+    displayDate();
+}
+
+function displayDate(){
+    let todayDate = getTodayDate();
+    console.log('today',todayDate);
+   
+    $('.date').text(todayDate);
+}
+
+function getTodayDate(){
+    var date = new Date();
+    var day = date.getDay();
+    var dd = leadingZero(date.getDate());
+    var mm = leadingZero(date.getMonth()+1);
+    let dayOfWeek = convertToDayOfWeek(day);
+    // var yyyy = date.getFullYear();
+    return (dayOfWeek+ '  ' +mm+'/'+dd);
+}
+
+function leadingZero( num ) {
+    if( num<10 ){
+        return '0'+num;
+    }
+    else{
+        return num;
+    }
+}
+
+function convertToDayOfWeek( day ) {
+
+    if( day === 0){
+        return "SUN";
+    }
+    else if( day === 1){
+        return "MON";
+    }
+    else if( day === 2) {
+        return "TUES";
+    }
+    else if( day === 3) {
+        return "WED";
+    }
+    else if( day === 4) {
+        return "THURS";
+    }
+    else if( day === 5) {
+        return "FRI";
+    }
+    else if( day ===6) {
+        return  "SAT";
+    }
 }
 
 function getData(){

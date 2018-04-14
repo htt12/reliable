@@ -18,18 +18,25 @@
 
 .title-bar{
     width: 100%;
-    height: 12%;
+    height: 9%;
     background-color: #A2D3DA;
-    display: inline-flex;
     font-size: 3em;
     color: white;
     font-family: 'Alegreya Sans', sans-serif;
     letter-spacing: 5px;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px black solid;
+    text-align: center;
     
-    
+}
+
+.date {
+    height: 5%;
+    width: 100%;
+    background-color: #A2D3DA;
+    color: white;
+    font-size: 1.25em;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 1px #FFE2A8; ;
 }
 
 /************************************GOAL SECTION **********/
