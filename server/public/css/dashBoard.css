@@ -42,19 +42,22 @@
 /************************************GOAL SECTION **********/
 
 .goal-list{
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    height: 83%;
     display: inline-flex;
     flex-direction: column;
-    margin: 3% 7.5%;
+    padding: 3% 2%;
+    align-items: center;
+    justify-content: center;
     
 }
 
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
-    display: inline-flex;
-    height: 15%;
-    padding-bottom: 3%;   
+    display: flex;
+    width: 80%;
+    height: 18%;
+    padding: 2% 0%;   
 }
 
 .goal-description{
