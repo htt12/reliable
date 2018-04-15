@@ -31,61 +31,146 @@ body{
     margin: 15% 0 5% 0;
 }
 
-.creatingGoal p,
-.horizontalLine p{
-    margin: 9% 0 7% 0;
+.message{
+    margin: 9% 0 3% 0;
     font-size: 3em;
-    font-weight: bold;
+    font-weight: 500;
     font-family: 'Roboto', sans-serif;
     text-align: center;
     color: rgba(0, 0, 0, 0.5);
+}
+
+.categoryContainer p{
+    margin: 0 0 4% 0;
 }
 .creatingGoal input.goalInput{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
     font-size: 3.5em;
-    height: 7vh;
+    font-weight: bold;
+    height: 100%;
     background-color: white;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     text-align: center;
-    padding: 0 2%;
-    margin-bottom: 10%;
+    padding: 4% 2%;
+    margin-bottom: 7%;
+    z-index: 2;
 }
+
+/* .creatingGoal input.goalInput[type=text]:focus {
+
+} */
 
 /* ************************ Start Goal Category Dropdown *********************** */
 
-.goalCategory{
-    margin: 7% 0 5% 0;
+.categoryDropdown{
+    font-family: 'Roboto', sans-serif;
     width: 60%;
+    /* height: 100%; */
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s ease;
     position: relative;
     left: 50%;
-    transform: translate(-50%, 0);
-    background-color: white;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-}
-
-
-.select-wrapper input.select-dropdown{
-    height: 5vh;
-    font-size: 2em;
-    color: rgba(0, 0, 0, 0.3);
+    transform: translateX(-50%);
+    font-size: 1em;
     font-weight: bold;
+    text-align: left;
+    padding: 2% 3%;
+    z-index: 2;
+
 }
 
-svg:not(:root){
-    position: absolute;
-    top: 33%;
-    right: 5%;
+.categoryDropdown span{
+    color: rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
 }
 
-div.select-wrapper .dropdown-content.select-dropdown{
-    top: 1.859px;
+.categoryDropdown .categorySelect{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+
 }
 
-.dropdown-content li>a, .dropdown-content li>span{
+.categoryDropdown .categorySelect span{
     font-size: 3em;
-    line-height: 160%;
-    padding: 15px 30px;
+}
+
+.categoryDropdown .categorySelect > i{
+    color: #888;
+    cursor: pointer;
+    transition: all .3s linear;
+    float: right;
+    line-height: 100%;
+}
+
+.categoryDropdown:hover{
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+}
+
+.categoryDropdown:active{
+    background-color: #f8f8f8;
+}
+
+.categoryDropdown.active:hover,
+.categoryDropdown.active{
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 5px 5px 0 0;
+    background-color: #f8f8f8;
+}
+
+.categoryDropdown.active .categorySelect > i{
+    transform: rotate(-180deg);
+
+}
+
+.categoryDropdown .dropdown-menu{
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0 1px 5px 5px;
+    overflow: hidden;
+    display: none;
+    height: auto;
+    /* max-height: 144px; */
+    overflow-y: auto;
+    z-index: 9;
+}
+
+.categoryDropdown .dropdown-menu li{
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    padding: 4% 7%;
+    transition: all .2s linear;
+    cursor: pointer;
+    font-size: 3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.categoryDropdown .dropdown-menu li i{
+    font-size: 3rem;
+    float: right;
+}
+
+.categoryDropdown .dropdown-menu{
+    padding: 0;
+    list-style: none;
+}
+
+.categoryDropdown .dropdown-menu li:hover{
+    background-color: rgba(255,226,168, 0.6);
+}
+
+.categoryDropdown .dropdown-menu li:active{
+    background-color: lightblue;
 }
 
 /* ************************ End Goal Category Dropdown *********************** */
@@ -109,31 +194,34 @@ div.select-wrapper .dropdown-content.select-dropdown{
 
 .horizontalLine .ideas.btn{
     width: 60%;
-    height: 5.5vh;
+    height: 100%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     /* margin: 18% 0; */
+    /* margin-top: 7%; */
     font-size: 3em;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
     background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%, 
                                         rgba(162,211,222, 1) 100%);
     font-weight: bold;
+    padding: 3.5% 5%;
+    z-index: 1;
 }
 
 .horizontalLine p{
     margin: 18% 0 0 0;
 }
 
-.horizontalLine h1 i{
+.horizontalLine h6 i{
     color: white;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 10rem;
-    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.3);
+    font-size: 8rem;
+    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
     margin: 0;
-
+    z-index: -1;
 }
 
 .error{
@@ -162,7 +250,7 @@ div.select-wrapper .dropdown-content.select-dropdown{
 .categoryContainer{
     margin: 0 0 3% 0;
     width: 100%;
-    height: 10vh;
+    height: 15vh;
 }
 
 .categoryImg{
@@ -297,7 +385,8 @@ footer.page-footer{
     align-items: center;
 }
 
-.page-footer nav ul a i{
+.page-footer nav ul a i,
+.page-footer nav ul i{
     font-size: 6rem;
     vertical-align: 100%;
 }

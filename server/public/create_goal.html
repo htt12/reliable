@@ -18,34 +18,40 @@
     </div>
     <div class="container">
         <div class="creatingGoal">
-            <p class="message">Name Your Goal & Category</p>
+            <p class="message">Name Your Goal</p>
             <input class="goalInput z-depth-3 truncate" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
         </div>
-        <div class="goalCategory input-field">
-            <select class="categorySelect">
-                <option class="categoryTextColor" value="" disabled selected>Choose your category</option>
-                <option value="diet">Diet</option>
-                <option value="fitness">Fitness</option>
-                <option value="habit">Habit</option>
-                <option value="investment">Investment</option>
-                <option value="personal">Personal</option>
-                <option value="education">Educational</option>
-                <option value="Other">Other</option>
-            </select>
+        <div class="categoryContainer">
+            <p class="message">Pick a Category for Your Goal</p>
+            <div class="categoryDropdown">
+                <div class="categorySelect">
+                    <span>Goal Categories</span>
+                    <i class="material-icons medium">expand_less</i>
+                </div>
+                <ul class="dropdown-menu animated flipInX">
+                    <li id="health/diet">Health/Diet</li>
+                    <li id="fitness">Fitness</li>
+                    <li id="habit">Habit</li>
+                    <li id="personal">Personal</li>
+                    <li id="educational">Educational</li>
+                    <li id="financial">Financial</li>
+                    <li id="Other">Other</li>
+                </ul>
+            </div>
         </div>
+
         <div class="horizontalLine">
             <h3><span>OR</span></h3>
-            <p>Click this button for more goal ideas</p>
-            <h1 class=""><i class="material-icons large">expand_more</i></h1>
+            <p class="message">Click this button for more goal ideas</p>
+            <h6 class=""><i class="material-icons large">expand_more</i></h6>
             <button class="ideas btn z-depth-3">Ideas</button>      
-
         </div>
 
-        <div class="predefined-goals">
-            <p class="hidden">Select Your Goal from the Categories Below</p>
+        <div class="predefined-goals hidden">
+            <p class="message">Select Your Goal from the Categories Below</p>
             <div class="predefined-goals-container"></div>
 
-            <p class="goals_message hidden">Your New Goal:</p>
+            <!-- <p class="goals_message hidden">Your New Goal:</p> -->
             <!-- <input class="goalInput truncate hidden" type="text" name="newGoal"> -->
         </div>
 
@@ -158,10 +164,9 @@
     <footer class="page-footer">
         <nav>
             <ul class="footer-items valign-wrapper">
-                <!-- <li><a href="#"><i class="large material-icons">search</i></a></li> -->
-                <li><a href="#"><i class="undo large material-icons inactiveLink">undo</i></a></li>
+                <li><a href="create_goal.html"><i class="undo large material-icons inactiveLink">chevron_left</i></a></li>
                 <li><a href="dashboard.html"><i class="large material-icons">home</i></a></li>
-                <li><a ><i class="add large material-icons inactiveLink">done</i></a></li>
+                <li><i class="add next large material-icons">chevron_right</i></li>
             </ul>
         </nav>
     </footer>
