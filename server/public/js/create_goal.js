@@ -1,16 +1,16 @@
 var goalAndDateArray = [];
-// var canBeClicked = true;
 var category = '';
+var pageCount = 0;
 var predefinedCategories = [
-    {
-        class: "fitness",
-        src: "fitness-banner2.jpg",
-        alt: "fitness"
-    },
     {
         class: "diet",
         src: "diet-banner2.jpg",
         alt: "diet"
+    },
+    {
+        class: "fitness",
+        src: "banner-fitness2.png",
+        alt: "fitness"
     },
     {
         class: "habit",
@@ -20,18 +20,61 @@ var predefinedCategories = [
 ];
 
 
+
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    renderPredefinedCategories();
+    $('.goalInput').focusout(handleManualGoalInput);
+    $('.categoryDropdown').on('click', handleCategoryDropdownClicked);
+    $(".ideas").on('click', handleIdeaBtnClick);
+    $('.predefined-goals').on('click', handlePredefinedGoalClicked);
+    $('.add.next').on('click', handleNextPageButtonClicked);
+
     $("#end_date").attr('min', getTodayDate);
-    // $(".ideas").on('click', handleIdeaBtnClick);
-    $('.predefined-goals').on('click', handlePredefinedGoal);
 }
+
+function handleManualGoalInput(){
+    // console.log('handle goal input');
+    //get user goal
+    var goal = $('.goalInput').val();
+    console.log('new goal: ', goal);
+    validateGoalInputField();
+}
+
+function handleCategoryDropdownClicked(){
+     
+    // console.log("category called");
+    $(this).attr('tabindex', 1).focus();
+    $(this).toggleClass('active');
+    $(this).find('.dropdown-menu').slideToggle(300);
+    
+    $('.categoryDropdown').focusout(function () {
+        $(this).removeClass('active');
+        $(this).find('.dropdown-menu').slideUp(300);
+    });
+
+    //get category value
+    $('.categoryDropdown .dropdown-menu li').click(function () {
+        $('.categoryDropdown').find('span').text($(this).text());
+        // $(this).parents('.categoryDropdown').find('span').text($(this).text());
+        category = $(this).text();
+    });
+    console.log('category:', category);
+}
+
+function handleIdeaBtnClick() {
+    console.log('idea btn clicked');
+    $(".undo").removeClass('inactiveLink');
+    $('.creatingGoal, .categoryContainer, .horizontalLine').addClass('hidden');
+    $('.predefined-goals').removeClass('hidden').addClass('show');
+    renderPredefinedCategories();
+}
+
 
 function renderPredefinedCategories(){
     var containerDiv = $('.predefined-goals-container');
     var location = "./images/";
+    $('.predefined-goals p.hidden').removeClass('hidden').addClass('show');
 
     for (var i = 0; i < predefinedCategories.length; i++){
         var div = $('<div>', {
@@ -46,35 +89,40 @@ function renderPredefinedCategories(){
     }
 }
 
-function handlePredefinedGoal(){
+function handlePredefinedGoalClicked(){
     category = event.target.alt;
-
+    
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.fitness-goals');
         var id = $('#fitness_idea_list');
-        getIdeaValue( targetElement, id );
+        getPredefinedGoalValue( targetElement, id );
+        //update category dropdown
+        updateGoalCategoryOnDropdown('Fitness');
     }
     else if( category === "diet"){
 
         $('.fitness, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.diet-goals');
         var id = $('#diet_idea_list');
-        getIdeaValue( targetElement, id );
+        getPredefinedGoalValue( targetElement, id );
+        updateGoalCategoryOnDropdown('Diet');
+
     }
     else if( category === "habit"){
 
         $('.diet, .fitness').removeClass('show').addClass('hidden');
         var targetElement = $('.habit-goals');
         var id = $('#habit_idea_list');
-        getIdeaValue( targetElement, id );
-    }
+        getPredefinedGoalValue( targetElement, id );
+        updateGoalCategoryOnDropdown('Habit');
 
-    $(".undo").removeClass('inactiveLink').on('click', () => { handleUndoButtonClicked( category )} );
+    }
+    // $(".undo").removeClass('inactiveLink').on('click', () => { handleUndoButtonClicked( category )} );
 
 }
 
-function getIdeaValue( targetElement, id ) {
+function getPredefinedGoalValue( targetElement, id ) {
     var goal = '';
 
     targetElement.removeClass('hidden').addClass('show');
@@ -83,57 +131,85 @@ function getIdeaValue( targetElement, id ) {
         targetElement.removeClass('show').addClass('hidden');
         console.log('goal:', goal);
 
-        $('.predefined-goals p').addClass('hidden');
-        $('.goals_message, .goalInput , .days, .timeOfDay, .endDate').addClass('show');
-
+        $('.predefined-goals').removeClass('show').addClass('hidden');
+        $('.creatingGoal, .categoryContainer').removeClass('hidden').addClass('show');
         //update input goal field with the selected idea
         $('.goalInput').val(goal);
-        // updateCanBeClicked( goal )
-        $(".add").removeClass('inactiveLink').on('click', () => handleAddButtonClicked( goal ));
 
     });
 }
 
-function handleUndoButtonClicked( category ) {
-    console.log("undo btn clicked");
-    if ( category === 'fitness'){
-
-        $('.diet, .habit').removeClass('hidden').addClass('show');
-        $('.fitness-goals').removeClass('show').addClass('hidden');
-
-        //clear user input and hide elements that was shown
-        clearUserInput();
-    }
-    else if ( category === 'diet'){
-        $('.fitness, .habit').removeClass('hidden').addClass('show');
-        $('.diet-goals').removeClass('show').addClass('hidden');
-        clearUserInput();
-        
-    }
-    else if ( category === 'habit'){
-        $('.diet, .fitness').removeClass('hidden').addClass('show');
-        $('.habit-goals').removeClass('show').addClass('hidden');
-        
-        clearUserInput();
-    }
+function updateGoalCategoryOnDropdown( category ){
+    $('.categoryDropdown').find('span').text(category);
 }
 
-function handleAddButtonClicked( goal ) {
-    console.log('add btn clicked');
+function handleNextPageButtonClicked(){
+    console.log('pageCount:', pageCount);
+    // $('.goals_message, .goalInput , .timeOfDay').addClass('show');
 
-    var inputGoalField = validateGoalInputField();
-    var dateCheckBox = validateDateCheckBox();
-    var timeFrame = validateTimeFrameSelection();
-    var finishOn = validateFinishDateSelection();
+    // var timeFrame = validateTimeFrameSelection();
+    // var finishOn = validateFinishDateSelection();
 
     //validate user input
-    if( inputGoalField === false || dateCheckBox === false || timeFrame === false || finishOn === false){
-        return;
-    }
+    // if(dateCheckBox === false || timeFrame === false || finishOn === false){
+    //     return;
+    // }
 
-    //get user goal
-    // var goal = $('.goalInput').val();
-    // console.log('new goal: ', goal);
+
+
+
+    //check which page the user is on
+    if(pageCount === 0){
+        var inputGoalField = validateGoalInputField();
+
+        if( inputGoalField === false ){
+            $('.add.next').addClass('inactiveLink');
+            return;
+        } 
+        pageCount++;
+        $('.add.next').removeClass('inactiveLink');
+        $('.days').removeClass('hidden').addClass('show');
+    }
+    else if(pageCount === 1){
+        var dateCheckBox = validateDateCheckBox();
+        if(dateCheckBox === false ){
+            return;
+        }
+        $('.endDate').removeClass('hidden').addClass('show');
+    }
+    else if(pageCount === 2){
+        //send data to the server
+    }
+    
+}
+
+// function handleUndoButtonClicked( category ) {
+//     console.log("undo btn clicked");
+//     if ( category === 'fitness'){
+
+//         $('.diet, .habit').removeClass('hidden').addClass('show');
+//         $('.fitness-goals').removeClass('show').addClass('hidden');
+
+//         //clear user input and hide elements that was shown
+//         clearUserInput();
+//     }
+//     else if ( category === 'diet'){
+//         $('.fitness, .habit').removeClass('hidden').addClass('show');
+//         $('.diet-goals').removeClass('show').addClass('hidden');
+//         clearUserInput();
+        
+//     }
+//     else if ( category === 'habit'){
+//         $('.diet, .fitness').removeClass('hidden').addClass('show');
+//         $('.habit-goals').removeClass('show').addClass('hidden');
+        
+//         clearUserInput();
+//     }
+// }
+
+function handleSubmitButtonClicked() {
+    console.log('add btn clicked');
+
 
     //get the values of the selected dates and store in an array
     const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map((checkbox) =>{
@@ -167,12 +243,12 @@ function handleAddButtonClicked( goal ) {
 function validateGoalInputField() {
     //if user didn't input their goal then display error message
     if($(".goalInput").val() === ""){
-        $(".message").addClass("error").text("Please enter your goal or select one from ideas");
+        $(".creatingGoal > .message").addClass("error").text("Please Enter Your Goal or Pick from Ideas");
         return false;
     }
     //remove the error message if there was an error before
     else{
-        $(".creatingGoal > .message").removeClass('error').text("Name New Goal");
+        $(".creatingGoal > .message").removeClass('error').text("Name Your Goal");
         return true;
     }
 }
@@ -240,24 +316,7 @@ function convertDayIntoNumberFormat( day ) {
     }
 }
 
-// function handleIdeaBtnClick() {
-//     console.log('idea btn clicked');
-//     if(canBeClicked){
-//         canBeClicked = false;
-//         getIdeaValue();
-//     }
-//     else {
-//         canBeClicked = true;
-//         $('.goalIdeas').css('display', 'none');
-//     }
-// }
 
-
-// function updateCanBeClicked( goal ) {
-//     if( goal !== ''){
-//         canBeClicked = true;
-//     }
-// }
 
 //get today's date for the calendar
 function getTodayDate(){
