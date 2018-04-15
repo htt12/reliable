@@ -1,13 +1,64 @@
 
 $(document).ready(initializeApp);
-var userID = require('../app');
-console.log(userID);
+// var userID = require('../app');
+// console.log(userID);
 
-console.log(req.session.id);
+// console.log(req.session.id);
 
 function initializeApp(){
     getData();
-    applyClickHandlers();
+    displayDate();
+}
+
+function displayDate(){
+    let todayDate = getTodayDate();
+    console.log('today',todayDate);
+   
+    $('.date').text(todayDate);
+}
+
+function getTodayDate(){
+    var date = new Date();
+    var day = date.getDay();
+    var dd = leadingZero(date.getDate());
+    var mm = leadingZero(date.getMonth()+1);
+    let dayOfWeek = convertToDayOfWeek(day);
+    // var yyyy = date.getFullYear();
+    return (dayOfWeek+ '  ' +mm+'/'+dd);
+}
+
+function leadingZero( num ) {
+    if( num<10 ){
+        return '0'+num;
+    }
+    else{
+        return num;
+    }
+}
+
+function convertToDayOfWeek( day ) {
+
+    if( day === 0){
+        return "SUN";
+    }
+    else if( day === 1){
+        return "MON";
+    }
+    else if( day === 2) {
+        return "TUES";
+    }
+    else if( day === 3) {
+        return "WED";
+    }
+    else if( day === 4) {
+        return "THURS";
+    }
+    else if( day === 5) {
+        return "FRI";
+    }
+    else if( day ===6) {
+        return  "SAT";
+    }
 }
 
 function getData(){
@@ -26,16 +77,11 @@ function getData(){
 }
 
 
-
-function applyClickHandlers(){
-    ('.complete').on('click', completeGoal)
-}
-
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
 
-    for(var i=0; i<5;i++){
+    for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
@@ -45,10 +91,11 @@ function rendergoalOnDashboard(goals){
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
+
+        var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription)
 
         //Creates drop down menu to mark goal as complete or incomplete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2')
 
         var completeButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
 
@@ -57,15 +104,17 @@ function rendergoalOnDashboard(goals){
         let goalSelector = '#goalId'+goalId;
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
-            $(goalSelector).remove();
-        }).wrapInner('<a href="#">:)</a>');
 
-        var inCompleteItem = $('<li>').addClass('incomplete center').on('click', ()=>{
-            $(goalSelector).remove();
-        }).wrapInner('<a> :(</a>');
+            
+            $(goalSelector).addClass('animated bounceOutLeft');
+            setTimeout((()=>{$(goalSelector).remove()}), 500);
+        }).wrapInner('<a href="#!"><i class="material-icons">check</i></a>')
 
 
-        dropDownList.append(completeItem, inCompleteItem);
+        var exitItem = $('<li>').addClass('center-align').wrapInner('<a href="#!"><i class="material-icons">close</i></a>');
+
+
+        dropDownList.append(completeItem, exitItem);
 
 
         dropDownMenuButtonContainer.append(completeButton,dropDownList);
@@ -79,26 +128,26 @@ function rendergoalOnDashboard(goals){
     }
     
 
-    reminders(users);
+    // reminders(users);
 }
 
 
-function reminders(users){
-    let startDate = users[0].startdate;
-    let endDate = users[0].finishdate;
+// function reminders(users){
+//     let startDate = users[0].startdate;
+//     let endDate = users[0].finishdate;
 
-    let duration = 4;;
-    console.log('startDate', startDate, endDate);
+//     let duration = 4;;
+//     console.log('startDate', startDate, endDate);
 
-    if(duration < 7){
-        displayReminder(users[0].goal);
-    }
-}
+//     if(duration < 7){
+//         displayReminder(users[0].goal);
+//     }
+// }
 
-function displayReminder(goal){
-    let reminder = $('<div>').addClass('reminder').text(goal);
-    $('.dashboard-container').append(reminder);
-}
+// function displayReminder(goal){
+//     let reminder = $('<div>').addClass('reminder').text(goal);
+//     $('.dashboard-container').append(reminder);
+// }
 
 // function retrieveServerData(){
 //     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'

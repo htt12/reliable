@@ -29,6 +29,7 @@ module.exports = function (app) {
             res.send(JSON.stringify(output));
         })
     });
+
     //------------------------ALL GET AND POST REQUESTTS--------------------------------------//
     // ==========GET ALL USERS===========//
     app.get('/userssql', (req, res, next) => {
@@ -86,22 +87,23 @@ module.exports = function (app) {
         }
 
 
-    });
+  });
+  //==========END OF GET ALL USERS===========//
 
-    //==========END OF GET ALL GOALS===========//
-    //==========GET ALL GOALS===========//
-    app.get("/goalssql", (req, res, next) => {
-        console.log("req: ", req.session.userId);
-        if (req.session.userId) {
-            let userID = req.session.userId;
-            let query = "SELECT * FROM ?? WHERE user_id = ?";
-            console.log(query);
-            let inserts = ["goals", userID];
-
-            let sql = mysql.format(query, inserts);
-
-            connection.query(sql, (err, results, fields) => {
-                if (err) return next(err);
+  //==========GET ALL GOALS===========//
+  app.get("/goalssql", (req, res, next) => {
+    console.log("req: ", req.session.userId);
+      if(req.session.userId){
+      // console.log('tried to enter query');
+      let userID = req.session.userId;
+          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??, ??";
+          
+          let inserts = ["goals", userID, 'timeframe', 'goal'];
+          
+          let sql = mysql.format(query, inserts);
+          console.log('order', sql)
+          connection.query(sql, (err, results, fields) => {
+              if (err) return next(err);
 
                 const output = {
                     success: true,
@@ -182,6 +184,7 @@ module.exports = function (app) {
             res.json(output);
         });
     });
+
 
     //==========END OF POST GOALS===========//
 
@@ -269,7 +272,10 @@ module.exports = function (app) {
             };
             res.json(output);
         });
-    });
+
+  });
+
+
     //==========END OF EDIT GOALS===========//
 
     //==========DELETE GOALS===========//
