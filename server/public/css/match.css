@@ -1,24 +1,25 @@
-/************************************DASHBOARD BODY **********/
-.dashboard-body{
+/************************************MATCH BODY **********/
+.match-body{
     width: 100vw;
     height: 100vh;
     background-color: #F2F2F2;
 }
 
-.dashboard-container{
+.match-container{
     width: 100%;
     height: 90%;
-    position: relative;
+    position: relative
+    ;
     background-color: #F2F2F2;
 
     
     
 }
-/************************************END - DASHBOARD BODY **********/
+/************************************TITLE**********/
 
 .title-bar{
     width: 100%;
-    height: 9%;
+    height: 14%;
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
@@ -28,36 +29,22 @@
     
 }
 
-.date {
-    height: 5%;
-    width: 100%;
-    background-color: #A2D3DA;
-    color: white;
-    font-size: 1.25em;
-    letter-spacing: 2px;
-    text-align: center;
-    
-}
+/************************************MATCH SECTION **********/
 
-/************************************GOAL SECTION **********/
-
-.goal-list{
-    width: 100%;
-    height: 83%;
+.match-list{
+    width: 85%;
+    height: 81%;
     display: inline-flex;
     flex-direction: column;
-    padding: 3% 2%;
-    align-items: center;
-    justify-content: center;
+    margin: 3% 7.5%;
     
 }
 
-/**********INDIVIDUAL GOALS**********/
+/**********INDIVIDUAL MATCHES**********/
 .goal-container{
-    display: flex;
-    width: 80%;
-    height: 18%;
-    padding: 2% 0%;   
+    display: inline-flex;
+    height: 15%;
+    padding-bottom: 3%;   
 }
 
 .goal-description{
@@ -115,7 +102,7 @@
 
 
 .footer-container{
-    height: 10%;
+    height: 12%;
     border-top: 1px rgb(87, 87, 87) solid;
     position: relative;
     width: 100%;
