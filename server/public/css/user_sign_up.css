@@ -6,44 +6,57 @@ html{
 body{
     width: 100vw;
     height: 100vh;
-    background-color: #1b6d85;
+    background-color: #A2D3DA;
 }
 
 .background{
     width: 100%;
     height: 100%;
-    border-top: 3px solid rgb(224, 185, 69);
-    border-bottom: 3px solid rgb(224, 185, 69);
-    border-left: 3px solid rgb(224, 185, 69);
-    border-radius: 250px 0 0 250px;
-    background-color: white;
+    background-color: #A2D3DA;
 }
 
 .container{
     position: relative;
-    width: 90%;
-    height: 100%;
+    width: 100%;
+    height: 85%;
+    background-color: #F2F2F2;
+}
+
+.title-bar{
+    width: 100%;
+    height: 12%;
+    position: relative;
+    background-color: #A2D3DA;
 }
 
 .profilePicture{
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    position: relative;
+    
+    
 }
 
 .profilePicture img{
-    height: 23vh;
-    width: 40vw;
+    height: 20vh;
+    width: 30vw;
 }
 
 .signUpForm{
     width: 70%;
-    position: absolute;
-    top: 38%;
-    left: 50%;
-    transform: translate(-50%, 0);
+    height: 65%;
+    position: relative;
+    top: 5%;
+    background-color: white;
+    padding: 5%;
+    margin: auto;    
 }
+
+.row{
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1%;
+}
+
+
 
 /*.signUpForm div.row{*/
     /*!*margin-bottom: 2%;*!*/
@@ -82,11 +95,17 @@ body{
     padding-left: 3%;
 }
 
-.signUpForm button{
-    margin-top: 10%;
-    left: 50%;
-    transform: translate(-50%, 0);
+.signUpBtn{
+    margin-top: 5%;
     background-color: rgb(41, 135, 153);
     margin-bottom: 5%;
     /*pointer-events: none;*/
+}
+
+.footer-container{
+    height: 15%;
+    border-top: 1px rgb(87, 87, 87) solid;
+    position: relative;
+    width: 100%;
+    background-color: #A2D3DA
 }

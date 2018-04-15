@@ -88,8 +88,10 @@ function deleteGoal(goalId){
         
         success: function(resp){
             console.log('delete',resp);
-            $('.goal-list').empty();
-            getData();
+            setTimeout(()=>{
+                $('.goal-list').empty();
+                getData()
+            }, 1000);
         },
         error: function(xhr, status, err){
             console.log(err)
@@ -154,8 +156,10 @@ function rendergoalOnDashboard(goals){
         ).wrapInner('<a href="#">Edit</a>')
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
+            
+            $(goalSelector).addClass('animated bounceOutDown');
             deleteGoal(goalId);
-            $(goalSelector).remove();
+            
         }).wrapInner('<a>Delete</a>')
 
         
@@ -173,29 +177,29 @@ function rendergoalOnDashboard(goals){
     }
     
 
-    reminders(users);
+    // reminders(users);
 }
 
 
-function reminders(users){
-    let startDate = new Date(users[0].startdate);
-    let endDate = new Date(users[0].finishdate);
+// function reminders(users){
+//     let startDate = new Date(users[0].startdate);
+//     let endDate = new Date(users[0].finishdate);
     
-    console.log(startDate.getUTCDate()); // Hours
-    console.log(endDate.getUTCDate());
+//     console.log(startDate.getUTCDate()); // Hours
+//     console.log(endDate.getUTCDate());
     
-    let duration = 4;;
-    console.log('startDate', startDate, endDate);
+//     let duration = 4;;
+//     console.log('startDate', startDate, endDate);
 
-    if(duration < 7){
-        displayReminder(users[0].goal);
-    }
-}
+//     if(duration < 7){
+//         displayReminder(users[0].goal);
+//     }
+// }
 
-function displayReminder(goal){
-    let reminder = $('<div>').addClass('reminder').text(goal);
-    $('.dashboard-container').append(reminder);
-}
+// function displayReminder(goal){
+//     let reminder = $('<div>').addClass('reminder').text(goal);
+//     $('.dashboard-container').append(reminder);
+// }
 
 // function retrieveServerData(){
 //     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'

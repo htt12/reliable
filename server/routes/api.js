@@ -55,11 +55,12 @@ module.exports = function (app) {
       if(req.session.userId){
       // console.log('tried to enter query');
       let userID = req.session.userId;
-          let query = "SELECT * FROM ?? WHERE user_id = ?";
-          let inserts = ["goals", userID];
-
+          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??, ??";
+          
+          let inserts = ["goals", userID, 'timeframe', 'goal'];
+          
           let sql = mysql.format(query, inserts);
-
+          console.log('order', sql)
           connection.query(sql, (err, results, fields) => {
               if (err) return next(err);
 
@@ -143,7 +144,7 @@ module.exports = function (app) {
 
   //==========END OF POST GOALS===========//
 
-  //==========POST USERS===========//
+  //==========POST  NEW USERS===========//
   app.post("/users", (req, res, next) => {
     let { email, username, password } = req.body;
     password = sha1(password);
@@ -166,8 +167,13 @@ module.exports = function (app) {
         success: true,
         data: results
       };
+      
+      
       res.json(output);
+
     });
+
+    
   });
 
   //==========END OF POST USERS===========//
