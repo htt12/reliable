@@ -279,7 +279,7 @@ function leadingZero( num ) {
 
 function getFinishDate() {
     
-    var ending = $('#end_date').val()
+    var ending = $('#end_date').val();
     console.log('end date:', ending);
     var date = new Date(ending);
 
@@ -298,6 +298,7 @@ function createObject(goal, day, timeOfDay, endDate) {
     object.startdate = "2018-04-10";
     object.finishdate = endDate;
     object.timeframe = timeOfDay;
+    object.status = "active";
     return object;
 }
 
@@ -323,12 +324,8 @@ function postGoalToServer( object ){
             day: object.day,
             startdate: object.startdate,
             finishdate: object.finishdate,
-            timeframe: object.timeframe
-            // goal: goal,
-            // day: day,
-            // startdate: startdate,
-            // finishdate: finishdate,
-            // timeframe: timeframe
+            timeframe: object.timeframe,
+            status: object.status,
         },
         success: function (json_data) {
             var data = json_data;

@@ -7,13 +7,11 @@ const { generateRandomString, didItAllForTheCookies } = require('../helpers/h');
 // Verify if connection is successful
 connection.connect((err) => {
     if (err) throw err;
-
     console.log('Connected to database yo')
 });
 
 module.exports = function (app) {
     //==============COOO0O0O0O0O0O0O0O0KIES ARE BAD===================//
-
     app.get('/userCheck', function (req, res) {
         const auth = didItAllForTheCookies(req.headers.cookie).userauth;
         console.log("check" + auth);

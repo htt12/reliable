@@ -1,12 +1,7 @@
 $(document).ready(initializeApp);
 
-
-
-
 function initializeApp(){
     getData();
-    
-
 }
 
 function getData(){
@@ -137,14 +132,14 @@ function rendergoalOnDashboard(goals){
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
         
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription)
+        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3')
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
         
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu')
+        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         
-        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId)
+        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
         
         let goalSelector = '#goalId'+goalId;
 
@@ -153,24 +148,24 @@ function rendergoalOnDashboard(goals){
             
             editGoal(goalSelector, goalId)
             }
-        ).wrapInner('<a href="#">Edit</a>')
+        ).wrapInner('<a href="#">Edit</a>');
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             
             $(goalSelector).addClass('animated bounceOutDown');
             deleteGoal(goalId);
-            
+       
         }).wrapInner('<a>Delete</a>')
 
         
-        dropDownList.append(editItem, deleteItem)
+        dropDownList.append(editItem, deleteItem);
 
 
-        dropDownMenuButtonContainer.append(editButton,dropDownList)
+        dropDownMenuButtonContainer.append(editButton,dropDownList);
         
-        goalContainer.append(goalBar, dropDownMenuButtonContainer)
+        goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.all-goals-list').append(goalContainer)
+        $('.all-goals-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
              
