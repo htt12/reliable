@@ -26,7 +26,7 @@ function matchedUsersCheck(){
 }
 
 function getMatchedUserGoals(data){
-    debugger;
+    
     let matchedUser = data.data[0].matched_user_id;
     let userId = data.data[0].user_id;
     console.log("THis is the data" + data);
@@ -213,7 +213,7 @@ function rendergoalOnDashboard(goals){
 
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.all-goals-list').append(goalContainer);
+        $('.match-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
 
@@ -270,7 +270,7 @@ function rendergoalOnDashboardOLD(goals){
 
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.all-goals-list').append(goalContainer);
+        $('.match-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
 
@@ -296,10 +296,7 @@ function reminders(users){
     }
 }
 
-function displayReminder(goal){
-    let reminder = $('<div>').addClass('reminder').text(goal);
-    $('.dashboard-container').append(reminder);
-}
+
 
 function sendInterestedMatches(matchedUserId) {
     $.ajax({

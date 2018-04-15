@@ -129,13 +129,13 @@ function rendergoalOnDashboard(goals){
         let goalId = goals[i].goal_id;
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal truncate').attr('id','goalId'+goalId);
         
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3 ');
         
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         

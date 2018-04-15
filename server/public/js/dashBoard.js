@@ -66,7 +66,7 @@ function getData(){
         type: 'GET',
         url: '/goalssqlday',
         success: function(resp){
-            console.log(resp);
+            console.log('dashboard',resp);
 
             rendergoalOnDashboard(resp.data)
         },
