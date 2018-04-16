@@ -68,7 +68,12 @@ module.exports = function (app) {
             let status = "active";
             let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ?";
             console.log(query);
-            let inserts = ["goals", userID, day, status];
+            let inserts = [
+                "goals",
+                userID,
+                day,
+                status
+            ];
 
             let sql = mysql.format(query, inserts);
 
@@ -98,7 +103,12 @@ module.exports = function (app) {
       let userID = req.session.userId;
           let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??, ??";
           
-          let inserts = ["goals", userID, 'timeframe', 'goal'];
+          let inserts = [
+              "goals",
+              userID,
+              'timeframe',
+              'goal'
+          ];
           
           let sql = mysql.format(query, inserts);
           console.log('order', sql)
@@ -192,15 +202,17 @@ module.exports = function (app) {
     app.post("/users", (req, res, next) => {
         let {email, username, password} = req.body;
         password = sha1(password);
-        let query = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
+        let query = "INSERT INTO ?? (??, ??, ??, ??) VALUES (?, ?, ?, ?)";
         let inserts = [
             "users",
             "email",
             "username",
             "password",
+            "status",
             email,
             username,
-            password
+            password,
+            0,
         ];
         let sql = mysql.format(query, inserts);
 
@@ -246,6 +258,34 @@ module.exports = function (app) {
     });
     //==========END OF EDIT GOALS===========//
 
+    //==========EDIT GOALS STATUS===========//
+    app.post("/goals/update/status", (req, res, next) => {
+        const {
+            goal_id,
+        } = req.body;
+
+        let query =
+            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+        let inserts = [
+            "goals",
+            "status",
+            "Complete",
+            "goal_id",
+            goal_id,
+        ];
+        console.log(query, inserts);
+        let sql = mysql.format(query, inserts);
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+            const output = {
+                success: true,
+                data: results
+            };
+            res.json(output);
+        });
+    });
+    //==========END OF EDIT GOALS STATUS===========//
+
     //==========EDIT GOALS===========//
     app.post("/users/update", (req, res, next) => {
         console.log(req.body);
@@ -284,7 +324,11 @@ module.exports = function (app) {
         const goal_id = req.body.goal_id;
 
         let query = "DELETE FROM ?? WHERE ?? = ?";
-        let inserts = ["goals", "goal_id", goal_id];
+        let inserts = [
+            "goals",
+            "goal_id",
+            goal_id
+        ];
         console.log(query, inserts);
         let sql = mysql.format(query, inserts);
         connection.query(sql, (err, results, fields) => {
@@ -307,11 +351,13 @@ module.exports = function (app) {
     //----------------------------------------MATCHING SYSTEM--------------------------------------//
     //==========GET ALL UNMATCHED USERS===========//
     app.post('/matching', (req, res, next) => {
-        let query = 'SELECT * FROM ?? WHERE status = ?';
+        let userId = req.session.userId;
+        let query = 'SELECT * FROM ?? WHERE status <> ? AND id <> ?';
         console.log(query);
         let inserts = [
             'users',
-            0,
+            1,
+            userId
             // category, //Category they select on sign_up?
         ];
 
