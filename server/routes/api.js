@@ -488,13 +488,22 @@ module.exports = function (app) {
         let userId =req.session.userId;
         console.log(userId);
         console.log(matchedUserId);
-        let query = 'SELECT A.user_id, A.`interested_user_id`,\n' +
-            'b.user_id AS user_id2,\n' +
-            'b.`interested_user_id`\n' +
+        let query = 'SELECT A.user_id, A.`?`,\n' +
+            'b.user_id AS ?,\n' +
+            'b.`?`\n' +
             'FROM interested_matches AS A, \n' +
             '\t interested_matches AS b\n' +
             'WHERE A.user_id = b.`interested_user_id`\n' +
             'AND A.user_id <> b.user_id';
+
+
+        // 'SELECT A.user_id, A.`interested_user_id`,\n' +
+        // 'b.user_id AS user_id2,\n' +
+        // 'b.`interested_user_id`\n' +
+        // 'FROM interested_matches AS A, \n' +
+        // '\t interested_matches AS b\n' +
+        // 'WHERE A.user_id = b.`interested_user_id`\n' +
+        // 'AND A.user_id <> b.user_id';
         let inserts = [
             'interested_matches',
             userId, //User id of first user trying to find match

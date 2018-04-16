@@ -258,6 +258,7 @@ function rendergoalOnDashboardOLD(goals){
 
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             getMatches(userId);
+            console.log(userId);
             // deleteGoal(goalId);
             // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
@@ -315,7 +316,8 @@ function sendInterestedMatches(matchedUserId) {
 }
 
 function getMatches(matchedUserId) {
-
+    debugger;
+    console.log(matchedUserId);
     $.ajax({
         type: "POST",
         url: "/matchingpairs",
