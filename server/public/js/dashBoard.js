@@ -132,7 +132,7 @@ function rendergoalOnDashboard(goals){
 }
 
 function updateGoal(goalId) {
-    debugger;
+    
     console.log(goalId);
     $.ajax({
         type: "POST",

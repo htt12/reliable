@@ -127,14 +127,27 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
+    
+
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
+        let timeOfDay = 'rgb(219, 85, 78, 0.5)';
+        switch (parseInt(goals[i].timeframe)){
+            case 1:
+                timeOfDay = 'rgb(66, 134, 244, 0.5)';
+                break;
+            case 2:
+                timeOfDay = 'rgb(64, 27, 137, 0.5)';
+                break;
+            default:
+                break;
+        }
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal ').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription);
@@ -169,11 +182,21 @@ function rendergoalOnDashboard(goals){
         dropDownMenuButtonContainer.append(editButton,dropDownList);
         
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
-
         $('.all-goals-list').append(goalContainer);
+        
+
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
              
+    }
+
+    for(var j=1; j<goals.length; j++){
+        let initialChildElement = $('.all-goals-list:nth-child(' +j+')');
+        let nextChildElement = $('.all-goals-list:nth-child(' +j+1+')');
+        if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
+            initialChildElement.css('background-color', 'hotpink');
+            nextChildElement.css('background-color', 'yellow');
+        } 
     }
     
 
