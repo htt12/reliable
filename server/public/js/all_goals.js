@@ -2,6 +2,7 @@ $(document).ready(initializeApp);
 
 function initializeApp(){
     getData();
+    
 }
 
 function getData(){
@@ -16,6 +17,10 @@ function getData(){
             console.log(resp);
             $('.all-goals-list').empty();
             rendergoalOnDashboard(resp.data)
+
+            $('html, body').animate({
+                scrollTop: $('.all-goals-list').offset().top}, 2000)
+            
         },
         error: function(xhr, status, err){
             console.log(err)
@@ -129,13 +134,13 @@ function rendergoalOnDashboard(goals){
         let goalId = goals[i].goal_id;
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal truncate').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal ').attr('id','goalId'+goalId);
         
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3 ');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-1 ');
         
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         
