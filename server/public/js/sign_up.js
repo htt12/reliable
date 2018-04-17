@@ -160,7 +160,7 @@ function sendData(email, username, password) {
             var data = json_data;
             console.log(data);
             if (json_data.success) {
-                setTimeout(()=>{(window.location.replace('/login'))}, 3000);
+                setTimeout(()=>{(window.location.replace('/login'))}, 1000);
             }
         }
 
