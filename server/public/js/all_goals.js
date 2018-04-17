@@ -111,13 +111,13 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(9, 26, 104, 0.2)';
+        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(255, 251, 45, 0.3)';
+                timeOfDay = 'rgb(244, 244, 119, 0.9)';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 189, 91, 0.3)';
+                timeOfDay = 'rgb(255, 189, 91, 0.5)';
                 break;
             default:
                 break;
@@ -177,7 +177,7 @@ function rendergoalOnDashboard(goals){
             initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
             //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
         }
-        j++; 
+        
     }
 }
 
