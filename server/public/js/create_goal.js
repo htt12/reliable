@@ -31,7 +31,7 @@ function initializeApp() {
     $(".ideas").on('click', handleIdeaBtnClick);
     $('.predefined-goals').on('click', handlePredefinedGoalClicked);
     $('.add.next').on('click', handleNextPageButtonClicked);
-
+    $('.row input').on('click', handleDayandTimeClicked);
 
     $("#end_date").attr('min', getTodayDate);
 }
@@ -50,7 +50,7 @@ function handleCategoryDropdownClicked(){
 
     //get category value
     $('.categoryDropdown .dropdown-menu li').click(function () {
-        $('.categoryDropdown').find('span').text($(this).text());
+        $('.categoryDropdown').find('span').text($(this).text()).css('color','black');
         category = $(this).text();
     });
     console.log('category:', category);
@@ -68,7 +68,7 @@ function handleIdeaBtnClick() {
 function renderPredefinedCategories(){
     var containerDiv = $('.predefined-goals-container');
     var location = "./images/";
-    $('.predefined-goals p.hidden').removeClass('hidden').addClass('show');
+    $('.predefined-goals p').removeClass('hidden').addClass('show');
 
     for (var i = 0; i < predefinedCategories.length; i++){
         var div = $('<div>', {
@@ -127,12 +127,11 @@ function getPredefinedGoalValue( targetElement, id ) {
         $('.creatingGoal, .categoryContainer').removeClass('hidden').addClass('show');
         //update input goal field with the selected idea
         $('.goalInput').val(goal);
-
     });
 }
 
 function updateGoalCategoryOnDropdown( category ){
-    $('.categoryDropdown').find('span').text(category);
+    $('.categoryDropdown').find('span').text(category).css('color', 'black');
 }
 
 function handleNextPageButtonClicked(){
@@ -153,6 +152,7 @@ function handleNextPageButtonClicked(){
         $('.days, .timeOfDay').removeClass('hidden').addClass('show');
     }
     else if(pageCount === 1){
+        // debugger;
         var dateCheckBox = validateDateCheckBox();
         // var timeFrame = validateTimeFrameSelection();
 
@@ -175,8 +175,6 @@ function handleNextPageButtonClicked(){
         //send data to the server
         handleSubmitButtonClicked();
     }
-
-    
 }
 
 // function handleUndoButtonClicked( category ) {
@@ -246,34 +244,69 @@ function validateCategoryDropdown(){
 }
 
 function validateDateCheckBox() {
+    var result = true;
+    daysAndTime = [];
+
     var checkedArray = $("input:checkbox").filter(":checked");
     //if user didn't select any date then display error message
     if(checkedArray.length === 0){
-        $(".days > p").addClass("error").text("You must select at least one day!")
+        $(".days > p").addClass("error").text("You Must Select the Day and Time")
         return false;
     }
     //remove the error message if there was an error before
     else{
-        $(".days > p").removeClass('error').text("Days to Track Your Goal");
-            //get the values of the selected dates and store in an array
+        $(".days > p").removeClass('error').text("Day and Time to Track Your Goal");
+        //get the values of the selected dates and store in an array
+
+        // checkedArray.map((checkbox) =>{
         Array.from($("input[type='checkbox']")).filter((checkbox) => checkbox.checked).map((checkbox) =>{
-            
-            // removeInactiveLink(checkbox.value);
-            daysAndTime.push([convertDayIntoNumberFormat(checkbox.value), getSelectedTimeFrameValue(checkbox.value)]);
+
+            console.log('checkbox value:', checkbox.value)
+            var time = getSelectedTimeFrameValue(checkbox.value);
+            if(time === null){
+                $(".days > p").addClass("error").text("You Must Select the Day and Time")
+                result = false;
+            }
+            else{
+                daysAndTime.push([convertDayIntoNumberFormat(checkbox.value), time]);
+                console.log('array: ', daysAndTime);
+                result = true;
+            }
         });
-        console.log('array: ', daysAndTime);
-        return true;
+    }
+    return result;
+}
+
+function removeInactiveLink( day ){
+    var selectedDate = `.${day}`;
+    $(selectedDate).removeClass('inactiveLink');
+}
+
+function handleDayandTimeClicked(){
+    if( event.target.value === "sunday"){
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "monday"){
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "tuesday") {
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "wednesday") {
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "thursday") {
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "friday") {
+        removeInactiveLink( event.target.value );
+    }
+    else if( event.target.value === "saturday") {
+        removeInactiveLink( event.target.value );
     }
 }
 
-// function removeInactiveLink( day ){
-//     console.log('removed inactive link', day);
-//     var selectedDate = `.${day}`;
-//     $(selectedDate).removeClass('inactiveLink');
-// }
-
 function getSelectedTimeFrameValue( day ) {
-    console.log('day', day);
     if( day === "sunday"){
         return $('#sundayTime').val();
     }
@@ -297,19 +330,21 @@ function getSelectedTimeFrameValue( day ) {
     }
 }
 
-
-// function validateTimeFrameSelection() {
+// function validateTimeFrameSelection(day, time) {
+//     console.log('validate time', time);    
+//     // var time = `.${time}`;
+//     var day = `.${day}`
 //     //if user didnt select a value then display error message
-//     if( $('#timeframe').val() === null ){
-//         $(".timeOfDay > p").addClass("error").text("You must select a time frame");
-//         return false;
+//     if( time === null ){
+//         $(day).find('select').css('border','2px solid #ffc24e');
+//         // $(".timeOfDay > p").addClass("error").text("You must select a time frame");
+//         return;
 //     }
 //     else{
-//         $(".timeOfDay > p").removeClass("error").text("I want to do it");
-//         //get the value of user selected time frame (morning/afternoon/evening)
-//         var timeOfDay = $('#timeframe').val()
-//         console.log('timeOfDay:', timeOfDay);
-//         return true;
+//         $(day).find('select').css('border','transparent');
+
+//     //     var timeOfDay = $('#timeframe').val()
+//     //     return true;
 //     }
 // }
 
@@ -353,8 +388,6 @@ function convertDayIntoNumberFormat( day ) {
     }
 }
 
-
-
 //get today's date for the calendar
 function getTodayDate(){
     var date = new Date();
@@ -376,7 +409,6 @@ function leadingZero( num ) {
 function getFinishDate() {
     
     var ending = $('#end_date').val();
-    console.log('end date:', ending);
     var date = new Date(ending);
 
     var day = leadingZero(date.getUTCDate());
@@ -408,7 +440,6 @@ function clearUserInput() {
 }
 
 function postGoalToServer( object ){
-// function postGoalToServer( goal, day, startdate, finishdate, timeframe ){
 
     console.log('created Object', object);
     $.ajax({
