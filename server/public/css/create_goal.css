@@ -28,7 +28,7 @@ body{
 }
 
 .creatingGoal{
-    margin: 15% 0 5% 0;
+    margin: 10% 0 5% 0;
 }
 
 .message{
@@ -56,10 +56,6 @@ body{
     margin-bottom: 7%;
     z-index: 2;
 }
-
-/* .creatingGoal input.goalInput[type=text]:focus {
-
-} */
 
 /* ************************ Start Goal Category Dropdown *********************** */
 
@@ -206,11 +202,10 @@ body{
                                         rgba(162,211,222, 1) 100%);
     font-weight: bold;
     padding: 3.5% 5%;
-    z-index: 1;
 }
 
 .horizontalLine p{
-    margin: 18% 0 0 0;
+    margin: 15% 0 0 0;
 }
 
 .horizontalLine h6 i{
@@ -294,31 +289,43 @@ body{
     border: 1px solid black;
 
 }
+/******************* Start Days From *********************/
 
-.days p{
-    font-size: 2em;
-    font-weight: bold;
+.days p,
+.endDate p{
+    font-size: 3em;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .daysForm label{
-    font-size: 2.2em;
-    margin-right: 4%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    margin-left: 25%;
     color: black;
+    padding-left: 25%;
 }
 
-.days .daysForm input[type="checkbox"]+label:before {
-    transform: scale(1.5);
+.daysForm .row{
+    margin: 0;
+    height: 8vh;
 }
 
-.days .daysForm .days:checked + label:before{
+.daysForm input[type="checkbox"]+label:before {
+    transform: scale(3);
+}
+
+.daysForm input:checked + label:before{
     top: -12px;
     left: -5px;
-    width: 17px;
-    height: 34px;
-    border-top: 2px solid transparent;
-    border-left: 2px solid transparent;
-    border-right: 6px solid rgb(61, 145, 170);
-    border-bottom: 6px solid rgb(61, 145, 170);
+    width: 20px;
+    height: 45px;
+    border-top:   transparent;
+    border-left:   transparent;
+    border-right: 8px solid rgb(61, 145, 170);
+    border-bottom: 8px solid rgb(61, 145, 170);
     -webkit-transform: rotate(40deg);
     -moz-transform: rotate(40deg);
     -ms-transform: rotate(40deg);
@@ -332,32 +339,27 @@ body{
     transform-origin: 100% 100%;
 }
 
-.timeOfDay{
-    margin: 8% 0;
-}
-
-.timeOfDay p{
-    font-size: 2em;
-    font-weight: bold;
-}
-
 .timeOfDay select{
     display: block;
-    border: 3px solid rgb(224, 185, 69);
     font-size: 1.5em;
-    width: 35%;
-    height: 3.5vh;
+    width: 90%;
+    float: left;
+    height: 100%;
+    padding: 4% 0;
 }
 
-.endDate{
-    font-size: 2em;
-    font-weight: bold;
-}
+
+/******************* End Days From *********************/
+
+
 
 .endDate input[type="date"]{
-    font-size: 0.8em;
-    width: 35%;
+    font-size: 3em;
+    width: 60%;
     border-bottom: 3px solid rgb(224, 185, 69);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 footer.page-footer{
@@ -401,11 +403,12 @@ footer.page-footer{
 
 .inactiveLink{
     pointer-events: none;
-    opacity: 0.5;
+    opacity: 0.4;
 }
+
 
 .unclickable{
     pointer-events: none;
     -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
+
 }

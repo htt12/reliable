@@ -1,6 +1,9 @@
 var goalAndDateArray = [];
 var category = '';
+var goal = '';
 var pageCount = 0;
+var daysAndTime = [];
+var finishDate = null;
 var predefinedCategories = [
     {
         class: "diet",
@@ -24,26 +27,18 @@ var predefinedCategories = [
 $(document).ready(initializeApp);
 
 function initializeApp() {
-    $('.goalInput').focusout(handleManualGoalInput);
     $('.categoryDropdown').on('click', handleCategoryDropdownClicked);
     $(".ideas").on('click', handleIdeaBtnClick);
     $('.predefined-goals').on('click', handlePredefinedGoalClicked);
     $('.add.next').on('click', handleNextPageButtonClicked);
 
+
     $("#end_date").attr('min', getTodayDate);
 }
 
-function handleManualGoalInput(){
-    // console.log('handle goal input');
-    //get user goal
-    var goal = $('.goalInput').val();
-    console.log('new goal: ', goal);
-    validateGoalInputField();
-}
 
 function handleCategoryDropdownClicked(){
      
-    // console.log("category called");
     $(this).attr('tabindex', 1).focus();
     $(this).toggleClass('active');
     $(this).find('.dropdown-menu').slideToggle(300);
@@ -56,7 +51,6 @@ function handleCategoryDropdownClicked(){
     //get category value
     $('.categoryDropdown .dropdown-menu li').click(function () {
         $('.categoryDropdown').find('span').text($(this).text());
-        // $(this).parents('.categoryDropdown').find('span').text($(this).text());
         category = $(this).text();
     });
     console.log('category:', category);
@@ -118,12 +112,10 @@ function handlePredefinedGoalClicked(){
         updateGoalCategoryOnDropdown('Habit');
 
     }
-    // $(".undo").removeClass('inactiveLink').on('click', () => { handleUndoButtonClicked( category )} );
-
 }
 
 function getPredefinedGoalValue( targetElement, id ) {
-    var goal = '';
+    // var goal = '';
 
     targetElement.removeClass('hidden').addClass('show');
     id.on('click', 'li', function () {
@@ -145,41 +137,45 @@ function updateGoalCategoryOnDropdown( category ){
 
 function handleNextPageButtonClicked(){
     console.log('pageCount:', pageCount);
-    // $('.goals_message, .goalInput , .timeOfDay').addClass('show');
-
-    // var timeFrame = validateTimeFrameSelection();
-    // var finishOn = validateFinishDateSelection();
-
-    //validate user input
-    // if(dateCheckBox === false || timeFrame === false || finishOn === false){
-    //     return;
-    // }
-
-
-
 
     //check which page the user is on
     if(pageCount === 0){
         var inputGoalField = validateGoalInputField();
+        var categorySelection = validateCategoryDropdown();
 
-        if( inputGoalField === false ){
-            $('.add.next').addClass('inactiveLink');
+        if( !inputGoalField || !categorySelection ){
             return;
-        } 
+        }
+
         pageCount++;
         $('.add.next').removeClass('inactiveLink');
-        $('.days').removeClass('hidden').addClass('show');
+        $('.creatingGoal, .categoryContainer, .horizontalLine').addClass('hidden');
+        $('.days, .timeOfDay').removeClass('hidden').addClass('show');
     }
     else if(pageCount === 1){
         var dateCheckBox = validateDateCheckBox();
-        if(dateCheckBox === false ){
+        // var timeFrame = validateTimeFrameSelection();
+
+        if( !dateCheckBox ){
             return;
         }
+        pageCount++;
+
+        $('.days, .timeOfDay').addClass('hidden').removeClass('show');
         $('.endDate').removeClass('hidden').addClass('show');
     }
     else if(pageCount === 2){
+        var finishOn = validateFinishDateSelection();
+
+        //validate user input
+        if(!finishOn){
+            return;
+        }
+
         //send data to the server
+        handleSubmitButtonClicked();
     }
+
     
 }
 
@@ -210,34 +206,19 @@ function handleNextPageButtonClicked(){
 function handleSubmitButtonClicked() {
     console.log('add btn clicked');
 
-
-    //get the values of the selected dates and store in an array
-    const selectedDate = Array.from($("input[type='checkbox']")).filter( (checkbox) => checkbox.checked).map((checkbox) =>{
-        return convertDayIntoNumberFormat(checkbox.value)
-    });
-    console.log('selectedDate: ', selectedDate);
-
-    //get the value of user selected time frame (morning/afternoon/evening)
-    var timeOfDay = $('#timeframe').val()
-    console.log('timeOfDay:', timeOfDay);
-
-    //get the end date
-    var finishDate = getFinishDate();
-    console.log('endDate:', finishDate);
-
     //loop thru the selectedDate array and create object for each day
-    for(var i = 0; i<selectedDate.length; i++){
-        var newObject = createObject(goal, selectedDate[i], timeOfDay, finishDate);
-        console.log('newObject:', newObject);
+    for(var i = 0; i<daysAndTime.length; i++){
+        var day = daysAndTime[i][0];
+        var time = daysAndTime[i][1];
+
+        var newObject = createObject(goal, day, category, time, finishDate);
+        // console.log('newObject:', newObject);
         postGoalToServer(newObject);
-   //     postGoalToServer('this is the new goal', 1, "2018-04-10", "2018-04-12", "morning");
-        // postGoalToServer(selectedDate[i], goal, timeOfDay, finishDate);
         goalAndDateArray.push(newObject);
     }
-    // console.log("goalAndDateArray: ", goalAndDateArray)
+    console.log("goalAndDateArray: ", goalAndDateArray)
 
     clearUserInput();
-    // goBackToDashboard();
 }
 
 function validateGoalInputField() {
@@ -249,8 +230,19 @@ function validateGoalInputField() {
     //remove the error message if there was an error before
     else{
         $(".creatingGoal > .message").removeClass('error').text("Name Your Goal");
+        goal = $('.goalInput').val();
+        console.log('goal', goal);
         return true;
     }
+}
+
+function validateCategoryDropdown(){
+    if(!$('.categorySelect > span').text() || $('.categorySelect > span').text()==="Goal Categories"){
+        $(".categoryContainer > .message").addClass("error").text("Please Pick a Category");
+        return false;
+    }
+    $(".categoryContainer > .message").removeClass('error').text("Pick a Category for Your Goal");
+    return true;
 }
 
 function validateDateCheckBox() {
@@ -263,21 +255,63 @@ function validateDateCheckBox() {
     //remove the error message if there was an error before
     else{
         $(".days > p").removeClass('error').text("Days to Track Your Goal");
+            //get the values of the selected dates and store in an array
+        Array.from($("input[type='checkbox']")).filter((checkbox) => checkbox.checked).map((checkbox) =>{
+            
+            // removeInactiveLink(checkbox.value);
+            daysAndTime.push([convertDayIntoNumberFormat(checkbox.value), getSelectedTimeFrameValue(checkbox.value)]);
+        });
+        console.log('array: ', daysAndTime);
         return true;
     }
 }
 
-function validateTimeFrameSelection() {
-    //if user didnt select a value then display error message
-    if( $('#timeframe').val() === null ){
-        $(".timeOfDay > p").addClass("error").text("You must select a time frame");
-        return false;
+// function removeInactiveLink( day ){
+//     console.log('removed inactive link', day);
+//     var selectedDate = `.${day}`;
+//     $(selectedDate).removeClass('inactiveLink');
+// }
+
+function getSelectedTimeFrameValue( day ) {
+    console.log('day', day);
+    if( day === "sunday"){
+        return $('#sundayTime').val();
     }
-    else{
-        $(".timeOfDay > p").removeClass("error").text("I want to do it");
-        return true;
+    else if( day === "monday"){
+        return $('#mondayTime').val();
+    }
+    else if( day === "tuesday") {
+        return $('#tuesdayTime').val();
+    }
+    else if( day === "wednesday") {
+        return $('#wednesdayTime').val();
+    }
+    else if( day === "thursday") {
+        return $('#thursdayTime').val();
+    }
+    else if( day === "friday") {
+        return $('#fridayTime').val();
+    }
+    else if( day === "saturday") {
+        return $('#saturdayTime').val();
     }
 }
+
+
+// function validateTimeFrameSelection() {
+//     //if user didnt select a value then display error message
+//     if( $('#timeframe').val() === null ){
+//         $(".timeOfDay > p").addClass("error").text("You must select a time frame");
+//         return false;
+//     }
+//     else{
+//         $(".timeOfDay > p").removeClass("error").text("I want to do it");
+//         //get the value of user selected time frame (morning/afternoon/evening)
+//         var timeOfDay = $('#timeframe').val()
+//         console.log('timeOfDay:', timeOfDay);
+//         return true;
+//     }
+// }
 
 function validateFinishDateSelection() {
     //if user didnt select a value then display error message
@@ -287,6 +321,9 @@ function validateFinishDateSelection() {
     }
     else{
         $(".endDate > p").removeClass("error").text("Select End Date");
+        //get the end date
+        finishDate = getFinishDate();
+        console.log('endDate:', finishDate);
         return true;
     }
 }
@@ -348,15 +385,14 @@ function getFinishDate() {
     return (year+'-'+month+'-'+day);
 }
 
-function createObject(goal, day, timeOfDay, endDate) {
+function createObject(goal, day, category, time, finishdate) {
     var object = {};
-    // object.category = category;
     object.goal = goal;
     object.day = day;
-    // object.startdate = getTodayDate();
-    object.startdate = "2018-04-10";
-    object.finishdate = endDate;
-    object.timeframe = timeOfDay;
+    object.startdate = getTodayDate();
+    object.category = category;
+    object.finishdate = finishdate;
+    object.timeframe = time;
     return object;
 }
 
@@ -380,6 +416,7 @@ function postGoalToServer( object ){
         data: {
             goal: object.goal,
             day: object.day,
+            category: object.category,
             startdate: object.startdate,
             finishdate: object.finishdate,
             timeframe: object.timeframe
@@ -397,7 +434,3 @@ function postGoalToServer( object ){
         }
     })
 }
-
-// function goBackToDashboard(){
-//     history.go(-1);
-// }
