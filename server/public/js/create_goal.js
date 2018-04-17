@@ -308,25 +308,38 @@ function handleDayandTimeClicked(){
 
 function getSelectedTimeFrameValue( day ) {
     if( day === "sunday"){
-        return $('#sundayTime').val();
+        return convertTimeFrameIntoNum($('#sundayTime').val());
     }
     else if( day === "monday"){
-        return $('#mondayTime').val();
+        return convertTimeFrameIntoNum($('#mondayTime').val());
     }
     else if( day === "tuesday") {
-        return $('#tuesdayTime').val();
+        return convertTimeFrameIntoNum($('#tuesdayTime').val());
     }
     else if( day === "wednesday") {
-        return $('#wednesdayTime').val();
+        return convertTimeFrameIntoNum($('#wednesdayTime').val());
     }
     else if( day === "thursday") {
-        return $('#thursdayTime').val();
+        return convertTimeFrameIntoNum($('#thursdayTime').val());
     }
     else if( day === "friday") {
-        return $('#fridayTime').val();
+        return convertTimeFrameIntoNum($('#fridayTime').val());
     }
     else if( day === "saturday") {
-        return $('#saturdayTime').val();
+        return convertTimeFrameIntoNum($('#saturdayTime').val());
+    }
+}
+
+function convertTimeFrameIntoNum( time ) {
+
+    if( time === "morning"){
+        return 1;
+    }
+    else if( time === "afternoon"){
+        return 2;
+    }
+    else if( time === "evening") {
+        return 3;
     }
 }
 
@@ -447,8 +460,8 @@ function postGoalToServer( object ){
         url: "/goals",
         data: {
             goal: object.goal,
-            day: object.day,
             category: object.category,
+            day: object.day,
             startdate: object.startdate,
             finishdate: object.finishdate,
             timeframe: object.timeframe,
@@ -456,9 +469,11 @@ function postGoalToServer( object ){
         },
         success: function (json_data) {
             var data = json_data;
-            console.log('sucsessed sending data:', data);
-
-            //add function to go back to the dashboard
+            console.log(data);
+            if (json_data.success) {
+                setTimeout(()=>{(window.location.replace('/dashboard'))}, 1000);
+            }
         }
-    })
+        
+    });
 }

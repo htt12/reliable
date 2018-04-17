@@ -150,14 +150,15 @@ module.exports = function (app) {
 
     //==========POST GOALS===========//
     app.post("/goals", (req, res, next) => {
-        const {goal, day, startdate, finishdate, timeframe, status} = req.body;
+        const {goal, category, day, startdate, finishdate, timeframe, status} = req.body;
         let userID = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         console.log(query);
         let inserts = [
             "goals",
             "user_id",
             "goal",
+            "category",
             "day",
             "startdate",
             "finishdate",
@@ -165,11 +166,12 @@ module.exports = function (app) {
             "status",
             userID,
             goal,
+            category,
             day,
             startdate,
             finishdate,
             timeframe,
-            status,
+            "active",
         ];
 
         let sql = mysql.format(query, inserts);
