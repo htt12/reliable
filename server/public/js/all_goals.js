@@ -99,29 +99,6 @@ function deleteGoal(goalId){
     })
 }
 
-// function deleteGoal(goalId){
-//
-//     $.ajax({
-//         type: 'POST',
-//         data: {
-//             goal_id: goalId,
-//         },
-//         url: 'http://localhost:8000/goals/delete',
-//         // dataType: 'json',
-//
-//         success: function(resp){
-//             console.log('delete',resp);
-//             $('.goal-list').empty();
-//             getData();
-//         },
-//         error: function(xhr, status, err){
-//             console.log(err)
-//         }
-//     })
-// }
-
-
-
 
 function rendergoalOnDashboard(goals){
     console.log('goals',goals)
@@ -134,13 +111,13 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(219, 85, 78, 0.5)';
+        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(66, 134, 244, 0.5)';
+                timeOfDay = 'rgb(255, 251, 45, 0.9)';
                 break;
             case 2:
-                timeOfDay = 'rgb(64, 27, 137, 0.5)';
+                timeOfDay = 'rgb(255, 189, 91, 0.9)';
                 break;
             default:
                 break;
@@ -191,17 +168,72 @@ function rendergoalOnDashboard(goals){
     }
 
     for(var j=1; j<goals.length; j++){
-        let initialChildElement = $('.all-goals-list:nth-child(' +j+')');
-        let nextChildElement = $('.all-goals-list:nth-child(' +j+1+')');
+        let initialChildElement = $('.goal-container:nth-child(' +j+')');
+        let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
         if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
-            initialChildElement.css('background-color', 'hotpink');
-            nextChildElement.css('background-color', 'yellow');
-        } 
+            let currentBackgroundColor = initialChildElement.css('background-color');
+            let nextBackgroundColor = nextChildElement.css('background-color');
+            
+            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+            //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
+        }
+        j++; 
     }
-    
-
-    // reminders(users);
 }
+
+function displayDate(){
+    let todayDate = getTodayDate();
+    console.log('today',todayDate);
+    
+    $('.date').text(todayDate);
+}
+
+function getTodayDate(){
+    var date = new Date();
+    var day = date.getDay();
+    var dd = leadingZero(date.getDate());
+    var mm = leadingZero(date.getMonth()+1);
+    let dayOfWeek = convertToDayOfWeek(day);
+    // var yyyy = date.getFullYear();
+    return (dayOfWeek+ '  ' +mm+'/'+dd);
+}
+
+function leadingZero( num ) {
+    if( num<10 ){
+        return '0'+num;
+    }
+    else{
+        return num;
+    }
+}
+
+function convertToDayOfWeek( day ) {
+
+    if( day === 0){
+        return "SUN";
+    }
+    else if( day === 1){
+        return "MON";
+    }
+    else if( day === 2) {
+        return "TUES";
+    }
+    else if( day === 3) {
+        return "WED";
+    }
+    else if( day === 4) {
+        return "THURS";
+    }
+    else if( day === 5) {
+        return "FRI";
+    }
+    else if( day ===6) {
+        return  "SAT";
+    }
+}
+
+
+
 
 
 // function reminders(users){
