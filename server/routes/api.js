@@ -237,11 +237,13 @@ module.exports = function (app) {
         } = req.body;
 
         let query =
-            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
         let inserts = [
             "goals",
             "goal",
             goal,
+            "status",
+            "active",
             "goal_id",
             goal_id
         ];
