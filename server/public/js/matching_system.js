@@ -328,7 +328,7 @@ function getMatches(matchedUserId) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
-            if(data){
+            if(data.data[0]){
                 console.log(data);
                 sendMatchToTable(data);
             }
