@@ -1,14 +1,14 @@
 $(document).ready(()=>{
     setTimeout(()=>{
-        $('.loading').fadeOut(3000);
-    }, 1000)
+        $('.loading').addClass('display', 'none');
+    }, 500)
     }
 );
 
 function postUserToServer(email, password, status) {
     $.ajax({
         type: "POST",
-        url: "http://reliable.keatonkrieger.com/login",
+        url: "/login",
         dataType: "json",
         data: {
             email: email,
