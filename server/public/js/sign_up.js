@@ -178,7 +178,7 @@ function handleSignUpBtnClick() {
         var newObject = createObject( userEmail , userName, userPwd);
         console.log('new object:', newObject);
         $('.message span').text('');
-        $('.signUpForm').addClass('animated bounceOut')
+        $('.signUpForm').addClass('animated bounceOut');
         clearUserInput();
     }
 
