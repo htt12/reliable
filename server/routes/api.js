@@ -236,11 +236,13 @@ module.exports = function (app) {
         } = req.body;
 
         let query =
-            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
         let inserts = [
             "goals",
             "goal",
             goal,
+            "status",
+            "active",
             "goal_id",
             goal_id
         ];
@@ -485,6 +487,11 @@ module.exports = function (app) {
     app.post('/matchingpairs', (req, res, next) => {
         let {matchedUserId} = req.body;
         let userId =req.session.userId;
+        if(matchedUserId == req.session.userId){
+            userId = req.body.matchedUserId;
+            matchedUserId = req.body.userId;
+            console.log("we hit the if Check")
+        }
         console.log(userId);
         console.log(matchedUserId);
         let query = 'SELECT A.user_id, A.`interested_user_id`,\n' +
@@ -492,14 +499,14 @@ module.exports = function (app) {
             'b.`interested_user_id`\n' +
             'FROM interested_matches AS A, \n' +
             '\t interested_matches AS b\n' +
-            'WHERE A.user_id = b.`interested_user_id`\n' +
-            'AND A.user_id <> b.user_id';
+            'WHERE A.user_id = ? AND b.user_id = ? AND A.interested_user_id = ? AND b.interested_user_id = ?';
+
+
         let inserts = [
-            'interested_matches',
-            userId, //User id of first user trying to find match
-            matchedUserId, //User id of person they want to match
-            matchedUserId, //User id of second person trying to find match
-            userId // User id of person they want to match
+            userId,
+            matchedUserId,
+            matchedUserId,
+            userId,
         ];
 
         let sql = mysql.format(query, inserts);

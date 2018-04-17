@@ -258,6 +258,7 @@ function rendergoalOnDashboardOLD(goals){
 
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             getMatches(userId);
+            console.log(userId);
             // deleteGoal(goalId);
             // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
@@ -315,7 +316,8 @@ function sendInterestedMatches(matchedUserId) {
 }
 
 function getMatches(matchedUserId) {
-
+    debugger;
+    console.log(matchedUserId);
     $.ajax({
         type: "POST",
         url: "/matchingpairs",
@@ -326,7 +328,7 @@ function getMatches(matchedUserId) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
-            if(data){
+            if(data.data[0]){
                 console.log(data);
                 sendMatchToTable(data);
             }
