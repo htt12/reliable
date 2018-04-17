@@ -1,0 +1,414 @@
+html{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    background-color: #F2F2F2;
+}
+
+.container{
+    width:90%;
+    height: auto;
+    margin: auto;
+}
+
+.title{
+    height: 10vh;
+    line-height: 10vh;
+    margin: 0;
+    background-color: #A2D3DA;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    font-size: 7em;
+}
+
+.creatingGoal{
+    margin: 10% 0 5% 0;
+}
+
+.message{
+    margin: 9% 0 3% 0;
+    font-size: 3em;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.categoryContainer p{
+    margin: 0 0 4% 0;
+}
+.creatingGoal input.goalInput{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.5em;
+    font-weight: bold;
+    height: 100%;
+    background-color: white;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 4% 2%;
+    margin-bottom: 7%;
+    z-index: 2;
+}
+
+/* ************************ Start Goal Category Dropdown *********************** */
+
+.categoryDropdown{
+    font-family: 'Roboto', sans-serif;
+    width: 60%;
+    /* height: 100%; */
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    transition: all .5s ease;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1em;
+    font-weight: bold;
+    text-align: left;
+    padding: 2% 3%;
+    z-index: 2;
+
+}
+
+.categoryDropdown span{
+    color: rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+}
+
+.categoryDropdown .categorySelect{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+
+}
+
+.categoryDropdown .categorySelect span{
+    font-size: 3em;
+}
+
+.categoryDropdown .categorySelect > i{
+    color: #888;
+    cursor: pointer;
+    transition: all .3s linear;
+    float: right;
+    line-height: 100%;
+}
+
+.categoryDropdown:hover{
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+}
+
+.categoryDropdown:active{
+    background-color: #f8f8f8;
+}
+
+.categoryDropdown.active:hover,
+.categoryDropdown.active{
+    box-shadow: 0 0 4px rgb(204, 204, 204);
+    border-radius: 5px 5px 0 0;
+    background-color: #f8f8f8;
+}
+
+.categoryDropdown.active .categorySelect > i{
+    transform: rotate(-180deg);
+
+}
+
+.categoryDropdown .dropdown-menu{
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    left: 0;
+    margin-top: 1px;
+    box-shadow: 0 1px 2px rgb(204, 204, 204);
+    border-radius: 0 1px 5px 5px;
+    overflow: hidden;
+    display: none;
+    height: auto;
+    /* max-height: 144px; */
+    overflow-y: auto;
+    z-index: 9;
+}
+
+.categoryDropdown .dropdown-menu li{
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    padding: 4% 7%;
+    transition: all .2s linear;
+    cursor: pointer;
+    font-size: 3em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.categoryDropdown .dropdown-menu li i{
+    font-size: 3rem;
+    float: right;
+}
+
+.categoryDropdown .dropdown-menu{
+    padding: 0;
+    list-style: none;
+}
+
+.categoryDropdown .dropdown-menu li:hover{
+    background-color: rgba(255,226,168, 0.6);
+}
+
+.categoryDropdown .dropdown-menu li:active{
+    background-color: lightblue;
+}
+
+/* ************************ End Goal Category Dropdown *********************** */
+.horizontalLine{
+    margin: 15% 0;
+}
+
+.horizontalLine h3{
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+    line-height: 0.1em;
+    margin: 10px 0 20px;
+}
+
+.horizontalLine h3 span{
+    background-color: #F2F2F2;
+    padding: 0 20px;
+    color: rgba(0, 0, 0, 0.2);
+}
+
+.horizontalLine .ideas.btn{
+    width: 60%;
+    height: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    /* margin: 18% 0; */
+    /* margin-top: 7%; */
+    font-size: 3em;
+    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%, 
+                                        rgba(162,211,222, 1) 100%);
+    font-weight: bold;
+    padding: 3.5% 5%;
+}
+
+.horizontalLine p{
+    margin: 15% 0 0 0;
+}
+
+.horizontalLine h6 i{
+    color: white;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 8rem;
+    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    z-index: -1;
+}
+
+.error{
+    color: lightcoral;
+}
+
+.ideasList lh{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.goalIdeas .ideasList li{
+    /* margin-left: 7%; */
+    list-style-type: circle;
+}
+
+.predefined-goals p{
+    margin: 4% 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.categoryContainer{
+    margin: 0 0 3% 0;
+    width: 100%;
+    height: 15vh;
+}
+
+.categoryImg{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    border: 5px solid white;
+    border-radius: 15px;
+
+}
+
+.fitness-goals,
+.diet-goals,
+.habit-goals{
+    font-size: 2em;
+}
+
+.fitness-goals ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fitnessList lh,
+.dietList lh,
+.habitList lh{
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 2%;
+}
+
+.fitness-goals .fitnessList li,
+.diet-goals .dietList li,
+.habit-goals .habitList li{
+    list-style-type: none;
+    font-size: 1.2em;
+    line-height: 160%;
+    font-weight: bold;
+    margin-bottom: 61px;
+    border: 1px solid black;
+
+}
+/******************* Start Days From *********************/
+
+.days p,
+.endDate p{
+    font-size: 3em;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.daysForm label{
+    font-family: 'Roboto', sans-serif;
+    font-size: 3em;
+    margin-left: 25%;
+    color: black;
+    padding-left: 25%;
+}
+
+.daysForm .row{
+    margin: 0;
+    height: 8vh;
+}
+
+.daysForm input[type="checkbox"]+label:before {
+    transform: scale(3);
+}
+
+.daysForm input:checked + label:before{
+    top: -12px;
+    left: -5px;
+    width: 20px;
+    height: 45px;
+    border-top:   transparent;
+    border-left:   transparent;
+    border-right: 8px solid rgb(61, 145, 170);
+    border-bottom: 8px solid rgb(61, 145, 170);
+    -webkit-transform: rotate(40deg);
+    -moz-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    -o-transform: rotate(40deg);
+    transform: rotate(40deg);
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+}
+
+.timeOfDay select{
+    display: block;
+    font-size: 1.5em;
+    width: 90%;
+    float: left;
+    height: 100%;
+    padding: 4% 0;
+}
+
+
+/******************* End Days From *********************/
+
+
+
+.endDate input[type="date"]{
+    font-size: 3em;
+    width: 60%;
+    border-bottom: 3px solid rgb(224, 185, 69);
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+footer.page-footer{
+    height: 10vh;
+    width: 100vw;
+    background-color: #ffc24e;
+    padding-top: 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.page-footer nav{
+    width: 100%;
+    height: 100%;
+    background-color: #A2D3DA;
+
+}
+
+.page-footer .footer-items{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.page-footer nav ul a i,
+.page-footer nav ul i{
+    font-size: 6rem;
+    vertical-align: 100%;
+}
+
+.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+.inactiveLink{
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+
+.unclickable{
+    pointer-events: none;
+    -webkit-filter: grayscale(100%);
+
+}

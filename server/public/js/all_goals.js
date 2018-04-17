@@ -1,19 +1,13 @@
-
 $(document).ready(initializeApp);
-
-
-
 
 function initializeApp(){
     getData();
-    
-
 }
 
 function getData(){
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8000/goalssql',
+        url: '/goalssql',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
@@ -31,7 +25,8 @@ function getData(){
 
 
 
-function editGoal(goalSelected){
+
+function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
 
@@ -42,42 +37,84 @@ function editGoal(goalSelected){
         'border-bottom': '3px yellow solid',
         'height': '100%',
         'width': '100%',
-        
+
     }).appendTo(textToEdit).focus();
-    
+
     $('input').on('focusout', ()=>{
-        
+
         let edit = $('input').val();
 
         $(goalSelected+'> .goal-description').text(edit);
 
-        console.log(edit)
+        console.log(edit);
         $('input').remove();
-    });
 
-    
+
+        console.log('goalID', goalId);
+        $.ajax({
+            type: 'POST',
+            data: {
+                goal: edit,
+                goal_id: goalId,
+            },
+            url: '/goals/update',
+            // dataType: 'json',
+
+            success: function(resp){
+                console.log('edit',resp);
+                getData();
+            },
+            error: function(xhr, status, err){
+                console.log(err)
+            }
+        })
+    })
 }
 
 function deleteGoal(goalId){
-    console.log('goalID', goalId)
+    console.log('goalID', goalId);
     $.ajax({
         type: 'POST',
         data: {
             goal_id: goalId,
         },
-        url: 'http://localhost:8000/goals/delete',
+        url: '/goals/delete',
         // dataType: 'json',
         
         success: function(resp){
             console.log('delete',resp);
-            $('.goal-list').empty();
-            getData();
+            setTimeout(()=>{
+                $('.goal-list').empty();
+                getData()
+            }, 1000);
         },
         error: function(xhr, status, err){
             console.log(err)
         }
     })
 }
+
+// function deleteGoal(goalId){
+//
+//     $.ajax({
+//         type: 'POST',
+//         data: {
+//             goal_id: goalId,
+//         },
+//         url: 'http://localhost:8000/goals/delete',
+//         // dataType: 'json',
+//
+//         success: function(resp){
+//             console.log('delete',resp);
+//             $('.goal-list').empty();
+//             getData();
+//         },
+//         error: function(xhr, status, err){
+//             console.log(err)
+//         }
+//     })
+// }
+
 
 
 
@@ -92,70 +129,72 @@ function rendergoalOnDashboard(goals){
         let goalId = goals[i].goal_id;
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal truncate').attr('id','goalId'+goalId);
         
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription)
+        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3')
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3 ');
         
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu')
+        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         
-        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId)
+        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
         
         let goalSelector = '#goalId'+goalId;
 
         
         var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
             
-            editGoal(goalSelector)
+            editGoal(goalSelector, goalId)
             }
-        ).wrapInner('<a href="#">Edit</a>')
+        ).wrapInner('<a href="#">Edit</a>');
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
+            
+            $(goalSelector).addClass('animated bounceOutDown');
             deleteGoal(goalId);
-            $(goalSelector).remove();
+       
         }).wrapInner('<a>Delete</a>')
 
         
-        dropDownList.append(editItem, deleteItem)
+        dropDownList.append(editItem, deleteItem);
 
 
-        dropDownMenuButtonContainer.append(editButton,dropDownList)
+        dropDownMenuButtonContainer.append(editButton,dropDownList);
         
-        goalContainer.append(goalBar, dropDownMenuButtonContainer)
+        goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.all-goals-list').append(goalContainer)
+        $('.all-goals-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
              
     }
     
 
-    reminders(users);
+    // reminders(users);
 }
 
 
-function reminders(users){
-    let startDate = new Date(users[0].startdate);
-    let endDate = new Date(users[0].finishdate);
+// function reminders(users){
+//     let startDate = new Date(users[0].startdate);
+//     let endDate = new Date(users[0].finishdate);
     
-    console.log(startDate.getUTCDate()); // Hours
-    console.log(endDate.getUTCDate());
+//     console.log(startDate.getUTCDate()); // Hours
+//     console.log(endDate.getUTCDate());
     
-    let duration = 4;;
-    console.log('startDate', startDate, endDate);
+//     let duration = 4;;
+//     console.log('startDate', startDate, endDate);
 
-    if(duration < 7){
-        displayReminder(users[0].goal);
-    }
-}
+//     if(duration < 7){
+//         displayReminder(users[0].goal);
+//     }
+// }
 
-function displayReminder(goal){
-    let reminder = $('<div>').addClass('reminder').text(goal);
-    $('.dashboard-container').append(reminder);
-}
+// function displayReminder(goal){
+//     let reminder = $('<div>').addClass('reminder').text(goal);
+//     $('.dashboard-container').append(reminder);
+// }
 
 // function retrieveServerData(){
 //     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'

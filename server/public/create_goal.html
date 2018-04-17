@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Create New Goal</title>
+    <title>New Goal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" href="create_goal.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link rel="stylesheet" href="./css/create_goal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="create_goal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="./js/create_goal.js"></script>
+
 
 </head>
 <body>
-<div class="background">
+    <div class="title center">
+        <span>Create Goal</span>
+    </div>
     <div class="container">
 
-        <div class="title center">
-            <span>Create Goal</span>
+        <div class="creatingGoal ">
+            <p class="message">Name Your Goal</p>
+            <input class="goalInput z-depth-3 truncate" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
         </div>
 
-        <!-- <div class="creatingGoal">
-            <p class="message">Name Your Goal</p>
-            <input class="goalInput" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
-            <button class="ideas z-depth-2">Ideas</button>
-        </div>-->
+        <div class="categoryContainer ">
+            <p class="message">Pick a Category for Your Goal</p>
+            <div class="categoryDropdown">
+                <div class="categorySelect">
+                    <span>Goal Categories</span>
+                    <i class="material-icons medium">expand_less</i>
+                </div>
+                <ul class="dropdown-menu animated flipInX">
+                    <li id="health/diet">Health/Diet</li>
+                    <li id="fitness">Fitness</li>
+                    <li id="habit">Habit</li>
+                    <li id="personal">Personal</li>
+                    <li id="educational">Educational</li>
+                    <li id="financial">Financial</li>
+                    <li id="Other">Other</li>
+                </ul>
+            </div>
+        </div>
 
-        <div class="predefined-goals">
-            <p>Select Your Goal Category</p>
+        <div class="horizontalLine ">
+            <h3><span>OR</span></h3>
+            <p class="message">Click this button for more goal ideas</p>
+            <h6 class=""><i class="material-icons large">expand_more</i></h6>
+            <button class="ideas btn z-depth-3">Ideas</button>      
+        </div>
+
+        <div class="predefined-goals hidden">
+            <p class="message">Select Your Goal from the Categories Below</p>
             <div class="predefined-goals-container"></div>
 
-            <p class="goals_message hidden">Your New Goal:</p>
-            <input class="goalInput truncate hidden" type="text" name="newGoal">
         </div>
 
         <div class="fitness-goals hidden">
@@ -66,25 +90,23 @@
                 <li>Eat Breakfast Every Day</li>
                 <li>Make one new healthy recipe for dinner this week</li>
                 <li>Eat plenty of vegetables and fruits</li>
-                <li>Portion control, while reducing sugar/sodium/saturated fat intake</li>
                 <li>Cook food with limited amounts of spices: salt/pepper</li>
                 <li>No processed food 5 days a week for 2 weeks</li>
                 <li>No processed sugar for 3 weeks</li>
                 <li>No alcohol for 30 days</li>
+                <li>Drink a gallon of water a day</li>
+
             </ul>
         </div>
 
         <div class="habit-goals hidden">
                 <ul id="habit_idea_list" class="habitList">
                     <lh>Daily Habits</lh>
-                    <li>Wake up early and exercise</li>
+                    <li>Wake up early</li>
                     <li>Make your to-do list the night before</li>
                     <li>Read and/ or Listen to Motivational Material</li>
-                    <li>Wake up without hitting the snooze button</li>
-                    <li>Drink a gallon of water a day</li>
                     <li>Ideal sleep schedule: 10pm-5am</li>
                     <li>Meditate for at least 10-20 mins everyday to clear the mind</li>
-                    <li>Stretch every morning to increase flexibility</li>
                     <li>Eat breakfast 7 days a week for 3 weeks</li>
                     <li>Take 5 min break every 90 mins of work at a desk for 1 month</li>
                     <li>Take the stairs instead of elevator everyday for 2 weeks</li>
@@ -93,60 +115,130 @@
             </div>
 
         <div class="days hidden">
-            <p>Days to Track Your Goal</p>
+            <p>Days and Time to Track Your Goal</p>
             <div class="daysForm">
-                <input class="days" type="checkbox" id="sun" value="sunday">
-                <label for="sun">Sun</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="sun" value="sunday">
+                        <label for="sun">Sun</label>
+                    </div>
+                    <div class="timeOfDay sunday col s8">
+                        <select name="timeOfDay" id="sundayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="mon" value="monday">
-                <label for="mon">Mon</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="mon" value="monday">
+                        <label for="mon">Mon</label>
+                    </div>
+                    <div class="timeOfDay monday col s8 ">
+                        <select name="timeOfDay" id="mondayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="tue" value="tuesday">
-                <label for="tue">Tue</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="tue" value="tuesday">
+                        <label for="tue">Tue</label>
+                    </div>
+                    <div class="timeOfDay tuesday col s8 ">
+                        <select name="timeOfDay" id="tuesdayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="wed" value="wednesday">
-                <label for="wed">Wed</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="wed" value="wednesday">
+                        <label for="wed">Wed</label>
+                    </div>
+                    <div class="timeOfDay wednesday col s8 ">
+                        <select name="timeOfDay" id="wednesdayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="thu" value="thursday">
-                <label for="thu">Thu</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="thu" value="thursday">
+                        <label for="thu">Thu</label>
+                    </div>
+                    <div class="timeOfDay thursday col s8 ">
+                        <select name="timeOfDay" id="thursdayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="fri" value="friday">
-                <label for="fri">Fri</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="fri" value="friday">
+                        <label for="fri">Fri</label>
+                    </div>
+                    <div class="timeOfDay friday col s8 ">
+                        <select name="timeOfDay" id="fridayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
 
-                <input class="days" type="checkbox" id="sat" value="saturday">
-                <label for="sat">Sat</label>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <input class="" type="checkbox" id="sat" value="saturday">
+                        <label for="sat">Sat</label>
+                    </div>
+                    <div class="timeOfDay saturday col s8 ">
+                        <select name="timeOfDay" id="saturdayTime">
+                            <option selected disabled="disabled" value="">at any time of day</option>
+                            <option value="morning">morning</option>
+                            <option value="afternoon">afternoon</option>
+                            <option value="evening">evening</option>
+                        </select>
+                    </div>
+                </div>
+
             </div>
-        </div>
-
-        <div class="timeOfDay hidden">
-            <p>I want to do it</p>
-            <select name="timeOfDay" id="timeframe">
-                <option selected disabled="disabled" value="">at any time of day</option>
-                <option value="morning">morning</option>
-                <option value="afternoon">afternoon</option>
-                <option value="evening">evening</option>
-            </select>
         </div>
 
         <div class="endDate hidden">
             <p>Select End Date</p>
-            <!-- <label for="end_date"><i class="material-icons">today</i></label> -->
-            <input id="end_date" type="date" name="endDate" min="">
+            <input class="center-align" id="end_date" type="date" name="endDate" min="">
         </div>
     </div>
 
-    <!-- <button class="add z-depth-2"><i class="medium material-icons">add</i></button> -->
-    <!-- <button class="cancel z-depth-2"><i class="medium material-icons">clear</i></button> -->
     <footer class="page-footer">
         <nav>
             <ul class="footer-items valign-wrapper">
-                <!-- <li><a href="#"><i class="large material-icons">search</i></a></li> -->
-                <li><a href="#"><i class="undo large material-icons inactiveLink">undo</i></a></li>
+                <li><a href="create_goal.html"><i class="undo large material-icons inactiveLink">chevron_left</i></a></li>
                 <li><a href="dashboard.html"><i class="large material-icons">home</i></a></li>
-                <li><a ><i class="add large material-icons inactiveLink">done</i></a></li>
+                <li><i class="add next large material-icons">chevron_right</i></li>
             </ul>
         </nav>
     </footer>
-</div>
 </body>
 </html>
