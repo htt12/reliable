@@ -38,16 +38,16 @@ body{
 .profilePicture img{
     height: 20vh;
     width: 30vw;
+    display: inline-block;
 }
 
 .signUpForm{
     width: 70%;
-    height: 65%;
-    position: relative;
-    top: 5%;
-    background-color: white;
+    height: 60%;
     padding: 5%;
-    margin: auto;    
+    background-color: white;
+    padding: 6%;
+    display: inline-block;
 }
 
 .row{
