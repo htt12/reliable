@@ -86,6 +86,17 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
+        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        switch (parseInt(goals[i].timeframe)){
+            case 1:
+                timeOfDay = 'rgb(255, 251, 45, 0.9)';
+                break;
+            case 2:
+                timeOfDay = 'rgb(255, 189, 91, 0.9)';
+                break;
+            default:
+                break;
+        }
 
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
@@ -126,13 +137,22 @@ function rendergoalOnDashboard(goals){
         $('.dropdown-trigger').dropdown();
 
     }
-    
-
-    // reminders(users);
+    for(var j=1; j<goals.length; j++){
+        let initialChildElement = $('.goal-container:nth-child(' +j+')');
+        let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
+        if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
+            let currentBackgroundColor = initialChildElement.css('background-color');
+            let nextBackgroundColor = nextChildElement.css('background-color');
+            
+            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+            //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
+        }
+        j++; 
+    }
 }
 
 function updateGoal(goalId) {
-    debugger;
+    
     console.log(goalId);
     $.ajax({
         type: "POST",
