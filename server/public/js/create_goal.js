@@ -38,11 +38,12 @@ function initializeApp() {
 
 
 function handleCategoryDropdownClicked(){
-     
+
+
     $(this).attr('tabindex', 1).focus();
     $(this).toggleClass('active');
     $(this).find('.dropdown-menu').slideToggle(300);
-    
+
     $('.categoryDropdown').focusout(function () {
         $(this).removeClass('active');
         $(this).find('.dropdown-menu').slideUp(300);
@@ -85,7 +86,7 @@ function renderPredefinedCategories(){
 
 function handlePredefinedGoalClicked(){
     category = event.target.alt;
-    
+
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.fitness-goals');
@@ -176,7 +177,7 @@ function handleNextPageButtonClicked(){
         handleSubmitButtonClicked();
     }
 
-    
+
 }
 
 // function handleUndoButtonClicked( category ) {
@@ -193,12 +194,12 @@ function handleNextPageButtonClicked(){
 //         $('.fitness, .habit').removeClass('hidden').addClass('show');
 //         $('.diet-goals').removeClass('show').addClass('hidden');
 //         clearUserInput();
-        
+
 //     }
 //     else if ( category === 'habit'){
 //         $('.diet, .fitness').removeClass('hidden').addClass('show');
 //         $('.habit-goals').removeClass('show').addClass('hidden');
-        
+
 //         clearUserInput();
 //     }
 // }
@@ -255,9 +256,10 @@ function validateDateCheckBox() {
     //remove the error message if there was an error before
     else{
         $(".days > p").removeClass('error').text("Days to Track Your Goal");
-            //get the values of the selected dates and store in an array
+        //get the values of the selected dates and store in an array
         Array.from($("input[type='checkbox']")).filter((checkbox) => checkbox.checked).map((checkbox) =>{
-            
+
+
             // removeInactiveLink(checkbox.value);
             daysAndTime.push([convertDayIntoNumberFormat(checkbox.value), getSelectedTimeFrameValue(checkbox.value)]);
         });
@@ -294,6 +296,7 @@ function getSelectedTimeFrameValue( day ) {
     }
     else if( day === "saturday") {
         return convertTimeFrameIntoNum($('#saturdayTime').val());
+
     }
 }
 
@@ -307,9 +310,9 @@ function convertTimeFrameIntoNum( time ) {
     }
     else if( time === "evening") {
         return 3;
+
     }
 }
-
 
 // function validateTimeFrameSelection() {
 //     //if user didnt select a value then display error message
@@ -387,7 +390,7 @@ function leadingZero( num ) {
 }
 
 function getFinishDate() {
-    
+
     var ending = $('#end_date').val();
     console.log('end date:', ending);
     var date = new Date(ending);
@@ -443,6 +446,6 @@ function postGoalToServer( object ){
                 setTimeout(()=>{(window.location.replace('/dashboard'))}, 1000);
             }
         }
-        
     });
 }
+

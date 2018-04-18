@@ -68,7 +68,12 @@ module.exports = function (app) {
             let status = "active";
             let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ?";
             console.log(query);
-            let inserts = ["goals", userID, day, status];
+            let inserts = [
+                "goals",
+                userID,
+                day,
+                status
+            ];
 
             let sql = mysql.format(query, inserts);
 
@@ -96,10 +101,13 @@ module.exports = function (app) {
       if(req.session.userId){
       // console.log('tried to enter query');
       let userID = req.session.userId;
-          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??, ??";
-          
-          let inserts = ["goals", userID, 'timeframe', 'goal'];
-          
+          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??";
+          let inserts = [
+              "goals",
+              userID,
+              'timeframe',
+          ];
+
           let sql = mysql.format(query, inserts);
           console.log('order', sql)
           connection.query(sql, (err, results, fields) => {
@@ -147,12 +155,13 @@ module.exports = function (app) {
     // });
 
     //==========END OF GET ALL GOALS===========//
-
-    //==========POST GOALS===========//
     app.post("/goals", (req, res, next) => {
-        const {goal, category, day, startdate, finishdate, timeframe, status} = req.body;
+        let {goal, category, day, startdate, finishdate, timeframe} = req.body;
         let userID = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        if(timeframe === null || undefined){
+            timeframe = 'None';
+        }
+        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         console.log(query);
         let inserts = [
             "goals",
@@ -164,6 +173,7 @@ module.exports = function (app) {
             "finishdate",
             "timeframe",
             "status",
+            "stats",
             userID,
             goal,
             category,
@@ -172,6 +182,7 @@ module.exports = function (app) {
             finishdate,
             timeframe,
             "active",
+            0
         ];
 
         let sql = mysql.format(query, inserts);
@@ -187,22 +198,24 @@ module.exports = function (app) {
         });
     });
 
-
     //==========END OF POST GOALS===========//
+
 
     //==========POST USERS===========//
     app.post("/users", (req, res, next) => {
         let {email, username, password} = req.body;
         password = sha1(password);
-        let query = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
+        let query = "INSERT INTO ?? (??, ??, ??, ??) VALUES (?, ?, ?, ?)";
         let inserts = [
             "users",
             "email",
             "username",
             "password",
+            "status",
             email,
             username,
-            password
+            password,
+            0,
         ];
         let sql = mysql.format(query, inserts);
 
@@ -227,11 +240,13 @@ module.exports = function (app) {
         } = req.body;
 
         let query =
-            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
         let inserts = [
             "goals",
             "goal",
             goal,
+            "status",
+            "active",
             "goal_id",
             goal_id
         ];
@@ -247,6 +262,36 @@ module.exports = function (app) {
         });
     });
     //==========END OF EDIT GOALS===========//
+
+    //==========EDIT GOALS STATUS===========//
+    app.post("/goals/update/status", (req, res, next) => {
+        var goal_id = req.body.goal_id;
+        var stats = req.body.stats;
+        console.log("This is the stats" + stats);
+
+        let query =
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
+        let inserts = [
+            "goals",
+            "status",
+            "Complete",
+            "stats",
+            stats,
+            "goal_id",
+            goal_id,
+        ];
+        console.log(query, inserts);
+        let sql = mysql.format(query, inserts);
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+            const output = {
+                success: true,
+                data: results
+            };
+            res.json(output);
+        });
+    });
+    //==========END OF EDIT GOALS STATUS===========//
 
     //==========EDIT GOALS===========//
     app.post("/users/update", (req, res, next) => {
@@ -286,7 +331,11 @@ module.exports = function (app) {
         const goal_id = req.body.goal_id;
 
         let query = "DELETE FROM ?? WHERE ?? = ?";
-        let inserts = ["goals", "goal_id", goal_id];
+        let inserts = [
+            "goals",
+            "goal_id",
+            goal_id
+        ];
         console.log(query, inserts);
         let sql = mysql.format(query, inserts);
         connection.query(sql, (err, results, fields) => {
@@ -309,11 +358,13 @@ module.exports = function (app) {
     //----------------------------------------MATCHING SYSTEM--------------------------------------//
     //==========GET ALL UNMATCHED USERS===========//
     app.post('/matching', (req, res, next) => {
-        let query = 'SELECT * FROM ?? WHERE status = ?';
+        let userId = req.session.userId;
+        let query = 'SELECT * FROM ?? WHERE status <> ? AND id <> ?';
         console.log(query);
         let inserts = [
             'users',
-            0,
+            1,
+            userId
             // category, //Category they select on sign_up?
         ];
 
@@ -442,6 +493,11 @@ module.exports = function (app) {
     app.post('/matchingpairs', (req, res, next) => {
         let {matchedUserId} = req.body;
         let userId =req.session.userId;
+        if(matchedUserId == req.session.userId){
+            userId = req.body.matchedUserId;
+            matchedUserId = req.body.userId;
+            console.log("we hit the if Check")
+        }
         console.log(userId);
         console.log(matchedUserId);
         let query = 'SELECT A.user_id, A.`interested_user_id`,\n' +
@@ -449,14 +505,14 @@ module.exports = function (app) {
             'b.`interested_user_id`\n' +
             'FROM interested_matches AS A, \n' +
             '\t interested_matches AS b\n' +
-            'WHERE A.user_id = b.`interested_user_id`\n' +
-            'AND A.user_id <> b.user_id';
+            'WHERE A.user_id = ? AND b.user_id = ? AND A.interested_user_id = ? AND b.interested_user_id = ?';
+
+
         let inserts = [
-            'interested_matches',
-            userId, //User id of first user trying to find match
-            matchedUserId, //User id of person they want to match
-            matchedUserId, //User id of second person trying to find match
-            userId // User id of person they want to match
+            userId,
+            matchedUserId,
+            matchedUserId,
+            userId,
         ];
 
         let sql = mysql.format(query, inserts);
@@ -499,22 +555,22 @@ module.exports = function (app) {
         });
     });
 
-    function sendData(userId, matchedUserId) {
-        $.ajax({
-            type: "POST",
-            url: "/matchedusers",
-            // dataType: "json",
-            data: {
-                userId: userId,
-                matchedUserId: matchedUserId,
-            },
-            success: function (json_data) {
-                var data = json_data;
-                console.log(data);
-            }
-
-        })
-    }
+    // function sendData(userId, matchedUserId) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/matchedusers",
+    //         // dataType: "json",
+    //         data: {
+    //             userId: userId,
+    //             matchedUserId: matchedUserId,
+    //         },
+    //         success: function (json_data) {
+    //             var data = json_data;
+    //             console.log(data);
+    //         }
+    //
+    //     })
+    // }
 
 
 //====================END OF POST MATCHES TO MATCHED_USERS===========//

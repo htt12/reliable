@@ -160,6 +160,7 @@ function sendData(email, username, password) {
             var data = json_data;
             console.log(data);
             if (json_data.success) {
+                $('#buttonText').text('SUCCESS');
                 setTimeout(()=>{(window.location.replace('/login'))}, 1000);
             }
         }
@@ -178,8 +179,10 @@ function handleSignUpBtnClick() {
         var newObject = createObject( userEmail , userName, userPwd);
         console.log('new object:', newObject);
         $('.message span').text('');
-        $('.signUpForm').addClass('animated bounceOut')
+        $('.signUpForm').addClass('animated bounceOut');
         clearUserInput();
+
+
     }
 
 }

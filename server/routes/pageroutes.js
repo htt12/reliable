@@ -8,7 +8,9 @@ module.exports = function (app) {
     app.get('/dummyUsers', (req, res) => {
         res.sendFile(path.join(__dirname, '..', 'public/DummyJSON', 'dummyUsers.json'));
     });
-
+    app.get('/chat', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'chat.html'));
+    });
     app.get('/', (req, res) => {
         res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
     });

@@ -3,8 +3,10 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const path = require('path');
-// Instantiate Express application and MySQL database connection
 const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+// Instantiate Express application and MySQL database connection
 const PORT = 8000;
 
 // === Consumption of middleware === //
@@ -27,6 +29,18 @@ require('./routes/api')(app);
 require('./routes/auth')(app);
 require('./routes/pageroutes')(app);
 
+io.on('connection', function(socket){
+    console.log("user has connected");
+    socket.on('chat message', function(msg){
+        console.log(msg);
+        io.emit('chat message', msg);
+    });
+});
+
+app.get('/chat', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'chat.html'));
+});
+
 app.get("/sessiontest", (req, res) => {
     console.log("This is the req.session", req.session.userId);
     res.end();
@@ -37,6 +51,7 @@ app.get("/sessionupdate", (req, res) => {
     req.session.userId = 'keatonkrieger';
     res.end();
 });
+
 
 
 
@@ -51,6 +66,6 @@ app.use(function (err, req, res, next) {
 // ========================== END OF ^^^ Error Handling Middleware ========================================= //
 
 // ========================= Listening on PORT ======================================== //
-app.listen(PORT, () => {
-    console.log("Server started on PORT: ", PORT);
+http.listen(PORT, function(){
+    console.log('listening on *:' + PORT);
 });

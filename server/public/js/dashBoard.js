@@ -86,6 +86,17 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
+        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        switch (parseInt(goals[i].timeframe)){
+            case 1:
+                timeOfDay = 'rgb(255, 251, 45, 0.9)';
+                break;
+            case 2:
+                timeOfDay = 'rgb(255, 189, 91, 0.9)';
+                break;
+            default:
+                break;
+        }
 
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
@@ -105,7 +116,7 @@ function rendergoalOnDashboard(goals){
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
 
-            
+            updateGoal(goalId,goals);
             $(goalSelector).addClass('animated bounceOutLeft');
             setTimeout((()=>{$(goalSelector).remove()}), 500);
         }).wrapInner('<a href="#!"><i class="material-icons">check</i></a>')
@@ -126,9 +137,44 @@ function rendergoalOnDashboard(goals){
         $('.dropdown-trigger').dropdown();
 
     }
-    
+    for(var j=1; j<goals.length; j++){
+        let initialChildElement = $('.goal-container:nth-child(' +j+')');
+        let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
+        if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
+            let currentBackgroundColor = initialChildElement.css('background-color');
+            let nextBackgroundColor = nextChildElement.css('background-color');
+            
+            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+            //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
+        }
+        j++; 
+    }
+}
 
-    // reminders(users);
+function updateGoal(goalId, goals) {
+    debugger;
+    for(var i=0; i<goals.length; i++){
+        if(goals[i].goal_id === goalId){
+           var goalstat = goals[i].stats;
+           goalstat++;
+           console.log(goalstat, goalId)
+        }
+    }
+    console.log(goalId);
+    console.log("This is the goals" + goals);
+    $.ajax({
+        type: "POST",
+        url: "/goals/update/status",
+        data: {
+            goal_id: goalId,
+            stats: goalstat,
+        },
+        success: function (json_data) {
+            var data = json_data;
+            console.log(data);
+        }
+
+    })
 }
 
 

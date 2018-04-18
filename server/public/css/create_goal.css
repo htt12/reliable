@@ -198,8 +198,8 @@ body{
     /* margin-top: 7%; */
     font-size: 3em;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%, 
-                                        rgba(162,211,222, 1) 100%);
+    background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%,
+    rgba(162,211,222, 1) 100%);
     font-weight: bold;
     padding: 3.5% 5%;
 }
