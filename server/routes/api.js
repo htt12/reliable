@@ -160,26 +160,33 @@ module.exports = function (app) {
 
     //==========POST GOALS===========//
     app.post("/goals", (req, res, next) => {
-        const {goal, day, startdate, finishdate, timeframe, status} = req.body;
+        let {goal, category, day, startdate, finishdate, timeframe} = req.body;
         let userID = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        if(timeframe === null || undefined){
+            timeframe = 'None';
+        }
+        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         console.log(query);
         let inserts = [
             "goals",
             "user_id",
             "goal",
+            "category",
             "day",
             "startdate",
             "finishdate",
             "timeframe",
             "status",
+            "stats",
             userID,
             goal,
+            category,
             day,
             startdate,
             finishdate,
             timeframe,
-            status,
+            "active",
+            0
         ];
 
         let sql = mysql.format(query, inserts);
@@ -262,16 +269,18 @@ module.exports = function (app) {
 
     //==========EDIT GOALS STATUS===========//
     app.post("/goals/update/status", (req, res, next) => {
-        const {
-            goal_id,
-        } = req.body;
+        var goal_id = req.body.goal_id;
+        var stats = req.body.stats;
+        console.log("This is the stats" + stats);
 
         let query =
-            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
         let inserts = [
             "goals",
             "status",
             "Complete",
+            "stats",
+            stats,
             "goal_id",
             goal_id,
         ];
@@ -550,22 +559,22 @@ module.exports = function (app) {
         });
     });
 
-    function sendData(userId, matchedUserId) {
-        $.ajax({
-            type: "POST",
-            url: "/matchedusers",
-            // dataType: "json",
-            data: {
-                userId: userId,
-                matchedUserId: matchedUserId,
-            },
-            success: function (json_data) {
-                var data = json_data;
-                console.log(data);
-            }
-
-        })
-    }
+    // function sendData(userId, matchedUserId) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/matchedusers",
+    //         // dataType: "json",
+    //         data: {
+    //             userId: userId,
+    //             matchedUserId: matchedUserId,
+    //         },
+    //         success: function (json_data) {
+    //             var data = json_data;
+    //             console.log(data);
+    //         }
+    //
+    //     })
+    // }
 
 
 //====================END OF POST MATCHES TO MATCHED_USERS===========//

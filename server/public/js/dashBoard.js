@@ -105,7 +105,7 @@ function rendergoalOnDashboard(goals){
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
 
-            updateGoal(goalId);
+            updateGoal(goalId,goals);
             $(goalSelector).addClass('animated bounceOutLeft');
             setTimeout((()=>{$(goalSelector).remove()}), 500);
         }).wrapInner('<a href="#!"><i class="material-icons">check</i></a>')
@@ -131,14 +131,23 @@ function rendergoalOnDashboard(goals){
     // reminders(users);
 }
 
-function updateGoal(goalId) {
+function updateGoal(goalId, goals) {
     debugger;
+    for(var i=0; i<goals.length; i++){
+        if(goals[i].goal_id === goalId){
+           var goalstat = goals[i].stats;
+           goalstat++;
+           console.log(goalstat, goalId)
+        }
+    }
     console.log(goalId);
+    console.log("This is the goals" + goals);
     $.ajax({
         type: "POST",
         url: "/goals/update/status",
         data: {
             goal_id: goalId,
+            stats: goalstat,
         },
         success: function (json_data) {
             var data = json_data;
