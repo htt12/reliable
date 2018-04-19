@@ -149,12 +149,14 @@ function handleNextPageButtonClicked(){
         // debugger;
         $('.creatingGoal, .categoryContainer, .horizontalLine').removeClass('show').addClass('hidden');
         $('.days, .timeOfDay').removeClass('hidden').addClass('show');
+        $('.steps .one').css('background-color', 'rgba(162, 211, 218, 0.5)');
+        $('.steps .two').css('background-color', 'rgb(242, 197, 118)');
     }
     else if(pageCount === 1){
-        // debugger;
-        var dateCheckBox = validateDateCheckBox();
-        // var timeFrame = validateTimeFrameSelection();
+        $('.steps .two').css('background-color', 'rgba(162, 211, 218, 0.5)');
+        $('.steps .three').css('background-color', 'rgb(242, 197, 118)');
 
+        var dateCheckBox = validateDateCheckBox();
         if( !dateCheckBox ){
             return;
         }
@@ -162,44 +164,24 @@ function handleNextPageButtonClicked(){
 
         $('.days, .timeOfDay').addClass('hidden').removeClass('show');
         $('.endDate').removeClass('hidden').addClass('show');
-        $('.endDate').trigger('click')
+       
 
     }
     else if(pageCount === 2){
-        var finishOn = validateFinishDateSelection();
+        $('.steps .three').css('background-color', 'rgba(162, 211, 218, 0.5)');
+
+      var finishOn = validateFinishDateSelection();
+
         //validate user input
         if(!finishOn){
             return;
         }
+        $('.successMsg').removeClass('hidden').addClass('show');
 
         //send data to the server
         handleSubmitButtonClicked();
     }
 }
-
-// function handleUndoButtonClicked( category ) {
-//     console.log("undo btn clicked");
-//     if ( category === 'fitness'){
-
-//         $('.diet, .habit').removeClass('hidden').addClass('show');
-//         $('.fitness-goals').removeClass('show').addClass('hidden');
-
-//         //clear user input and hide elements that was shown
-//         clearUserInput();
-//     }
-//     else if ( category === 'diet'){
-//         $('.fitness, .habit').removeClass('hidden').addClass('show');
-//         $('.diet-goals').removeClass('show').addClass('hidden');
-//         clearUserInput();
-        
-//     }
-//     else if ( category === 'habit'){
-//         $('.diet, .fitness').removeClass('hidden').addClass('show');
-//         $('.habit-goals').removeClass('show').addClass('hidden');
-        
-//         clearUserInput();
-//     }
-// }
 
 function handleSubmitButtonClicked() {
     console.log('add btn clicked');
@@ -256,8 +238,6 @@ function validateDateCheckBox() {
     else{
         $(".days > p").removeClass('error').text("Day and Time to Track Your Goal");
         //get the values of the selected dates and store in an array
-
-        // checkedArray.map((checkbox) =>{
         Array.from($("input[type='checkbox']")).filter((checkbox) => checkbox.checked).map((checkbox) =>{
 
             console.log('checkbox value:', checkbox.value)
@@ -341,24 +321,6 @@ function convertTimeFrameIntoNum( time ) {
         return 3;
     }
 }
-
-// function validateTimeFrameSelection(day, time) {
-//     console.log('validate time', time);    
-//     // var time = `.${time}`;
-//     var day = `.${day}`
-//     //if user didnt select a value then display error message
-//     if( time === null ){
-//         $(day).find('select').css('border','2px solid #ffc24e');
-//         // $(".timeOfDay > p").addClass("error").text("You must select a time frame");
-//         return;
-//     }
-//     else{
-//         $(day).find('select').css('border','transparent');
-
-//     //     var timeOfDay = $('#timeframe').val()
-//     //     return true;
-//     }
-// }
 
 function validateFinishDateSelection() {
     //if user didnt select a value then display error message
@@ -470,7 +432,8 @@ function postGoalToServer( object ){
             var data = json_data;
             console.log(data);
             if (json_data.success) {
-                setTimeout(()=>{(window.location.replace('/dashboard'))}, 1000);
+                $('.successMsg').addClass('hidden').removeClass('show');
+                setTimeout(()=>{(window.location.replace('/dashboard'))}, 2000);
             }
         }
         
