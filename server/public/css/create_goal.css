@@ -20,6 +20,10 @@ body{
     /* line-height: 10vh; */
     margin: 0;
     background-color: #A2D3DA;
+}
+
+.title span{
+    margin: 0 auto;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
     letter-spacing: 3px;
@@ -27,12 +31,46 @@ body{
     font-size: 7rem;
 }
 
-.creatingGoal{
-    margin: 10% 0 5% 0;
+.steps {
+    height: 4%;
+    width: 100%;
+    background-color: rgba(162, 211, 218, 0.5);
+    color: white;
+    font-size: 2.5em;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-content: center;
+}   
+
+.steps div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    width: 33%;
+    height: 100%;
+    line-height: 100%;
+    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.steps .one{
+    background-color: rgb(242, 197, 118);    
+    /* background-color: rgba(255,226,168); */
+}
+
+.steps .two,
+.steps .three{
+    border-left: 2px solid white; 
 }
 
 .message{
-    margin: 9% 0 3% 0;
+    margin: 7% 0 3% 0;
     font-size: 3rem;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
@@ -62,7 +100,6 @@ body{
 .categoryDropdown{
     font-family: 'Roboto', sans-serif;
     width: 60%;
-    /* height: 100%; */
     display: inline-block;
     background-color: #fff;
     border-radius: 5px;
@@ -191,8 +228,7 @@ body{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    /* margin: 18% 0; */
-    /* margin-top: 7%; */
+    margin-top: 4%;
     font-size: 3rem;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
     background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%,
@@ -380,6 +416,7 @@ body{
 
 .endDate input[type="date"]{
     font-size: 3em;
+    margin-top: 10%;
     width: 77%;
     border-bottom: 3px solid rgb(224, 185, 69);
     position: relative;
@@ -430,6 +467,32 @@ footer.page-footer{
     box-shadow: none;
 }
 
+.successMsg{
+    height: 70vh;
+    width: 90vw;
+}
+
+.successMsg p{
+    margin-top: 20%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.successMsg div{
+    margin-top: 10%;
+    width: 30%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.successMsg div img{
+    width: 100%;
+}
+
 .hidden{
     display: none;
 }
@@ -441,4 +504,8 @@ footer.page-footer{
 .inactiveLink{
     pointer-events: none;
     opacity: 0.4;
+}
+
+.background{
+    background-color: rgba(255, 226, 168);
 }

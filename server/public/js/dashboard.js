@@ -1,3 +1,4 @@
+
 $(document).ready(initializeApp);
 // var userID = require('../app');
 // console.log(userID);
@@ -102,7 +103,7 @@ function rendergoalOnDashboard(goals){
 
         //Creates a container with the goal description
 
-        var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription)
+        var goalBar = $("<div>").addClass('goal-description valign-wrapper z-depth-1').text(goalDescription)
 
         //Creates drop down menu to mark goal as complete or incomplete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2')

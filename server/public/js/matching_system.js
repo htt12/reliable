@@ -219,8 +219,6 @@ function rendergoalOnDashboard(goals){
 
     }
 
-
-    reminders(users);
 }
 
 
@@ -277,24 +275,6 @@ function rendergoalOnDashboardOLD(goals){
 
     }
 
-
-    reminders(users);
-}
-
-
-function reminders(users){
-    let startDate = new Date(users[0].startdate);
-    let endDate = new Date(users[0].finishdate);
-
-    console.log(startDate.getUTCDate()); // Hours
-    console.log(endDate.getUTCDate());
-
-    let duration = 4;;
-    console.log('startDate', startDate, endDate);
-
-    if(duration < 7){
-        displayReminder(users[0].goal);
-    }
 }
 
 
@@ -316,7 +296,7 @@ function sendInterestedMatches(matchedUserId) {
 }
 
 function getMatches(matchedUserId) {
-    debugger;
+    
     console.log(matchedUserId);
     $.ajax({
         type: "POST",
@@ -358,7 +338,6 @@ function sendMatchToTable(data) {
     })
 }
 function updateUsers(userId, interested_user_id) {
-    debugger;
     $.ajax({
         type: "POST",
         url: "/users/update",
