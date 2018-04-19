@@ -57,7 +57,6 @@ function handleCategoryDropdownClicked(){
 }
 
 function handleIdeaBtnClick() {
-    console.log('idea btn clicked');
     $(".undo").removeClass('inactiveLink');
     $('.creatingGoal, .categoryContainer, .horizontalLine').addClass('hidden');
     $('.predefined-goals').removeClass('hidden').addClass('show');
@@ -115,7 +114,6 @@ function handlePredefinedGoalClicked(){
 }
 
 function getPredefinedGoalValue( targetElement, id ) {
-    // var goal = '';
 
     targetElement.removeClass('hidden').addClass('show');
     id.on('click', 'li', function () {
@@ -148,7 +146,8 @@ function handleNextPageButtonClicked(){
 
         pageCount++;
         $('.add.next').removeClass('inactiveLink');
-        $('.creatingGoal, .categoryContainer, .horizontalLine').addClass('hidden');
+        // debugger;
+        $('.creatingGoal, .categoryContainer, .horizontalLine').removeClass('show').addClass('hidden');
         $('.days, .timeOfDay').removeClass('hidden').addClass('show');
     }
     else if(pageCount === 1){
@@ -229,7 +228,6 @@ function validateGoalInputField() {
     else{
         $(".creatingGoal > .message").removeClass('error').text("Name Your Goal");
         goal = $('.goalInput').val();
-        console.log('goal', goal);
         return true;
     }
 }

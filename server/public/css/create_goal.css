@@ -292,8 +292,13 @@ body{
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     border-radius: 25px;
     text-align: center;
-    /* background-color: rgba(255, 255, 255, 0.8) */
+    width: 100%;
 }
+
+.fitness-goals .fitnessList li{
+    margin: 4% 0;
+}
+
 
 .fitness-goals .fitnessList li:nth-child(odd),
 .diet-goals .dietList li:nth-child(odd),
@@ -360,21 +365,22 @@ body{
 
 .timeOfDay select{
     display: block;
-    font-size: 1.5em;
+    font-size: 2.5em;
     width: 90%;
     float: left;
     height: 100%;
     padding: 4% 0;
 }
 
+.timeOfDay select:active{
+    font-size: 1.5em;
+}
 
 /******************* End Days From *********************/
 
-
-
 .endDate input[type="date"]{
     font-size: 3em;
-    width: 60%;
+    width: 77%;
     border-bottom: 3px solid rgb(224, 185, 69);
     position: relative;
     left: 50%;
@@ -384,31 +390,44 @@ body{
 footer.page-footer{
     height: 17vmin;
     width: 100vw;
-    background-color: #ffc24e;
     padding-top: 0;
     position: fixed;
     bottom: 0;
-}
-
-.page-footer nav{
-    width: 100%;
-    height: 100%;
     background-color: #A2D3DA;
 }
 
-.page-footer .footer-items{
+.footer-items{
     height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    padding: 0 5%;
+    font-size: 3rem;
 }
 
-.page-footer nav ul a i,
-.page-footer nav ul i{
-    font-size: 6rem;
-    vertical-align: 100%;
+.footer-items a{
+    background-color: transparent;
+    font-size: 3rem;
+    box-shadow: none;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.footer-items span {
+    border-left: 3px solid rgba(255, 255, 255, 0.6);
+    height: 100%;
+}
+
+.btn-large i{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .hidden{

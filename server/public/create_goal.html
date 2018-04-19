@@ -10,11 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <script src="./js/create_goal.js"></script>
-
-
 </head>
 <body>
     <div class="title center">
+        <i class="material-icons left">close</i>
         <span>Create Goal</span>
     </div>
     <div class="container">
@@ -231,13 +230,11 @@
     </div>
 
     <footer class="page-footer">
-        <nav>
-            <ul class="footer-items valign-wrapper">
-                <li><a href="create_goal.html"><i class="undo large material-icons inactiveLink">chevron_left</i></a></li>
-                <li><a href="dashboard.html"><i class="large material-icons">home</i></a></li>
-                <li><i class="add next large material-icons">chevron_right</i></li>
-            </ul>
-        </nav>
+        <div class="footer-items">
+            <a class="btn btn-large valign-wrapper" href="create_goal.html"><i class="material-icons left">close</i>Cancel</a>
+            <span></span>
+            <a class="add next btn btn-large"><i class="material-icons right">arrow_forward</i>Next</a>
+        </div>
     </footer>
 </body>
 </html>
