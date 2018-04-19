@@ -136,10 +136,10 @@ function rendergoalOnDashboard(goals){
         var dayNameContainer = $("<div>").addClass('dayName').text(dayName);
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
 
-        var goalBar = $("<div>").addClass('goal-description z-depth-1 valign-wrapper').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description z-depth-2 valign-wrapper').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-1 ');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
         
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         
