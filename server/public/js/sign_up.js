@@ -181,7 +181,8 @@ function handleSignUpBtnClick() {
         $('.message span').text('');
         $('.signUpForm').addClass('animated bounceOut');
         clearUserInput();
-        
+
+
     }
 
 }

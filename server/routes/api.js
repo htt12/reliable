@@ -146,13 +146,12 @@ module.exports = function (app) {
       // console.log('tried to enter query');
       let userID = req.session.userId;
           let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??";
-          
           let inserts = [
               "goals",
               userID,
-              'timeframe',              
+              'timeframe',
           ];
-          
+
           let sql = mysql.format(query, inserts);
           console.log('order', sql)
           connection.query(sql, (err, results, fields) => {
@@ -200,12 +199,13 @@ module.exports = function (app) {
     // });
 
     //==========END OF GET ALL GOALS===========//
-
-    //==========POST GOALS===========//
     app.post("/goals", (req, res, next) => {
-        const {goal, category, day, startdate, finishdate, timeframe, status} = req.body;
+        let {goal, category, day, startdate, finishdate, timeframe} = req.body;
         let userID = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        if(timeframe === null || undefined){
+            timeframe = 'None';
+        }
+        let query = "INSERT INTO ?? (??, ??, ??, ??, ??, ??, ??, ??, ??) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         console.log(query);
         let inserts = [
             "goals",
@@ -217,6 +217,7 @@ module.exports = function (app) {
             "finishdate",
             "timeframe",
             "status",
+            "stats",
             userID,
             goal,
             category,
@@ -225,6 +226,7 @@ module.exports = function (app) {
             finishdate,
             timeframe,
             "active",
+            0
         ];
 
         let sql = mysql.format(query, inserts);
@@ -240,8 +242,8 @@ module.exports = function (app) {
         });
     });
 
-
     //==========END OF POST GOALS===========//
+
 
     //==========POST USERS===========//
     app.post("/users", (req, res, next) => {
@@ -307,9 +309,9 @@ module.exports = function (app) {
 
     //==========EDIT GOALS STATUS===========//
     app.post("/goals/update/status", (req, res, next) => {
-        const {
-            goal_id,
-        } = req.body;
+        var goal_id = req.body.goal_id;
+        var stats = req.body.stats;
+        console.log("This is the stats" + stats);
 
         let query =
             "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
@@ -318,7 +320,7 @@ module.exports = function (app) {
             "status",
             "Complete",
             "stats",
-            '1',
+            stats,
             "goal_id",
             goal_id,
         ];
@@ -597,22 +599,22 @@ module.exports = function (app) {
         });
     });
 
-    function sendData(userId, matchedUserId) {
-        $.ajax({
-            type: "POST",
-            url: "/matchedusers",
-            // dataType: "json",
-            data: {
-                userId: userId,
-                matchedUserId: matchedUserId,
-            },
-            success: function (json_data) {
-                var data = json_data;
-                console.log(data);
-            }
-
-        })
-    }
+    // function sendData(userId, matchedUserId) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "/matchedusers",
+    //         // dataType: "json",
+    //         data: {
+    //             userId: userId,
+    //             matchedUserId: matchedUserId,
+    //         },
+    //         success: function (json_data) {
+    //             var data = json_data;
+    //             console.log(data);
+    //         }
+    //
+    //     })
+    // }
 
 
 //====================END OF POST MATCHES TO MATCHED_USERS===========//

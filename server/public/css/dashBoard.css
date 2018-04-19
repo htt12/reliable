@@ -11,8 +11,8 @@
     position: relative;
     background-color: #F2F2F2;
 
-    
-    
+
+
 }
 /************************************Title **********/
 
@@ -28,7 +28,7 @@
     font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
-    
+
 }
 
 .date {
@@ -39,7 +39,7 @@
     font-size: 1.25em;
     letter-spacing: 2px;
     text-align: center;
-    
+
 }
 
 /************************************GOAL SECTION **********/
@@ -50,8 +50,8 @@
     
     overflow: scroll;
     font-size: 1.2em;
- 
-    
+
+
 }
 
 /**********INDIVIDUAL GOALS**********/
@@ -82,9 +82,9 @@
     display: inline-flex;
     width: 20%;
     height: 100%;
-    
 
-    
+
+
 }
 .goal-button{
     width: 100%;
@@ -95,10 +95,10 @@
 }
 
 .button-container > .dropdown-content {
-    
-    
-    background-color: #FFE2A8; 
-    
+
+
+    background-color: #FFE2A8;
+
 }
 
 .button-container > .dropdown-content li {
@@ -108,7 +108,7 @@
 .button-container > .dropdown-content li > a > i{
     float: none;
     margin: 0;
-    
+
 }
 
 /************************************END - GOAL SECTION **********/
@@ -140,7 +140,7 @@ nav{
     justify-content: space-evenly;
     align-items: center;
 
-    
+
 }
 
 nav ul li{

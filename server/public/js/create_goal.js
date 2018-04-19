@@ -38,11 +38,11 @@ function initializeApp() {
 
 
 function handleCategoryDropdownClicked(){
-     
+
     $(this).attr('tabindex', 1).focus();
     $(this).toggleClass('active');
     $(this).find('.dropdown-menu').slideToggle(300);
-    
+
     $('.categoryDropdown').focusout(function () {
         $(this).removeClass('active');
         $(this).find('.dropdown-menu').slideUp(300);
@@ -84,7 +84,7 @@ function renderPredefinedCategories(){
 
 function handlePredefinedGoalClicked(){
     category = event.target.alt;
-    
+
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.fitness-goals');
@@ -381,7 +381,7 @@ function leadingZero( num ) {
 }
 
 function getFinishDate() {
-    
+
     var ending = $('#end_date').val();
     var date = new Date(ending);
 
@@ -437,6 +437,6 @@ function postGoalToServer( object ){
                     (window.location.replace('/dashboard')))}, 1000);
             }
         }
-        
+
     });
 }
