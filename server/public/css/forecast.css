@@ -1,23 +1,26 @@
-/************************************MATCH BODY **********/
-.match-body{
+/************************************forecast BODY **********/
+.forecast-body{
     width: 100vw;
     height: 100vh;
     background-color: #F2F2F2;
 }
 
-.match-container{
+.forecast-container{
     width: 100%;
     height: 90%;
     position: relative;
+    background-color: #F2F2F2;
+
     
-    background-color: #F2F2F2; 
     
 }
-/************************************TITLE**********/
+/************************************Title **********/
+
+
 
 .title-bar{
     width: 100%;
-    height: 14%;
+    height: 100%;
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
@@ -25,38 +28,52 @@
     font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
-    border-bottom: 2px black solid;
     
 }
 
-/************************************MATCH SECTION **********/
-
-.match-list{
-    width: 85%;
-    height: 81%;
-    display: inline-flex;
-    flex-direction: column;
-    margin: 3% 7.5%;
+.date {
+    height: 5%;
+    width: 100%;
+    background-color: #A2D3DA;
+    color: white;
+    font-size: 1.25em;
+    letter-spacing: 2px;
+    text-align: center;
     
 }
 
-/**********INDIVIDUAL MATCHES**********/
+/************************************GOAL SECTION **********/
+
+.forecast-list{
+    width: 100%;
+    height: 85%;
+    
+    overflow: scroll;
+    font-size: 1.2em;
+ 
+    
+}
+
+/**********INDIVIDUAL GOALS**********/
 .goal-container{
-    display: inline-flex;
-    height: 15%;
-    padding-bottom: 3%;   
+    display: flex;
+    padding: 3% 8%;
+    height: 18%;
+    width: 100%;
+    text-align: center;
+    
 }
 
 .goal-description{
-    display: inherit;
     background-color: #A2D3DA;
     width: 80%;
-    padding: 0% 4%;
-    justify-content: center;
-    align-items: center;
+    height: 99%;
+    padding: 2% 4%;
+   justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
+    overflow: scroll;
 }
 
 /**********INDIVIDUAL BUTTONS**********/
@@ -102,7 +119,7 @@
 
 
 .footer-container{
-    height: 12%;
+    height: 10%;
     border-top: 1px rgb(87, 87, 87) solid;
     position: relative;
     width: 100%;

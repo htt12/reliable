@@ -18,6 +18,10 @@ function postUserToServer(email, password, status) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
+        },
+        error: function (xhr, status, error) {
+            console.log(error)    
+            $(".error-message").text("Invalid email/password")
         }
     })
 }

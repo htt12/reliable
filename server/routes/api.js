@@ -50,7 +50,7 @@ module.exports = function (app) {
     });
     //==========END OF GET ALL USERS===========//
 
-    //==========GET ALL GOALS===========//
+    //==========GET TODAY GOALS===========//
     app.get("/goalssqlday", (req, res, next) => {
         console.log("req: ", req.session.userId);
         if (req.session.userId) {
@@ -92,7 +92,51 @@ module.exports = function (app) {
         }
 
 
-  });
+    });
+
+    //==========GET TOMORROW GOALS===========//
+    app.get("/goalssqltmr", (req, res, next) => {
+        console.log("req: ", req.session.userId);
+        if (req.session.userId) {
+            myFunction(req);
+
+            function myFunction(req) {
+                var d = new Date();
+                var n = d.getDay() + 1;
+                req.session.day = n;
+                console.log("Day ======" + req.session.day);
+            }
+
+            let userID = req.session.userId;
+            let day = req.session.day;
+            let status = "active";
+            let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ?";
+            console.log(query);
+            let inserts = [
+                "goals",
+                userID,
+                day,
+                status
+            ];
+
+            let sql = mysql.format(query, inserts);
+
+            connection.query(sql, (err, results, fields) => {
+                if (err) return next(err);
+
+                const output = {
+                    success: true,
+                    data: results
+                };
+                res.json(output);
+            });
+        }
+        else {
+            res.json("no users logged in")
+        }
+
+
+    });
   //==========END OF GET ALL USERS===========//
 
   //==========GET ALL GOALS===========//
@@ -268,11 +312,13 @@ module.exports = function (app) {
         } = req.body;
 
         let query =
-            "UPDATE ?? SET ?? = ? WHERE ?? = ?";
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
         let inserts = [
             "goals",
             "status",
             "Complete",
+            "stats",
+            '1',
             "goal_id",
             goal_id,
         ];

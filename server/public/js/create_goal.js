@@ -432,8 +432,9 @@ function postGoalToServer( object ){
             var data = json_data;
             console.log(data);
             if (json_data.success) {
-                $('.successMsg').addClass('hidden').removeClass('show');
-                setTimeout(()=>{(window.location.replace('/dashboard'))}, 2000);
+                setTimeout(()=>{(                
+                    $('.successMsg').addClass('hidden').removeClass('show')
+                    (window.location.replace('/dashboard')))}, 1000);
             }
         }
         

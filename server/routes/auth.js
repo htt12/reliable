@@ -66,7 +66,7 @@ module.exports = function (app) {
                             if (!err) {
                                 console.log(err);
                                 res.set('Set-Cookie', 'userauth=' + userToken);
-                                // res.send('http://localhost:8000/dashboard');
+                                
                                 res.redirect("/dashboard");
                             }
                         });
@@ -84,7 +84,9 @@ module.exports = function (app) {
                 } else {
                     //wrong user
                     console.log('no such user');
-                    res.send('who are you?')
+                    console.log('user is invalid');
+                    res.redirect("/")
+                    
                 }
             });
         })
