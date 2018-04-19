@@ -16,15 +16,15 @@ body{
 }
 
 .title{
-    height: 10vh;
-    line-height: 10vh;
+    height: 17vmin;
+    /* line-height: 10vh; */
     margin: 0;
     background-color: #A2D3DA;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
     letter-spacing: 3px;
     font-weight: bolder;
-    font-size: 7em;
+    font-size: 7rem;
 }
 
 .creatingGoal{
@@ -33,7 +33,7 @@ body{
 
 .message{
     margin: 9% 0 3% 0;
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -46,7 +46,7 @@ body{
 .creatingGoal input.goalInput{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    font-size: 3.5em;
+    font-size: 3.5rem;
     font-weight: bold;
     height: 100%;
     background-color: white;
@@ -54,7 +54,7 @@ body{
     text-align: center;
     padding: 4% 2%;
     margin-bottom: 7%;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 /* ************************ Start Goal Category Dropdown *********************** */
@@ -71,11 +71,10 @@ body{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: bold;
     text-align: left;
     padding: 2% 3%;
-    z-index: 2;
 
 }
 
@@ -90,11 +89,10 @@ body{
     cursor: pointer;
     display: block;
     padding: 10px;
-
 }
 
 .categoryDropdown .categorySelect span{
-    font-size: 3em;
+    font-size: 3rem;
 }
 
 .categoryDropdown .categorySelect > i{
@@ -127,7 +125,7 @@ body{
 
 .categoryDropdown .dropdown-menu{
     position: absolute;
-    background-color: #fff;
+    background-color: whitesmoke;
     width: 100%;
     left: 0;
     margin-top: 1px;
@@ -136,9 +134,8 @@ body{
     overflow: hidden;
     display: none;
     height: auto;
-    /* max-height: 144px; */
     overflow-y: auto;
-    z-index: 9;
+    z-index: 2;
 }
 
 .categoryDropdown .dropdown-menu li{
@@ -147,7 +144,7 @@ body{
     padding: 4% 7%;
     transition: all .2s linear;
     cursor: pointer;
-    font-size: 3em;
+    font-size: 3rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -196,12 +193,14 @@ body{
     transform: translateX(-50%);
     /* margin: 18% 0; */
     /* margin-top: 7%; */
-    font-size: 3em;
+    font-size: 3rem;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
     background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%,
     rgba(162,211,222, 1) 100%);
     font-weight: bold;
-    padding: 3.5% 5%;
+    padding: 4% 5%;
+    z-index: 1;
+
 }
 
 .horizontalLine p{
@@ -224,19 +223,18 @@ body{
 }
 
 .ideasList lh{
-    font-size: 1.3em;
+    font-size: 1.3rem;
     font-weight: bold;
 }
 
 .goalIdeas .ideasList li{
-    /* margin-left: 7%; */
     list-style-type: circle;
 }
 
 .predefined-goals p{
     margin: 4% 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: bold;
     text-align: center;
     color: rgba(0, 0, 0, 0.5);
@@ -273,31 +271,57 @@ body{
 .fitnessList lh,
 .dietList lh,
 .habitList lh{
-    font-size: 1.8em;
+    font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .fitness-goals .fitnessList li,
 .diet-goals .dietList li,
 .habit-goals .habitList li{
     list-style-type: none;
-    font-size: 1.2em;
+    font-size: 2.5rem;
     line-height: 160%;
     font-weight: bold;
-    margin-bottom: 61px;
+    margin: 10% 0;
     border: 1px solid black;
+    padding: 4%;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+    text-align: center;
+    width: 100%;
+}
 
+.fitness-goals .fitnessList li{
+    margin: 4% 0;
+}
+
+
+.fitness-goals .fitnessList li:nth-child(odd),
+.diet-goals .dietList li:nth-child(odd),
+.habit-goals .habitList li:nth-child(odd){
+    background-color: rgba(162,211,222, 0.3);
+}
+
+.fitness-goals .fitnessList li:nth-child(even),
+.diet-goals .dietList li:nth-child(even),
+.habit-goals .habitList li:nth-child(even){
+    background-color: rgba(255,226,168, 0.3);
+}
+
+.fitness-goals .fitnessList li:last-child,
+.diet-goals .dietList li:last-child,
+.habit-goals .habitList li:last-child{
+    margin-bottom: 30%;
 }
 /******************* Start Days From *********************/
 
 .days p,
 .endDate p{
-    font-size: 3em;
-    font-weight: 500;
-    font-family: 'Roboto', sans-serif;
-    text-align: center;
-    color: rgba(0, 0, 0, 0.5);
+    margin: 5% 0 3% 0;
 }
 
 .daysForm label{
@@ -341,21 +365,22 @@ body{
 
 .timeOfDay select{
     display: block;
-    font-size: 1.5em;
+    font-size: 2.5em;
     width: 90%;
     float: left;
     height: 100%;
     padding: 4% 0;
 }
 
+.timeOfDay select:active{
+    font-size: 1.5em;
+}
 
 /******************* End Days From *********************/
 
-
-
 .endDate input[type="date"]{
     font-size: 3em;
-    width: 60%;
+    width: 77%;
     border-bottom: 3px solid rgb(224, 185, 69);
     position: relative;
     left: 50%;
@@ -363,34 +388,46 @@ body{
 }
 
 footer.page-footer{
-    height: 10vh;
+    height: 17vmin;
     width: 100vw;
-    background-color: #ffc24e;
     padding-top: 0;
     position: fixed;
     bottom: 0;
-}
-
-.page-footer nav{
-    width: 100%;
-    height: 100%;
     background-color: #A2D3DA;
-
 }
 
-.page-footer .footer-items{
+.footer-items{
     height: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    padding: 0 5%;
+    font-size: 3rem;
 }
 
-.page-footer nav ul a i,
-.page-footer nav ul i{
-    font-size: 6rem;
-    vertical-align: 100%;
+.footer-items a{
+    background-color: transparent;
+    font-size: 3rem;
+    box-shadow: none;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+.footer-items span {
+    border-left: 3px solid rgba(255, 255, 255, 0.6);
+    height: 100%;
+}
+
+.btn-large i{
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .hidden{
@@ -404,11 +441,4 @@ footer.page-footer{
 .inactiveLink{
     pointer-events: none;
     opacity: 0.4;
-}
-
-
-.unclickable{
-    pointer-events: none;
-    -webkit-filter: grayscale(100%);
-
 }
