@@ -162,10 +162,11 @@ function handleNextPageButtonClicked(){
 
         $('.days, .timeOfDay').addClass('hidden').removeClass('show');
         $('.endDate').removeClass('hidden').addClass('show');
+        $('.endDate').trigger('click')
+
     }
     else if(pageCount === 2){
         var finishOn = validateFinishDateSelection();
-
         //validate user input
         if(!finishOn){
             return;

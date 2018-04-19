@@ -1,4 +1,4 @@
-/************************************DASHBOARD BODY **********/
+/************************************ALL GOALS BODY **********/
 .all-goals-body{
     width: 100vw;
     height: 100vh;
@@ -14,7 +14,7 @@
     
     
 }
-/************************************END - DASHBOARD BODY **********/
+/************************************ Title **********/
 
 .header {
     height: 14%;
@@ -74,7 +74,7 @@
     width: 80%;
     height: 99%;
     padding: 2% 4%;
-   
+   justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
