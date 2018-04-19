@@ -162,10 +162,13 @@ form button {
     margin-right: 33%;
 }
 #messages {
-    list-style-type: none; margin: 0;
+    list-style-type: none;
+    margin: 0;
     padding: 0;
     width: 90%;
+    height: 67%;
     color: black;
+    overflow: scroll;
 }
 #messages li {
     padding: 5px 10px;
@@ -174,8 +177,13 @@ form button {
     background: grey;
     color: black;
 }
-#messages {
-    color: black;
-    margin-bottom: 40px;
-}
+/*#messages {*/
+    /*list-style-type: none;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*width: 90%;*/
+    /*height: 67%;*/
+    /*color: black;*/
+    /*overflow: scroll;*/
+/*}*/
 /************************************END - FOOTER**********/
