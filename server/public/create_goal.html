@@ -13,8 +13,12 @@
 </head>
 <body>
     <div class="title center">
-        <i class="material-icons left">close</i>
         <span>Create Goal</span>
+    </div>
+    <div class="steps">
+        <div class="one">1</div>
+        <div class="two">2</div>
+        <div class="three">3</div>
     </div>
     <div class="container">
 
@@ -28,14 +32,13 @@
             <div class="categoryDropdown">
                 <div class="categorySelect">
                     <span>Goal Categories</span>
-                    <i class="material-icons medium">expand_less</i>
+                    <i class="material-icons medium">expand_more</i>
                 </div>
                 <ul class="dropdown-menu animated flipInX">
                     <li id="diet">Diet</li>
                     <li id="fitness">Fitness</li>
                     <li id="habit">Habit</li>
                     <li id="educational">Educational</li>
-                    <li id="financial">Financial</li>
                     <li id="other">Other</li>
                 </ul>
             </div>
@@ -56,7 +59,6 @@
 
         <div class="fitness-goals hidden">
             <ul id="fitness_idea_list" class="fitnessList">
-            <!-- <lh ><i class="material-icons medium">fitness_center</i>Fitness</lh> -->
                 <li >Exercise 20 Minutes For 30 Days</li>
                 <li>60 Minutes Of Yoga For 30 Days</li>
                 <li>Hitt running on the treadmill for 30 mins for 1-3 months</li>
@@ -81,7 +83,6 @@
 
         <div class="diet-goals hidden">
             <ul id="diet_idea_list" class="dietList">
-                <!-- <lh>Diet</lh> -->
                 <li>Eat variety of foods to ensure a balanced diet</li>
                 <li>Cook Dinner More Often</li>
                 <li>Eat More Whole Grains</li>
@@ -99,7 +100,6 @@
 
         <div class="habit-goals hidden">
                 <ul id="habit_idea_list" class="habitList">
-                    <!-- <lh>Daily Habits</lh> -->
                     <li>Wake up early</li>
                     <li>Make your to-do list the night before</li>
                     <li>Read and/ or Listen to Motivational Material</li>
@@ -227,11 +227,18 @@
             <p class="message">Select End Date</p>
             <input class="center-align" id="end_date" type="date" name="endDate" min="">
         </div>
+
+        <div class="successMsg hidden">
+            <p class="animated flash">Adding Goal...</p>
+            <div>
+                <img src="images/preloader.gif" alt="">
+            </div>
+        </div>
     </div>
 
     <footer class="page-footer">
         <div class="footer-items">
-            <a class="btn btn-large valign-wrapper" href="create_goal.html"><i class="material-icons left">close</i>Cancel</a>
+            <a class="btn btn-large valign-wrapper" href="dashboard.html"><i class="material-icons left">close</i>Cancel</a>
             <span></span>
             <a class="add next btn btn-large"><i class="material-icons right">arrow_forward</i>Next</a>
         </div>
