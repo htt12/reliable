@@ -23,24 +23,24 @@
         <p class="message">Name Your Goal</p>
         <input class="goalInput z-depth-3 truncate" type="text" name="newGoal" placeholder="Go to bed before 11pm, etc.">
     </div>
-    <div class="container">
 
-        <div class="categoryContainer ">
-            <p class="message">Pick a Category for Your Goal</p>
-            <div class="categoryDropdown">
-                <div class="categorySelect">
-                    <span>Goal Categories</span>
-                    <i class="material-icons medium">expand_less</i>
-                </div>
-                <ul class="dropdown-menu animated flipInX">
-                    <li id="health/diet">Health/Diet</li>
-                    <li id="fitness">Fitness</li>
-                    <li id="habit">Habit</li>
-                    <li id="personal">Personal</li>
-                    <li id="educational">Educational</li>
-                    <li id="financial">Financial</li>
-                    <li id="Other">Other</li>
-                </ul>
+    <div class="categoryContainer ">
+        <p class="message">Pick a Category for Your Goal</p>
+        <div class="categoryDropdown">
+            <div class="categorySelect">
+                <span>Goal Categories</span>
+                <i class="material-icons medium">expand_less</i>
+            </div>
+            <ul class="dropdown-menu animated flipInX">
+                <li id="diet">Diet</li>
+                <li id="fitness">Fitness</li>
+                <li id="habit">Habit</li>
+                <li id="educational">Educational</li>
+                <li id="financial">Financial</li>
+                <li id="other">Other</li>
+            </ul>
+        </div>
+    </div>
 
     <div class="horizontalLine ">
         <h3><span>OR</span></h3>
@@ -49,16 +49,15 @@
         <button class="ideas btn z-depth-3">Ideas</button>
     </div>
 
-
     <div class="predefined-goals hidden">
-        <p class="message">Select Your Goal from the Categories Below</p>
+        <p class="message">Select Your Goal</p>
         <div class="predefined-goals-container"></div>
 
-        </div>
+    </div>
 
     <div class="fitness-goals hidden">
         <ul id="fitness_idea_list" class="fitnessList">
-            <lh ><i class="material-icons medium">fitness_center</i>Fitness</lh>
+            <!-- <lh ><i class="material-icons medium">fitness_center</i>Fitness</lh> -->
             <li >Exercise 20 Minutes For 30 Days</li>
             <li>60 Minutes Of Yoga For 30 Days</li>
             <li>Hitt running on the treadmill for 30 mins for 1-3 months</li>
@@ -83,7 +82,7 @@
 
     <div class="diet-goals hidden">
         <ul id="diet_idea_list" class="dietList">
-            <lh>Healthy Diet</lh>
+            <!-- <lh>Diet</lh> -->
             <li>Eat variety of foods to ensure a balanced diet</li>
             <li>Cook Dinner More Often</li>
             <li>Eat More Whole Grains</li>
@@ -101,7 +100,7 @@
 
     <div class="habit-goals hidden">
         <ul id="habit_idea_list" class="habitList">
-            <lh>Daily Habits</lh>
+            <!-- <lh>Daily Habits</lh> -->
             <li>Wake up early</li>
             <li>Make your to-do list the night before</li>
             <li>Read and/ or Listen to Motivational Material</li>
@@ -115,14 +114,14 @@
     </div>
 
     <div class="days hidden">
-        <p>Days and Time to Track Your Goal</p>
+        <p class="message">Days and Time to Track Your Goal</p>
         <div class="daysForm">
             <div class="row valign-wrapper">
                 <div class="col s4">
                     <input class="" type="checkbox" id="sun" value="sunday">
                     <label for="sun">Sun</label>
                 </div>
-                <div class="timeOfDay sunday col s8">
+                <div class="timeOfDay sunday col s8 inactiveLink">
                     <select name="timeOfDay" id="sundayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -137,7 +136,7 @@
                     <input class="" type="checkbox" id="mon" value="monday">
                     <label for="mon">Mon</label>
                 </div>
-                <div class="timeOfDay monday col s8 ">
+                <div class="timeOfDay monday col s8 inactiveLink ">
                     <select name="timeOfDay" id="mondayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -152,7 +151,7 @@
                     <input class="" type="checkbox" id="tue" value="tuesday">
                     <label for="tue">Tue</label>
                 </div>
-                <div class="timeOfDay tuesday col s8 ">
+                <div class="timeOfDay tuesday col s8 inactiveLink">
                     <select name="timeOfDay" id="tuesdayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -167,7 +166,7 @@
                     <input class="" type="checkbox" id="wed" value="wednesday">
                     <label for="wed">Wed</label>
                 </div>
-                <div class="timeOfDay wednesday col s8 ">
+                <div class="timeOfDay wednesday col s8 inactiveLink">
                     <select name="timeOfDay" id="wednesdayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -182,7 +181,7 @@
                     <input class="" type="checkbox" id="thu" value="thursday">
                     <label for="thu">Thu</label>
                 </div>
-                <div class="timeOfDay thursday col s8 ">
+                <div class="timeOfDay thursday col s8 inactiveLink">
                     <select name="timeOfDay" id="thursdayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -197,7 +196,7 @@
                     <input class="" type="checkbox" id="fri" value="friday">
                     <label for="fri">Fri</label>
                 </div>
-                <div class="timeOfDay friday col s8 ">
+                <div class="timeOfDay friday col s8 inactiveLink">
                     <select name="timeOfDay" id="fridayTime">
                         <option selected disabled="disabled" value="">at any time of day</option>
                         <option value="morning">morning</option>
@@ -207,21 +206,38 @@
                 </div>
             </div>
 
+            <div class="row valign-wrapper">
+                <div class="col s4">
+                    <input class="" type="checkbox" id="sat" value="saturday">
+                    <label for="sat">Sat</label>
+                </div>
+                <div class="timeOfDay saturday col s8 inactiveLink">
+                    <select name="timeOfDay" id="saturdayTime">
+                        <option selected disabled="disabled" value="">at any time of day</option>
+                        <option value="morning">morning</option>
+                        <option value="afternoon">afternoon</option>
+                        <option value="evening">evening</option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="endDate hidden">
-            <p>Select End Date</p>
-            <input class="center-align" id="end_date" type="date" name="endDate" min="">
         </div>
     </div>
 
-    <footer class="page-footer">
-        <nav>
-            <ul class="footer-items valign-wrapper">
-                <li><a href="create_goal.html"><i class="undo large material-icons inactiveLink">chevron_left</i></a></li>
-                <li><a href="dashboard.html"><i class="large material-icons">home</i></a></li>
-                <li><i class="add next large material-icons">chevron_right</i></li>
-            </ul>
-        </nav>
-    </footer>
+    <div class="endDate hidden">
+        <p class="message">Select End Date</p>
+        <input class="center-align" id="end_date" type="date" name="endDate" min="">
+    </div>
+</div>
+
+<footer class="page-footer">
+    <nav>
+        <ul class="footer-items valign-wrapper">
+            <li><a href="create_goal.html"><i class="undo large material-icons inactiveLink">chevron_left</i></a></li>
+            <li><a href="dashboard.html"><i class="large material-icons">home</i></a></li>
+            <li><i class="add next large material-icons">chevron_right</i></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
