@@ -8,11 +8,9 @@
 .match-container{
     width: 100%;
     height: 90%;
-    position: relative
-    ;
-    background-color: #F2F2F2;
-
+    position: relative;
     
+    background-color: #F2F2F2; 
     
 }
 /************************************TITLE**********/
@@ -23,9 +21,11 @@
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
+    border-bottom: 2px black solid;
     
 }
 

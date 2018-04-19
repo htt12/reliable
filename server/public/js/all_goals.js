@@ -124,10 +124,10 @@ function rendergoalOnDashboard(goals){
         }
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
+        var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description z-depth-1 valign-wrapper').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-1 ');
@@ -175,6 +175,8 @@ function rendergoalOnDashboard(goals){
             let nextBackgroundColor = nextChildElement.css('background-color');
             
             initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+
+            
             //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
         }
         
