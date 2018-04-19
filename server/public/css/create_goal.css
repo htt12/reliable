@@ -16,9 +16,8 @@ body{
 }
 
 .title{
-    height: 17vmin;
-    /* line-height: 10vh; */
-    margin: 0;
+    height: 20vmin;
+    line-height: 20vmin;
     background-color: #A2D3DA;
 }
 
@@ -92,7 +91,6 @@ body{
     text-align: center;
     padding: 4% 2%;
     margin-bottom: 7%;
-    /* z-index: 2; */
 }
 
 /* ************************ Start Goal Category Dropdown *********************** */
@@ -231,8 +229,8 @@ body{
     margin-top: 4%;
     font-size: 3rem;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%,
-    rgba(162,211,222, 1) 100%);
+    background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%, 
+                                        rgba(162,211,222, 1) 100%);
     font-weight: bold;
     padding: 4% 5%;
     z-index: 1;
