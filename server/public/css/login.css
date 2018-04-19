@@ -4,7 +4,7 @@ body {
     display: flex;
     height: 100vh;
     width: 100vw;
-    font-family: 'Alegreya Sans SC', sans-serif;
+    font-family: 'Alegreya Sans ', sans-serif;
     flex-direction: column;
     background-image: url("images/Running-Grand-Bara-Desert-Djibouti-1220x763.jpg");
     background-size: cover;

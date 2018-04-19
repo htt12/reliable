@@ -18,7 +18,7 @@ body{
 .container{
     position: relative;
     width: 100%;
-    height: 83%;
+    height: 84%;
     background-color: #F2F2F2;
 }
 
@@ -36,17 +36,17 @@ body{
 }
 
 .profilePicture img{
-    height: 20vh;
-    width: 30vw;
+    height: 19vh;
+    width: 38vw;
     display: inline-block;
 }
 
 .signUpForm{
-    width: 70%;
+    width: 86%;
     height: 60%;
     padding: 5%;
-    background-color: white;
-    padding: 6%;
+    
+    padding: 3%;
     display: inline-block;
     border-radius: 8%;
 }
@@ -105,9 +105,8 @@ body{
 
 .footer-container{
     height: 15%;
-    border-top: 1px rgb(87, 87, 87) solid;
     position: relative;
     width: 100%;
     background-color: #A2D3DA;
-    margin-top: 4%;
+    margin-top: 6%;
 }
