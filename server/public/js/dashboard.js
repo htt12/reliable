@@ -1,3 +1,4 @@
+
 $(document).ready(initializeApp);
 // var userID = require('../app');
 // console.log(userID);
