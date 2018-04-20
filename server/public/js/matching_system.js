@@ -47,10 +47,13 @@ function getMatchedUserGoals(data){
             day: day,
         },
         success: function(data){
-            if(data){
+            if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
                 rendergoalOnDashboard(data.data)
+            } else {
+                var p = $("<p>").text("No goals for today");
+                $(".match-list").append(p);
             }
         },
         error: function(xhr, status, err){
@@ -68,13 +71,20 @@ function getData(category){
         crossDomain: true,
         cache: false,
         data: {
-          category: category,
+            category: category,
         },
         success: function(resp){
-            console.log('resp.data', resp);
-            $('.all-goals-list').empty();
-            console.log('resp.data',resp.data);
-            rendergoalOnDashboardOLD(resp.data)
+            if(resp.data[0] !== undefined){
+                console.log(resp);
+                $('.all-goals-list').empty();
+                console.log(resp.data);
+                rendergoalOnDashboardOLD(resp.data)
+            } else {
+                var p = $("<p>").text("No users ready to match");
+                $(".match-list").append(p);
+            }
+            debugger;
+
         },
         error: function(xhr, status, err){
             console.log(err)
@@ -354,6 +364,8 @@ function updateUsers(userId, interested_user_id) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
+            $(location).attr('href', 'https://relluo.com//matching_system.html')
+
         }
 
     })
