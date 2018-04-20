@@ -52,7 +52,7 @@ function getMatchedUserGoals(data){
                 $('.all-goals-list').empty();
                 rendergoalOnDashboard(data.data)
             } else {
-                var p = $("<p>").text("No goals for today");
+                var p = $("<p>").text("No goals for today").addClass('center');
                 $(".match-list").append(p);
             }
         },
@@ -80,10 +80,10 @@ function getData(category){
                 console.log(resp.data);
                 rendergoalOnDashboardOLD(resp.data)
             } else {
-                var p = $("<p>").text("No users ready to match");
+                var p = $("<p>").text("No users ready to match").addClass("center");
                 $(".match-list").append(p);
             }
-            debugger;
+
 
         },
         error: function(xhr, status, err){
