@@ -67,14 +67,18 @@ module.exports = function (app) {
             let userID = req.session.userId;
             let day = req.session.day;
             let status = "active";
-            let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ?";
+            let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ? ORDER BY ??";
             console.log(query);
             let inserts = [
                 "goals",
                 userID,
                 day,
-                status
+                status,
+                'timeframe',
+
             ];
+
+            
 
             let sql = mysql.format(query, inserts);
 
