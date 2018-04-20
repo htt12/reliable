@@ -39,6 +39,7 @@
     font-size: 1.25em;
     letter-spacing: 2px;
     text-align: center;
+    border-bottom: 1px solid black;
 
 }
 
@@ -57,7 +58,7 @@
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
     display: flex;
-    padding: 3% 8%;
+    padding: 2% 7% 3% 1%;
     height: 18%;
     width: 100%;
     text-align: center;
@@ -69,11 +70,27 @@
     width: 80%;
     height: 99%;
     padding: 2% 4%;
-   justify-content: center;
+    font-size: 1.3em;
+    justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
+    text-shadow: 2% 1% black;
     color: white;
     overflow: scroll;
+}
+
+.dayName {
+    height: 90%;
+    width: 1%;
+    transform: translate(120%, 0%);
+    font-size: 0.60em;
+}
+
+.timeOfDayImage {
+    height: 24%;
+    width: 6%;
+    transform: translate(120%, 40%);
+    
 }
 
 /**********INDIVIDUAL BUTTONS**********/
@@ -81,7 +98,7 @@
 .button-container{
     display: inline-flex;
     width: 20%;
-    height: 100%;
+    height: 99%;
 
 
 

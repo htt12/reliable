@@ -145,10 +145,11 @@ module.exports = function (app) {
       if(req.session.userId){
       // console.log('tried to enter query');
       let userID = req.session.userId;
-          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??";
+          let query = "SELECT * FROM ?? WHERE user_id=? ORDER BY ??, ??";
           let inserts = [
               "goals",
               userID,
+              'day',
               'timeframe',
           ];
 

@@ -86,13 +86,16 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        //let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        let timeImage = 'images/moon.png'
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(255, 251, 45, 0.9)';
+                //timeOfDay = 'rgb(255, 251, 45, 0.9)';
+                timeImage = 'images/sunrise.png';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 189, 91, 0.9)';
+                //timeOfDay = 'rgb(255, 189, 91, 0.9)';
+                timeImage = 'images/daytime.png'
                 break;
             default:
                 break;
@@ -102,8 +105,9 @@ function rendergoalOnDashboard(goals){
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
-
-        var goalBar = $("<div>").addClass('goal-description valign-wrapper z-depth-1').text(goalDescription)
+        var dayNameContainer = $("<div>").addClass('dayName').text('');
+        var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
+        var goalBar = $("<div>").addClass('goal-description valign-wrapper z-depth-2').text(goalDescription)
 
         //Creates drop down menu to mark goal as complete or incomplete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2')
@@ -129,7 +133,8 @@ function rendergoalOnDashboard(goals){
 
 
         dropDownMenuButtonContainer.append(completeButton,dropDownList);
-
+        goalContainer.append(imageContainer);
+        goalContainer.append(dayNameContainer);
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
         $('.goal-list').append(goalContainer);

@@ -111,13 +111,18 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        let dayName = convertToDayOfWeek(parseInt(goals[i].day));
+
+        let timeOfDay = 'rgb(15, 65, 119, 0.6)';
+        let timeImage = 'images/moon.png'
         switch (parseInt(goals[i].timeframe)){
             case 1:
                 timeOfDay = 'rgb(244, 244, 119, 0.9)';
+                timeImage = 'images/sunrise.png';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 189, 91, 0.5)';
+                timeOfDay = 'rgb(255, 175, 48, 0.8)';
+                timeImage = 'images/daytime.png';
                 break;
             default:
                 break;
@@ -126,11 +131,15 @@ function rendergoalOnDashboard(goals){
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         
+
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-1 valign-wrapper').text(goalDescription);
+        var dayNameContainer = $("<div>").addClass('dayName').text(dayName);
+        var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
+
+        var goalBar = $("<div>").addClass('goal-description z-depth-2 valign-wrapper').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-1 ');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
         
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
         
@@ -157,12 +166,14 @@ function rendergoalOnDashboard(goals){
 
 
         dropDownMenuButtonContainer.append(editButton,dropDownList);
+        goalContainer.append(imageContainer);
+        goalContainer.append(dayNameContainer);
         
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
         $('.all-goals-list').append(goalContainer);
         
 
-        // $('.edit').wrapInner('<a href="#">edit</a>')
+        
         $('.dropdown-trigger').dropdown();
              
     }
@@ -176,8 +187,6 @@ function rendergoalOnDashboard(goals){
             
             initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
 
-            
-            //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
         }
         
     }
@@ -218,13 +227,13 @@ function convertToDayOfWeek( day ) {
         return "MON";
     }
     else if( day === 2) {
-        return "TUES";
+        return "TUE";
     }
     else if( day === 3) {
         return "WED";
     }
     else if( day === 4) {
-        return "THURS";
+        return "THU";
     }
     else if( day === 5) {
         return "FRI";
@@ -233,49 +242,3 @@ function convertToDayOfWeek( day ) {
         return  "SAT";
     }
 }
-
-
-
-
-
-// function reminders(users){
-//     let startDate = new Date(users[0].startdate);
-//     let endDate = new Date(users[0].finishdate);
-    
-//     console.log(startDate.getUTCDate()); // Hours
-//     console.log(endDate.getUTCDate());
-    
-//     let duration = 4;;
-//     console.log('startDate', startDate, endDate);
-
-//     if(duration < 7){
-//         displayReminder(users[0].goal);
-//     }
-// }
-
-// function displayReminder(goal){
-//     let reminder = $('<div>').addClass('reminder').text(goal);
-//     $('.dashboard-container').append(reminder);
-// }
-
-// function retrieveServerData(){
-//     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'
-    
-//     $.ajax({
-//             data: apiKey,
-//             url: 'http://s-apis.learningfuze.com/sgt/get',
-//             method: 'post',
-//             dataType: 'json',
-//             success: function(response){
-//                 $('.student-table-row').remove();
-//                 $("#getServerDataButton").button('reset'); 
-//                 console.log(response);                       
-//                 for(var i=0; i<response.data.length; i++){
-//                         student_array.push(response.data[i]);
-//                         updateStudentList(student_array);
-//                 }
-                
-//             }
-//     });
-  
-//   }
