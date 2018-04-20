@@ -41,6 +41,12 @@
     
 }
 
+.fixed-action-btn{
+    position: relative;
+    bottom: 10%;
+    right: -43%;
+    background-color: transparent;
+}
 /**********INDIVIDUAL MATCHES**********/
 .goal-container{
     display: inline-flex;
@@ -61,6 +67,11 @@
     hyphens: auto;
     color: white;
     padding: 5%;
+}
+
+.partner-goal-description{
+    width: 100%;
+    box-shadow: inset 0 0 18px #FFE2A8;
 }
 
 /**********INDIVIDUAL BUTTONS**********/
