@@ -8,9 +8,11 @@
 .match-container{
     width: 100%;
     height: 90%;
-    position: relative;
-    min-width: 375px;   
-    background-color: #F2F2F2; 
+    position: relative
+    ;
+    background-color: #F2F2F2;
+
+    
     
 }
 /************************************TITLE**********/
@@ -21,11 +23,9 @@
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
-    font-family: 'Alegreya Sans SC', sans-serif;
-    font-weight: bolder;
+    font-family: 'Alegreya Sans', sans-serif;
     letter-spacing: 5px;
     text-align: center;
-    border-bottom: 2px black solid;
     
 }
 
@@ -38,29 +38,26 @@
     flex-direction: column;
     margin: 3% 7.5%;
     
-    
 }
 
 /**********INDIVIDUAL MATCHES**********/
 .goal-container{
     display: inline-flex;
     height: 15%;
-    padding-bottom: 3%;
-    
+    padding-bottom: 3%;   
 }
 
 .goal-description{
     display: inherit;
     background-color: #A2D3DA;
     width: 80%;
-    font-size: 1.25em;
     padding: 0% 4%;
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
-    padding: 5%;
+    padding: 10%;
 }
 
 /**********INDIVIDUAL BUTTONS**********/
@@ -138,4 +135,56 @@ nav ul li{
     font-size: 3rem;
     vertical-align: 100%;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font: 13px Helvetica, Arial;
+}
+form {
+    background: white;
+    padding: 3px;
+    position: absolute;
+    bottom: 70px;
+    width: 85%;
+    margin-right: 4%;
+}
+form input { border: 0;
+    padding: 10px;
+    width: 90%;
+    margin-right: .5%;
+    color: black;
+}
+form button {
+    width: 25%;
+    background: rgb(130, 224, 255);
+    border: none;
+    padding: 10px;
+    margin-left: 33%;
+    margin-right: 33%;
+}
+#messages {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    height: 67%;
+    color: black;
+    overflow: scroll;
+}
+#messages li {
+    padding: 5px 10px;
+}
+#messages li:nth-child(odd) {
+    background: grey;
+    color: black;
+}
+/*#messages {*/
+    /*list-style-type: none;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*width: 90%;*/
+    /*height: 67%;*/
+    /*color: black;*/
+    /*overflow: scroll;*/
+/*}*/
 /************************************END - FOOTER**********/

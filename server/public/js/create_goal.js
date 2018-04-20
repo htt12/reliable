@@ -38,11 +38,11 @@ function initializeApp() {
 
 
 function handleCategoryDropdownClicked(){
-     
+
     $(this).attr('tabindex', 1).focus();
     $(this).toggleClass('active');
     $(this).find('.dropdown-menu').slideToggle(300);
-    
+
     $('.categoryDropdown').focusout(function () {
         $(this).removeClass('active');
         $(this).find('.dropdown-menu').slideUp(300);
@@ -84,7 +84,7 @@ function renderPredefinedCategories(){
 
 function handlePredefinedGoalClicked(){
     category = event.target.alt;
-    
+
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
         var targetElement = $('.fitness-goals');
@@ -164,6 +164,8 @@ function handleNextPageButtonClicked(){
 
         $('.days, .timeOfDay').addClass('hidden').removeClass('show');
         $('.endDate').removeClass('hidden').addClass('show');
+       
+
     }
     else if(pageCount === 2){
         $('.steps .three').css('background-color', 'rgba(162, 211, 218, 0.5)');
@@ -379,7 +381,7 @@ function leadingZero( num ) {
 }
 
 function getFinishDate() {
-    
+
     var ending = $('#end_date').val();
     var date = new Date(ending);
 
@@ -397,7 +399,7 @@ function createObject(goal, day, category, time, finishdate) {
     object.category = category;
     object.finishdate = finishdate;
     object.timeframe = time;
-
+    
     return object;
 }
 
@@ -430,10 +432,11 @@ function postGoalToServer( object ){
             var data = json_data;
             console.log(data);
             if (json_data.success) {
-                $('.successMsg').addClass('hidden').removeClass('show');
-                setTimeout(()=>{(window.location.replace('/dashboard'))}, 2000);
+                setTimeout(()=>{(                
+                    $('.successMsg').addClass('hidden').removeClass('show')
+                    (window.location.replace('/dashboard')))}, 1000);
             }
         }
-        
+
     });
 }

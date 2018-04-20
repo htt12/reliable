@@ -1,4 +1,4 @@
-/************************************DASHBOARD BODY **********/
+/************************************ALL GOALS BODY **********/
 .all-goals-body{
     width: 100vw;
     height: 100vh;
@@ -14,7 +14,7 @@
     
     
 }
-/************************************END - DASHBOARD BODY **********/
+/************************************ Title **********/
 
 .header {
     height: 14%;
@@ -24,42 +24,77 @@
     width: 100%;
     height: 100%;
     background-color: #A2D3DA;
-    font-size: 3em;
+    font-size: 2.3em;
     color: white;
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Alegreya Sans SC', sans-serif;
     letter-spacing: 5px;
     text-align: center;
+    border-bottom: 2px solid black;
     
+}
+
+.description{
+    width: 100%;
+    
+    background-color: #A2D3DA;
+    font-size: 0.4em;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 5px;
+    text-align: center;
+    padding: 10%;
+
 }
 
 /************************************GOAL SECTION **********/
 
 .all-goals-list{
-    width: 85%;
-    height: 81%;
-    display: inline-flex;
-    flex-direction: column;
-    margin: 3% 7.5%;
+    width: 100%;
+    height: 85%;
+    
+    overflow: scroll;
+    font-size: 1.2em;
+ 
     
 }
 
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
-    display: inline-flex;
-    height: 15%;
-    padding-bottom: 3%;   
+    display: flex;
+    padding: 2% 7% 3% 1%;
+    height: 18%;
+    width: 100%;
+    text-align: center;
+     
 }
 
 .goal-description{
-    display: inherit;
+    
     background-color: #A2D3DA;
     width: 80%;
-    padding: 0% 4%;
+    height: 99%;
+    
+    font-size: 1.3em;
     justify-content: center;
-    align-items: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
+    overflow: scroll;
+    padding: 0% 6%;
+}
+
+.dayName {
+    height: 90%;
+    width: 1%;
+    transform: translate(130%, 0%);
+    font-size: 0.60em;
+}
+
+.timeOfDayImage {
+    height: 24%;
+    width: 6%;
+    transform: translate(130%, 0%);
+    
 }
 
 /**********INDIVIDUAL BUTTONS**********/
@@ -67,7 +102,7 @@
 .button-container{
     display: inline-flex;
     width: 20%;
-    height: 100%;
+    height: 99%;
     
 
     

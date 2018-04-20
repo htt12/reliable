@@ -26,10 +26,14 @@ function matchedUsersCheck(){
 }
 
 function getMatchedUserGoals(data){
-    
+    var d = new Date();
+    var n = d.getDay();
+    var day = n;
+    console.log("Day ======" + day);
+
     let matchedUser = data.data[0].matched_user_id;
     let userId = data.data[0].user_id;
-    console.log("THis is the data" + data);
+    console.log(day);
     $.ajax({
         type: 'POST',
         url: '/matchedgoals',
@@ -40,6 +44,7 @@ function getMatchedUserGoals(data){
         data: {
             matchedUser: matchedUser,
             userId: userId,
+            day: day,
         },
         success: function(data){
             if(data){
@@ -66,9 +71,9 @@ function getData(category){
           category: category,
         },
         success: function(resp){
-            console.log(resp);
+            console.log('resp.data', resp);
             $('.all-goals-list').empty();
-            console.log(resp.data);
+            console.log('resp.data',resp.data);
             rendergoalOnDashboardOLD(resp.data)
         },
         error: function(xhr, status, err){
@@ -176,6 +181,7 @@ function rendergoalOnDashboard(goals){
         var goalDescription = goals[i].goal;
         let goalId = goals[i].id;
         let userId =goals[i].id;
+        let userName = goals[i].username;
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
 
@@ -219,8 +225,6 @@ function rendergoalOnDashboard(goals){
 
     }
 
-
-    reminders(users);
 }
 
 
@@ -258,6 +262,7 @@ function rendergoalOnDashboardOLD(goals){
 
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             getMatches(userId);
+            console.log(userId);
             // deleteGoal(goalId);
             // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
@@ -276,24 +281,6 @@ function rendergoalOnDashboardOLD(goals){
 
     }
 
-
-    reminders(users);
-}
-
-
-function reminders(users){
-    let startDate = new Date(users[0].startdate);
-    let endDate = new Date(users[0].finishdate);
-
-    console.log(startDate.getUTCDate()); // Hours
-    console.log(endDate.getUTCDate());
-
-    let duration = 4;;
-    console.log('startDate', startDate, endDate);
-
-    if(duration < 7){
-        displayReminder(users[0].goal);
-    }
 }
 
 
@@ -308,14 +295,15 @@ function sendInterestedMatches(matchedUserId) {
         },
         success: function (json_data) {
             var data = json_data;
-            console.log(data);
+            console.log('matched users', data);
         }
 
     })
 }
 
 function getMatches(matchedUserId) {
-
+    
+    console.log(matchedUserId);
     $.ajax({
         type: "POST",
         url: "/matchingpairs",
@@ -326,7 +314,7 @@ function getMatches(matchedUserId) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
-            if(data){
+            if(data.data[0]){
                 console.log(data);
                 sendMatchToTable(data);
             }
@@ -356,7 +344,6 @@ function sendMatchToTable(data) {
     })
 }
 function updateUsers(userId, interested_user_id) {
-    debugger;
     $.ajax({
         type: "POST",
         url: "/users/update",

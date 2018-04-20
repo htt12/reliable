@@ -11,16 +11,16 @@ function initializeApp(){
 }
 
 function displayDate(){
-    let todayDate = getTodayDate();
-    console.log('today',todayDate);
+    let tomorrowDate = getTomorrowDate();
+    console.log('today',tomorrowDate);
    
-    $('.date').text(todayDate);
+    $('.date').text(tomorrowDate);
 }
 
-function getTodayDate(){
+function getTomorrowDate(){
     var date = new Date();
-    var day = date.getDay();
-    var dd = leadingZero(date.getDate());
+    var day = date.getDay()+1;
+    var dd = leadingZero(date.getDate()+1);
     var mm = leadingZero(date.getMonth()+1);
     let dayOfWeek = convertToDayOfWeek(day);
     // var yyyy = date.getFullYear();
@@ -64,7 +64,7 @@ function convertToDayOfWeek( day ) {
 function getData(){
     $.ajax({
         type: 'GET',
-        url: '/goalssqlday',
+        url: '/goalssqltmr',
         success: function(resp){
             console.log('dashboard',resp);
 
@@ -99,7 +99,7 @@ function rendergoalOnDashboard(goals){
         }
 
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId).css('background-color' , timeOfDay);;
 
         //Creates a container with the goal description
 
@@ -116,7 +116,7 @@ function rendergoalOnDashboard(goals){
 
         var completeItem = $('<li>').addClass('complete center-align').on('click', ()=>{
 
-            updateGoal(goalId,goals);
+            updateGoal(goalId);
             $(goalSelector).addClass('animated bounceOutLeft');
             setTimeout((()=>{$(goalSelector).remove()}), 500);
         }).wrapInner('<a href="#!"><i class="material-icons">check</i></a>')
@@ -132,7 +132,7 @@ function rendergoalOnDashboard(goals){
 
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.goal-list').append(goalContainer);
+        $('.forecast-list').append(goalContainer);
         // $('.complete').wrapInner('<a href="#">Complete</a>')
         $('.dropdown-trigger').dropdown();
 
@@ -151,23 +151,14 @@ function rendergoalOnDashboard(goals){
     }
 }
 
-function updateGoal(goalId, goals) {
-    debugger;
-    for(var i=0; i<goals.length; i++){
-        if(goals[i].goal_id === goalId){
-           var goalstat = goals[i].stats;
-           goalstat++;
-           console.log(goalstat, goalId)
-        }
-    }
+function updateGoal(goalId) {
+    
     console.log(goalId);
-    console.log("This is the goals" + goals);
     $.ajax({
         type: "POST",
         url: "/goals/update/status",
         data: {
             goal_id: goalId,
-            stats: goalstat,
         },
         success: function (json_data) {
             var data = json_data;
