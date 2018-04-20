@@ -86,24 +86,27 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(80, 63, 175, 0.5)';
+        let timeOfDay = 'rgb(15, 65, 119, 0.6)';
+        let timeImage = 'images/moon.png'
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(255, 251, 45, 0.9)';
+                timeOfDay = 'rgb(244, 244, 119, 0.9)';
+                timeImage = 'images/sunrise.png';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 189, 91, 0.9)';
+                timeOfDay = 'rgb(255, 175, 48, 0.8)';
+                timeImage = 'images/daytime.png';
                 break;
             default:
                 break;
         }
 
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
-
+        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
+        var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
         //Creates a container with the goal description
 
-        var goalBar = $("<div>").addClass('goal-description valign-wrapper z-depth-1').text(goalDescription)
+        var goalBar = $("<div>").addClass('goal-description valign-wrapper z-depth-1').text(goalDescription);
 
         //Creates drop down menu to mark goal as complete or incomplete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2')
@@ -126,7 +129,10 @@ function rendergoalOnDashboard(goals){
 
 
         dropDownList.append(completeItem, exitItem);
-
+        
+        goalContainer.append(imageContainer);
+        
+        
 
         dropDownMenuButtonContainer.append(completeButton,dropDownList);
 
@@ -137,7 +143,7 @@ function rendergoalOnDashboard(goals){
         $('.dropdown-trigger').dropdown();
 
     }
-    for(var j=1; j<goals.length; j++){
+    for(var j=1; j<=goals.length; j++){
         let initialChildElement = $('.goal-container:nth-child(' +j+')');
         let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
         if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
@@ -147,12 +153,16 @@ function rendergoalOnDashboard(goals){
             initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
             //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
         }
-        j++; 
+            if(nextChildElement.length === 0) {
+                let currentBackgroundColor = initialChildElement.css('background-color');
+                initialChildElement.css('background', `linear-gradient(${currentBackgroundColor}, #F2F2F2)`);
+        
+        } 
+         
     }
 }
 
 function updateGoal(goalId, goals) {
-    debugger;
     for(var i=0; i<goals.length; i++){
         if(goals[i].goal_id === goalId){
            var goalstat = goals[i].stats;
