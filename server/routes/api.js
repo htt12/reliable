@@ -59,6 +59,7 @@ module.exports = function (app) {
             function myFunction(req) {
                 var d = new Date();
                 var n = d.getDay();
+                console.log('n',n)
                 req.session.day = n;
                 console.log("Day ======" + req.session.day);
             }
