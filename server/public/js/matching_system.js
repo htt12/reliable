@@ -26,9 +26,15 @@ function matchedUsersCheck(){
 }
 
 function getMatchedUserGoals(data){
+
+    var d = new Date();
+    var n = d.getDay();
+    var day = n;
+    console.log("Day ======" + day);
+
     let matchedUser = data.data[0].matched_user_id;
     let userId = data.data[0].user_id;
-    console.log("THis is the data" + data);
+    console.log(day);
     $.ajax({
         type: 'POST',
         url: '/matchedgoals',
@@ -39,6 +45,7 @@ function getMatchedUserGoals(data){
         data: {
             matchedUser: matchedUser,
             userId: userId,
+            day: day,
         },
         success: function(data){
             if(data){

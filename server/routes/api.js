@@ -458,18 +458,20 @@ module.exports = function (app) {
     app.post('/matchedgoals', (req, res, next) => {
         let matchedUserId = req.body.matchedUser;
         let userId = req.body.userId;
-        console.log("This is req.session.UserId" + req.session.userId);
+        let day = req.body.day;
+        console.log("This is day" + day);
         console.log(matchedUserId, userId);
         if(matchedUserId == req.session.userId){
-             userId = req.body.matchedUserId;
-             matchedUserId = req.body.userId;
-             console.log("we hit the if Check")
+            userId = req.body.matchedUserId;
+            matchedUserId = req.body.userId;
+            console.log("we hit the if Check")
         }
         console.log("This is the matched userId " + matchedUserId);
-        let query = 'SELECT * FROM ?? WHERE user_id = ?';
+        let query = 'SELECT * FROM ?? WHERE user_id = ? AND day = ?';
         let inserts = [
             'goals',
             matchedUserId,
+            day,
         ];
 
         let sql = mysql.format(query, inserts);
