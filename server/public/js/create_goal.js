@@ -66,7 +66,7 @@ function handleIdeaBtnClick() {
 
 function renderPredefinedCategories(){
     var containerDiv = $('.predefined-goals-container');
-    var location = "./images/";
+    var location = "./images/category/";
     $('.predefined-goals p').removeClass('hidden').addClass('show');
 
     for (var i = 0; i < predefinedCategories.length; i++){

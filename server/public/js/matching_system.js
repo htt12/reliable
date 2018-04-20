@@ -186,7 +186,7 @@ function rendergoalOnDashboard(goals){
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description partner-goal-description z-depth-3').text(goalDescription);
 
         //Creates drop down menu to mark goal as edit or delete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
@@ -212,12 +212,12 @@ function rendergoalOnDashboard(goals){
         }).wrapInner('<a>Find Match</a>');
 
 
-        dropDownList.append(editItem, deleteItem);
+        // dropDownList.append(editItem, deleteItem);
 
 
-        dropDownMenuButtonContainer.append(editButton,dropDownList);
+        // dropDownMenuButtonContainer.append(editButton,dropDownList);
 
-        goalContainer.append(goalBar, dropDownMenuButtonContainer);
+        goalContainer.append(goalBar);
 
         $('.match-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
