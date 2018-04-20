@@ -60,7 +60,6 @@ body{
 
 .steps .one{
     background-color: rgb(242, 197, 118);    
-    /* background-color: rgba(255,226,168); */
 }
 
 .steps .two,
@@ -411,7 +410,6 @@ body{
 }
 
 /******************* End Days From *********************/
-
 .endDate input[type="date"]{
     font-size: 3em;
     margin-top: 10%;
@@ -447,7 +445,6 @@ footer.page-footer{
     font-size: 3rem;
     box-shadow: none;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-
 }
 
 .footer-items span {
