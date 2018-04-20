@@ -26,7 +26,6 @@ function matchedUsersCheck(){
 }
 
 function getMatchedUserGoals(data){
-    
     let matchedUser = data.data[0].matched_user_id;
     let userId = data.data[0].user_id;
     console.log("THis is the data" + data);
@@ -45,6 +44,7 @@ function getMatchedUserGoals(data){
             if(data){
                 console.log(data.data);
                 $('.all-goals-list').empty();
+                $('.matchedUser').text(matchedUser);
                 rendergoalOnDashboard(data.data)
             }
         },
@@ -289,7 +289,7 @@ function sendInterestedMatches(matchedUserId) {
         },
         success: function (json_data) {
             var data = json_data;
-            console.log(data);
+            console.log('matched users', data);
         }
 
     })

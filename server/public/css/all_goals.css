@@ -37,7 +37,7 @@
     width: 100%;
     
     background-color: #A2D3DA;
-    font-size: 0.35em;
+    font-size: 0.4em;
     color: white;
     font-family: 'Roboto', sans-serif;
     letter-spacing: 5px;
@@ -73,7 +73,7 @@
     width: 80%;
     height: 99%;
     
-    font-size: 0.8em;
+    font-size: 1.3em;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
@@ -84,14 +84,14 @@
 .dayName {
     height: 90%;
     width: 1%;
-    transform: translate(120%, 0%);
+    transform: translate(130%, 0%);
     font-size: 0.60em;
 }
 
 .timeOfDayImage {
     height: 24%;
     width: 6%;
-    transform: translate(120%, 0%);
+    transform: translate(130%, 0%);
     
 }
 
