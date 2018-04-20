@@ -58,7 +58,7 @@ module.exports = function (app) {
 
             function myFunction(req) {
                 var d = new Date();
-                var n = d.getDay();
+                var n = d.getDay()-1;
                 console.log('n',n)
                 req.session.day = n;
                 console.log("Day ======" + req.session.day);
@@ -103,7 +103,7 @@ module.exports = function (app) {
 
             function myFunction(req) {
                 var d = new Date();
-                var n = d.getDay() + 1;
+                var n = d.getDay();
                 req.session.day = n;
                 console.log("Day ======" + req.session.day);
             }
