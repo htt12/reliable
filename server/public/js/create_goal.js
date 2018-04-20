@@ -399,7 +399,7 @@ function createObject(goal, day, category, time, finishdate) {
     object.category = category;
     object.finishdate = finishdate;
     object.timeframe = time;
-
+    
     return object;
 }
 

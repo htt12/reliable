@@ -19,7 +19,7 @@ function displayDate(){
 
 function getTodayDate(){
     var date = new Date();
-    var day = date.getDay();
+    var day = date.getDay()-1;
     var dd = leadingZero(date.getDate());
     var mm = leadingZero(date.getMonth()+1);
     let dayOfWeek = convertToDayOfWeek(day);
