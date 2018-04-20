@@ -13,7 +13,7 @@ function initializeApp(){
 function displayDate(){
     let todayDate = getTodayDate();
     console.log('today',todayDate);
-   
+
     $('.date').text(todayDate);
 }
 
@@ -129,10 +129,10 @@ function rendergoalOnDashboard(goals){
 
 
         dropDownList.append(completeItem, exitItem);
-        
+
         goalContainer.append(imageContainer);
-        
-        
+
+
 
         dropDownMenuButtonContainer.append(completeButton,dropDownList);
 
@@ -149,25 +149,25 @@ function rendergoalOnDashboard(goals){
         if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
             let currentBackgroundColor = initialChildElement.css('background-color');
             let nextBackgroundColor = nextChildElement.css('background-color');
-            
+
             initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
             //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
         }
-            if(nextChildElement.length === 0) {
-                let currentBackgroundColor = initialChildElement.css('background-color');
-                initialChildElement.css('background', `linear-gradient(${currentBackgroundColor}, #F2F2F2)`);
-        
-        } 
-         
+        if(nextChildElement.length === 0) {
+            let currentBackgroundColor = initialChildElement.css('background-color');
+            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor}, #F2F2F2)`);
+
+        }
+
     }
 }
 
 function updateGoal(goalId, goals) {
     for(var i=0; i<goals.length; i++){
         if(goals[i].goal_id === goalId){
-           var goalstat = goals[i].stats;
-           goalstat++;
-           console.log(goalstat, goalId)
+            var goalstat = goals[i].stats;
+            goalstat++;
+            console.log(goalstat, goalId)
         }
     }
     console.log(goalId);
@@ -207,7 +207,7 @@ function updateGoal(goalId, goals) {
 
 // function retrieveServerData(){
 //     var apiKey = {api_key: 'uTqhiGEpct'}; //'force-failure': 'timeout'
-    
+
 //     $.ajax({
 //             data: apiKey,
 //             url: 'http://s-apis.learningfuze.com/sgt/get',
@@ -221,8 +221,8 @@ function updateGoal(goalId, goals) {
 //                         student_array.push(response.data[i]);
 //                         updateStudentList(student_array);
 //                 }
-                
+
 //             }
 //     });
-  
+
 //   }
