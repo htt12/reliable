@@ -26,7 +26,6 @@ function matchedUsersCheck(){
 }
 
 function getMatchedUserGoals(data){
-
     var d = new Date();
     var n = d.getDay();
     var day = n;
@@ -51,7 +50,6 @@ function getMatchedUserGoals(data){
             if(data){
                 console.log(data.data);
                 $('.all-goals-list').empty();
-                $('.matchedUser').text(matchedUser);
                 rendergoalOnDashboard(data.data)
             }
         },
@@ -73,9 +71,9 @@ function getData(category){
           category: category,
         },
         success: function(resp){
-            console.log(resp);
+            console.log('resp.data', resp);
             $('.all-goals-list').empty();
-            console.log(resp.data);
+            console.log('resp.data',resp.data);
             rendergoalOnDashboardOLD(resp.data)
         },
         error: function(xhr, status, err){
@@ -183,6 +181,7 @@ function rendergoalOnDashboard(goals){
         var goalDescription = goals[i].goal;
         let goalId = goals[i].id;
         let userId =goals[i].id;
+        let userName = goals[i].username;
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
 
