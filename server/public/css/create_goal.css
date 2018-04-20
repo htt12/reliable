@@ -169,7 +169,7 @@ body{
     display: none;
     height: auto;
     overflow-y: auto;
-    z-index: 2;
+    /* z-index: 2; */
 }
 
 .categoryDropdown .dropdown-menu li{
@@ -232,7 +232,8 @@ body{
                                         rgba(162,211,222, 1) 100%);
     font-weight: bold;
     padding: 4% 5%;
-    z-index: 1;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
+    /* z-index: 1; */
 
 }
 
