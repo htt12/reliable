@@ -1,28 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="user-scalable=no" />
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="signup.css">
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script src='signup.js'></script>
+    <script src='login.js'></script>
 </head>
 
 <body>
-
-
-<main class="valign-wrapper login-wrapper">
-    <center>
-        
-
-        <!--<h1 class="white-text">Welcome to Relluo</h1>-->
-        <!--<p class="white-text">Please login or create an account</p>-->
-        <!--<div class="section"></div>-->
-
+    <div class="center title white-text">Relluo</div>
+    <div class='image-container'>
+    </div>
+    <main class="valign-wrapper login-wrapper">
         <div class="box log-in">
             <div class="z-depth-1 grey lighten-3 row hoverable" id="loginContainer">
-                <form class="col s12" method="post">
+                <form class="col s12" action="/login" method="post">
                     <div class='row'>
                         <div class='col s12'>
                         </div>
@@ -45,23 +42,27 @@
 
                     <br />
                     <center>
-                        <div class='row'>
+                        <form action="/login" class='row'>
                             <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect cyan darken-3'>Login</button>
-                        </div>
+                        </form>
                     </center>
                 </form>
+                <div ><span id='error-message'></span></div>
             </div>
         </div>
-        
-    </center>
-</main>
+    </main>
     <div class="sign-up">
-            <center>
-                <div class='row'>
-                    <a href='dashboard.html'  class='col s3 btn btn-large waves-effect cyan darken-3' name='btn_login'>
-                        Sign Up
-                    </a>
-                </div>
+        <center>        
+            <a href='sign_up.html'  class='col s3 btn btn-large waves-effect cyan darken-3 z-depth-3' name='btn_login'>
+                Sign Up
+            </a>
+    
+        </center>
+        <center>        
+                <a href='about_us.html'  class='col s3 btn btn-large waves-effect yellow darken-3 z-depth-3' name='btn_login'>
+                    About Us
+                </a>
+        
             </center>
     </div>
     <div class="loading">

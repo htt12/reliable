@@ -3,9 +3,9 @@
 // When migrating to a production database, use credentials on AWS
 
 module.exports = {
-  host: 'HOSTNAME',
-  user: 'USERNAME',
-  password: 'PASSWORD',
-  port: 'PORT',
-  database: 'DB NAME'
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  port: '3306',
+  database: 'reliable'
 };
