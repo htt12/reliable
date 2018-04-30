@@ -86,15 +86,15 @@ function rendergoalOnDashboard(goals){
         //Gets goal description
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
-        let timeOfDay = 'rgb(15, 65, 119, 0.6)';
+        //let timeOfDay = 'rgb(15, 65, 119, 0.6)';
         let timeImage = 'images/moon.png'
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(244, 244, 119, 0.9)';
+                //timeOfDay = 'rgb(244, 244, 119, 0.9)';
                 timeImage = 'images/sunrise.png';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 175, 48, 0.8)';
+                //timeOfDay = 'rgb(255, 175, 48, 0.8)';
                 timeImage = 'images/daytime.png';
                 break;
             default:
@@ -102,7 +102,8 @@ function rendergoalOnDashboard(goals){
         }
 
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
+        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        //var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
         //Creates a container with the goal description
 
@@ -143,23 +144,23 @@ function rendergoalOnDashboard(goals){
         $('.dropdown-trigger').dropdown();
 
     }
-    for(var j=1; j<=goals.length; j++){
-        let initialChildElement = $('.goal-container:nth-child(' +j+')');
-        let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
-        if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
-            let currentBackgroundColor = initialChildElement.css('background-color');
-            let nextBackgroundColor = nextChildElement.css('background-color');
+    // for(var j=1; j<=goals.length; j++){
+    //     let initialChildElement = $('.goal-container:nth-child(' +j+')');
+    //     let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
+    //     if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
+    //         let currentBackgroundColor = initialChildElement.css('background-color');
+    //         let nextBackgroundColor = nextChildElement.css('background-color');
 
-            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
-            //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
-        }
-        if(nextChildElement.length === 0) {
-            let currentBackgroundColor = initialChildElement.css('background-color');
-            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor}, #F2F2F2)`);
+    //         initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+    //         //nextChildElement.css('background', `linear-gradient(${nextBackgroundColor},${currentBackgroundColor})`);
+    //     }
+    //     if(nextChildElement.length === 0) {
+    //         let currentBackgroundColor = initialChildElement.css('background-color');
+    //         initialChildElement.css('background', `linear-gradient(${currentBackgroundColor}, #F2F2F2)`);
 
-        }
+    //     }
 
-    }
+    // }
 }
 
 function updateGoal(goalId, goals) {
