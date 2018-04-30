@@ -2,9 +2,9 @@ $(document).ready(initializeApp);
 
 function initializeApp(){
     getData();
-    
 }
 
+/**** Ajax call to fetch data of all goals of appropriate user ****/
 function getData(){
     $.ajax({
         type: 'GET',
@@ -30,7 +30,7 @@ function getData(){
 
 
 
-
+/**** Allows editing and deleting goals both locally & on database ****/
 function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
@@ -113,15 +113,17 @@ function rendergoalOnDashboard(goals){
         let goalId = goals[i].goal_id;
         let dayName = convertToDayOfWeek(parseInt(goals[i].day));
 
-        let timeOfDay = 'rgb(15, 65, 119, 0.6)';
+        //Determines what time of day was selected to display appropriate image/background color
+
+        //let timeOfDay = 'rgb(15, 65, 119, 0.6)';
         let timeImage = 'images/moon.png'
         switch (parseInt(goals[i].timeframe)){
             case 1:
-                timeOfDay = 'rgb(244, 244, 119, 0.9)';
+                //timeOfDay = 'rgb(244, 244, 119, 0.9)';
                 timeImage = 'images/sunrise.png';
                 break;
             case 2:
-                timeOfDay = 'rgb(255, 175, 48, 0.8)';
+                //timeOfDay = 'rgb(255, 175, 48, 0.8)';
                 timeImage = 'images/daytime.png';
                 break;
             default:
@@ -178,18 +180,20 @@ function rendergoalOnDashboard(goals){
              
     }
 
-    for(var j=1; j<goals.length; j++){
-        let initialChildElement = $('.goal-container:nth-child(' +j+')');
-        let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
-        if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
-            let currentBackgroundColor = initialChildElement.css('background-color');
-            let nextBackgroundColor = nextChildElement.css('background-color');
-            
-            initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+    //Transitions background color if proceeeding background color is different: creates gradient
 
-        }
+    // for(var j=1; j<goals.length; j++){
+    //     let initialChildElement = $('.goal-container:nth-child(' +j+')');
+    //     let nextChildElement = $('.goal-container:nth-child(' +(j+1)+')');
+    //     if(initialChildElement.css('background-color') !== nextChildElement.css('background-color')){
+    //         let currentBackgroundColor = initialChildElement.css('background-color');
+    //         let nextBackgroundColor = nextChildElement.css('background-color');
+            
+    //         initialChildElement.css('background', `linear-gradient(${currentBackgroundColor},${nextBackgroundColor})`);
+
+    //     }
         
-    }
+    // }
 }
 
 function displayDate(){
