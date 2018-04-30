@@ -131,9 +131,10 @@ function rendergoalOnDashboard(goals){
         }
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
+        var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId);
         
-
+        //var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
+        
         //Creates a container with the goal description
         var dayNameContainer = $("<div>").addClass('dayName').text(dayName);
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
