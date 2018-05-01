@@ -432,7 +432,32 @@ module.exports = function (app) {
         });
     });
     //==========END OF GET ALL UNMATCHED USERS===========//
+    //==========GET ALL USERS WITH INTERESTED MATCHES===========//
+    app.post('/interestedMatching', (req, res, next) => {
+        let userId = req.session.userId;
+        let query = 'SELECT * FROM ?? WHERE ?? = ?';
+        console.log(query);
+        let inserts = [
+            'interested_matches',
+            'interested_matches',
+            userId
+            // category, //Category they select on sign_up?
+        ];
 
+        let sql = mysql.format(query, inserts);
+
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+
+            const output = {
+                success: true,
+                data: results,
+            };
+            console.log(output.data);
+            res.json(output);
+        });
+    });
+    //==========END OF GET ALL UNMATCHED USERS===========//
     //==========GET MATCHED USER GOALS===========//
     app.post('/matched', (req, res, next) => {
         let query = 'SELECT * FROM ?? WHERE user_id = ? OR matched_user_id = ?';
