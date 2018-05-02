@@ -5,26 +5,27 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-    <script src='login.js'></script>
+    <script src='./js/login.js'></script>
 </head>
 
 <body>
-    <div class="center title white-text">Relluo</div>
-    <div class='image-container'>
-    </div>
-    <main class="valign-wrapper login-wrapper">
-        <div class="box log-in">
-            <div class="z-depth-1 grey lighten-3 row hoverable" id="loginContainer">
-                <form class="col s12" action="/login" method="post">
-                    <div class='row'>
-                        <div class='col s12'>
-                        </div>
-                    </div>
+<div class="shadow-overlay">
 
+    <!-- <div class="center title white-text">Relluo</div> -->
+    <div class='image-container'>
+        <img src="../images/logo_yellow.png" alt="logo">
+    </div>
+
+    <main class="login-wrapper">
+
+        <div class="row loginFormContainer" id="loginContainer">
+            <form class="col s12" action="/login" method="post">
+
+                <div class="emailPwdInput">
                     <div class='row'>
                         <div class='input-field col s12'>
                             <input class='validate' type='email' name='email' id='email' />
@@ -36,21 +37,22 @@
                         <div class='input-field col s12'>
                             <input class='validate' type='password' name='password' id='password' />
                             <label for='password'>Enter your password</label>
-                        </div>
-                        
+                        </div>                  
                     </div>
+                </div>
 
-                    <br />
-                    <center>
-                        <form action="/login" class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect cyan darken-3'>Login</button>
-                        </form>
-                    </center>
-                </form>
-                <div ><span id='error-message'></span></div>
-            </div>
+
+                <br />
+                <center>
+                    <form action="/login" class='row'>
+                        <button type='submit' name='btn_login' class='col s12 btn btn-large cyan darken-3 waves-effect z-depth-3'>Login</button>
+                    </form>
+                </center>
+            </form>
+            <div ><span id='error-message'></span></div>
         </div>
     </main>
+
     <div class="sign-up">
         <center>        
             <a href='sign_up.html'  class='col s3 btn btn-large waves-effect cyan darken-3 z-depth-3' name='btn_login'>
@@ -59,14 +61,15 @@
     
         </center>
         <center>        
-                <a href='about_us.html'  class='col s3 btn btn-large waves-effect yellow darken-3 z-depth-3' name='btn_login'>
-                    About Us
-                </a>
-        
-            </center>
+            <a href='about_us.html'  class='col s3 btn btn-large waves-effect yellow darken-2 z-depth-3' name='btn_login'>
+                About Us
+            </a>
+        </center>
     </div>
-    <div class="loading">
+    <!-- <div class="loading">
         <img src="./images/title.png">
-    </div>
+    </div> -->
+
+</div>
 </body>
 </html>
