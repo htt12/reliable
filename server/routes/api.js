@@ -51,21 +51,12 @@ module.exports = function (app) {
     //==========END OF GET ALL USERS===========//
 
     //==========GET TODAY GOALS===========//
-    app.get("/goalssqlday", (req, res, next) => {
+    app.post("/goalssqlday", (req, res, next) => {
         console.log("req: ", req.session.userId);
-        if (req.session.userId) {
-            myFunction(req);
-
-            function myFunction(req) {
-                var d = new Date();
-                var n = (d.getUTCDay());
-                console.log('n',n)
-                req.session.day = n;
-                console.log("Day ======" + req.session.day);
-            }
-
+        if ("UserId==="+req.session.userId) {
             let userID = req.session.userId;
-            let day = req.session.day;
+            let day = req.body.day;
+            console.log("The day is ===="+day)
             let status = "active";
             let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ? ORDER BY ??";
             console.log(query);
@@ -77,8 +68,6 @@ module.exports = function (app) {
                 'timeframe',
 
             ];
-
-            
 
             let sql = mysql.format(query, inserts);
 
@@ -351,7 +340,7 @@ module.exports = function (app) {
         // console.log("This is the user id for updating status" + userId);
         // console.log("This is the user id for updating status" + matched_user_id);
         let query =
-            "UPDATE ?? SET ?? = 1 WHERE id = ? OR id = ?";
+            "UPDATE ?? SET ?? = 1 WHERE user_id = ? OR user_id = ?";
         let inserts = [
             "users",
             "status",
@@ -409,7 +398,7 @@ module.exports = function (app) {
     //==========GET ALL UNMATCHED USERS===========//
     app.post('/matching', (req, res, next) => {
         let userId = req.session.userId;
-        let query = 'SELECT * FROM ?? WHERE status <> ? AND id <> ?';
+        let query = 'SELECT * FROM ?? WHERE status <> ? AND user_id <> ?';
         console.log(query);
         let inserts = [
             'users',
@@ -436,10 +425,10 @@ module.exports = function (app) {
     app.post('/interestedMatching', (req, res, next) => {
         let userId = req.session.userId;
         let query = 'SELECT * FROM ?? WHERE ?? = ?';
-        console.log(query);
+        console.log(userId);
         let inserts = [
             'interested_matches',
-            'interested_matches',
+            'interested_user_id',
             userId
             // category, //Category they select on sign_up?
         ];
@@ -457,7 +446,7 @@ module.exports = function (app) {
             res.json(output);
         });
     });
-    //==========END OF GET ALL UNMATCHED USERS===========//
+    //==========END OF GET ALL INTERESTED MATCHES===========//
     //==========GET MATCHED USER GOALS===========//
     app.post('/matched', (req, res, next) => {
         let query = 'SELECT * FROM ?? WHERE user_id = ? OR matched_user_id = ?';
@@ -522,16 +511,19 @@ module.exports = function (app) {
     //==========POST POSSIBLE MATCHES TO INTERESTED_MATCHES===========//
     app.post("/matchingusers", (req, res, next) => {
         let matchedUserId = req.body.matchedUserId;
+        let userName = req.body.username;
         console.log(req.session.userId);
         console.log("This is the matched UserID:"+ matchedUserId);
         let userId = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
+        let query = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
         let inserts = [
             "interested_matches",
             "user_id",
             "interested_user_id",
+            "username",
             userId, // There student Id
             matchedUserId, //User they clicked on
+            userName
         ];
         let sql = mysql.format(query, inserts);
 
