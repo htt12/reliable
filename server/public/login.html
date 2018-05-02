@@ -13,6 +13,7 @@
 </head>
 
 <body>
+<div class="overlay">
 <div class="shadow-overlay">
 
     <!-- <div class="center title white-text">Relluo</div> -->
@@ -43,33 +44,36 @@
 
 
                 <br />
-                <center>
+                <div>
                     <form action="/login" class='row'>
-                        <button type='submit' name='btn_login' class='col s12 btn btn-large cyan darken-3 waves-effect z-depth-3'>Login</button>
+                        <a type='submit' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3'>Login</a>
                     </form>
-                </center>
+                </div>
             </form>
             <div ><span id='error-message'></span></div>
         </div>
     </main>
 
     <div class="sign-up">
-        <center>        
-            <a href='sign_up.html'  class='col s3 btn btn-large waves-effect cyan darken-3 z-depth-3' name='btn_login'>
-                Sign Up
+        <div class="sign-up-container">        
+            <a href='sign_up.html'  class='col s3 btn btn-medium waves-effect z-depth-2 sign-up' name='btn_login'>
+                Sign Up &nbsp
+                <i class="small material-icons">person_add</i>
             </a>
-    
-        </center>
-        <center>        
-            <a href='about_us.html'  class='col s3 btn btn-large waves-effect yellow darken-2 z-depth-3' name='btn_login'>
-                About Us
+        </div>
+
+        <div class="about_us_container">        
+            <a href='about_us.html'  class='col s3 btn btn-medium waves-effect z-depth-2 about_us' name='btn_login'>
+                About Us &nbsp
+                <i class="small material-icons">people</i>
             </a>
-        </center>
+        </div>
     </div>
     <!-- <div class="loading">
         <img src="./images/title.png">
     </div> -->
 
+</div>
 </div>
 </body>
 </html>
