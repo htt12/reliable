@@ -81,6 +81,10 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
 
+    if(goals){
+        $(".message").removeClass('hidden');
+    }
+
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
         //Gets goal description
