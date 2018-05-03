@@ -73,7 +73,7 @@ a.btn.btn-small{
     width: 100%;
     height: 85%;
     
-    overflow: scroll;
+    overflow-y: scroll;
     font-size: 1.2em;
 
 
