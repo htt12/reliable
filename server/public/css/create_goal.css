@@ -1,11 +1,19 @@
 html{
     margin: 0;
     padding: 0;
+    background-color: white;
 }
 
 body{
-    width: 100vw;
     height: 100vh;
+    font-size: 10px;
+    background-color: #F2F2F2;
+}
+
+.goal-container{
+    /* width: 100%; */
+    /* height: 100%; */
+    position: relative;
     background-color: #F2F2F2;
 }
 
@@ -16,26 +24,24 @@ body{
 }
 
 .title{
-    height: 20vmin;
-    line-height: 20vmin;
-    background-color: #A2D3DA;
-}
+    /* line-height: 20vmin; */
 
-.title span{
-    margin: 0 auto;
+    width: 100%;
+    background-color: #A2D3DA;
+    font-size: 3rem;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
-    letter-spacing: 3px;
     font-weight: bolder;
-    font-size: 7rem;
+    letter-spacing: 5px;
+    text-align: center;
 }
 
 .steps {
-    height: 4%;
+    height: 1.9rem;
     width: 100%;
-    background-color: rgba(162, 211, 218, 0.5);
+    background-color: rgba(162, 211, 218, 0.8);
     color: white;
-    font-size: 2.5em;
+    font-size: 1.3rem;
     font-weight: bold;
     letter-spacing: 2px;
     text-align: center;
@@ -44,6 +50,7 @@ body{
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-content: center;
+    border-bottom: 1px rgb(87, 87, 87) solid;
 }   
 
 .steps div{
@@ -54,8 +61,7 @@ body{
     width: 33%;
     height: 100%;
     line-height: 100%;
-    text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
-
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .steps .one{
@@ -64,12 +70,12 @@ body{
 
 .steps .two,
 .steps .three{
-    border-left: 2px solid white; 
+    border-left: 2px solid rgba(255, 255, 255, 0.6); 
 }
 
 .message{
     /* margin: 7% 0 3% 0; */
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: 500;
     font-family: 'Roboto', sans-serif;
     text-align: center;
@@ -82,7 +88,7 @@ body{
 .creatingGoal input.goalInput{
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    font-size: 3.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     height: 100%;
     background-color: white;
@@ -109,7 +115,7 @@ body{
     font-weight: bold;
     text-align: left;
     padding: 2% 3%;
-
+    height: 5.2rem;
 }
 
 .categoryDropdown span{
@@ -126,7 +132,7 @@ body{
 }
 
 .categoryDropdown .categorySelect span{
-    font-size: 3rem;
+    font-size: 1.8rem;
 }
 
 .categoryDropdown .categorySelect > i{
@@ -134,7 +140,7 @@ body{
     cursor: pointer;
     transition: all .3s linear;
     float: right;
-    line-height: 100%;
+    line-height: 60%;
 }
 
 .categoryDropdown:hover{
@@ -178,7 +184,7 @@ body{
     padding: 4% 7%;
     transition: all .2s linear;
     cursor: pointer;
-    font-size: 3rem;
+    font-size: 1.8rem;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -202,14 +208,14 @@ body{
 
 /* ************************ End Goal Category Dropdown *********************** */
 .horizontalLine{
-    margin: 15% 0;
+    margin: 13% 0;
 }
 
 .horizontalLine h3{
     width: 100%;
     text-align: center;
     border-bottom: 3px solid rgba(0, 0, 0, 0.2);
-    line-height: 0.1em;
+    line-height: 0.2em;
     margin: 10px 0 20px;
 }
 
@@ -217,27 +223,30 @@ body{
     background-color: #F2F2F2;
     padding: 0 20px;
     color: rgba(0, 0, 0, 0.2);
+    font-size: 1.5rem;
+    font-weight: bolder;
 }
 
 .horizontalLine .ideas.btn{
     width: 60%;
-    height: 100%;
+    height: 4rem;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     margin-top: 4%;
-    font-size: 3rem;
+    font-size: 1.8rem;
+    line-height: 0.8rem;
     text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
     background: linear-gradient(135deg, rgba(255,226,168, 0.6) 0%, 
                                         rgba(162,211,222, 1) 100%);
     font-weight: bold;
     padding: 4% 5%;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-
+    border-radius: 10px;
 }
 
 .horizontalLine p{
-    margin: 15% 0 0 0;
+    margin: 10% 0 0 0;
 }
 
 .horizontalLine h6 i{
@@ -267,7 +276,7 @@ body{
 .predefined-goals p{
     margin: 4% 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+    font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     color: rgba(0, 0, 0, 0.5);
@@ -295,7 +304,9 @@ body{
     font-size: 2em;
 }
 
-.fitness-goals ul{
+.fitness-goals ul,
+.diet-goals ul,
+.habit-goals ul{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -316,22 +327,16 @@ body{
 .diet-goals .dietList li,
 .habit-goals .habitList li{
     list-style-type: none;
-    font-size: 2.5rem;
-    line-height: 160%;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin: 10% 0;
+    margin: 3% auto;
     border: 1px solid black;
-    padding: 4%;
+    padding: 3% 0;
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
+    border-radius: 15px;
     text-align: center;
-    width: 100%;
+    width: 90%;
 }
-
-.fitness-goals .fitnessList li{
-    margin: 4% 0;
-}
-
 
 .fitness-goals .fitnessList li:nth-child(odd),
 .diet-goals .dietList li:nth-child(odd),
@@ -348,8 +353,10 @@ body{
 .fitness-goals .fitnessList li:last-child,
 .diet-goals .dietList li:last-child,
 .habit-goals .habitList li:last-child{
-    margin-bottom: 30%;
+    margin-bottom: 20%;
 }
+
+
 /******************* Start Days From *********************/
 
 .days p,
@@ -359,7 +366,7 @@ body{
 
 .daysForm label{
     font-family: 'Roboto', sans-serif;
-    font-size: 3em;
+    font-size: 1.8rem;
     margin-left: 25%;
     color: black;
     padding-left: 25%;
@@ -371,18 +378,18 @@ body{
 }
 
 .daysForm input[type="checkbox"]+label:before {
-    transform: scale(3);
+    transform: scale(2);
 }
 
 .daysForm input:checked + label:before{
-    top: -12px;
-    left: -5px;
-    width: 20px;
-    height: 45px;
+    top: -15px;
+    left: -11px;
+    width: 19px;
+    height: 38px;
     border-top:   transparent;
     border-left:   transparent;
-    border-right: 8px solid rgb(61, 145, 170);
-    border-bottom: 8px solid rgb(61, 145, 170);
+    border-right: 7px solid rgb(61, 145, 170);
+    border-bottom: 7px solid rgb(61, 145, 170);
     -webkit-transform: rotate(40deg);
     -moz-transform: rotate(40deg);
     -ms-transform: rotate(40deg);
@@ -398,7 +405,7 @@ body{
 
 .timeOfDay select{
     display: block;
-    font-size: 2.5em;
+    font-size: 1.8rem;
     width: 90%;
     float: left;
     height: 100%;
@@ -406,27 +413,32 @@ body{
 }
 
 .timeOfDay select:active{
-    font-size: 1.5em;
+    font-size: 1.8rem;
 }
 
 /******************* End Days From *********************/
 .endDate input[type="date"]{
-    font-size: 3em;
+    font-size: 2rem;
     margin-top: 10%;
-    width: 77%;
+    width: 60%;
     border-bottom: 3px solid rgb(224, 185, 69);
     position: relative;
     left: 50%;
     transform: translateX(-50%);
 }
 
+/*********************** FOOTER ************************/
+
+
 footer.page-footer{
-    height: 17vmin;
-    width: 100vw;
+    max-width: 600px;
+    width: 100%;
     padding-top: 0;
     position: fixed;
     bottom: 0;
     background-color: #A2D3DA;
+    height: 10%;
+    border-top: 1px rgb(87, 87, 87) solid;
 }
 
 .footer-items{
@@ -437,14 +449,13 @@ footer.page-footer{
     justify-content: space-around;
     align-items: center;
     padding: 0 5%;
-    font-size: 3rem;
 }
 
 .footer-items a{
     background-color: transparent;
-    font-size: 3rem;
+    font-size: 1.5rem;
     box-shadow: none;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    /* text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); */
 }
 
 .footer-items span {
@@ -453,7 +464,7 @@ footer.page-footer{
 }
 
 .btn-large i{
-    font-size: 3.5rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -462,15 +473,13 @@ footer.page-footer{
     box-shadow: none;
 }
 
-.successMsg{
-    height: 70vh;
-    width: 90vw;
-}
+
+/************************ PRELOADER ***********************/
 
 .successMsg p{
     margin-top: 20%;
     font-family: 'Roboto', sans-serif;
-    font-size: 3rem;
+    font-size: 1.8rem;
     font-weight: bold;
     text-align: center;
     color: rgba(0, 0, 0, 0.7);
@@ -478,7 +487,7 @@ footer.page-footer{
 
 .successMsg div{
     margin-top: 10%;
-    width: 30%;
+    width: 20%;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -503,4 +512,13 @@ footer.page-footer{
 
 .background{
     background-color: rgba(255, 226, 168);
+}
+
+/************************* Responsive *************************/
+
+@media only screen and (min-width: 600px){
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }

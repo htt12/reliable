@@ -62,6 +62,37 @@ function getMatchedUserGoals(data){
     })
 }
 
+function checkForInterestedMatches(category){
+    $.ajax({
+        type: 'POST',
+        url: '/matching',
+        dataType: 'json',
+        jsonpCallback: 'callback',
+        crossDomain: true,
+        cache: false,
+        data: {
+            category: category,
+        },
+        success: function(resp){
+            if(resp.data[0] !== undefined){
+                console.log(resp);
+                $('.all-goals-list').empty();
+                console.log(resp.data);
+                rendergoalOnDashboardOLD(resp.data)
+            } else {
+                var p = $("<p>").text("No users ready to match").addClass("center");
+                $(".match-list").append(p);
+            }
+
+
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
+
 function getData(category){
     $.ajax({
         type: 'POST',
