@@ -73,7 +73,6 @@ function checkForInterestedMatches(){
         data: {
         },
         success: function(resp){
-            debugger;
             if(resp.data[0] !== undefined){
                 $('.all-goals-list').empty();
                 console.log(resp.data);
@@ -108,7 +107,6 @@ function getData(category){
             console.log("This is the possible matches====="+resp)
             var possibleMatches = resp.data;
             if(resp.data[0] !== undefined){
-                debugger;
                 // console.log(resp);
                 $('.all-goals-list').empty();
                 console.log(resp.data);
