@@ -1,8 +1,8 @@
 /************************************MATCH BODY **********/
-.match-body{
-    width: 100vw;
+body{
+    /* width: 100vw; */
     height: 100vh;
-    background-color: #F2F2F2;
+    background-color: white;
 }
 
 .match-container{
@@ -150,3 +150,13 @@ nav ul li{
     vertical-align: 100%;
 }
 /************************************END - FOOTER**********/
+
+
+/************************* Responsive *************************/
+
+@media only screen and (min-width: 600px){
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
