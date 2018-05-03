@@ -1,6 +1,6 @@
 $(document).ready(initializeApp);
 
-var userID = require('../app');
+// var userID = require('../app');
 
 var userEmail = null;
 var userName = null;
@@ -89,8 +89,8 @@ function getPasswordInput() {
     $('.pwdInput').on('keyup', function (event) {
         pwd = event.target.value;
         console.log(pwd);
-        var sha  = sha1(pwd);
-        console.log(sha);
+        // var sha  = sha1(pwd);
+        // console.log(sha);
         console.log('pwd.length:', pwd.length);
 
         if( pwd.length < 8 ){
@@ -149,7 +149,7 @@ function createObject( email, username, password ) {
 function sendData(email, username, password) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:8000/users",
+        url: "/users",
         // dataType: "json",
         data: {
             email: email,
@@ -159,6 +159,10 @@ function sendData(email, username, password) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
+            if (json_data.success) {
+                $('#buttonText').text('SUCCESS');
+                setTimeout(()=>{(window.location.replace('/login'))}, 1000);
+            }
         }
 
     })
@@ -175,7 +179,10 @@ function handleSignUpBtnClick() {
         var newObject = createObject( userEmail , userName, userPwd);
         console.log('new object:', newObject);
         $('.message span').text('');
+        $('.signUpForm').addClass('animated bounceOut');
         clearUserInput();
+
+
     }
 
 }

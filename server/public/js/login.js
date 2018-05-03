@@ -1,14 +1,14 @@
 $(document).ready(()=>{
     setTimeout(()=>{
-        $('.loading').fadeOut(3000);
-    }, 1000)
+        $('.loading').addClass('display', 'none');
+    }, 500)
     }
 );
 
 function postUserToServer(email, password, status) {
     $.ajax({
         type: "POST",
-        url: "http://reliable.keatonkrieger.com/login",
+        url: "/login",
         dataType: "json",
         data: {
             email: email,
@@ -18,6 +18,10 @@ function postUserToServer(email, password, status) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
+        },
+        error: function (xhr, status, error) {
+            console.log(error)    
+            $(".error-message").text("Invalid email/password")
         }
     })
 }
