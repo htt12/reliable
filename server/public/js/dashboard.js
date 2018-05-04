@@ -62,9 +62,15 @@ function convertToDayOfWeek( day ) {
 }
 
 function getData(){
+    let d = new Date();
+    let n = (d.getUTCDay());
+    console.log('n',n)
     $.ajax({
-        type: 'GET',
+        type: 'POST',
         url: '/goalssqlday',
+        data: {
+            day:n
+        },
         success: function(resp){
             console.log('dashboard',resp);
 

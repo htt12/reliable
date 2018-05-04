@@ -48,17 +48,16 @@ module.exports = function (app) {
         req.body.password = sha1(req.body.password);
         connection.connect(function (err) {
             console.log('db connected');
-            connection.query(`SELECT id, password FROM users WHERE email = '${req.body.email}'`, function (err, data, fields) {
+            connection.query(`SELECT user_id, password FROM users WHERE email = '${req.body.email}'`, function (err, data, fields) {
                 if (data.length) {
                     if (data[0].password === req.body.password) {
                         console.log(data[0].id);
                         var user = data[0];
                         //user is valid
                         var userToken = generateRandomString(20) + Date.now();
-                        id = data[0].id;
-                        userID = id;
-                        req.session.userId = userID;
-                        console.log('==========ID=======:', id);
+                        req.session.userId = data[0].user_id;
+                        
+                        console.log('==========ID=======:', req.session.userId);
 
                         var query = `INSERT INTO loggedinUsers SET userID=${userID}, token='${userToken}', created=NOW()`;
                         console.log("query is " + query);

@@ -6,6 +6,10 @@ function initializeApp(){
 
 /**** Ajax call to fetch data of all goals of appropriate user ****/
 function getData(){
+    let d = new Date();
+    let n = (d.getUTCDay());
+    console.log('n',n)
+    let day = n;
     $.ajax({
         type: 'GET',
         url: '/goalssql',
@@ -13,6 +17,9 @@ function getData(){
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
+        data: {
+            day: day
+        },
         success: function(resp){
             console.log(resp);
             $('.all-goals-list').empty();
