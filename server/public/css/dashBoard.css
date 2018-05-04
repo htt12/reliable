@@ -1,12 +1,17 @@
 html{
     font-size: 10px;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+
 }
 
 /************************************DASHBOARD BODY **********/
 body{
     /* width: 100vw; */
-    height: 100vh;
-    background-color: white;
+    /* height: 100vh; */
+    min-height: 100%;
+    background-color: #F2F2F2;
 }
 
 .dashboard-container{
@@ -14,12 +19,13 @@ body{
     height: 90%;
     position: relative;
     background-color: #F2F2F2;
+
 }
 /************************************Title **********/
 
 .title-bar{
     width: 100%;
-    height: 100%;
+    height: 5.5rem;
     background-color: #A2D3DA;
     font-size: 3rem;
     color: white;
@@ -27,15 +33,15 @@ body{
     font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
-
+    padding-top: 1%;
 }
 
 .date {
-    height: 5%;
+    height: 2.5rem;
     width: 100%;
     background-color: #A2D3DA;
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     letter-spacing: 2px;
     text-align: center;
     border-bottom: 1px solid black;
@@ -75,10 +81,8 @@ a.btn.btn-small{
 .goal-list{
     width: 100%;
     height: 85%;
-    
-    overflow-y: scroll;
     font-size: 1.2em;
-
+    overflow-y: auto;
 
 }
 
@@ -166,8 +170,10 @@ a.btn.btn-small{
 .footer-container{
     height: 10%;
     border-top: 1px rgb(87, 87, 87) solid;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    max-width: 600px;
     background-color: #A2D3DA
 }
 
