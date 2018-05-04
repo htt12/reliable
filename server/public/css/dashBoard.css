@@ -1,9 +1,12 @@
+html{
+    font-size: 10px;
+}
+
 /************************************DASHBOARD BODY **********/
 body{
     /* width: 100vw; */
     height: 100vh;
     background-color: white;
-    font-size: 10px;
 }
 
 .dashboard-container{

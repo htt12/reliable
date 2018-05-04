@@ -2,11 +2,11 @@ html{
     margin: 0;
     padding: 0;
     background-color: white;
+    font-size: 10px;
 }
 
 body{
     height: 100vh;
-    font-size: 10px;
     background-color: #F2F2F2;
 }
 
