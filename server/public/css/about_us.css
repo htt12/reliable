@@ -1,53 +1,61 @@
 html, body{
     margin: 0;
     padding: 0;
+    font-size: 10px;
+    background-color: white;
 }
 
 body{
-    width: 100vw;
-    height: 100vh;
     background-color: #F2F2F2;
+    overflow-y: scroll; 
+}
+
+.background{
+    min-height: 100%;
+    width: 100%;
 }
 
 .header{
-    /* position: fixed;
-    top: 0; */
     width: 100%;
-    height: 11%;
-    line-height: 20vmin;
+    height: 12vh;
+    line-height: 12vh;
 }
 
 .title-bar{
+    margin: auto;
     width: 100%;
     height: 100%;
     background-color: #A2D3DA;
-    font-size: 3em;
+    font-size: 3rem;
     color: white;
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    font-weight: bolder;
     letter-spacing: 5px;
-    text-align: center; 
+    text-align: center;
 }
 
+.title-bar span{
 
+}
 
 
 .container{
     width: 90%;
     height: 75%;
     background-color: #F2F2F2;
-    overflow: scroll;
+
 }
 
 .teamBanner{
     margin: 5% 0;
     height: 35%;
-    width: 100%;
+    /* width: 100%; */
     border: 3px solid white;
     box-shadow: 0px 5px 12px #ababab;
 }
 
 .teamBanner img{
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
 }
 
@@ -63,38 +71,44 @@ body{
     background-color: #F2F2F2;
     padding: 0 10px;
     color: rgba(0, 0, 0, 0.7);
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 
 
 
 .text p{
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.8rem;
     font-weight: 500;
     text-align: center;
+    line-height: 2;
 }
 
-.tech.row{
-    width: 100%;
-    height: 15%;
-    margin: 0;
+.skills-outer .skillContainer{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-content: center;
 }
 
-.tech.row div{
-    width: 100%;
+.skillIconContainer{
+    height: 9rem;
+    width: 9rem;
+    display: inline-block;
+    margin: 35px;
+}
+
+.skillIconContainer img{
     height: 100%;
-    margin: 5% 0;
-
+    width: 100%;
 }
 
-.tech.row div img{
-    /* width: 100%; */
-    height: 100%;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%, 0);
-}
+.skillIconContainer p{
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+} 
 
 
 
@@ -110,8 +124,7 @@ body{
 }
 
 .image img{
-    width: 80%;
-    height: 100%;
+    width: 60%;
     margin: auto;
     border-radius: 50%;
     border: 3px solid white;
@@ -133,16 +146,41 @@ body{
 
 .name p{
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 500;
     margin: 3% auto;
+    padding-top: 5%;
+}
+
+.name ul{
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.name li{
+    font-size: 2.5rem;
+    margin: 0 5%;
+}
+
+.name li a{
+    color: black;
 }
 
 .contact p{
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     font-weight: 400;
     text-align: center;
+}
+
+.contact a{
+    color: black;
+    font-weight: bold;
+}
+
+.contact {
+    padding-bottom: 20%;
 }
 
 
@@ -155,6 +193,7 @@ body{
     border-top: 1px rgb(87, 87, 87) solid;
     position: fixed;
     width: 100%;
+    max-width: 600px;
     bottom: 0;
     width: 100%;
     background-color: #A2D3DA
@@ -164,9 +203,6 @@ nav{
     background-color: #A2D3DA;
     height: 100%;
 }
-
-
-
 
 .footer-items{
     height: 100%;
@@ -182,6 +218,16 @@ nav ul li{
 }
 
 .footer-items a i{
-    font-size: 3rem;
+    font-size: 4rem;
     vertical-align: 100%;
+}
+
+
+/************************* Responsive *************************/
+
+@media only screen and (min-width: 600px){
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
 }
