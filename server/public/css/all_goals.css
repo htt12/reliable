@@ -56,6 +56,34 @@ body{
     font-size: 1.2em;  
 }
 
+/************************************ MESSAGE SECTION **********/
+.message {
+    background-color: white;
+    width: 60%;
+    position: relative;
+    margin: 15% auto 0;
+}
+
+.message p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 5%;
+
+}
+
+a.btn.btn-small{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    background-color: rgb(119, 178, 186);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 5%;
+    font-weight: bold;
+}
+
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
     display: inline-flex;

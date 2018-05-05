@@ -83,52 +83,52 @@ function getData(){
 }
 
 // ***************** TESTING *************************
-var object = [
-    {
-        goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
-        goal_id: 88,
-        day: 3,
-        timeframe: 2
-    },
-    {
-        goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-        goal_id: 8,
-        day: 3,
-        timeframe: 3
-    },
-    {
-        goal: 'make it work',
-        goal_id: 18,
-        day: 5,
-        timeframe: 2
-    },
-    {
-        goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-        goal_id: 8,
-        day: 2,
-        timeframe: 1
-    },
-    {
-        goal: 'make it work make it work make it work',
-        goal_id: 10,
-        day: 4,
-        timeframe: 2
-    },
-    {
-        goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-        goal_id: 8,
-        day: 5,
-        timeframe: 2
-    },
-    {
-        goal: 'make it work make it work make it work',
-        goal_id: 88,
-        day: 2,
-        timeframe: 1
-    }
-]
+// var object = [
+//     {
+//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
+//         goal_id: 88,
+//         day: 3,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 3,
+//         timeframe: 3
+//     },
+//     {
+//         goal: 'make it work',
+//         goal_id: 18,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 2,
+//         timeframe: 1
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 10,
+//         day: 4,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 88,
+//         day: 2,
+//         timeframe: 1
+//     }
+// ]
 
-rendergoalOnDashboard(object);
+// rendergoalOnDashboard(object);
 
 // ***************************************************
 

@@ -23,7 +23,7 @@ function getData(){
         success: function(resp){
             console.log(resp);
             $('.all-goals-list').empty();
-            // rendergoalOnDashboard(resp.data)
+            rendergoalOnDashboard(resp.data)
 
             $('html, body').animate({
                 scrollTop: $('.all-goals-list').offset().top}, 2000)
@@ -107,13 +107,13 @@ function deleteGoal(goalId){
 }
 
 // ***************** TESTING *************************
-var object = [
-    {
-        goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
-        goal_id: 88,
-        day: 6,
-        timeframe: 2
-    },
+// var object = [
+//     {
+//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
+//         goal_id: 88,
+//         day: 6,
+//         timeframe: 2
+//     },
     // {
     //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
     //     goal_id: 8,
@@ -150,9 +150,9 @@ var object = [
     //     day: 2,
     //     timeframe: 1
     // }
-]
+// ]
 
-rendergoalOnDashboard(object);
+// rendergoalOnDashboard(object);
 
 // ***************************************************
 
@@ -161,7 +161,9 @@ function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
-    
+    if(goals.length !== 0){
+        $(".message").addClass('hidden');
+    }
 
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
