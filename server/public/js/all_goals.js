@@ -7,7 +7,7 @@ function initializeApp(){
 /**** Ajax call to fetch data of all goals of appropriate user ****/
 function getData(){
     let d = new Date();
-    let n = (d.getUTCDay());
+    let n = (d.getUTCDate());
     console.log('n',n)
     let day = n;
     $.ajax({
@@ -106,12 +106,64 @@ function deleteGoal(goalId){
     })
 }
 
+// ***************** TESTING *************************
+// var object = [
+//     {
+//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
+//         goal_id: 88,
+//         day: 6,
+//         timeframe: 2
+//     },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 2,
+    //     timeframe: 1
+    // },
+    // {
+    //     goal: 'make it work',
+    //     goal_id: 18,
+    //     day: 5,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 2,
+    //     timeframe: 1
+    // },
+    // {
+    //     goal: 'make it work make it work make it work',
+    //     goal_id: 10,
+    //     day: 4,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 5,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make it work make it work make it work',
+    //     goal_id: 88,
+    //     day: 2,
+    //     timeframe: 1
+    // }
+// ]
+
+// rendergoalOnDashboard(object);
+
+// ***************************************************
+
 
 function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
-    
+    if(goals.length !== 0){
+        $(".message").addClass('hidden');
+    }
 
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
@@ -138,7 +190,7 @@ function rendergoalOnDashboard(goals){
         }
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
         
         //var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         
@@ -151,8 +203,11 @@ function rendergoalOnDashboard(goals){
         //Creates drop down menu to mark goal as edit or delete
         var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
         
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
-        
+        var icons = $('<i>').addClass('material-icons shadow').text('menu'); 
+        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button').attr('data-activates', 'dropdown'+goalId);
+        editButton.append(icons);
+
+
         var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
         
         let goalSelector = '#goalId'+goalId;
@@ -213,7 +268,7 @@ function displayDate(){
 
 function getTodayDate(){
     var date = new Date();
-    var day = date.getDay();
+    // var day = date.getDay();
     var dd = leadingZero(date.getDate());
     var mm = leadingZero(date.getMonth()+1);
     let dayOfWeek = convertToDayOfWeek(day);

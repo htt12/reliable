@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reliable - Sign Up</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -17,12 +17,17 @@
 <body>
 <div class="background">
     <div class='title-bar'>
-
+        <ul class="center">
+            <li><a href="login.html"><i class="material-icons">home</i></a></li>
+        </ul>
     </div>
+
     <div class="container center">
         
         <div class="profilePicture">
-            <img src="./images/logo_yellow.png">
+            <a href="login.html">
+                <img src="./images/logo_yellow.png">
+            </a>
         </div>
         
 
@@ -58,10 +63,11 @@
                 <span></span>
             </div>
         </div>
-        <div class='footer-container '>
-            <button class="signUpBtn waves-effect waves-light btn z-depth-3" id='buttonText'><i class="material-icons right">person_add</i>SIGN UP</button>
-        </div>
 
+
+    </div>
+    <div class='footer-container '>
+        <a class="btn signUpBtn waves-effect z-depth-3" id='buttonText'><i class="material-icons right">person_add</i>SIGN UP</a>
     </div>
 </div>
 </body>
