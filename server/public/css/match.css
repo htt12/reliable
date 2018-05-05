@@ -15,9 +15,8 @@ body{
 
 .match-container{
     width: 100%;
-    height: 90%;
+    height: 91%;
     position: relative;
-    /* min-width: 375px;    */
     background-color: #F2F2F2; 
     
 }
@@ -25,7 +24,7 @@ body{
 
 .title-bar{
     width: 100%;
-    height: 5.5rem;
+    height: 5rem;
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
@@ -37,11 +36,11 @@ body{
 }
 
 .matchedUser {
-    height: 2.5rem;
+    height: 2rem;
     width: 100%;
     background-color: #A2D3DA;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     text-align: center;
     border-bottom: 1px solid black;
@@ -52,26 +51,26 @@ body{
 
 .match-list{
     width: 85%;
-    height: 81%;
+    height: 90%;
     display: inline-flex;
     flex-direction: column;
-    margin: 3% 7.5%;
+    margin: 0% 7.5%;
     overflow-y: auto;
     
 }
 
-.fixed-action-btn{
+/* .fixed-action-btn{
     position: relative;
     bottom: 10%;
     right: -43%;
     background-color: transparent;
-}
+} */
 /**********INDIVIDUAL MATCHES**********/
 .goal-container{
     display: inline-flex;
-    height: 15%;
-    padding-bottom: 3%;
-    
+    padding: 2% 7% 2% 4%;
+    width: 100%;
+    text-align: center;
 }
 
 .goal-description{
@@ -136,7 +135,7 @@ body{
 
 
 .footer-container{
-    height: 10%;
+    height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
     position: absolute;
     bottom: 0;
@@ -170,6 +169,14 @@ nav ul li{
 
 i.large.material-icons:hover {
     background-color: rgba(255,226,168,0.8);
+}
+
+a.btn-floating.btn-large{
+    width: 50px;
+    height: 50px;
+}
+i.large.material-icons{
+    font-size: 2.5rem;
 }
 
 /************************************END - FOOTER**********/

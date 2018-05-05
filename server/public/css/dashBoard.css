@@ -8,7 +8,6 @@ html{
 
 /************************************DASHBOARD BODY **********/
 body{
-    /* width: 100vw; */
     height: 100%;
     min-height: 100%;
     background-color: #F2F2F2;
@@ -16,7 +15,7 @@ body{
 
 .dashboard-container{
     width: 100%;
-    height: 90%;
+    height: 91%;
     position: relative;
     background-color: #F2F2F2;
 
@@ -25,7 +24,7 @@ body{
 
 .title-bar{
     width: 100%;
-    height: 5.5rem;
+    height: 5rem;
     background-color: #A2D3DA;
     font-size: 3rem;
     color: white;
@@ -37,11 +36,11 @@ body{
 }
 
 .date {
-    height: 2.5rem;
+    height: 2rem;
     width: 100%;
     background-color: #A2D3DA;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     text-align: center;
     border-bottom: 1px solid black;
@@ -81,7 +80,7 @@ a.btn.btn-small{
 
 .goal-list{
     width: 100%;
-    height: 85%;
+    height: 90%;
     font-size: 1.2em;
     overflow-y: auto;
 
@@ -186,7 +185,7 @@ button.dropdown-button.dropdown-trigger.goal-button {
 
 
 .footer-container{
-    height: 10%;
+    height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
     position: absolute;
     bottom: 0;
