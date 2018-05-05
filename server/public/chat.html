@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Chat</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="css/chat.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src='js/chat.js'></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <script>
+            $(function () {
+                var socket = io();
+                $('form').submit(function(){
+                    socket.emit('chat message', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+                socket.on('chat message', function(msg){
+                    $('#messages').append($('<li>').text(msg));
+                    window.scrollTo(0, document.body.scrollHeight);
+                });
+            });
+    </script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-<link rel="stylesheet" type="text/css" href="css/chat.css">
-<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
-<script src='js/chat.js'></script>
-<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<body>
+    <div class="match-container">
+        <div class="title-bar">Matches</div>
+        <div class='sub-title'></div>
 
-<script>
-        $(function () {
-            var socket = io();
-            $('form').submit(function(){
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
-                return false;
-            });
-            socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').text(msg));
-                window.scrollTo(0, document.body.scrollHeight);
-            });
-        });
-</script>
-
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<body class='match-body'>
-<div class="match-container">
-    <div class="title-bar">Matches</div>
-    <div class="match-list">
-        <ul id="messages"></ul>
-        <form action="">
-            <input id="m" /><button>Send</button>
-        </form>
+        <div class="match-list">
+            <ul id="messages"></ul>
+            <form class="row valign-wrapper" action="">
+                <input class="col s9" id="m" placeholder="Your message goes here..."/>
+                <div class="col s3 button-container">
+                    <button class="btn btn-small z-depth-2">Send</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class='footer-container '>
@@ -52,7 +59,6 @@
             </nav>
 
         </div>
-</div>
 </body>
 
 </html>
