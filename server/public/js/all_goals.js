@@ -41,7 +41,10 @@ function getData(){
 function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
+    
+    let currentText = $(goalSelected +'> .goal-description').text();
 
+    console.log('currentText', currentText);
     $(goalSelected +'> .goal-description').text('');
 
     $("<input class='center' type='text'>").css({
@@ -52,35 +55,34 @@ function editGoal(goalSelected, goalId){
 
     }).appendTo(textToEdit).focus();
 
-    $('input').on('focusout', ()=>{
-
-        let edit = $('input').val();
-
-        $(goalSelected+'> .goal-description').text(edit);
-
-        console.log(edit);
-        $('input').remove();
-
-
-        console.log('goalID', goalId);
-        $.ajax({
-            type: 'POST',
-            data: {
-                goal: edit,
-                goal_id: goalId,
-            },
-            url: '/goals/update',
-            // dataType: 'json',
-
-            success: function(resp){
-                console.log('edit',resp);
-                getData();
-            },
-            error: function(xhr, status, err){
-                console.log(err)
+    $('input').on('keypress',  (e)=>{
+        
+        if(e.keyCode == 13){
+            let edit = $('input').val();
+            if(!edit){
+                edit = currentText;
             }
-        })
-    })
+            $(goalSelected+'> .goal-description').text(edit);
+            $('input').remove();
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    goal: edit,
+                    goal_id: goalId,
+                },
+                url: '/goals/update',
+                // dataType: 'json',
+
+                success: function(resp){
+                    getData();
+                },
+                error: function(xhr, status, err){
+                    console.log(err)
+                }
+            });
+        };
+    });
 }
 
 function deleteGoal(goalId){
