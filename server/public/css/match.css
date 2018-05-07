@@ -182,11 +182,108 @@ i.large.material-icons{
 /************************************END - FOOTER**********/
 
 
+
+
+/**************************************************************/
 /************************* Responsive *************************/
+@media only screen and (min-width : 320px) {
+
+    .title-bar {
+        height: 2rem;
+        font-size: 1.8rem;
+        padding-top: 0%;
+    }
+    .matchedUser {
+        height: 1.5rem;
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
+    .match-list{
+        height: 94%;
+    }
+    .footer-container{
+        height: 3.5rem;
+    }
+    .footer-items a i {
+        font-size: 2rem;
+        height: 35px;
+        line-height: 35px;
+    }
+    a.btn-floating.btn-large{
+        width: 27px;
+        height: 27px;
+        line-height: 27px;
+    }
+    i.large.material-icons{
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (min-width : 480px){
+    .title-bar {
+        height: 3rem;
+        font-size: 2rem;
+        padding-top: 0%;
+    }
+    .matchedUser {
+        height: 1.5rem;
+        font-size: 0.9rem;
+        padding-top: 2px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .match-list{
+        height: 87%;
+    }
+    .footer-container{
+        height: 4.5rem;
+    }
+    .footer-items a i {
+        font-size: 2.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+    a.btn-floating.btn-large{
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+    i.large.material-icons{
+        font-size: 2rem;
+    }
+}
 
 @media only screen and (min-width: 600px){
     body{
         max-width: 600px;
         margin: 0 auto;
+    }
+    .title-bar{
+        height: 5rem;
+        font-size: 3rem;
+    }
+    
+    .matchedUser {
+        height: 2.5rem;
+        font-size: 1.3rem;
+    }
+    .match-list{
+        height: 90%;
+    }
+
+    .footer-container{
+        height: 9%;
+    }
+    .footer-items a i{
+        font-size: 3rem;
+    }
+    a.btn-floating.btn-large{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    i.large.material-icons{
+        font-size: 2.5rem;
     }
 }
