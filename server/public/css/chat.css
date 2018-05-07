@@ -157,6 +157,7 @@ form button {
     overflow: auto;
     background-color: white;
     font-size: 1.3rem;
+    margin-top: 5px;
 }
 
 #messages li {
@@ -242,7 +243,9 @@ nav ul li{
 /**************************************************************/
 /************************* Responsive *************************/
 @media only screen and (min-width : 320px) {
-
+    .match-container {
+        height: 93%;
+    }
     .title-bar {
         height: 2rem;
         font-size: 1.8rem;
@@ -254,17 +257,34 @@ nav ul li{
         padding-top: 2px;
     }
     .match-list{
-        height: 94%;
+        height: 92%;
         margin: 0% 7.5%;
     }
-    i.material-icons.shadow{
-        font-size: 18px;
+    #messages {
+        height: 85%;
+        font-size: 1rem;
+        margin-top: 5px;
     }
-
-    div.goal-container:last-child{
-        margin-bottom: 5%;
+    form{
+        bottom: 0;
     }
-
+    form.row.valign-wrapper{
+        margin-bottom: 5px;
+    }
+    input#m {
+        font-size: 1rem;
+        margin-bottom: 7px;
+    }
+    form button{
+        margin-left: 10%;
+    }
+    button.btn.btn-small{
+        font-size: 1rem;
+        height: 30px;
+        line-height: 30px;
+        padding: 1px 10px;
+        border: 5px;
+    }
     .footer-container{
         height: 3.5rem;
     }
@@ -276,6 +296,9 @@ nav ul li{
 }
 
 @media only screen and (min-width : 480px){
+    .match-container {
+        height: 86%;
+    }
     .title-bar {
         height: 3rem;
         font-size: 2rem;
@@ -287,17 +310,31 @@ nav ul li{
         padding-top: 2px;
     }
     .match-list{
-        height: 94%;
+        height: 84%;
         margin: 0% 7.5%;
     }
-    i.material-icons.shadow{
-        font-size: 20px;
+    #messages {
+        height: 75%;
+        font-size: 1.2rem;
+        margin-top: 5px;
     }
-
-    div.goal-container:last-child{
-        margin-bottom: 5%;
+    form{
+        bottom: 0;
     }
-
+    form.row.valign-wrapper{
+        padding: 3px 5px;
+    }
+    input#m {
+        font-size: 1.2rem;
+        margin-bottom: 7px;
+    }
+    form button{
+        margin-left: 10%;
+    }
+    button.btn.btn-small {
+        margin: 0 auto;
+        width: 80%;
+    }
     .footer-container{
         height: 4.5rem;
     }
@@ -313,11 +350,13 @@ nav ul li{
         max-width: 600px;
         margin: 0 auto;
     }
+    .match-container{
+        height: 91%;
+    }
     .title-bar{
         height: 5rem;
         font-size: 3rem;
     }
-    
     .sub-title {
         height: 2.5rem;
         font-size: 1.3rem;
@@ -326,7 +365,33 @@ nav ul li{
         height: 90%;
         margin: 0% 7.5%;
     }
-
+    #messages {
+        height: 87%;
+        font-size: 1.3rem;
+        margin-top: 5px;
+    }
+    form{
+        bottom: 13px;
+    }
+    form input { border: 0;
+        padding: 10px;
+    }
+    form button {
+        margin-left: 33%;
+    }
+    input#m{
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    form.row.valign-wrapper{
+        padding: 7px 5px;
+        bottom: 5px;
+    }
+    button.btn.btn-small{
+        font-size: 1.3rem;
+        height: 36px;
+        line-height: 36px;
+    }
     .footer-container{
         height: 9%;
     }
