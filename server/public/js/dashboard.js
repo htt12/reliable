@@ -82,13 +82,63 @@ function getData(){
     })
 }
 
+// ***************** TESTING *************************
+// var object = [
+//     {
+//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
+//         goal_id: 88,
+//         day: 3,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 3,
+//         timeframe: 3
+//     },
+//     {
+//         goal: 'make it work',
+//         goal_id: 18,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 2,
+//         timeframe: 1
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 10,
+//         day: 4,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 88,
+//         day: 2,
+//         timeframe: 1
+//     }
+// ]
+
+// rendergoalOnDashboard(object);
+
+// ***************************************************
+
 
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
 
-    if(goals){
-        $(".message").removeClass('hidden');
+    if(goals.length !== 0){
+        $(".message").addClass('hidden');
     }
 
     for(var i=0; i<goals.length;i++){
@@ -117,12 +167,14 @@ function rendergoalOnDashboard(goals){
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
         //Creates a container with the goal description
 
-        var goalBar = $("<div>").addClass('goal-description z-depth-1').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description').text(goalDescription);
 
         //Creates drop down menu to mark goal as complete or incomplete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2')
-
-        var completeButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container');
+        
+        var icons = $('<i>').addClass('material-icons shadow').text('menu'); 
+        var completeButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button').attr('data-activates', 'dropdown'+goalId);
+        completeButton.append(icons);
 
         var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
 
@@ -133,10 +185,10 @@ function rendergoalOnDashboard(goals){
             updateGoal(goalId,goals);
             $(goalSelector).addClass('animated bounceOutLeft');
             setTimeout((()=>{$(goalSelector).remove()}), 500);
-        }).wrapInner('<a href="#!"><i class="material-icons">check</i></a>')
+        }).wrapInner('<a href="#!"><i class="material-icons small">check</i>Did it</a>');
 
 
-        var exitItem = $('<li>').addClass('center-align').wrapInner('<a href="#!"><i class="material-icons">close</i></a>');
+        var exitItem = $('<li>').addClass('center-align').wrapInner('<a href="#!"><i class="material-icons small">close</i>Nah</a>');
 
 
         dropDownList.append(completeItem, exitItem);
