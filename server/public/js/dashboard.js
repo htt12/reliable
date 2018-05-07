@@ -125,6 +125,42 @@ function getData(){
 //         goal_id: 88,
 //         day: 2,
 //         timeframe: 1
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 88,
+//         day: 2,
+//         timeframe: 1
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 88,
+//         day: 2,
+//         timeframe: 1
+//     },
+//     {
+//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+//         goal_id: 8,
+//         day: 5,
+//         timeframe: 2
+//     },
+//     {
+//         goal: 'make it work make it work make it work',
+//         goal_id: 88,
+//         day: 2,
+//         timeframe: 1
 //     }
 // ]
 
