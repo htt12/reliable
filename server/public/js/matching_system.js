@@ -47,6 +47,7 @@ function getMatchedUserGoals(data){
             day: day,
         },
         success: function(data){
+            debugger;
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();

@@ -57,6 +57,7 @@ body{
     width: 60%;
     position: relative;
     margin: 0 auto 0;
+
 }
 
 .message p{
@@ -86,7 +87,6 @@ a.btn.btn-small{
 .goal-list{
     width: 100%;
     height: 90%;
-    font-size: 1.2em;
     overflow-y: auto;
 
 }
@@ -105,7 +105,7 @@ a.btn.btn-small{
     background-color: #A2D3DA;
     width: 87%;
     padding: 2% 3% 2% 7%;
-    font-size: 1.25em;
+    font-size: 1.25rem;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
@@ -192,7 +192,7 @@ button.dropdown-button.dropdown-trigger.goal-button {
 .footer-container{
     height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     
@@ -230,11 +230,139 @@ nav ul li{
 
 
 
+
+
+
+/**************************************************************/
 /************************* Responsive *************************/
+@media only screen and (min-width : 320px) {
+
+    .title-bar {
+        height: 2rem;
+        font-size: 1.8rem;
+        padding-top: 0%;
+    }
+    .date {
+        height: 1.5rem;
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
+    .message p {
+        font-size: 1rem;
+    }
+    a.btn.btn-small{
+        font-size: 0.9rem;
+        height: 30px;
+        line-height: 30px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .goal-description{
+        font-size: 1.1rem;
+        padding: 2% 4% 2% 7%;
+    }
+    i.material-icons.shadow{
+        font-size: 18px;
+    }
+
+    div.goal-container:last-child{
+        margin-bottom: 5%;
+    }
+
+    .footer-container{
+        height: 3.5rem;
+    }
+    .footer-items a i {
+        font-size: 2rem;
+        height: 35px;
+        line-height: 35px;
+    }
+}
+
+@media only screen and (min-width : 480px){
+    .title-bar {
+        height: 3rem;
+        font-size: 2rem;
+        padding-top: 0%;
+    }
+    .date {
+        height: 1.5rem;
+        font-size: 0.9rem;
+        padding-top: 2px;
+    }
+    .message p {
+        font-size: 1.2rem;
+    }
+    a.btn.btn-small{
+        font-size: 1.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .goal-description{
+        font-size: 1.2rem;
+        padding: 2% 4% 2% 7%;
+    }
+    .goal-list{
+        height: 87%;
+    }
+    i.material-icons.shadow{
+        font-size: 20px;
+    }
+
+    div.goal-container:last-child{
+        margin-bottom: 5%;
+    }
+
+    .footer-container{
+        height: 4.5rem;
+    }
+    .footer-items a i {
+        font-size: 2.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+}
 
 @media only screen and (min-width: 600px){
     body{
         max-width: 600px;
         margin: 0 auto;
+    }
+    .title-bar{
+        height: 5rem;
+        font-size: 3rem;
+    }
+    
+    .date {
+        height: 2.5rem;
+        font-size: 1.3rem;
+    }
+    .message p{
+        font-size: 1.5rem;
+        padding-top: 5%;
+    }
+    
+    a.btn.btn-small{
+        font-size: 1.3rem;
+        height: 45px;
+        line-height: 45px;
+    }
+    .goal-list{
+        height: 90%;
+    }
+    .goal-description{
+        padding: 2% 5% 2% 7%;
+        font-size: 1.6rem;
+    }
+
+    .footer-container{
+        height: 9%;
+    }
+    .footer-items a i{
+        font-size: 3rem;
     }
 }
