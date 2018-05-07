@@ -13,67 +13,58 @@
 </head>
 
 <body>
-<div class="overlay">
-<div class="shadow-overlay">
+    <div class="overlay">
+        <div class="shadow-overlay">
+            <div class="center title white-text">Relluo</div>
+            <div class='image-container'>
+                <img src="./images/logo_yellow.png" alt="logo">
+            </div>
 
-    <div class="center title white-text">Relluo</div>
-    <div class='image-container'>
-        <img src="./images/logo_yellow.png" alt="logo">
-    </div>
+            <main class="login-wrapper">
+                <div class="row loginFormContainer" id="loginContainer">
+                    <form class="col s12" action="/login" method="post">
+                        <div class="emailPwdInput">
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <input class='validate' type='email' name='email' id='email' />
+                                    <label for='email'>Enter your email</label>
+                                </div>
+                            </div>
 
-    <main class="login-wrapper">
-
-        <div class="row loginFormContainer" id="loginContainer">
-            <form class="col s12" action="/login" method="post">
-
-                <div class="emailPwdInput">
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input class='validate' type='email' name='email' id='email' />
-                            <label for='email'>Enter your email</label>
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <input class='validate' type='password' name='password' id='password' />
+                                    <label for='password'>Enter your password</label>
+                                </div>                  
+                            </div>
                         </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input class='validate' type='password' name='password' id='password' />
-                            <label for='password'>Enter your password</label>
-                        </div>                  
-                    </div>
-                </div>
-
-
-                <br />
-                <div>
-                    <form action="/login" class='row'>
-                        <button type='submit' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3'>Login</button>
+                        <br />
+                        <div>
+                            <form action="/login" class='row'>
+                                <button type='submit' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3'>Login</button>
+                            </form>
+                        </div>
                     </form>
+                    <div><span id='error-message'></span></div>
                 </div>
-            </form>
-            <div ><span id='error-message'></span></div>
-        </div>
-    </main>
+            </main>
 
-    <div class="sign-up">
-        <div class="sign-up-container">        
-            <a href='sign_up.html'  class='col s3 btn btn-medium waves-effect z-depth-2 sign-up' name='btn_login'>
-                Sign Up &nbsp
-                <i class="small material-icons">person_add</i>
-            </a>
-        </div>
+            <div class="sign-up">
+                <div class="sign-up-container">        
+                    <a href='sign_up.html'  class='col s3 btn btn-medium waves-effect z-depth-2 sign-up' name='btn_login'>
+                        Sign Up &nbsp
+                        <i class="small material-icons">person_add</i>
+                    </a>
+                </div>
 
-        <div class="about_us_container">        
-            <a href='about_us.html'  class='col s3 btn btn-medium waves-effect z-depth-2 about_us' name='btn_login'>
-                About Us &nbsp
-                <i class="small material-icons">people</i>
-            </a>
+                <div class="about_us_container">        
+                    <a href='about_us.html'  class='col s3 btn btn-medium waves-effect z-depth-2 about_us' name='btn_login'>
+                        About Us &nbsp
+                        <i class="small material-icons">people</i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- <div class="loading">
-        <img src="./images/title.png">
-    </div> -->
-
-</div>
-</div>
 </body>
 </html>
