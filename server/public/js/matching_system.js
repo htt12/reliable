@@ -3,6 +3,8 @@ $(document).ready(initializeApp);
 function initializeApp(){
     // getData();
     matchedUsersCheck();
+    var matchedUserUsername;
+    var userData;
 }
 function matchedUsersCheck(){
     $.ajax({
@@ -15,6 +17,7 @@ function matchedUsersCheck(){
         success: function(data){
             if(data.data[0]){
                 getMatchedUserGoals(data);
+                userData = data;
             } else {
                 checkForInterestedMatches();
             }
@@ -25,7 +28,39 @@ function matchedUsersCheck(){
     })
 }
 
+function getMatchedUsername(){
+    let matchedUser = userData.data[0].matched_user_id;
+    let userId = userData.data[0].user_id;
+    $.ajax({
+        type: 'POST',
+        url: '/getMatchedUsername',
+        dataType: 'json',
+        jsonpCallback: 'callback',
+        crossDomain: true,
+        cache: false,
+        data: {
+            matchedUser: matchedUser,
+            userId: userId,
+            
+        },
+        success: function(data){
+            debugger;
+            if(data.data[0]){
+                console.log(data.data);
+                matchedUserUsername = data.data[0].username;
+            } else {
+                var p = $("<p>").text("No goals for today").addClass('center');
+                $(".match-list").append(p);
+            }
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
 function getMatchedUserGoals(data){
+    debugger;
     var d = new Date();
     var n = d.getDay();
     var day = n;
@@ -51,7 +86,8 @@ function getMatchedUserGoals(data){
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
-                rendergoalOnDashboard(data.data)
+                rendergoalOnDashboard(data.data);
+                getMatchedUsername();
             } else {
                 var p = $("<p>").text("No goals for today").addClass('center');
                 $(".match-list").append(p);
