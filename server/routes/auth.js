@@ -58,6 +58,7 @@ module.exports = function (app) {
                         //user is valid
                         var userToken = generateRandomString(20) + Date.now();
                         req.session.userId = data[0].user_id;
+                        let userID = req.session.userId;
                         
                         console.log('==========ID=======:', req.session.userId);
 
