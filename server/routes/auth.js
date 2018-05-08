@@ -52,7 +52,7 @@ module.exports = function (app) {
                 console.log("data " , data);
                 if (data.length) {
                     if (data[0].password === req.body.password) {
-                        console.log('user_id',data[0].user_id);
+                        console.log(data[0].user_id);
                         var user = data[0];
                         var userID = data[0].user_id;
                         //user is valid
@@ -66,10 +66,11 @@ module.exports = function (app) {
                         console.log("query is " + query);
                         connection.query(query, function (err) {
                             if (!err) {
-                                console.log(err);
+                                // console.log(err);
                                 res.set('Set-Cookie', 'userauth=' + userToken);
-                                
-                                res.redirect("/dashboard");
+                                res.json({"success": true});
+                                // res.redirect("/dashboard");
+                                console.log("made it past redirect")
                             }
                         });
 
@@ -77,17 +78,18 @@ module.exports = function (app) {
 
                     } else {
                         //right user, wrong pass
-                        console.log('user is invalid');
-                        res.redirect("/")
+                        console.log('password is invalid');
+                        // res.redirect("/")
 
-
+                        res.json({"success": false, errors: "Invalid password or user"});
 
                     }
                 } else {
                     //wrong user
                     console.log('no such user');
                     console.log('user is invalid');
-                    res.redirect("/")
+                    // res.redirect("/")
+                    res.json({"success": false, errors: "Invalid password or user"});
                     
                 }
             });

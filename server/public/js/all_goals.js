@@ -23,7 +23,27 @@ function getData(){
         success: function(resp){
             console.log(resp);
             $('.all-goals-list').empty();
-            rendergoalOnDashboard(resp.data)
+
+            if(resp.data.length === 0){
+                let div = $('<div>', {
+                    class: 'message'
+                });
+                let p = $('<p>', {
+                    text: 'You have no goals to display'
+                });
+                let a = $('<a>', {
+                    class: 'btn btn-small z-depth-2',
+                    href: 'create_goal.html',
+                    text: 'Add Goal'
+                });
+
+                div.append(p, a);
+                $('.all-goals-list').append(div);
+            }
+            else{
+                rendergoalOnDashboard(resp.data)
+            }
+            // rendergoalOnDashboard(resp.data)
 
             $('html, body').animate({
                 scrollTop: $('.all-goals-list').offset().top}, 2000)
@@ -200,10 +220,10 @@ function rendergoalOnDashboard(goals){
         var dayNameContainer = $("<div>").addClass('dayName').text(dayName);
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
 
-        var goalBar = $("<div>").addClass('goal-description z-depth-2').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container');
         
         var icons = $('<i>').addClass('material-icons shadow').text('menu'); 
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button').attr('data-activates', 'dropdown'+goalId);

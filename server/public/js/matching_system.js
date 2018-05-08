@@ -3,7 +3,26 @@ $(document).ready(initializeApp);
 function initializeApp(){
     // getData();
     matchedUsersCheck();
+    var matchedUserUsername;
+    var userData;
+    $('.arrow-left').on('click', showAllUsers);
+    $('.arrow-right > i').on('click', showInterestedUsers);
 }
+
+function showAllUsers(){
+    $('.interested-users').addClass('hidden').removeClass('show');
+    $(".all-users").removeClass('hidden').addClass('show');
+    $(".interested").css("background-color", "rgba(180, 213, 218, 0.5)");
+    $(".all").css("background-color", "rgb(242, 197, 118)");
+}
+
+function showInterestedUsers(){
+    $(".all-users").removeClass('show').addClass('hidden');
+    $(".interested-users").removeClass('hidden').addClass('show');
+    $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
+    $(".interested").css("background-color", "rgb(242, 197, 118)");
+}
+
 function matchedUsersCheck(){
     $.ajax({
         type: 'POST',
@@ -15,6 +34,7 @@ function matchedUsersCheck(){
         success: function(data){
             if(data.data[0]){
                 getMatchedUserGoals(data);
+                userData = data;
             } else {
                 checkForInterestedMatches();
             }
@@ -25,7 +45,39 @@ function matchedUsersCheck(){
     })
 }
 
+function getMatchedUsername(){
+    let matchedUser = userData.data[0].matched_user_id;
+    let userId = userData.data[0].user_id;
+    $.ajax({
+        type: 'POST',
+        url: '/getMatchedUsername',
+        dataType: 'json',
+        jsonpCallback: 'callback',
+        crossDomain: true,
+        cache: false,
+        data: {
+            matchedUser: matchedUser,
+            userId: userId,
+            
+        },
+        success: function(data){
+            debugger;
+            if(data.data[0]){
+                console.log(data.data);
+                matchedUserUsername = data.data[0].username;
+            } else {
+                var p = $("<p>").text("No goals for today").addClass('center');
+                $(".match-list").append(p);
+            }
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
 function getMatchedUserGoals(data){
+    debugger;
     var d = new Date();
     var n = d.getDay();
     var day = n;
@@ -51,7 +103,8 @@ function getMatchedUserGoals(data){
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
-                rendergoalOnDashboard(data.data)
+                rendergoalOnDashboard(data.data);
+                getMatchedUsername();
             } else {
                 var p = $("<p>").text("No goals for today").addClass('center');
                 $(".match-list").append(p);
@@ -284,10 +337,15 @@ function rendergoalOnDashboardOLD(goals){
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+userId,'username','username'+goalDescription);
 
         //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description z-depth-1');
+        var userProfile = $("<div>").addClass('profileImg');
+        var img = $("<img>").attr("src", "../images/default-user.png");
+        userProfile.append(img);
+        var user = $("<p>").addClass('user-name').text(goalDescription);
+        goalBar.append(userProfile, user);
 
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
 
         var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+userId).text('menu');
 
@@ -317,7 +375,9 @@ function rendergoalOnDashboardOLD(goals){
 
         goalContainer.append(goalBar, dropDownMenuButtonContainer);
 
-        $('.match-list').append(goalContainer);
+        $('.user-names').append(goalContainer);
+
+        // $('.match-list').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
 

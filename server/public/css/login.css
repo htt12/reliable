@@ -61,6 +61,7 @@ body {
 .emailPwdInput .input-field label{
     /* color: white; */
     font-size: 1.5rem;
+    
 }
 
 .emailPwdInput input[type=password], 
@@ -112,7 +113,13 @@ body {
     width: 250px;
 }
 
-a.col.s12.btn.btn-medium.waves-effect.z-depth-3{
+/* a.col.s12.btn.btn-medium.waves-effect.z-depth-3{
+    font-size: 1.2rem;
+    border-radius: 10px;
+    background-color: rgb(119, 178, 186);
+} */
+
+i.col.s12.btn.btn-medium.waves-effect.z-depth-3.waves-input-wrapper{
     font-size: 1.2rem;
     border-radius: 10px;
     background-color: rgb(119, 178, 186);

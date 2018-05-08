@@ -508,6 +508,38 @@ module.exports = function (app) {
     });
     //==========END OF GET ALL UNMATCHED USERS===========//
 
+    //==========GET MATCHED USER USERNAME===========//
+    app.post('/getMatchedUsername', (req, res, next) => {
+        let matchedUserId = req.body.matchedUser;
+        let userId = req.body.userId;
+        console.log(matchedUserId, userId);
+        if(matchedUserId == req.session.userId){
+            userId = req.body.matchedUserId;
+            matchedUserId = req.body.userId;
+            console.log("we hit the if Check")
+        }
+        console.log("This is the matched userId " + matchedUserId);
+        let query = 'SELECT * FROM ?? WHERE user_id = ?';
+        let inserts = [
+            'users',
+            matchedUserId,
+        ];
+
+        let sql = mysql.format(query, inserts);
+
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+
+            const output = {
+                success: true,
+                data: results,
+            };
+            console.log("Output Data" + output.data);
+            res.json(output);
+        });
+    });
+    //==========END OF GET MATCHED USER USERNAME===========//
+
     //==========POST POSSIBLE MATCHES TO INTERESTED_MATCHES===========//
     app.post("/matchingusers", (req, res, next) => {
         let matchedUserId = req.body.matchedUserId;
