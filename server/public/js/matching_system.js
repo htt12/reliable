@@ -1,7 +1,6 @@
 $(document).ready(initializeApp);
 
 function initializeApp(){
-    // getData();
     matchedUsersCheck();
     var matchedUserUsername;
     var userData;
@@ -14,6 +13,7 @@ function showAllUsers(){
     $(".all-users").removeClass('hidden').addClass('show');
     $(".interested").css("background-color", "rgba(180, 213, 218, 0.5)");
     $(".all").css("background-color", "rgb(242, 197, 118)");
+    getData();
 }
 
 function showInterestedUsers(){
@@ -21,6 +21,8 @@ function showInterestedUsers(){
     $(".interested-users").removeClass('hidden').addClass('show');
     $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
     $(".interested").css("background-color", "rgb(242, 197, 118)");
+    matchedUsersCheck();
+    debugger;
 }
 
 function matchedUsersCheck(){
@@ -132,7 +134,7 @@ function checkForInterestedMatches(){
                 console.log(resp.data);
                 rendergoalOnDashboardOLD(resp.data)
             } else {
-                getData();
+                // getData();
                 // var p = $("<p>").text("No users ready to match").addClass("center");
                 // $(".match-list").append(p);
             }
@@ -327,65 +329,73 @@ function rendergoalOnDashboard(goals){
 
 function rendergoalOnDashboardOLD(goals){
     console.log('goals',goals);
+    debugger;
+    $('.interested-users-cotainer').empty();
+    $('.user-names').empty();
+    if($(".interested-users-container").length <= 0){
+        for(var i=0; i<goals.length;i++){
+            //Gets goal description
+            let goalDescription = goals[i].username;
+            let goalId = goals[i].id;
+            let userId =goals[i].user_id;
+            //Creates goal container for each goal
+            var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+userId,'username','username'+goalDescription);
 
-    for(var i=0; i<goals.length;i++){
-        //Gets goal description
-        let goalDescription = goals[i].username;
-        let goalId = goals[i].id;
-        let userId =goals[i].user_id;
-        //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+userId,'username','username'+goalDescription);
+            //Creates a container with the goal description
+            var goalBar = $("<div>").addClass('goal-description z-depth-1');
+            var userProfile = $("<div>").addClass('profileImg');
+            var img = $("<img>").attr("src", "../images/default-user.png");
+            userProfile.append(img);
+            var user = $("<p>").addClass('user-name').text(goalDescription);
+            goalBar.append(userProfile, user);
 
-        //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-1');
-        var userProfile = $("<div>").addClass('profileImg');
-        var img = $("<img>").attr("src", "../images/default-user.png");
-        userProfile.append(img);
-        var user = $("<p>").addClass('user-name').text(goalDescription);
-        goalBar.append(userProfile, user);
+            //Creates drop down menu to mark goal as edit or delete
+            var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
 
-        //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
+            var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+userId).text('menu');
 
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+userId).text('menu');
+            var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+userId,'username','dropdown'+goalDescription);
 
-        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+userId,'username','dropdown'+goalDescription);
-
-        let goalSelector = '#goalId'+goalId;
+            let goalSelector = '#goalId'+goalId;
 
 
-        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
-            console.log(goalId);
-            sendInterestedMatches(userId,goalDescription);
+            var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
+                console.log(goalId);
+                sendInterestedMatches(userId,goalDescription);
+                }
+            ).wrapInner('<a href="#">Select</a>');
+
+            var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
+                getMatches(userId);
+                console.log(userId);
+                // deleteGoal(goalId);
+                // $(goalSelector).remove();
+            }).wrapInner('<a>Find Match</a>');
+
+
+            dropDownList.append(editItem, deleteItem);
+
+
+            dropDownMenuButtonContainer.append(editButton,dropDownList);
+
+            goalContainer.append(goalBar, dropDownMenuButtonContainer);
+
+            if(goals.length < 10){
+                $('.interested-users-cotainer').append(goalContainer);
+            } else {
+                $('.user-names').append(goalContainer);
             }
-        ).wrapInner('<a href="#">Select</a>');
+            
 
-        var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
-            getMatches(userId);
-            console.log(userId);
-            // deleteGoal(goalId);
-            // $(goalSelector).remove();
-        }).wrapInner('<a>Find Match</a>');
+            // $('.match-list').append(goalContainer);
+            // $('.edit').wrapInner('<a href="#">edit</a>')
+            $('.dropdown-trigger').dropdown();
 
-
-        dropDownList.append(editItem, deleteItem);
-
-
-        dropDownMenuButtonContainer.append(editButton,dropDownList);
-
-        goalContainer.append(goalBar, dropDownMenuButtonContainer);
-
-        $('.user-names').append(goalContainer);
-
-        // $('.match-list').append(goalContainer);
-        // $('.edit').wrapInner('<a href="#">edit</a>')
-        $('.dropdown-trigger').dropdown();
+        }
 
     }
 
 }
-
-
 function sendInterestedMatches(matchedUserId,username) {
     $.ajax({
         type: "POST",
