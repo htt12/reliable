@@ -237,7 +237,7 @@ body{
 
 .horizontalLine .ideas.btn{
     width: 60%;
-    height: 4rem;
+    height: 5rem;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -303,7 +303,12 @@ body{
     box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.2);
     border: 3px solid white;
     border-radius: 15px;
+    cursor: pointer;
+}
 
+.remove-box-shadow{
+    box-shadow: none;
+    cursor: not-allowed;
 }
 
 .fitness-goals,
@@ -344,6 +349,7 @@ body{
     border-radius: 15px;
     text-align: center;
     width: 80%;
+    cursor: pointer;
 }
 
 .fitness-goals .fitnessList li:nth-child(odd),
@@ -762,7 +768,7 @@ footer.page-footer{
     }
     .horizontalLine .ideas.btn {
         width: 60%;
-        height: 4rem;
+        height: 5rem;
         font-size: 1.8rem;
         line-height: 0.4rem;
         text-shadow: 2px 1px 5px rgba(0, 0, 0, 0.5);
