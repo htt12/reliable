@@ -24,7 +24,7 @@
     <main class="login-wrapper">
 
         <div class="row loginFormContainer" id="loginContainer">
-            <form class="col s12" action="/login" method="post">
+            <form class="col s12" action="" method="post">
 
                 <div class="emailPwdInput">
                     <div class='row'>
@@ -45,7 +45,7 @@
 
                 <br />
                 <div>
-                        <input type='submit' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3'>Login</a>
+                        <button type='button' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3' onclick="postUserToServer()">Login</button>
                 </div>
             </form>
             <div ><span id='error-message'></span></div>

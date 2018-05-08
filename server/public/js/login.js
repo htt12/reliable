@@ -5,24 +5,34 @@ $(document).ready(()=>{
     }
 );
 
-function postUserToServer(email, password, status) {
+function postUserToServer() {
+    var email = $("#email").val();
+    var password = $("#password").val();
+    debugger;
     $.ajax({
         type: "POST",
         url: "/login",
-        dataType: "json",
+        // dataType: "json",
         data: {
             email: email,
-            password: password,
-            status: status,
+            password: password
         },
         success: function (json_data) {
             var data = json_data;
-            console.log(data);
+            if(data.errors === 'Invalid password or user'){
+                $(".emailPwdInput, .input-feild, label").css("color","red");
+            } else if (data.success === true){
+                window.location = "http://localhost:8000/dashboard";
+            }
+            console.log("This is the data" + json_data);
+            
         },
         error: function (xhr, status, error) {
             console.log(error)    
             $(".error-message").text("Invalid email/password")
+            $(".emailPwdInput").css("color","red");
         }
     })
 }
+
 
