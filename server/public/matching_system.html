@@ -5,21 +5,43 @@
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-        <link rel="stylesheet" type="text/css" href="css/match.css">
         <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC|Roboto:300" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/match.css">
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"/> -->
     </head>
 
 <body>
     <div class="match-container">
         <div class="title-bar">Matches</div>
-        <div class='matchedUser'></div>
+        <div class='matchedUser'>
+            <div class="interested">Possible Matches</div>
+            <div class="all">All Users</div>
+        </div>
 
         <div class="match-list">
+
+            <div class="interested-users">
+                <div class="interested-users-cotainer"></div>
+                <div class="arrow-left">
+                    <i class="material-icons">keyboard_arrow_right</i>
+
+                </div>
+            </div>
+
+            <div class="all-users hidden">
+                <div class="arrow-right">
+                    <i class="material-icons">keyboard_arrow_left</i>
+                </div>
+                <div class="all-users-cotainer">
+                    <div class="user-names">
+
+                    </div> 
+                </div>
+            </div>
 
             
         </div>
