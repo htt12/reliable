@@ -54,7 +54,6 @@ module.exports = function (app) {
                     if (data[0].password === req.body.password) {
                         console.log(data[0].user_id);
                         var user = data[0];
-                        var userID = data[0].user_id;
                         //user is valid
                         var userToken = generateRandomString(20) + Date.now();
                         req.session.userId = data[0].user_id;
