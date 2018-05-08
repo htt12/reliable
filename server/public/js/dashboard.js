@@ -72,9 +72,16 @@ function getData(){
             day:n
         },
         success: function(resp){
-            console.log('dashboard',resp);
+            console.log('server resp:',resp);
+            console.log('server data:', resp.data.length);
 
-            rendergoalOnDashboard(resp.data)
+            if(resp.data.length === 0){
+                $(".message").removeClass('hidden');
+            }
+            else{
+                rendergoalOnDashboard(resp.data)
+            }
+
         },
         error: function(xhr, status, err){
             console.log(err)
@@ -172,10 +179,6 @@ function getData(){
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
-
-    if(goals.length !== 0){
-        $(".message").addClass('hidden');
-    }
 
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);

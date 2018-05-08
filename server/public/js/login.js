@@ -22,7 +22,7 @@ function postUserToServer() {
             if(data.errors === 'Invalid password or user'){
                 $(".emailPwdInput, .input-feild, label").css("color","red");
             } else if (data.success === true){
-                window.location = "http://localhost:8000/dashboard";
+                window.location = "https://relluo.com/dashboard";
             }
             console.log("This is the data" + json_data);
             
