@@ -8,7 +8,6 @@ $(document).ready(()=>{
 function postUserToServer() {
     var email = $("#email").val();
     var password = $("#password").val();
-    debugger;
     $.ajax({
         type: "POST",
         url: "/login",
