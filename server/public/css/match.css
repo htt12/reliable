@@ -198,7 +198,9 @@ body{
 }
 
 .partner-goal-description{
-    width: 100%;
+    width: 250%;
+    margin-left: 65%;
+    margin-right: 65%;
     box-shadow: inset 0 0 18px #FFE2A8;
 }
 

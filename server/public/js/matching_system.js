@@ -314,7 +314,7 @@ function rendergoalOnDashboard(goals){
 
         goalContainer.append(goalBar);
 
-        $('.match-list').append(goalContainer);
+        $('.interested-users-cotainer').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
 
