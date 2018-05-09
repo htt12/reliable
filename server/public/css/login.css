@@ -43,7 +43,7 @@ body {
 }
 
 .login-wrapper {
-    padding: 5% 0%;
+    padding: 25% 0% 5% 0%;
     width: 100%;
     height: 50%;
 }
@@ -52,7 +52,7 @@ body {
     width: 100%;
     height: 10%;
     display: inline-flex;
-    font-size: 8vw;
+    font-size: 6vw;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
 }
@@ -64,7 +64,7 @@ body {
 }
 
 .appDescription {
-    font-size: 3vw;
+    font-size: 1.75vw;
     overflow: hidden;
     height: 100%;
     width: 100%;
@@ -75,11 +75,9 @@ body {
 .welcome{
     width: 100%;
     height: 100%;
-    width: 60%;
-    padding: 5%;
-    border-radius: 18px;
-    background-color: transparent !important;
-    background-color: rgba(242, 242, 242, 0.8) !important;
+    
+    
+    
 }
 .login-wrapper .loginFormContainer{
     width: 60%;
@@ -185,17 +183,14 @@ i.col.s12.btn.btn-medium.waves-effect.z-depth-3.waves-input-wrapper{
 }
 
 .sign-up {
-    position: fixed;
-    bottom: 0;
     height: 18%;
-    /* width: 60%; */
-    /* max-width: 600px; */
+    width: 100%;
 
 }
 
 .sign-up-container,
 .about_us_container{
-    height: 36px;
+    height: 40px;
     width: 100vw;
     margin-bottom: 15px;
 }
@@ -228,7 +223,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
 
 /**************************** Responsive ******************************/
 
-@media only screen and (min-width: 1000px){
+@media only screen and (min-width: 667px){
     body{
         width: 600px;
         margin: 0 auto;
