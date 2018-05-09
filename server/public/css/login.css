@@ -28,20 +28,58 @@ body {
 
 
 .image-container{
-    width: 20rem;
-    height: 20rem;
+    width: 15rem;
+    height: 15rem;
     margin: 0 auto;
 
 }
 
 .image-container img{
     padding-top: 20%;
-    width: 100%;
-    height: 100%;
+    height: auto;
+    width: 90%;
+    display: inline-flex;
+    
 }
 
 .login-wrapper {
-    padding: 15% 0%;
+    padding: 5% 0%;
+    width: 100%;
+    height: 50%;
+}
+
+.appNameContainer {
+    width: 100%;
+    height: 10%;
+    display: inline-flex;
+    font-size: 8vw;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.appName {
+    margin: 0 auto;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.appDescription {
+    font-size: 3vw;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.welcome{
+    width: 100%;
+    height: 100%;
+    width: 60%;
+    padding: 5%;
+    border-radius: 18px;
+    background-color: transparent !important;
+    background-color: rgba(242, 242, 242, 0.8) !important;
 }
 .login-wrapper .loginFormContainer{
     width: 60%;
@@ -50,6 +88,7 @@ body {
     border-radius: 18px;
     background-color: transparent !important;
     background-color: rgba(242, 242, 242, 0.8) !important;
+    display: none;
 }
 
 .emailPwdInput{
