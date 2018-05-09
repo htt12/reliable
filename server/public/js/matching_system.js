@@ -22,7 +22,6 @@ function showInterestedUsers(){
     $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
     $(".interested").css("background-color", "rgb(242, 197, 118)");
     matchedUsersCheck();
-    debugger;
 }
 
 function matchedUsersCheck(){
@@ -63,7 +62,6 @@ function getMatchedUsername(){
             
         },
         success: function(data){
-            debugger;
             if(data.data[0]){
                 console.log(data.data);
                 matchedUserUsername = data.data[0].username;
@@ -79,7 +77,6 @@ function getMatchedUsername(){
 }
 
 function getMatchedUserGoals(data){
-    debugger;
     var d = new Date();
     var n = d.getDay();
     var day = n;
@@ -101,7 +98,6 @@ function getMatchedUserGoals(data){
             day: day,
         },
         success: function(data){
-            debugger;
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
@@ -329,7 +325,6 @@ function rendergoalOnDashboard(goals){
 
 function rendergoalOnDashboardOLD(goals){
     console.log('goals',goals);
-    debugger;
     $('.interested-users-cotainer').empty();
     $('.user-names').empty();
     if($(".interested-users-container").length <= 0){
