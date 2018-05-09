@@ -228,7 +228,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
 
 /**************************** Responsive ******************************/
 
-@media only screen and (min-width: 600px){
+@media only screen and (min-width: 1000px){
     body{
         width: 600px;
         margin: 0 auto;
@@ -251,12 +251,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     }
 }
 
-@media only screen and (max-width: 400px){
-    body{
-        width: 100%;
-    }
 
-}
 /* input:focus::-webkit-input-placeholder {
     color: transparent;
 } */
