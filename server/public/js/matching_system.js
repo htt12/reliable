@@ -278,7 +278,7 @@ function rendergoalOnDashboard(goals){
         let userId =goals[i].id;
         let userName = goals[i].interested_username;
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container-goals goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description partner-goal-description z-depth-3').text(goalDescription);
