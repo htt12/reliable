@@ -184,6 +184,10 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     vertical-align: top;
 }
 
+button.col.s12.btn.btn-medium.waves-effect.z-depth-3{
+    font-size: 1.2rem;
+    background-color: rgb(119, 178, 186);
+}
 
 /**************************** Responsive ******************************/
 
