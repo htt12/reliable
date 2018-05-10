@@ -167,10 +167,21 @@ body{
 
 /**********INDIVIDUAL MATCHES**********/
 .goal-container{
-    width: 27%;
+    width: 25%;
+    margin-left: 8%;
     text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
     position: relative;
-    margin: 3% 2%;
+}
+
+.goal-container-goals{
+    width: 90%;
+    margin-left: 9%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
 }
 
 

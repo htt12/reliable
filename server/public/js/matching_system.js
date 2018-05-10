@@ -22,7 +22,6 @@ function showInterestedUsers(){
     $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
     $(".interested").css("background-color", "rgb(242, 197, 118)");
     matchedUsersCheck();
-    debugger;
 }
 
 function matchedUsersCheck(){
@@ -63,7 +62,6 @@ function getMatchedUsername(){
             
         },
         success: function(data){
-            debugger;
             if(data.data[0]){
                 console.log(data.data);
                 matchedUserUsername = data.data[0].username;
@@ -79,7 +77,6 @@ function getMatchedUsername(){
 }
 
 function getMatchedUserGoals(data){
-    debugger;
     var d = new Date();
     var n = d.getDay();
     var day = n;
@@ -101,7 +98,6 @@ function getMatchedUserGoals(data){
             day: day,
         },
         success: function(data){
-            debugger;
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
@@ -282,7 +278,7 @@ function rendergoalOnDashboard(goals){
         let userId =goals[i].id;
         let userName = goals[i].interested_username;
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container-goals goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description partner-goal-description z-depth-3').text(goalDescription);
@@ -318,7 +314,7 @@ function rendergoalOnDashboard(goals){
 
         goalContainer.append(goalBar);
 
-        $('.match-list').append(goalContainer);
+        $('.interested-users-cotainer').append(goalContainer);
         // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
 
@@ -329,7 +325,6 @@ function rendergoalOnDashboard(goals){
 
 function rendergoalOnDashboardOLD(goals){
     console.log('goals',goals);
-    debugger;
     $('.interested-users-cotainer').empty();
     $('.user-names').empty();
     if($(".interested-users-container").length <= 0){
