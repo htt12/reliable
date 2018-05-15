@@ -56,15 +56,14 @@ body{
     background-color: #F2F2F2;
     width: 60%;
     position: relative;
-    margin: 0 auto 0;
+    margin: 15% auto 0;
 }
 
 .message p{
     font-family: 'Roboto', sans-serif;
     font-size: 1.5rem;
     text-align: center;
-    padding-bottom: 20%;
-    background-color: #F2F2F2;
+    padding-top: 5%;
 
 }
 
@@ -109,6 +108,7 @@ a.btn.btn-small{
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
+    border: 1px solid white;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-shadow: 30px 3px 20px 0px rgba(0, 0, 0, 0.2);
@@ -134,6 +134,9 @@ a.btn.btn-small{
     display: inline-flex;
     width: 12%;
     height: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid white;
 }
 
 .goal-button{
@@ -150,6 +153,7 @@ a.btn.btn-small{
 .button-container > .dropdown-content {
     /* background-color: #FFE2A8; */
     background-color: #F2F2F2;
+    padding: 0 3%;
 
 }
 

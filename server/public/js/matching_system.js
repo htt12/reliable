@@ -104,8 +104,8 @@ function getMatchedUserGoals(data){
                 rendergoalOnDashboard(data.data);
                 getMatchedUsername();
             } else {
-                var p = $("<p>").text("No goals for today").addClass('center');
-                $(".match-list").append(p);
+                var p = $("<p>").text("No goals for today").addClass('center no-goals');
+                $(".no-goals-container").append(p);
             }
         },
         error: function(xhr, status, err){
@@ -177,96 +177,6 @@ function getData(category){
     })
 }
 
-
-
-
-// function editGoal(goalSelected, goalId){
-//
-//     let textToEdit = $(goalSelected).find('.goal-description');
-//
-//     $(goalSelected +'> .goal-description').text('');
-//
-//     $("<input class='center' type='text'>").css({
-//         'margin': '3px',
-//         'border-bottom': '3px yellow solid',
-//         'height': '100%',
-//         'width': '100%',
-//
-//     }).appendTo(textToEdit).focus();
-//
-//     $('input').on('focusout', ()=>{
-//
-//         let edit = $('input').val();
-//
-//         $(goalSelected+'> .goal-description').text(edit);
-//
-//         console.log(edit);
-//         $('input').remove();
-//
-//
-//         console.log('goalID', goalId);
-//         $.ajax({
-//             type: 'POST',
-//             data: {
-//                 goal: edit,
-//                 goal_id: goalId,
-//             },
-//             url: '/goals/update',
-//             // dataType: 'json',
-//
-//             success: function(resp){
-//                 console.log('edit',resp);
-//                 getData();
-//             },
-//             error: function(xhr, status, err){
-//                 console.log(err)
-//             }
-//         })
-//     })
-// }
-
-// function deleteGoal(goalId){
-//     console.log('goalID', goalId);
-//     $.ajax({
-//         type: 'POST',
-//         data: {
-//             goal_id: goalId,
-//         },
-//         url: '/goals/delete',
-//         // dataType: 'json',
-//
-//         success: function(resp){
-//             console.log('delete',resp);
-//             $('.goal-list').empty();
-//             getData();
-//         },
-//         error: function(xhr, status, err){
-//             console.log(err)
-//         }
-//     })
-// }
-
-// function deleteGoal(goalId){
-//
-//     $.ajax({
-//         type: 'POST',
-//         data: {
-//             goal_id: goalId,
-//         },
-//         url: 'http://localhost:8000/goals/delete',
-//         // dataType: 'json',
-//
-//         success: function(resp){
-//             console.log('delete',resp);
-//             $('.goal-list').empty();
-//             getData();
-//         },
-//         error: function(xhr, status, err){
-//             console.log(err)
-//         }
-//     })
-// }
-
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
@@ -306,18 +216,10 @@ function rendergoalOnDashboard(goals){
             // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
 
-
-        // dropDownList.append(editItem, deleteItem);
-
-
-        // dropDownMenuButtonContainer.append(editButton,dropDownList);
-
         goalContainer.append(goalBar);
 
         $('.interested-users-cotainer').append(goalContainer);
-        // $('.edit').wrapInner('<a href="#">edit</a>')
         $('.dropdown-trigger').dropdown();
-
     }
 
 }
@@ -461,7 +363,7 @@ function updateUsers(userId, interested_user_id) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
-            $(location).attr('href', 'https://relluo.com//matching_system.html')
+            $(location).attr('href', '/matching_system.html')
 
         }
 

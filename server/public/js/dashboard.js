@@ -89,92 +89,6 @@ function getData(){
     })
 }
 
-// ***************** TESTING *************************
-// var object = [
-//     {
-//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
-//         goal_id: 88,
-//         day: 3,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 3,
-//         timeframe: 3
-//     },
-//     {
-//         goal: 'make it work',
-//         goal_id: 18,
-//         day: 5,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 2,
-//         timeframe: 1
-//     },
-//     {
-//         goal: 'make it work make it work make it work',
-//         goal_id: 10,
-//         day: 4,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 5,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make it work make it work make it work',
-//         goal_id: 88,
-//         day: 2,
-//         timeframe: 1
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 5,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make it work make it work make it work',
-//         goal_id: 88,
-//         day: 2,
-//         timeframe: 1
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 5,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make it work make it work make it work',
-//         goal_id: 88,
-//         day: 2,
-//         timeframe: 1
-//     },
-//     {
-//         goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
-//         goal_id: 8,
-//         day: 5,
-//         timeframe: 2
-//     },
-//     {
-//         goal: 'make it work make it work make it work',
-//         goal_id: 88,
-//         day: 2,
-//         timeframe: 1
-//     }
-// ]
-
-// rendergoalOnDashboard(object);
-
-// ***************************************************
-
 
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
@@ -224,11 +138,14 @@ function rendergoalOnDashboard(goals){
             updateGoal(goalId,goals);
             $(goalSelector).addClass('animated bounceOutLeft');
             setTimeout((()=>{$(goalSelector).remove()}), 500);
-        }).wrapInner('<a href="#!"><i class="material-icons small">check</i>Did it</a>');
+        }).wrapInner('<a href="#!"><i class="material-icons small">check</i></a>');
 
 
-        var exitItem = $('<li>').addClass('center-align').wrapInner('<a href="#!"><i class="material-icons small">close</i>Nah</a>');
+        var exitItem = $('<li>').addClass('center-align').on('click', ()=>{
 
+            $(goalSelector).addClass('animated bounceOutLeft');
+            setTimeout((()=>{$(goalSelector).remove()}), 500);
+        }).wrapInner('<a href="#!"><i class="material-icons small">close</i></a>');
 
         dropDownList.append(completeItem, exitItem);
 
