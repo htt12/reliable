@@ -43,7 +43,7 @@ body {
 }
 
 .login-wrapper {
-    padding: 25% 0% 5% 0%;
+    padding: 20% 0% 5% 0%;
     width: 100%;
     height: 50%;
 }
@@ -55,6 +55,7 @@ body {
     font-size: 6vw;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
+    margin-top: 15%;
 }
 
 .appName {
@@ -74,11 +75,9 @@ body {
 
 .welcome{
     width: 100%;
-    height: 100%;
-    
-    
-    
+    margin-top: 10%;
 }
+
 .login-wrapper .loginFormContainer{
     width: 60%;
     padding: 5%;
@@ -86,7 +85,6 @@ body {
     border-radius: 18px;
     background-color: transparent !important;
     background-color: rgba(242, 242, 242, 0.8) !important;
-    display: none;
 }
 
 .emailPwdInput{
@@ -98,7 +96,6 @@ body {
 .emailPwdInput .input-field label{
     /* color: white; */
     font-size: 1.5rem;
-    
 }
 
 .emailPwdInput input[type=password], 
@@ -185,14 +182,20 @@ i.col.s12.btn.btn-medium.waves-effect.z-depth-3.waves-input-wrapper{
 .sign-up {
     height: 18%;
     width: 100%;
-
+    
 }
 
 .sign-up-container,
 .about_us_container{
     height: 40px;
     width: 100vw;
-    margin-bottom: 15px;
+    margin-bottom: 5%;
+}
+
+.login-intro-container{
+    height: 40px;
+    width: 100vw;
+    margin-bottom: 5%;
 }
 
 a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
@@ -201,7 +204,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
     transform: translate(-50%, 0);
     font-size: 1.2rem;
     height: 100%;
-    width: 30%;
+    width: 50%;
     border-radius: 10px;
     background-color: rgb(119, 178, 186);
 }
@@ -214,6 +217,17 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     width: 30%;
     border-radius: 10px;
     background-color: rgb(226, 190, 118);
+}
+
+a.col.s3.btn.btn-medium.waves-effect.z-depth-2.login {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 1.2rem;
+    height: 100%;
+    width: 70%;
+    border-radius: 10px;
+    background-color: rgb(119, 178, 186);
 }
 
 .btn-medium i.small.material-icons{
@@ -234,7 +248,8 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     }
 
     .sign-up-container,
-    .about_us_container{
+    .about_us_container,
+    .login-intro-container{
         width: 600px;
     }
 
@@ -246,7 +261,9 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     }
 }
 
-
+.login-button {
+    border-radius: 10px;
+}
 /* input:focus::-webkit-input-placeholder {
     color: transparent;
 } */

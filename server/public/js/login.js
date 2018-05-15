@@ -21,7 +21,7 @@ function postUserToServer() {
             if(data.errors === 'Invalid password or user'){
                 $(".emailPwdInput, .input-feild, label").css("color","red");
             } else if (data.success === true){
-                window.location = "https://relluo.com/dashboard";
+                window.location = "/dashboard";
             }
             console.log("This is the data" + json_data);
             

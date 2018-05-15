@@ -27,24 +27,7 @@
             </div>
 
             <main class="login-wrapper">
-                <div class="welcome valign-wrapper">
-        
-                        <div class="sign-up">
-                            <div class="sign-up-container">        
-                                <a href='sign_up.html'  class='col s3 btn btn-medium waves-effect z-depth-2 sign-up' name='btn_login'>
-                                    Sign Up &nbsp
-                                    <i class="small material-icons">person_add</i>
-                                </a>
-                            </div>
-            
-                            <div class="about_us_container">        
-                                <a href='about_us.html'  class='col s3 btn btn-medium waves-effect z-depth-2 about_us' name='btn_login'>
-                                    About Us &nbsp
-                                    <i class="small material-icons">people</i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                
                 
                 <div class="row loginFormContainer" id="loginContainer">
                     <form class="col s12" action="/login" method="post">
@@ -67,10 +50,27 @@
         
                         <br />
                         <div>
-                                <button type='button' name='btn_login' class='col s12 btn btn-medium waves-effect z-depth-3' onclick="postUserToServer()">Login</button>
+                                <button type='button' name='btn_login' class='login-button col s12 btn btn-medium waves-effect z-depth-3' onclick="postUserToServer()">Login</button>
                         </div>
                     </form>
                     <div ><span id='error-message'></span></div>
+                </div>
+                <div class="welcome valign-wrapper">
+                    <div class="sign-up">
+                        <div class="sign-up-container">        
+                            <a href='sign_up.html'  class='col s3 btn btn-medium waves-effect z-depth-2 sign-up' name='btn_login'>
+                                Sign Up &nbsp
+                                <i class="small material-icons">person_add</i>
+                            </a>
+                        </div>
+        
+                        <div class="about_us_container">        
+                            <a href='about_us.html'  class='col s3 btn btn-medium waves-effect z-depth-2 about_us' name='btn_login'>
+                                About Us &nbsp
+                                <i class="small material-icons">people</i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </main>
             </main>
