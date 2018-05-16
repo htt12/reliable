@@ -36,7 +36,7 @@ body{
     padding-top: 1%;
 }
 
-.no-goals{
+.no-goals, .no-users{
     font-size: 2rem;
     padding-top: 3%;
 }
@@ -69,7 +69,7 @@ body{
     height: 89%;
     display: inline-flex;
     flex-direction: column;
-    /* overflow-y: auto; */
+    overflow-y: auto; 
     width: 100%;
 }
 
@@ -204,9 +204,7 @@ body{
 }
 
 .profileImg{
-    height: 10rem;
-    width: 10rem;
-    margin: auto;
+
 }
 
 .profileImg img{

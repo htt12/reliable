@@ -21,6 +21,7 @@ function showInterestedUsers(){
     $(".interested-users").removeClass('hidden').addClass('show');
     $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
     $(".interested").css("background-color", "rgb(242, 197, 118)");
+    $(".no-users-container").empty();
     matchedUsersCheck();
 }
 
@@ -165,8 +166,8 @@ function getData(category){
                 rendergoalOnDashboardOLD(resp.data)
                 var users = resp.data;
             } else {
-                var p = $("<p>").text("No users ready to match").addClass("center");
-                $(".match-list").append(p);
+                var p = $("<p>").text("No users ready to match").addClass("center no-users");
+                $(".no-users-container").append(p);
             }
 
 
@@ -212,8 +213,6 @@ function rendergoalOnDashboard(goals){
 
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             getMatches(userId);
-            // deleteGoal(goalId);
-            // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
 
         goalContainer.append(goalBar);
@@ -221,7 +220,6 @@ function rendergoalOnDashboard(goals){
         $('.interested-users-cotainer').append(goalContainer);
         $('.dropdown-trigger').dropdown();
     }
-
 }
 
 
