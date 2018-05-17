@@ -2,8 +2,6 @@ html{
     font-size: 10px;
     width: 100vw;
     height: 100vh;
-    min-width: 300px;
-    min-height: 550px;
     background-color: white;
 
 }
@@ -12,14 +10,13 @@ html{
 body{
     height: 100%;
     min-height: 100%;
+    min-width: 330px;
     background-color: #F2F2F2;
 }
 
 .dashboard-container{
     width: 100%;
     height: 91%;
-    min-width: 300px;
-    min-height: 550px;
     position: relative;
     background-color: #F2F2F2;
 
@@ -48,7 +45,7 @@ body{
     letter-spacing: 2px;
     text-align: center;
     border-bottom: 1px solid black;
-
+    padding-bottom: 23px;
 }
 
 /************************************ MESSAGE SECTION **********/
@@ -86,6 +83,7 @@ a.btn.btn-small{
     width: 100%;
     height: 90%;
     overflow-y: auto;
+    font-size: 1.2em;  
 
 }
 
@@ -198,7 +196,6 @@ button.dropdown-button.dropdown-trigger.goal-button {
     position: fixed;
     bottom: 0;
     width: 100%;
-    
     max-width: 600px;
     background-color: #A2D3DA
 }
