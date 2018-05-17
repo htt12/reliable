@@ -15,7 +15,7 @@ body{
 
 .all-goals-container{
     width: 100%;
-    height: 91%;
+    height: 95%;
     position: relative;
     background-color: #F2F2F2;
 }
@@ -327,6 +327,12 @@ nav ul li{
     }
 }
 
+@media only screen and (max-height: 521px){
+    .all-goals-container{
+        height: 85%;
+    }
+}
+
 @media only screen and (min-width: 600px){
     body{
         max-width: 600px;
@@ -352,13 +358,13 @@ nav ul li{
     .dayName {
         height: 90%;
         width: 1%;
-        transform: translate(200%, 170%);
+        transform: translate(245%, 170%);
         font-size: 1rem;
     } 
     .timeOfDayImage {
         height: 20%;
         width: 4%;
-        transform: translate(156%, 15%);
+        transform: translate(158%, 15%);
     }
 
 

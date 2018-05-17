@@ -100,15 +100,18 @@ function rendergoalOnDashboard(goals){
         var goalDescription = goals[i].goal;
         let goalId = goals[i].goal_id;
         //let timeOfDay = 'rgb(15, 65, 119, 0.6)';
-        let timeImage = 'images/moon.png'
+        let timeImage = 'images/moon.png';
+        let timeImagePosition = 'moon';
         switch (parseInt(goals[i].timeframe)){
             case 1:
                 //timeOfDay = 'rgb(244, 244, 119, 0.9)';
                 timeImage = 'images/sunrise.png';
+                timeImagePosition = 'sunrise'
                 break;
             case 2:
                 //timeOfDay = 'rgb(255, 175, 48, 0.8)';
                 timeImage = 'images/daytime.png';
+                timeImagePosition = 'sun'
                 break;
             default:
                 break;
@@ -117,7 +120,7 @@ function rendergoalOnDashboard(goals){
         //Creates goal container for each goal
         var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
         //var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
-        var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
+        var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage '+ `${timeImagePosition}`)
         //Creates a container with the goal description
 
         var goalBar = $("<div>").addClass('goal-description').text(goalDescription);

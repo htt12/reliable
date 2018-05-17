@@ -119,10 +119,24 @@ a.btn.btn-small{
     font-size: 0.60em;
 }
 
-.timeOfDayImage {
+.sunrise{
     height: 24%;
     width: 6%;
-    transform: translate(120%, 20%);
+    transform: translate(120%, 75%);
+    
+}
+
+.sun {
+    height: 24%;
+    width: 6%;
+    transform: translate(120%, 25%);
+    
+}
+
+.moon {
+    height: 24%;
+    width: 6%;
+    transform: translate(120%, 40%);
     
 }
 
@@ -307,7 +321,7 @@ nav ul li{
         padding: 2% 4% 2% 7%;
     }
     .goal-list{
-        height: 87%;
+        height: 89%;
     }
     i.material-icons.shadow{
         font-size: 20px;
@@ -352,7 +366,7 @@ nav ul li{
         line-height: 45px;
     }
     .goal-list{
-        height: 90%;
+        height: 87%;
     }
     .goal-description{
         padding: 2% 5% 2% 7%;
