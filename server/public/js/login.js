@@ -1,9 +1,16 @@
-$(document).ready(()=>{
-    setTimeout(()=>{
-        $('.loading').addClass('display', 'none');
-    }, 500)
-    }
-);
+$(document).ready(enterKeyHandler);
+
+function enterKeyHandler (event){
+    
+    let keyPressed = $('.loginFormContainer');
+    
+    keyPressed.on('keyup', (event) =>{
+        event.preventDefault();
+        if (event.keyCode === 13){
+            $('.login-button').click();
+          }
+    })
+}
 
 function postUserToServer() {
     var email = $("#email").val();
