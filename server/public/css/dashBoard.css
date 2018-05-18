@@ -90,7 +90,7 @@ a.btn.btn-small{
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
     display: inline-flex;
-    padding: 2% 7% 2% 4%;
+    padding: 2% 7% 2% 3%;
     /* height: 20%; */
     width: 100%;
     text-align: center;
