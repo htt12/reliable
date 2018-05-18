@@ -167,33 +167,7 @@ module.exports = function (app) {
     });
 
     //==========END OF GET ALL GOALS===========//
-    //==========GET ALL GOALS BY GOAL ID===========//
 
-    // app.get('/goalssql', (req, res, next) => {
-    //   console.log("req: ", req.session)
-    //     return;
-
-
-    // let { userID } = id;
-    // console.log("These are the params", id);
-    //
-    // let query = "SELECT * FROM ?? WHERE ?? = ?";
-    // let inserts = ["goals", "userID", userID];
-    // console.log("inserts are: ", inserts);
-    // let sql = mysql.format(query, inserts);
-
-    // connection.query(sql, (err, results, fields) => {
-    //   if (err) return next(err);
-    //
-    //   const output = {
-    //     success: true,
-    //     data: results
-    //   };
-    //   res.json(output);
-    // });
-    // });
-
-    //==========END OF GET ALL GOALS===========//
     app.post("/goals", (req, res, next) => {
         let {goal, category, day, startdate, finishdate, timeframe} = req.body;
         let userID = req.session.userId;
@@ -302,8 +276,8 @@ module.exports = function (app) {
     });
     //==========END OF EDIT GOALS===========//
 
-    //==========EDIT GOALS STATUS===========//
-    app.post("/goals/update/status", (req, res, next) => {
+    //==========COMPLETE/INCOMPLETE GOALS STATUS===========//
+    app.post("/goals/update/complete", (req, res, next) => {
         var goal_id = req.body.goal_id;
         var stats = req.body.stats;
         console.log("This is the stats" + stats);
@@ -314,6 +288,34 @@ module.exports = function (app) {
             "goals",
             "status",
             "Complete",
+            "stats",
+            stats,
+            "goal_id",
+            goal_id,
+        ];
+        console.log(query, inserts);
+        let sql = mysql.format(query, inserts);
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+            const output = {
+                success: true,
+                data: results
+            };
+            res.json(output);
+        });
+    });
+
+    app.post("/goals/update/incomplete", (req, res, next) => {
+        var goal_id = req.body.goal_id;
+        var stats = req.body.stats;
+        console.log("This is the stats" + stats);
+
+        let query =
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
+        let inserts = [
+            "goals",
+            "status",
+            "Incomplete",
             "stats",
             stats,
             "goal_id",
