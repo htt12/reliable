@@ -299,6 +299,11 @@ i.large.material-icons{
     font-size: 2.5rem;
 }
 
+.chat-btn{
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
 /************************************END - FOOTER**********/
 
 .hidden{
