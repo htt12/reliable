@@ -5,6 +5,8 @@ function initializeApp(){
     var matchedUserUsername;
     var userData;
     $('.arrow-left').on('click', showAllUsers);
+    $('.all').on('click', showAllUsers);
+    $('.interested').on('click', showInterestedUsers);
     $('.arrow-right > i').on('click', showInterestedUsers);
 }
 
