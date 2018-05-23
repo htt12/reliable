@@ -1,9 +1,16 @@
-$(document).ready(()=>{
-    setTimeout(()=>{
-        $('.loading').addClass('display', 'none');
-    }, 500)
-    }
-);
+$(document).ready(enterKeyHandler);
+
+function enterKeyHandler (event){
+    
+    let keyPressed = $('.loginFormContainer');
+    
+    keyPressed.on('keyup', (event) =>{
+        event.preventDefault();
+        if (event.keyCode === 13){
+            $('.login-button').click();
+          }
+    })
+}
 
 function postUserToServer() {
     var email = $("#email").val();
@@ -21,7 +28,7 @@ function postUserToServer() {
             if(data.errors === 'Invalid password or user'){
                 $(".emailPwdInput, .input-feild, label").css("color","red");
             } else if (data.success === true){
-                window.location = "https://relluo.com/dashboard";
+                window.location = "/dashboard";
             }
             console.log("This is the data" + json_data);
             

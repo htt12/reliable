@@ -1,6 +1,7 @@
 html{
     background-color: #fff;
     font-size: 10px;
+    height: 100vh;
 }
 
 body {
@@ -35,14 +36,54 @@ body {
 }
 
 .image-container img{
-    padding-top: 20%;
+    padding-top: 15%;
+    height: auto;
+    width: 90%;
+    display: inline-flex;
+    
+}
+
+.login-wrapper {
     width: 100%;
+    display: inline-block;
+}
+
+.appNameContainer {
+    width: 100%;
+    height: 10%;
+    display: inline-flex;
+    font-size: 6vw;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    padding-top: 7%;
+}
+
+.appName {
+    margin: 0 auto;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.appDescription {
+    font-size: 1.5rem;
+    overflow: hidden;
     height: 100%;
+    width: 100%;
+    color: white;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.appDescription-container {
+    height: 8%;
+}
+
+.welcome{
+    width: 100%;
+    margin-top: 25%;
 }
 
 .login-wrapper .loginFormContainer{
     width: 60%;
-    margin: 15% auto 10%;
     padding: 5%;
     /* border: 1px solid #EEE; */
     border-radius: 18px;
@@ -59,7 +100,6 @@ body {
 .emailPwdInput .input-field label{
     /* color: white; */
     font-size: 1.5rem;
-    
 }
 
 .emailPwdInput input[type=password], 
@@ -144,19 +184,22 @@ i.col.s12.btn.btn-medium.waves-effect.z-depth-3.waves-input-wrapper{
 }
 
 .sign-up {
-    position: fixed;
-    bottom: 0;
     height: 18%;
-    /* width: 60%; */
-    /* max-width: 600px; */
-
+    width: 100%;
+    
 }
 
 .sign-up-container,
 .about_us_container{
-    height: 36px;
+    height: 40px;
     width: 100vw;
-    margin-bottom: 15px;
+    margin-bottom: 5%;
+}
+
+.login-intro-container{
+    height: 40px;
+    width: 100vw;
+    margin-bottom: 5%;
 }
 
 a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
@@ -165,7 +208,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
     transform: translate(-50%, 0);
     font-size: 1.2rem;
     height: 100%;
-    width: 30%;
+    width: 50%;
     border-radius: 10px;
     background-color: rgb(119, 178, 186);
 }
@@ -180,6 +223,17 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     background-color: rgb(226, 190, 118);
 }
 
+a.col.s3.btn.btn-medium.waves-effect.z-depth-2.login {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 1.2rem;
+    height: 100%;
+    width: 70%;
+    border-radius: 10px;
+    background-color: rgb(119, 178, 186);
+}
+
 .btn-medium i.small.material-icons{
     vertical-align: top;
 }
@@ -190,8 +244,27 @@ button.col.s12.btn.btn-medium.waves-effect.z-depth-3{
 }
 
 /**************************** Responsive ******************************/
+@media only screen and (max-width: 325px){
+    .welcome{
+        width: 100%;
+        margin-top: 6%;
+    }
+}
 
-@media only screen and (min-width: 600px){
+@media only screen and (max-height: 600px){
+    body {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+@media only screen and (max-height: 728px){
+    body {
+        height: auto;
+    }
+}
+
+@media only screen and (min-width: 667px){
     body{
         width: 600px;
         margin: 0 auto;
@@ -202,7 +275,8 @@ button.col.s12.btn.btn-medium.waves-effect.z-depth-3{
     }
 
     .sign-up-container,
-    .about_us_container{
+    .about_us_container,
+    .login-intro-container{
         width: 600px;
     }
 
@@ -210,15 +284,17 @@ button.col.s12.btn.btn-medium.waves-effect.z-depth-3{
         border-radius: 0%; 
     }
     .login-wrapper .loginFormContainer{
-        margin: 15% auto 10%;
+        /* margin: 15% auto 10%; */
+    }
+
+    .welcome{
+        width: 100%;
+        margin-top: 15%;
     }
 }
 
-@media only screen and (max-width: 400px){
-    body{
-        width: 100%;
-    }
-
+.login-button {
+    border-radius: 10px;
 }
 /* input:focus::-webkit-input-placeholder {
     color: transparent;

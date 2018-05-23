@@ -61,46 +61,75 @@ function getData(){
 function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
+    
+    let currentText = $(goalSelected +'> .goal-description').text();
 
+    console.log('currentText', currentText);
     $(goalSelected +'> .goal-description').text('');
 
-    $("<input class='center' type='text'>").css({
+    $(`<input class='center' type='text' value='${currentText}'>`).css({
         'margin': '3px',
+        'font-size': '2rem',
         'border-bottom': '3px yellow solid',
         'height': '100%',
         'width': '100%',
 
     }).appendTo(textToEdit).focus();
 
-    $('input').on('focusout', ()=>{
-
-        let edit = $('input').val();
-
-        $(goalSelected+'> .goal-description').text(edit);
-
-        console.log(edit);
-        $('input').remove();
-
-
-        console.log('goalID', goalId);
-        $.ajax({
-            type: 'POST',
-            data: {
-                goal: edit,
-                goal_id: goalId,
-            },
-            url: '/goals/update',
-            // dataType: 'json',
-
-            success: function(resp){
-                console.log('edit',resp);
-                getData();
-            },
-            error: function(xhr, status, err){
-                console.log(err)
+    
+    $('input').on('keypress',  (e)=>{
+        if(e.keyCode == 13){
+            let edit = $('input').val();
+            if(!edit){
+                edit = currentText;
             }
-        })
-    })
+            $(goalSelected+'> .goal-description').text(edit);
+            $('input').remove();
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    goal: edit,
+                    goal_id: goalId,
+                },
+                url: '/goals/update',
+                // dataType: 'json',
+
+                success: function(resp){
+                    getData();
+                },
+                error: function(xhr, status, err){
+                    console.log(err)
+                }
+            });
+        };
+    });
+
+    $('input').on('focusout',  (e)=>{
+            let edit = $('input').val();
+            if(!edit){
+                edit = currentText;
+            }
+            $(goalSelected+'> .goal-description').text(edit);
+            $('input').remove();
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    goal: edit,
+                    goal_id: goalId,
+                },
+                url: '/goals/update',
+                // dataType: 'json',
+
+                success: function(resp){
+                    getData();
+                },
+                error: function(xhr, status, err){
+                    console.log(err)
+                }
+            });
+    });
 }
 
 function deleteGoal(goalId){
@@ -233,18 +262,14 @@ function rendergoalOnDashboard(goals){
         let goalSelector = '#goalId'+goalId;
 
         
-        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
-            
+        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{ 
             editGoal(goalSelector, goalId)
-            }
-        ).wrapInner('<a href="#">Edit</a>');
+            }).wrapInner('<a href="#">Edit</a>');
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
-            
             $(goalSelector).addClass('animated bounceOutDown');
             deleteGoal(goalId);
-       
-        }).wrapInner('<a>Delete</a>')
+       }).wrapInner('<a>Delete</a>')
 
         
         dropDownList.append(editItem, deleteItem);
