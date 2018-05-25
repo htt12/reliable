@@ -1,62 +1,97 @@
-/************************************DASHBOARD BODY **********/
-.dashboard-body{
+html{
+    font-size: 10px;
     width: 100vw;
     height: 100vh;
+    background-color: white;
+
+}
+
+/************************************DASHBOARD BODY **********/
+body{
+    height: 100%;
+    min-height: 100%;
+    min-width: 330px;
     background-color: #F2F2F2;
 }
 
 .dashboard-container{
     width: 100%;
-    height: 90%;
+    height: 91%;
     position: relative;
     background-color: #F2F2F2;
+
 }
 /************************************Title **********/
 
-
-
 .title-bar{
     width: 100%;
-    height: 100%;
+    height: 5rem;
     background-color: #A2D3DA;
-    font-size: 3em;
+    font-size: 3rem;
     color: white;
     font-family: 'Alegreya Sans SC', sans-serif;
     font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
-
+    padding-top: 1%;
 }
 
 .date {
-    height: 5%;
+    height: 2.5rem;
     width: 100%;
     background-color: #A2D3DA;
     color: white;
-    font-size: 1.25em;
+    font-size: 1.3rem;
     letter-spacing: 2px;
     text-align: center;
     border-bottom: 1px solid black;
+    padding-bottom: 23px;
+}
+
+/************************************ MESSAGE SECTION **********/
+.message {
+    background-color: #F2F2F2;
+    width: 60%;
+    position: relative;
+    margin: 15% auto 0;
+}
+
+.message p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 5%;
 
 }
+
+a.btn.btn-small{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.3rem;
+    border-radius: 10px;
+    background-color: rgb(119, 178, 186);
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    margin-bottom: 5%;
+    font-weight: bold;
+}
+
 
 /************************************GOAL SECTION **********/
 
 .goal-list{
     width: 100%;
-    height: 85%;
-    
-    overflow: scroll;
-    font-size: 1.2em;
-
+    height: 90%;
+    overflow-y: auto;
+    font-size: 1.2em;  
 
 }
 
 /**********INDIVIDUAL GOALS**********/
 .goal-container{
-    display: flex;
-    padding: 2% 7% 3% 4%;
-    height: 20%;
+    display: inline-flex;
+    padding: 2% 7% 2% 3%;
+    /* height: 20%; */
     width: 100%;
     text-align: center;
     
@@ -64,17 +99,17 @@
 
 .goal-description{
     background-color: #A2D3DA;
-    width: 80%;
-    height: 99%;
-    padding: 2% 4%;
-    font-size: 1.25em;
+    width: 87%;
+    padding: 2% 3% 2% 7%;
+    font-size: 1.25rem;
     justify-content: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
-    text-shadow: 2% 1% black;
     color: white;
-    overflow: scroll;
-    padding: 1% 7%;
+    border: 1px solid white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    box-shadow: 30px 3px 20px 0px rgba(0, 0, 0, 0.2);
 }
 
 .dayName {
@@ -84,7 +119,21 @@
     font-size: 0.60em;
 }
 
-.timeOfDayImage {
+.sunrise{
+    height: 24%;
+    width: 6%;
+    transform: translate(120%, 75%);
+    
+}
+
+.sun {
+    height: 24%;
+    width: 6%;
+    transform: translate(120%, 25%);
+    
+}
+
+.moon {
     height: 24%;
     width: 6%;
     transform: translate(120%, 40%);
@@ -95,25 +144,34 @@
 
 .button-container{
     display: inline-flex;
-    width: 20%;
-    height: 99%;
-
-
-
+    width: 12%;
+    height: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid white;
 }
+
 .goal-button{
     width: 100%;
     height: 100%;
     background-color: #FFE2A8;
-
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: linear-gradient(97deg, rgba(162, 211, 218, 1) 0%,
+                                        rgba(255,226,168, 0.6) 100%);
 
 }
 
 .button-container > .dropdown-content {
+    /* background-color: #FFE2A8; */
+    background-color: #F2F2F2;
+    padding: 0 3%;
 
+}
 
+li.complete.center-align:hover,
+li.center-align:hover {
     background-color: #FFE2A8;
-
 }
 
 .button-container > .dropdown-content li {
@@ -121,9 +179,22 @@
 }
 
 .button-container > .dropdown-content li > a > i{
-    float: none;
+    /* float: none; */
     margin: 0;
 
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+    width: 10rem;
+}
+
+button.dropdown-button.dropdown-trigger.goal-button {
+    border: transparent;
+}
+
+.shadow{
+    box-shadow: 2px 0px 15px 5px rgba(255, 255, 255, 0.3);
+    vertical-align: middle;
 }
 
 /************************************END - GOAL SECTION **********/
@@ -134,17 +205,18 @@
 
 
 .footer-container{
-    height: 10%;
+    height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
-    position: relative;
+    position: fixed;
+    bottom: 0;
     width: 100%;
+    max-width: 600px;
     background-color: #A2D3DA
 }
 
 nav{
     background-color: #A2D3DA;
     height: 100%;
-
 }
 
 .footer-items{
@@ -154,8 +226,6 @@ nav{
     flex-wrap: nowrap;
     justify-content: space-evenly;
     align-items: center;
-
-
 }
 
 nav ul li{
@@ -167,3 +237,146 @@ nav ul li{
     vertical-align: 100%;
 }
 /************************************END - FOOTER**********/
+
+.hidden{
+    display: none;
+}
+
+
+
+
+
+
+/**************************************************************/
+/************************* Responsive *************************/
+@media only screen and (min-width : 320px) {
+
+    .title-bar {
+        height: 2rem;
+        font-size: 1.8rem;
+        padding-top: 0%;
+    }
+    .date {
+        height: 1.5rem;
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
+    .message p {
+        font-size: 1rem;
+    }
+    a.btn.btn-small{
+        font-size: 0.9rem;
+        height: 30px;
+        line-height: 30px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .goal-description{
+        font-size: 1.1rem;
+        padding: 2% 4% 2% 7%;
+    }
+    i.material-icons.shadow{
+        font-size: 18px;
+    }
+
+    div.goal-container:last-child{
+        margin-bottom: 5%;
+    }
+
+    .footer-container{
+        height: 3.5rem;
+    }
+    .footer-items a i {
+        font-size: 2rem;
+        height: 35px;
+        line-height: 35px;
+    }
+}
+
+@media only screen and (min-width : 480px){
+    .title-bar {
+        height: 3rem;
+        font-size: 2rem;
+        padding-top: 0%;
+    }
+    .date {
+        height: 1.5rem;
+        font-size: 0.9rem;
+        padding-top: 2px;
+    }
+    .message p {
+        font-size: 1.2rem;
+    }
+    a.btn.btn-small{
+        font-size: 1.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .goal-description{
+        font-size: 1.2rem;
+        padding: 2% 4% 2% 7%;
+    }
+    .goal-list{
+        height: 89%;
+    }
+    i.material-icons.shadow{
+        font-size: 20px;
+    }
+
+    div.goal-container:last-child{
+        margin-bottom: 5%;
+    }
+
+    .footer-container{
+        height: 4.5rem;
+    }
+    .footer-items a i {
+        font-size: 2.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .title-bar{
+        height: 5rem;
+        font-size: 3rem;
+    }
+    
+    .date {
+        height: 2.5rem;
+        font-size: 1.3rem;
+    }
+    .message p{
+        font-size: 1.5rem;
+        padding-top: 5%;
+    }
+    
+    a.btn.btn-small{
+        font-size: 1.3rem;
+        height: 45px;
+        line-height: 45px;
+    }
+    .goal-list{
+        height: 87%;
+    }
+    .goal-description{
+        padding: 2% 5% 2% 7%;
+        font-size: 1.6rem;
+    }
+
+    .footer-container{
+        height: 9%;
+    }
+    .footer-items a i{
+        font-size: 3rem;
+    }
+}

@@ -1,23 +1,31 @@
-/************************************MATCH BODY **********/
-.match-body{
+html{
+    font-size: 10px;
     width: 100vw;
     height: 100vh;
+    background-color: white;
+
+}
+
+/************************************MATCH BODY **********/
+body{
+    height: 100%;
+    min-height: 100%;
     background-color: #F2F2F2;
 }
 
 .match-container{
     width: 100%;
-    height: 90%;
+    height: 91%;
     position: relative;
-    min-width: 375px;   
     background-color: #F2F2F2; 
+    overflow-y: auto;
     
 }
 /************************************TITLE**********/
 
 .title-bar{
     width: 100%;
-    height: 14%;
+    height: 5rem;
     background-color: #A2D3DA;
     font-size: 3em;
     color: white;
@@ -25,48 +33,183 @@
     font-weight: bolder;
     letter-spacing: 5px;
     text-align: center;
-    border-bottom: 2px black solid;
-    
+    padding-top: 1%;
+}
+
+.no-goals, .no-users{
+    font-size: 2rem;
+    padding-top: 3%;
+}
+
+.matchedUser {
+    height: 2.5rem;
+    width: 100%;
+    color: white;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    display: flex;
+    background-color: rgba(162, 211, 218, 0.8);
+}
+
+.interested,
+.all{
+    width: 50%;
+    background-color: rgba(162, 211, 218, 0.5);
+}
+
+.interested{
+    background-color: rgb(242, 197, 118); 
 }
 
 /************************************MATCH SECTION **********/
 
 .match-list{
-    width: 85%;
-    height: 81%;
+    height: 89%;
     display: inline-flex;
     flex-direction: column;
-    margin: 3% 7.5%;
-    
-    
+    overflow-y: auto; 
+    width: 100%;
 }
 
-.fixed-action-btn{
-    position: relative;
-    bottom: 10%;
-    right: -43%;
-    background-color: transparent;
+.interested-users,
+.all-users{
+    width: 100%;
+    height: 100%;
 }
+
+/************************ INTERESTED USERS ***********************/
+
+.interested-users-cotainer{
+    display: inline-block;
+    width: 92%;
+    height: 100%;
+    margin: 0;
+}
+
+.arrow-left{
+    width: 7%;
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.arrow-left i{
+    cursor: pointer;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50%;
+    font-size: 4rem;
+    box-shadow: 2px 0px 15px 5px rgba(255, 255, 255);
+}
+
+
+.user-names{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.user-name{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 500;
+}
+
+
+
+
+/************************ ALL USERS ***********************/
+.arrow-right{
+    width: 7%;
+    height: 100%;
+    margin: 0;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.arrow-right i{
+    cursor: pointer;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50%;
+    font-size: 4rem;
+    box-shadow: 2px 0px 15px 5px rgba(255, 255, 255);
+}
+
+.all-users-cotainer{
+    display: inline-block;
+    width: 92%;
+    height: 100%;
+    margin: 0;
+}
+
+.user-names{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.user-name{
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 500;
+}
+
+
+
 /**********INDIVIDUAL MATCHES**********/
 .goal-container{
-    display: inline-flex;
-    height: 15%;
-    padding-bottom: 3%;
-    
+    width: 25%;
+    margin-left: 8%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
 }
 
+.goal-container-goals{
+    width: 90%;
+    margin-left: 9%;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
+}
+
+
 .goal-description{
-    display: inherit;
-    background-color: #A2D3DA;
-    width: 80%;
-    font-size: 1.25em;
+    background-color: rgba(162, 211, 218, 0.5);
+    width: 100%;
     padding: 0% 4%;
-    justify-content: center;
-    align-items: center;
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
     padding: 5%;
+    position: relative;
+    top: 0;
+    font-size: 1.5rem;
+}
+
+.profileImg{
+
+}
+
+.profileImg img{
+    height: 100%;
+    width: 100%;
 }
 
 .partner-goal-description{
@@ -77,26 +220,21 @@
 /**********INDIVIDUAL BUTTONS**********/
 
 .button-container{
-    display: inline-flex;
-    width: 20%;
-    height: 100%;
-    
-
-    
+    width: 100%;
+    position: relative;
 }
 .goal-button{
     width: 100%;
-    height: 100%;
     background-color: #FFE2A8;
-
-
 }
 
 .button-container > .dropdown-content {
-    
-    
+    /* background-color: #FFE2A8;  */
+    background-color: #F2F2F2;
+}
+
+.button-container > .dropdown-content li:hover{
     background-color: #FFE2A8; 
-    
 }
 
 .button-container > .dropdown-content li {
@@ -117,17 +255,18 @@
 
 
 .footer-container{
-    height: 12%;
+    height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
-    position: relative;
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    max-width: 600px;
     background-color: #A2D3DA
 }
 
 nav{
     background-color: #A2D3DA;
     height: 100%;
-
 }
 
 .footer-items{
@@ -136,9 +275,7 @@ nav{
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-evenly;
-    align-items: center;
-
-    
+    align-items: center; 
 }
 
 nav ul li{
@@ -149,4 +286,136 @@ nav ul li{
     font-size: 3rem;
     vertical-align: 100%;
 }
+
+i.large.material-icons:hover {
+    background-color: rgba(255,226,168,0.8);
+}
+
+a.btn-floating.btn-large{
+    width: 50px;
+    height: 50px;
+}
+i.large.material-icons{
+    font-size: 2.5rem;
+}
+
+.chat-btn{
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
 /************************************END - FOOTER**********/
+
+.hidden{
+    display: none;
+}
+
+.show{
+    display: block;
+}
+
+
+
+/**************************************************************/
+/************************* Responsive *************************/
+@media only screen and (min-width : 320px) {
+
+    .title-bar {
+        height: 2rem;
+        font-size: 1.8rem;
+        padding-top: 0%;
+    }
+    .matchedUser {
+        height: 1.5rem;
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
+    .match-list{
+        height: 94%;
+    }
+    .footer-container{
+        height: 3.5rem;
+    }
+    .footer-items a i {
+        font-size: 2rem;
+        height: 35px;
+        line-height: 35px;
+    }
+    a.btn-floating.btn-large{
+        width: 27px;
+        height: 27px;
+        line-height: 27px;
+    }
+    i.large.material-icons{
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (min-width : 480px){
+    .title-bar {
+        height: 3rem;
+        font-size: 2rem;
+        padding-top: 0%;
+    }
+    .matchedUser {
+        height: 1.5rem;
+        font-size: 0.9rem;
+        padding-top: 2px;
+    }
+    .goal-list{
+        height: 94%;
+    }
+    .match-list{
+        height: 87%;
+    }
+    .footer-container{
+        height: 4.5rem;
+    }
+    .footer-items a i {
+        font-size: 2.2rem;
+        height: 40px;
+        line-height: 40px;
+    }
+    a.btn-floating.btn-large{
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+    i.large.material-icons{
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (min-width: 600px){
+    body{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .title-bar{
+        height: 5rem;
+        font-size: 3rem;
+    }
+    
+    .matchedUser {
+        height: 2.5rem;
+        font-size: 1.3rem;
+    }
+    .match-list{
+        height: 89%;
+    }
+
+    .footer-container{
+        height: 9%;
+    }
+    .footer-items a i{
+        font-size: 3rem;
+    }
+    a.btn-floating.btn-large{
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+    }
+    i.large.material-icons{
+        font-size: 2.5rem;
+    }
+}

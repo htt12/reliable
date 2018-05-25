@@ -51,21 +51,12 @@ module.exports = function (app) {
     //==========END OF GET ALL USERS===========//
 
     //==========GET TODAY GOALS===========//
-    app.get("/goalssqlday", (req, res, next) => {
+    app.post("/goalssqlday", (req, res, next) => {
         console.log("req: ", req.session.userId);
-        if (req.session.userId) {
-            myFunction(req);
-
-            function myFunction(req) {
-                var d = new Date();
-                var n = (d.getUTCDay());
-                console.log('n',n)
-                req.session.day = n;
-                console.log("Day ======" + req.session.day);
-            }
-
+        if ("UserId==="+req.session.userId) {
             let userID = req.session.userId;
-            let day = req.session.day;
+            let day = req.body.day;
+            console.log("The day is ===="+day)
             let status = "active";
             let query = "SELECT * FROM ?? WHERE user_id = ? AND day = ? AND status = ? ORDER BY ??";
             console.log(query);
@@ -77,8 +68,6 @@ module.exports = function (app) {
                 'timeframe',
 
             ];
-
-            
 
             let sql = mysql.format(query, inserts);
 
@@ -178,33 +167,7 @@ module.exports = function (app) {
     });
 
     //==========END OF GET ALL GOALS===========//
-    //==========GET ALL GOALS BY GOAL ID===========//
 
-    // app.get('/goalssql', (req, res, next) => {
-    //   console.log("req: ", req.session)
-    //     return;
-
-
-    // let { userID } = id;
-    // console.log("These are the params", id);
-    //
-    // let query = "SELECT * FROM ?? WHERE ?? = ?";
-    // let inserts = ["goals", "userID", userID];
-    // console.log("inserts are: ", inserts);
-    // let sql = mysql.format(query, inserts);
-
-    // connection.query(sql, (err, results, fields) => {
-    //   if (err) return next(err);
-    //
-    //   const output = {
-    //     success: true,
-    //     data: results
-    //   };
-    //   res.json(output);
-    // });
-    // });
-
-    //==========END OF GET ALL GOALS===========//
     app.post("/goals", (req, res, next) => {
         let {goal, category, day, startdate, finishdate, timeframe} = req.body;
         let userID = req.session.userId;
@@ -313,8 +276,8 @@ module.exports = function (app) {
     });
     //==========END OF EDIT GOALS===========//
 
-    //==========EDIT GOALS STATUS===========//
-    app.post("/goals/update/status", (req, res, next) => {
+    //==========COMPLETE/INCOMPLETE GOALS STATUS===========//
+    app.post("/goals/update/complete", (req, res, next) => {
         var goal_id = req.body.goal_id;
         var stats = req.body.stats;
         console.log("This is the stats" + stats);
@@ -341,6 +304,34 @@ module.exports = function (app) {
             res.json(output);
         });
     });
+
+    app.post("/goals/update/incomplete", (req, res, next) => {
+        var goal_id = req.body.goal_id;
+        var stats = req.body.stats;
+        console.log("This is the stats" + stats);
+
+        let query =
+            "UPDATE ?? SET ?? = ?, ?? = ? WHERE ?? = ?";
+        let inserts = [
+            "goals",
+            "status",
+            "Incomplete",
+            "stats",
+            stats,
+            "goal_id",
+            goal_id,
+        ];
+        console.log(query, inserts);
+        let sql = mysql.format(query, inserts);
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+            const output = {
+                success: true,
+                data: results
+            };
+            res.json(output);
+        });
+    });
     //==========END OF EDIT GOALS STATUS===========//
 
     //==========EDIT GOALS===========//
@@ -351,7 +342,7 @@ module.exports = function (app) {
         // console.log("This is the user id for updating status" + userId);
         // console.log("This is the user id for updating status" + matched_user_id);
         let query =
-            "UPDATE ?? SET ?? = 1 WHERE id = ? OR id = ?";
+            "UPDATE ?? SET ?? = 1 WHERE user_id = ? OR user_id = ?";
         let inserts = [
             "users",
             "status",
@@ -409,7 +400,7 @@ module.exports = function (app) {
     //==========GET ALL UNMATCHED USERS===========//
     app.post('/matching', (req, res, next) => {
         let userId = req.session.userId;
-        let query = 'SELECT * FROM ?? WHERE status <> ? AND id <> ?';
+        let query = 'SELECT * FROM ?? WHERE status <> ? AND user_id <> ?';
         console.log(query);
         let inserts = [
             'users',
@@ -436,10 +427,10 @@ module.exports = function (app) {
     app.post('/interestedMatching', (req, res, next) => {
         let userId = req.session.userId;
         let query = 'SELECT * FROM ?? WHERE ?? = ?';
-        console.log(query);
+        console.log(userId);
         let inserts = [
             'interested_matches',
-            'interested_matches',
+            'interested_user_id',
             userId
             // category, //Category they select on sign_up?
         ];
@@ -457,7 +448,7 @@ module.exports = function (app) {
             res.json(output);
         });
     });
-    //==========END OF GET ALL UNMATCHED USERS===========//
+    //==========END OF GET ALL INTERESTED MATCHES===========//
     //==========GET MATCHED USER GOALS===========//
     app.post('/matched', (req, res, next) => {
         let query = 'SELECT * FROM ?? WHERE user_id = ? OR matched_user_id = ?';
@@ -519,19 +510,54 @@ module.exports = function (app) {
     });
     //==========END OF GET ALL UNMATCHED USERS===========//
 
+    //==========GET MATCHED USER USERNAME===========//
+    app.post('/getMatchedUsername', (req, res, next) => {
+        let matchedUserId = req.body.matchedUser;
+        let userId = req.body.userId;
+        console.log(matchedUserId, userId);
+        if(matchedUserId == req.session.userId){
+            userId = req.body.matchedUserId;
+            matchedUserId = req.body.userId;
+            console.log("we hit the if Check")
+        }
+        console.log("This is the matched userId " + matchedUserId);
+        let query = 'SELECT * FROM ?? WHERE user_id = ?';
+        let inserts = [
+            'users',
+            matchedUserId,
+        ];
+
+        let sql = mysql.format(query, inserts);
+
+        connection.query(sql, (err, results, fields) => {
+            if (err) return next(err);
+
+            const output = {
+                success: true,
+                data: results,
+            };
+            console.log("Output Data" + output.data);
+            res.json(output);
+        });
+    });
+    //==========END OF GET MATCHED USER USERNAME===========//
+
     //==========POST POSSIBLE MATCHES TO INTERESTED_MATCHES===========//
     app.post("/matchingusers", (req, res, next) => {
         let matchedUserId = req.body.matchedUserId;
+        let userName = req.body.username;
         console.log(req.session.userId);
         console.log("This is the matched UserID:"+ matchedUserId);
         let userId = req.session.userId;
-        let query = "INSERT INTO ?? (??, ??) VALUES (?, ?)";
+        let query = "INSERT INTO ?? (??, ??, ??) VALUES (?, ?, ?)";
         let inserts = [
             "interested_matches",
             "user_id",
             "interested_user_id",
+            "username",
             userId, // There student Id
             matchedUserId, //User they clicked on
+            userName
         ];
         let sql = mysql.format(query, inserts);
 

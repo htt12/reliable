@@ -2,8 +2,31 @@ $(document).ready(initializeApp);
 
 function initializeApp(){
     matchedUsersCheck();
-    // getData();
+    var matchedUserUsername;
+    var userData;
+    $('.arrow-left').on('click', showAllUsers);
+    $('.all').on('click', showAllUsers);
+    $('.interested').on('click', showInterestedUsers);
+    $('.arrow-right > i').on('click', showInterestedUsers);
 }
+
+function showAllUsers(){
+    $('.interested-users').addClass('hidden').removeClass('show');
+    $(".all-users").removeClass('hidden').addClass('show');
+    $(".interested").css("background-color", "rgba(180, 213, 218, 0.5)");
+    $(".all").css("background-color", "rgb(242, 197, 118)");
+    getData();
+}
+
+function showInterestedUsers(){
+    $(".all-users").removeClass('show').addClass('hidden');
+    $(".interested-users").removeClass('hidden').addClass('show');
+    $(".all").css("background-color", "rgba(180, 213, 218, 0.5)");
+    $(".interested").css("background-color", "rgb(242, 197, 118)");
+    $(".no-users-container").empty();
+    matchedUsersCheck();
+}
+
 function matchedUsersCheck(){
     $.ajax({
         type: 'POST',
@@ -15,8 +38,39 @@ function matchedUsersCheck(){
         success: function(data){
             if(data.data[0]){
                 getMatchedUserGoals(data);
+                userData = data;
             } else {
-                getData();
+                checkForInterestedMatches();
+            }
+        },
+        error: function(xhr, status, err){
+            console.log(err)
+        }
+    })
+}
+
+function getMatchedUsername(){
+    let matchedUser = userData.data[0].matched_user_id;
+    let userId = userData.data[0].user_id;
+    $.ajax({
+        type: 'POST',
+        url: '/getMatchedUsername',
+        dataType: 'json',
+        jsonpCallback: 'callback',
+        crossDomain: true,
+        cache: false,
+        data: {
+            matchedUser: matchedUser,
+            userId: userId,
+            
+        },
+        success: function(data){
+            if(data.data[0]){
+                console.log(data.data);
+                matchedUserUsername = data.data[0].username;
+            } else {
+                var p = $("<p>").text("No goals for today").addClass('center');
+                $(".match-list").append(p);
             }
         },
         error: function(xhr, status, err){
@@ -50,10 +104,11 @@ function getMatchedUserGoals(data){
             if(data.data[0]){
                 console.log(data.data);
                 $('.all-goals-list').empty();
-                rendergoalOnDashboard(data.data)
+                rendergoalOnDashboard(data.data);
+                getMatchedUsername();
             } else {
-                var p = $("<p>").text("No goals for today").addClass('center');
-                $(".match-list").append(p);
+                var p = $("<p>").text("No goals for today").addClass('center no-goals');
+                $(".no-goals-container").append(p);
             }
         },
         error: function(xhr, status, err){
@@ -62,26 +117,25 @@ function getMatchedUserGoals(data){
     })
 }
 
-function checkForInterestedMatches(category){
+function checkForInterestedMatches(){
     $.ajax({
         type: 'POST',
-        url: '/matching',
+        url: '/interestedMatching',
         dataType: 'json',
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
         data: {
-            category: category,
         },
         success: function(resp){
             if(resp.data[0] !== undefined){
-                console.log(resp);
                 $('.all-goals-list').empty();
                 console.log(resp.data);
                 rendergoalOnDashboardOLD(resp.data)
             } else {
-                var p = $("<p>").text("No users ready to match").addClass("center");
-                $(".match-list").append(p);
+                // getData();
+                // var p = $("<p>").text("No users ready to match").addClass("center");
+                // $(".match-list").append(p);
             }
 
 
@@ -105,14 +159,17 @@ function getData(category){
             category: category,
         },
         success: function(resp){
+            console.log("This is the possible matches====="+resp)
+            var possibleMatches = resp.data;
             if(resp.data[0] !== undefined){
-                console.log(resp);
+                // console.log(resp);
                 $('.all-goals-list').empty();
                 console.log(resp.data);
                 rendergoalOnDashboardOLD(resp.data)
+                var users = resp.data;
             } else {
-                var p = $("<p>").text("No users ready to match").addClass("center");
-                $(".match-list").append(p);
+                var p = $("<p>").text("No users ready to match").addClass("center no-users");
+                $(".no-users-container").append(p);
             }
 
 
@@ -123,96 +180,6 @@ function getData(category){
     })
 }
 
-
-
-
-// function editGoal(goalSelected, goalId){
-//
-//     let textToEdit = $(goalSelected).find('.goal-description');
-//
-//     $(goalSelected +'> .goal-description').text('');
-//
-//     $("<input class='center' type='text'>").css({
-//         'margin': '3px',
-//         'border-bottom': '3px yellow solid',
-//         'height': '100%',
-//         'width': '100%',
-//
-//     }).appendTo(textToEdit).focus();
-//
-//     $('input').on('focusout', ()=>{
-//
-//         let edit = $('input').val();
-//
-//         $(goalSelected+'> .goal-description').text(edit);
-//
-//         console.log(edit);
-//         $('input').remove();
-//
-//
-//         console.log('goalID', goalId);
-//         $.ajax({
-//             type: 'POST',
-//             data: {
-//                 goal: edit,
-//                 goal_id: goalId,
-//             },
-//             url: '/goals/update',
-//             // dataType: 'json',
-//
-//             success: function(resp){
-//                 console.log('edit',resp);
-//                 getData();
-//             },
-//             error: function(xhr, status, err){
-//                 console.log(err)
-//             }
-//         })
-//     })
-// }
-
-// function deleteGoal(goalId){
-//     console.log('goalID', goalId);
-//     $.ajax({
-//         type: 'POST',
-//         data: {
-//             goal_id: goalId,
-//         },
-//         url: '/goals/delete',
-//         // dataType: 'json',
-//
-//         success: function(resp){
-//             console.log('delete',resp);
-//             $('.goal-list').empty();
-//             getData();
-//         },
-//         error: function(xhr, status, err){
-//             console.log(err)
-//         }
-//     })
-// }
-
-// function deleteGoal(goalId){
-//
-//     $.ajax({
-//         type: 'POST',
-//         data: {
-//             goal_id: goalId,
-//         },
-//         url: 'http://localhost:8000/goals/delete',
-//         // dataType: 'json',
-//
-//         success: function(resp){
-//             console.log('delete',resp);
-//             $('.goal-list').empty();
-//             getData();
-//         },
-//         error: function(xhr, status, err){
-//             console.log(err)
-//         }
-//     })
-// }
-
 function rendergoalOnDashboard(goals){
     console.log('goals',goals);
     var users = [];
@@ -222,9 +189,9 @@ function rendergoalOnDashboard(goals){
         var goalDescription = goals[i].goal;
         let goalId = goals[i].id;
         let userId =goals[i].id;
-        let userName = goals[i].username;
+        let userName = goals[i].interested_username;
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container-goals goal').attr('id','goalId'+goalId);
 
         //Creates a container with the goal description
         var goalBar = $("<div>").addClass('goal-description partner-goal-description z-depth-3').text(goalDescription);
@@ -248,90 +215,91 @@ function rendergoalOnDashboard(goals){
 
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
             getMatches(userId);
-            // deleteGoal(goalId);
-            // $(goalSelector).remove();
         }).wrapInner('<a>Find Match</a>');
-
-
-        // dropDownList.append(editItem, deleteItem);
-
-
-        // dropDownMenuButtonContainer.append(editButton,dropDownList);
 
         goalContainer.append(goalBar);
 
-        $('.match-list').append(goalContainer);
-        // $('.edit').wrapInner('<a href="#">edit</a>')
+        $('.interested-users-cotainer').append(goalContainer);
         $('.dropdown-trigger').dropdown();
-
     }
-
 }
 
 
 function rendergoalOnDashboardOLD(goals){
     console.log('goals',goals);
-    var users = [];
-    for(var i=0; i<goals.length;i++){
-        users.push(goals[i]);
-        //Gets goal description
-        var goalDescription = goals[i].username;
-        let goalId = goals[i].id;
-        let userId =goals[i].id;
-        //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
+    $('.interested-users-cotainer').empty();
+    $('.user-names').empty();
+    if($(".interested-users-container").length <= 0){
+        for(var i=0; i<goals.length;i++){
+            //Gets goal description
+            let goalDescription = goals[i].username;
+            let goalId = goals[i].id;
+            let userId =goals[i].user_id;
+            //Creates goal container for each goal
+            var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+userId,'username','username'+goalDescription);
 
-        //Creates a container with the goal description
-        var goalBar = $("<div>").addClass('goal-description z-depth-3').text(goalDescription);
+            //Creates a container with the goal description
+            var goalBar = $("<div>").addClass('goal-description z-depth-1');
+            var userProfile = $("<div>").addClass('profileImg');
+            var img = $("<img>").attr("src", "../images/default-user.png");
+            userProfile.append(img);
+            var user = $("<p>").addClass('user-name').text(goalDescription);
+            goalBar.append(userProfile, user);
 
-        //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-3');
+            //Creates drop down menu to mark goal as edit or delete
+            var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
 
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
+            var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+userId).text('menu');
 
-        var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
+            var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+userId,'username','dropdown'+goalDescription);
 
-        let goalSelector = '#goalId'+goalId;
+            let goalSelector = '#goalId'+goalId;
 
 
-        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
+            var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
+                console.log(goalId);
+                sendInterestedMatches(userId,goalDescription);
+                }
+            ).wrapInner('<a href="#">Select</a>');
 
-            console.log(userId);
-            sendInterestedMatches(userId);
+            var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
+                getMatches(userId);
+                console.log(userId);
+                // deleteGoal(goalId);
+                // $(goalSelector).remove();
+            }).wrapInner('<a>Find Match</a>');
+
+
+            dropDownList.append(editItem, deleteItem);
+
+
+            dropDownMenuButtonContainer.append(editButton,dropDownList);
+
+            goalContainer.append(goalBar, dropDownMenuButtonContainer);
+
+            if(goals.length < 10){
+                $('.interested-users-cotainer').append(goalContainer);
+            } else {
+                $('.user-names').append(goalContainer);
             }
-        ).wrapInner('<a href="#">Select</a>');
+            
 
-        var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
-            getMatches(userId);
-            console.log(userId);
-            // deleteGoal(goalId);
-            // $(goalSelector).remove();
-        }).wrapInner('<a>Find Match</a>');
+            // $('.match-list').append(goalContainer);
+            // $('.edit').wrapInner('<a href="#">edit</a>')
+            $('.dropdown-trigger').dropdown();
 
-
-        dropDownList.append(editItem, deleteItem);
-
-
-        dropDownMenuButtonContainer.append(editButton,dropDownList);
-
-        goalContainer.append(goalBar, dropDownMenuButtonContainer);
-
-        $('.match-list').append(goalContainer);
-        // $('.edit').wrapInner('<a href="#">edit</a>')
-        $('.dropdown-trigger').dropdown();
+        }
 
     }
 
 }
-
-
-
-function sendInterestedMatches(matchedUserId) {
+function sendInterestedMatches(matchedUserId,username) {
     $.ajax({
         type: "POST",
         url: "/matchingusers",
         // dataType: "json",
         data: {
+            username: username,
             matchedUserId: matchedUserId,
         },
         success: function (json_data) {
@@ -395,7 +363,7 @@ function updateUsers(userId, interested_user_id) {
         success: function (json_data) {
             var data = json_data;
             console.log(data);
-            $(location).attr('href', 'https://relluo.com//matching_system.html')
+            $(location).attr('href', '/matching_system.html')
 
         }
 

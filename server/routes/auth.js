@@ -44,30 +44,32 @@ module.exports = function (app) {
     });
 
     app.post('/login', function (req, res) {
-        console.log(req.body);
+        console.log('req.body', req.body);
         req.body.password = sha1(req.body.password);
         connection.connect(function (err) {
             console.log('db connected');
-            connection.query(`SELECT id, password FROM users WHERE email = '${req.body.email}'`, function (err, data, fields) {
+            connection.query(`SELECT user_id, password FROM users WHERE email = '${req.body.email}'`, function (err, data, fields) {
+                console.log("data " , data);
                 if (data.length) {
                     if (data[0].password === req.body.password) {
-                        console.log(data[0].id);
+                        console.log(data[0].user_id);
                         var user = data[0];
                         //user is valid
                         var userToken = generateRandomString(20) + Date.now();
-                        id = data[0].id;
-                        userID = id;
-                        req.session.userId = userID;
-                        console.log('==========ID=======:', id);
+                        req.session.userId = data[0].user_id;
+                        let userID = req.session.userId;
+                        
+                        console.log('==========ID=======:', req.session.userId);
 
                         var query = `INSERT INTO loggedinUsers SET userID=${userID}, token='${userToken}', created=NOW()`;
                         console.log("query is " + query);
                         connection.query(query, function (err) {
                             if (!err) {
-                                console.log(err);
+                                // console.log(err);
                                 res.set('Set-Cookie', 'userauth=' + userToken);
-                                
-                                res.redirect("/dashboard");
+                                res.json({"success": true});
+                                // res.redirect("/dashboard");
+                                console.log("made it past redirect")
                             }
                         });
 
@@ -75,17 +77,18 @@ module.exports = function (app) {
 
                     } else {
                         //right user, wrong pass
-                        console.log('user is invalid');
-                        res.redirect("/")
+                        console.log('password is invalid');
+                        // res.redirect("/")
 
-
+                        res.json({"success": false, errors: "Invalid password or user"});
 
                     }
                 } else {
                     //wrong user
                     console.log('no such user');
                     console.log('user is invalid');
-                    res.redirect("/")
+                    // res.redirect("/")
+                    res.json({"success": false, errors: "Invalid password or user"});
                     
                 }
             });

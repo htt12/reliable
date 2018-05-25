@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
+<head>
+    <title>Dashboard</title>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="css/dashBoard.css">
@@ -11,49 +11,37 @@
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <body class='dashboard-body'>
-        <div class="dashboard-container">
-            <div class='header'>
-                <div class="title-bar">Dashboard</div>
-                <div class='date'></div>
+</head>
+<body>
+    
+    <div class="dashboard-container">
+        <div class='header'>
+            <div class="title-bar">Dashboard</div>
+            <div class='date'></div>
+        </div>
+
+        <div class="goal-list ">
+            <div class="message hidden">
+                <p>You have no goals to display</p> 
+                <a class="btn btn-small z-depth-2" href="create_goal.html">Add Goal</a>               
             </div>
-            <div class="goal-list "></div>
-
-
         </div>
-        <div class='footer-container '>
-            <nav class='valign'>
-                <ul class="footer-items center">
-                    <li><a href="dashboard.html"><i class="material-icons">home</i></a></li>
-                    <li><a href="matching_system.html"><i class="material-icons">people</i></a></li>
-                    <li><a href="all_goals.html"><i class="material-icons">list</i></a></li>
-                    <li><a href="create_goal.html"><i class="material-icons">add</i></a></li>
-                </ul>
-            
-            </nav>
+    </div>
 
-        </div>
-                    
-       
-    </body>
+    <div class='footer-container'>
+        <nav class='valign'>
+            <ul class="footer-items center">
+                <li><a href="dashboard.html"><i class="material-icons">home</i></a></li>
+                <li><a href="matching_system.html"><i class="material-icons">people</i></a></li>
+                <li><a href="all_goals.html"><i class="material-icons">list</i></a></li>
+                <li><a href="create_goal.html"><i class="material-icons">add</i></a></li>
+            </ul>
+        </nav>
+    </div>
+                
+</body>
 
-    <script src='js/dashboard.js'></script>
+<script src='js/dashboard.js'></script>
 
 </html>
-
-
-
-
-<!-- <ul class="collection">
-    <li class="collection-item dismissable pink lighten-4 white-text"><div>Goal 1<a href="#!" class="secondary-content white-text center-align"><i class="material-icons">done</i><i class="material-icons">not_interested</i></a></div></li>
-    <p></p>
-    <li class="collection-item dismissable pink lighten-2 white-text"><div>Goal 2<a href="#!" class="secondary-content white-text"><i class="material-icons">done</i><i class="material-icons">not_interested</i></a></div></li>
-    <p></p>
-    <li class="collection-item dismissable pink darken-2 white-text"><div>Goal 3<a href="#!" class="secondary-content white-text"><i class="material-icons">done</i><i class="material-icons">not_interested</i></a></div></li>
-    <p></p>
-    <li class="collection-item dismissable pink darken-4 white-text"><div>Goal 4<a href="#!" class="secondary-content white-text"><i class="material-icons">done</i><i class="material-icons">not_interested</i></a></div></li>
-</ul>
-</div>

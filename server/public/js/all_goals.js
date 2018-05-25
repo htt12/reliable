@@ -6,6 +6,10 @@ function initializeApp(){
 
 /**** Ajax call to fetch data of all goals of appropriate user ****/
 function getData(){
+    let d = new Date();
+    let n = (d.getUTCDate());
+    console.log('n',n)
+    let day = n;
     $.ajax({
         type: 'GET',
         url: '/goalssql',
@@ -13,10 +17,33 @@ function getData(){
         jsonpCallback: 'callback',
         crossDomain: true,
         cache: false,
+        data: {
+            day: day
+        },
         success: function(resp){
             console.log(resp);
             $('.all-goals-list').empty();
-            rendergoalOnDashboard(resp.data)
+
+            if(resp.data.length === 0){
+                let div = $('<div>', {
+                    class: 'message'
+                });
+                let p = $('<p>', {
+                    text: 'You have no goals to display'
+                });
+                let a = $('<a>', {
+                    class: 'btn btn-small z-depth-2',
+                    href: 'create_goal.html',
+                    text: 'Add Goal'
+                });
+
+                div.append(p, a);
+                $('.all-goals-list').append(div);
+            }
+            else{
+                rendergoalOnDashboard(resp.data)
+            }
+            // rendergoalOnDashboard(resp.data)
 
             $('html, body').animate({
                 scrollTop: $('.all-goals-list').offset().top}, 2000)
@@ -34,46 +61,75 @@ function getData(){
 function editGoal(goalSelected, goalId){
 
     let textToEdit = $(goalSelected).find('.goal-description');
+    
+    let currentText = $(goalSelected +'> .goal-description').text();
 
+    console.log('currentText', currentText);
     $(goalSelected +'> .goal-description').text('');
 
-    $("<input class='center' type='text'>").css({
+    $(`<input class='center' type='text' value='${currentText}'>`).css({
         'margin': '3px',
+        'font-size': '2rem',
         'border-bottom': '3px yellow solid',
         'height': '100%',
         'width': '100%',
 
     }).appendTo(textToEdit).focus();
 
-    $('input').on('focusout', ()=>{
-
-        let edit = $('input').val();
-
-        $(goalSelected+'> .goal-description').text(edit);
-
-        console.log(edit);
-        $('input').remove();
-
-
-        console.log('goalID', goalId);
-        $.ajax({
-            type: 'POST',
-            data: {
-                goal: edit,
-                goal_id: goalId,
-            },
-            url: '/goals/update',
-            // dataType: 'json',
-
-            success: function(resp){
-                console.log('edit',resp);
-                getData();
-            },
-            error: function(xhr, status, err){
-                console.log(err)
+    
+    $('input').on('keypress',  (e)=>{
+        if(e.keyCode == 13){
+            let edit = $('input').val();
+            if(!edit){
+                edit = currentText;
             }
-        })
-    })
+            $(goalSelected+'> .goal-description').text(edit);
+            $('input').remove();
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    goal: edit,
+                    goal_id: goalId,
+                },
+                url: '/goals/update',
+                // dataType: 'json',
+
+                success: function(resp){
+                    getData();
+                },
+                error: function(xhr, status, err){
+                    console.log(err)
+                }
+            });
+        };
+    });
+
+    $('input').on('focusout',  (e)=>{
+            let edit = $('input').val();
+            if(!edit){
+                edit = currentText;
+            }
+            $(goalSelected+'> .goal-description').text(edit);
+            $('input').remove();
+
+            $.ajax({
+                type: 'POST',
+                data: {
+                    goal: edit,
+                    goal_id: goalId,
+                },
+                url: '/goals/update',
+                // dataType: 'json',
+
+                success: function(resp){
+                    getData();
+                },
+                error: function(xhr, status, err){
+                    console.log(err)
+                }
+            });
+    });
 }
 
 function deleteGoal(goalId){
@@ -99,12 +155,64 @@ function deleteGoal(goalId){
     })
 }
 
+// ***************** TESTING *************************
+// var object = [
+//     {
+//         goal: 'make it work make it work make it work make it work make it work make it work make it work make it work make it work make it work',
+//         goal_id: 88,
+//         day: 6,
+//         timeframe: 2
+//     },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 2,
+    //     timeframe: 1
+    // },
+    // {
+    //     goal: 'make it work',
+    //     goal_id: 18,
+    //     day: 5,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 2,
+    //     timeframe: 1
+    // },
+    // {
+    //     goal: 'make it work make it work make it work',
+    //     goal_id: 10,
+    //     day: 4,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make $$$$$$$$$$$$$$$$$$$$$$$',
+    //     goal_id: 8,
+    //     day: 5,
+    //     timeframe: 2
+    // },
+    // {
+    //     goal: 'make it work make it work make it work',
+    //     goal_id: 88,
+    //     day: 2,
+    //     timeframe: 1
+    // }
+// ]
+
+// rendergoalOnDashboard(object);
+
+// ***************************************************
+
 
 function rendergoalOnDashboard(goals){
     console.log('goals',goals)
     var users = []
 
-    
+    if(goals.length !== 0){
+        $(".message").addClass('hidden');
+    }
 
     for(var i=0; i<goals.length;i++){
         users.push(goals[i]);
@@ -131,7 +239,7 @@ function rendergoalOnDashboard(goals){
         }
         
         //Creates goal container for each goal
-        var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId);
+        var goalContainer = $('<div>').addClass('goal-container goal').attr('id','goalId'+goalId);
         
         //var goalContainer = $('<div>').addClass('goal-container goal valign-wrapper ').attr('id','goalId'+goalId).css('background-color' , timeOfDay);
         
@@ -139,30 +247,29 @@ function rendergoalOnDashboard(goals){
         var dayNameContainer = $("<div>").addClass('dayName').text(dayName);
         var imageContainer = $(`<img src=${timeImage} />`).addClass('timeOfDayImage')
 
-        var goalBar = $("<div>").addClass('goal-description z-depth-2').text(goalDescription);
+        var goalBar = $("<div>").addClass('goal-description').text(goalDescription);
         
         //Creates drop down menu to mark goal as edit or delete
-        var dropDownMenuButtonContainer = $('<div>').addClass('button-container z-depth-2');
+        var dropDownMenuButtonContainer = $('<div>').addClass('button-container');
         
-        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button material-icons').attr('data-activates', 'dropdown'+goalId).text('menu');
-        
+        var icons = $('<i>').addClass('material-icons shadow').text('menu'); 
+        var editButton = $('<button>').addClass('dropdown-button dropdown-trigger goal-button').attr('data-activates', 'dropdown'+goalId);
+        editButton.append(icons);
+
+
         var dropDownList = $('<ul>').addClass('dropdown-content').attr('id','dropdown'+goalId);
         
         let goalSelector = '#goalId'+goalId;
 
         
-        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{
-            
+        var editItem = $('<li>').addClass('edit center-align').on('click', ()=>{ 
             editGoal(goalSelector, goalId)
-            }
-        ).wrapInner('<a href="#">Edit</a>');
+            }).wrapInner('<a href="#">Edit</a>');
         
         var deleteItem = $('<li>').addClass('delete center').on('click', ()=>{
-            
             $(goalSelector).addClass('animated bounceOutDown');
             deleteGoal(goalId);
-       
-        }).wrapInner('<a>Delete</a>')
+       }).wrapInner('<a>Delete</a>')
 
         
         dropDownList.append(editItem, deleteItem);
@@ -206,7 +313,7 @@ function displayDate(){
 
 function getTodayDate(){
     var date = new Date();
-    var day = date.getDay();
+    // var day = date.getDay();
     var dd = leadingZero(date.getDate());
     var mm = leadingZero(date.getMonth()+1);
     let dayOfWeek = convertToDayOfWeek(day);

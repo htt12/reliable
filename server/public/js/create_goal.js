@@ -87,6 +87,7 @@ function handlePredefinedGoalClicked(){
 
     if( category === "fitness"){
         $('.diet, .habit').removeClass('show').addClass('hidden');
+        $('.fitness > .categoryImg').addClass('remove-box-shadow');
         var targetElement = $('.fitness-goals');
         var id = $('#fitness_idea_list');
         getPredefinedGoalValue( targetElement, id );
@@ -94,8 +95,8 @@ function handlePredefinedGoalClicked(){
         updateGoalCategoryOnDropdown('Fitness');
     }
     else if( category === "diet"){
-
         $('.fitness, .habit').removeClass('show').addClass('hidden');
+        $('.diet > .categoryImg').addClass('remove-box-shadow');
         var targetElement = $('.diet-goals');
         var id = $('#diet_idea_list');
         getPredefinedGoalValue( targetElement, id );
@@ -103,8 +104,8 @@ function handlePredefinedGoalClicked(){
 
     }
     else if( category === "habit"){
-
         $('.diet, .fitness').removeClass('show').addClass('hidden');
+        $('.habit > .categoryImg').addClass('remove-box-shadow');
         var targetElement = $('.habit-goals');
         var id = $('#habit_idea_list');
         getPredefinedGoalValue( targetElement, id );
