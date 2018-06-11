@@ -36,6 +36,11 @@ body{
     padding-top: 1%;
 }
 
+.no-goals, .no-users{
+    font-size: 2rem;
+    padding-top: 3%;
+}
+
 .matchedUser {
     height: 2.5rem;
     width: 100%;
@@ -64,7 +69,7 @@ body{
     height: 89%;
     display: inline-flex;
     flex-direction: column;
-    /* overflow-y: auto; */
+    overflow-y: auto; 
     width: 100%;
 }
 
@@ -195,12 +200,11 @@ body{
     padding: 5%;
     position: relative;
     top: 0;
+    font-size: 1.5rem;
 }
 
 .profileImg{
-    height: 10rem;
-    width: 10rem;
-    margin: auto;
+
 }
 
 .profileImg img{
@@ -295,6 +299,11 @@ i.large.material-icons{
     font-size: 2.5rem;
 }
 
+.chat-btn{
+    position: absolute;
+    bottom: 2%;
+    right: 5%;
+}
 /************************************END - FOOTER**********/
 
 .hidden{

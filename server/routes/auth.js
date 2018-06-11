@@ -44,11 +44,12 @@ module.exports = function (app) {
     });
 
     app.post('/login', function (req, res) {
-        console.log(req.body);
+        console.log('req.body', req.body);
         req.body.password = sha1(req.body.password);
         connection.connect(function (err) {
             console.log('db connected');
             connection.query(`SELECT user_id, password FROM users WHERE email = '${req.body.email}'`, function (err, data, fields) {
+                console.log("data " , data);
                 if (data.length) {
                     if (data[0].password === req.body.password) {
                         console.log(data[0].user_id);

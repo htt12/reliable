@@ -9,12 +9,13 @@ html{
 body{
     height: 100%;
     min-height: 100%;
+    min-width: 330px;
     background-color: #F2F2F2;
 }
 
 .all-goals-container{
     width: 100%;
-    height: 91%;
+    height: 95%;
     position: relative;
     background-color: #F2F2F2;
 }
@@ -57,7 +58,7 @@ body{
 
 /************************************ MESSAGE SECTION **********/
 .message {
-    background-color: white;
+    background-color: #F2F2F2;
     width: 60%;
     position: relative;
     margin: 15% auto 0;
@@ -101,6 +102,7 @@ a.btn.btn-small{
     font-family: 'Roboto', sans-serif;
     hyphens: auto;
     color: white;
+    border: 1px solid white;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     box-shadow: 30px 3px 20px 0px rgba(0, 0, 0, 0.2);
@@ -112,8 +114,8 @@ a.btn.btn-small{
     /* transform: translate(130%, 0%);
     font-size: 0.60em; */
     /* transform: translate(130%, 60%); */
-    transform: translate(200%, 170%);
-    font-size: 1rem;
+    transform: translate(120%, 0%);
+    font-size: 0.60rem;
 }
 
 .timeOfDayImage {
@@ -131,6 +133,9 @@ a.btn.btn-small{
     display: inline-flex;
     width: 12%;
     height: auto;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid white;
 }
 
 .goal-button{
@@ -178,8 +183,8 @@ button.dropdown-button.dropdown-trigger.goal-button {
 .footer-container{
     height: 9%;
     border-top: 1px rgb(87, 87, 87) solid;
-    position: absolute;
     bottom: 0;
+    position: fixed;
     width: 100%;
     max-width: 600px;
     background-color: #A2D3DA
@@ -283,7 +288,7 @@ nav ul li{
         padding-top: 2px;
     }
     .message p {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
     a.btn.btn-small{
         font-size: 1.2rem;
@@ -322,6 +327,12 @@ nav ul li{
     }
 }
 
+@media only screen and (max-height: 521px){
+    .all-goals-container{
+        height: 85%;
+    }
+}
+
 @media only screen and (min-width: 600px){
     body{
         max-width: 600px;
@@ -347,13 +358,13 @@ nav ul li{
     .dayName {
         height: 90%;
         width: 1%;
-        transform: translate(200%, 170%);
+        transform: translate(245%, 170%);
         font-size: 1rem;
     } 
     .timeOfDayImage {
         height: 20%;
         width: 4%;
-        transform: translate(156%, 15%);
+        transform: translate(158%, 15%);
     }
 
 
