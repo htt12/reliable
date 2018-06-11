@@ -204,7 +204,7 @@ i.col.s12.btn.btn-medium.waves-effect.z-depth-3.waves-input-wrapper{
 
 a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
     position: relative;
-    left: 55%;
+    left: 80%;
     transform: translate(-50%, 0);
     font-size: 1.2rem;
     height: 100%;
@@ -215,7 +215,7 @@ a.col.s3.btn.btn-medium.waves-effect.z-depth-2.sign-up {
 
 a.col.s3.btn.btn-medium.waves-effect.z-depth-2.about_us{
     position: relative;
-    left: 45%;
+    left: 80%;
     transform: translate(-50%, 0);
     font-size: 1.2rem;
     width: 30%;
