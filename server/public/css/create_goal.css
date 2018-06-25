@@ -544,14 +544,14 @@ footer.page-footer{
         max-width: 100%;
     } */
     .title-bar {
-        height: 2.5rem;
-        font-size: 1.8rem;
+        height: 4.5rem;
+        font-size: 2.5rem;
         padding-top: 0%;
     }
     .steps {
-        height: 1.5rem;
-        font-size: 0.8rem;
-        padding-top: 2px;
+        height: 2.5rem;
+    font-size: 1rem;
+    padding-top: 2px;
     }
     .message {
         font-size: 1rem;
@@ -644,7 +644,7 @@ footer.page-footer{
 
 
     footer.page-footer{
-        height: 3.5rem;
+        height: 4.5rem;
     }
     .footer-items{
         height: 100%;
